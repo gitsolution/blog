@@ -37,4 +37,4 @@ Route::get('galeria','frontController@galeria');
 
 Route::get('login','frontController@login');
 Route::get('/','frontController@panel');
-Route::get('admin','frontController@admin');
+Route::get('usuario/create','frontController@admin');

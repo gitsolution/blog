@@ -4,7 +4,7 @@
     
    <div class="registro">
 
-            <p class="tituloRegistro col-md-12 frmEspacios"><label>Registrar nuevo usuario</label></p>
+            <p class="tituloRegistro col-md-12 frmEspacios titulo"><label>Registrar nuevo usuario</label></p>
 
                 <form id="frmLogin" >
 
@@ -22,8 +22,17 @@
                     <label >Correo electrónico</label>
                     <input type="email" class="form-control frmEspacios" id="email" placeholder="Correo electrónico">
                   </div>
+                        
+                  <div class="col-xs-6">
+                    <label >Contraseña</label>
+                    <input type="password" class="form-control frmEspacios" id="passwd" placeholder="Contraseña">
+                  </div>
+                  <div class="col-xs-6">
+                    <label >confirmar contraseña</label>
+                    <input type="password" class="form-control frmEspacios" id="passwd" placeholder="Confirmar contraseña">
+                  </div>
 
-                      <div class="col-xs-3">
+                  <div class="col-xs-3">
                         <label >Genero</label>
                             <select class="form-control frmEspacios">
                                   <option>Masculino</option>
@@ -35,28 +44,22 @@
                         <label >Fecha</label>
                         <input type="date" class="form-control frmEspacios" id="email" placeholder="Fecha" required>
                       </div>
-                        
-                  <div class="col-xs-3">
-                    <label >Contraseña</label>
-                    <input type="password" class="form-control frmEspacios" id="passwd" placeholder="Contraseña">
-                  </div>
-                  <div class="col-xs-3">
-                    <label >confirmar contraseña</label>
-                    <input type="password" class="form-control frmEspacios" id="passwd" placeholder="Confirmar contraseña">
-                  </div>
 
-                 <div class="col-xs-6">
+                 <div class="col-xs-7">
                     <label for="">Seleccinar archivo</label>
                     <input type="file" id="exampleInputFile" class="frmEspacios">
                  </div>
+
+
                   
-                  <div class="col-xs-12">
+                  <div class="col-xs-6">
                     <div class="col-xs-2">
-                     <button type="submit" class="btn btn-default form-control btn-flat frmEspacios btnRegistrar">Registrar</button>
+                    <button type="button" class="btn btn-primary frmEspacios">Registrar</button>
                      </div>
                   <div class="col-xs-2">
-                     <button type="submit" class="btn btn-default form-control btn-flat frmEspacios btnCancelar">Cancelar</button>
+                     <button type="button" class="btn btn-danger frmEspacios">Cancelar</button>
                   </div>
                 </form>
         </div>
+    </div>
 @stop

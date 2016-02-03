@@ -8,27 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    {!!Html::style('css/admin.css')!!}
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Timeline CSS -->
-    <link href="../dist/css/timeline.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    {!!Html::style('../bower_components/bootstrap/dist/css/bootstrap.min.css')!!}
+    {!!Html::style('../bower_components/metisMenu/dist/metisMenu.min.css')!!}
+    {!!Html::style('../dist/css/timeline.css')!!}
+    {!!Html::style('../dist/css/sb-admin-2.css')!!}
+    {!!Html::style('../bower_components/morrisjs/morris.css')!!}
+    {!!Html::style('../bower_components/font-awesome/css/font-awesome.min.css')!!}
 </head>
 
 <body>
@@ -369,10 +356,10 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
+    <!-- Morris Charts JavaScript -->s
     <script src="../bower_components/raphael/raphael-min.js"></script>
 
-    <!-- Custom Theme JavaScript -->
+    <!-- Custom Theme JavaScript -->s
     <script src="../dist/js/sb-admin-2.js"></script>
 
 </body>

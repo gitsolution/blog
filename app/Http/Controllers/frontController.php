@@ -30,63 +30,9 @@ class frontController extends Controller
         return view('login');
     }
 
-    public function panel()
+    public function admin()
     {
-        return view('panelAdmin');
+        return view('admin');
     }
-
-    public function flot()
-    {
-        return view('flot');
-    }
-
-    public function morris()
-    {
-        return view('morris');
-    }
-
-    public function tables()
-    {
-        return view('tables');
-    }
-
-    public function form()
-    {
-        return view('form');
-    }
-
-    public function panelWell()
-    {
-        return view('panelWell');
-    }
-
-    public function buttons()
-    {
-        return view('buttons');
-    }
-
-    public function notification()
-    {
-        return view('notification');
-    }
-
-    public function typography()
-    {
-        return view('typography');
-    }
-
-    public function icons()
-    {
-        return view('icons');
-    }
-
-    public function grid()
-    {
-        return view('grid');
-    }
-
-    public function prueba()
-    {
-        return view('prueba');
-    }
+   
 }

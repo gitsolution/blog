@@ -37,14 +37,4 @@ Route::get('galeria','frontController@galeria');
 
 Route::get('login','frontController@login');
 Route::get('/','frontController@panel');
-Route::get('flot','frontController@flot');
-Route::get('morris','frontController@morris');
-Route::get('tables','frontController@tables');
-Route::get('form','frontController@form');
-Route::get('panelWell','frontController@panelWell');
-Route::get('buttons','frontController@buttons');
-Route::get('notification','frontController@notification');
-Route::get('typography','frontController@typography');
-Route::get('icons','frontController@icons');
-Route::get('grid','frontController@grid');
-Route::get('prueba','frontController@prueba');
+Route::get('admin','frontController@admin');

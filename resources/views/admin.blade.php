@@ -56,7 +56,6 @@
                      </div>
                   <div class="col-xs-2">
                      <button type="submit" class="btn btn-default form-control btn-flat frmEspacios btnCancelar">Cancelar</button>
-                   
                   </div>
                 </form>
         </div>

@@ -11,8 +11,7 @@
 
 			<p class="tituloRegistro col-md-12 col-md-offset-2"><label>Registrar nuevo usuario</label></p>
 
-				<form id="frmLogin" >
-			
+				<form id="frmLogin" >			
 
 
  				  <div class="col-xs-4">

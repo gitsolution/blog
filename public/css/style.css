@@ -157,3 +157,7 @@ border-radius: 1em;
     width: 100%;
 }
 .sliderTam{}
+
+
+/*ventana sesion*/
+.modal-footer {   border-top: 0px; }

@@ -37,4 +37,8 @@ Route::get('galeria','frontController@galeria');
 
 Route::get('login','frontController@login');
 Route::get('/','frontController@panel');
-Route::get('usuario/create','frontController@admin');
+
+Route::resource('usuario','userController');
+
+Route::resource('log','LogController');
+Route::get('logout','LogController@logout');

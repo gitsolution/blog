@@ -3,78 +3,61 @@
 
  <div class="registro">
 
-            <p class="tituloRegistro col-md-12 frmEspacios titulo"><label>Registrar nuevo usuario</label></p>
+            <p class="tituloRegistro col-md-12 frmEspacios titulo"><label>Registrar nuevo</label></p>
 
-
-                <form id="frmLogin" >
-
-					{!!Form::open()!!}
-					<div class="form-control"></div>
+					{!!Form::open(['route'=>'usuario.store','method'=>'POST'])!!}
+					<div class="form-group" id="frmLogin">
+					 <div class="col-xs-4">
             		{!!Form::label('nombre','Nombre')!!}
-            		{!!Form::text('nombre',null,['class'=>'form-control frmEspacios','placerholder'=>'Nombre'])!!}
+            		{!!Form::text('nombre',null,['class'=>'form-control frmEspacios','placeholder'=>'Nombre'])!!}
+            		</div>
 
-            		{!!Form::label('Nombre')!!}
-            		{!!Form::text('nombre',null,['class'=>'form-control frmEspacios','placerholder'=>'Nombre'])!!}
-            	
+            		<div class="col-xs-4">
+            		{!!Form::label('apellidos','Apellidos')!!}
+            		{!!Form::text('apellidos',null,['class'=>'form-control frmEspacios','placeholder'=>'Apellidos'])!!}
+            		</div>
 
-				</div>
-            	{!!Form:close()!!}
+            		<div class="col-xs-4">
+            		{!!Form::label('Correo electrónico')!!}
+            		{!!Form::email('correoElectronico',null,['class'=>'form-control frmEspacios','placeholder'=>'Correo electronico'])!!}
+            		</div>
 
+					<div class="col-xs-6">
+						{!!Form::label('Contraseña')!!}
+            			{!!Form::password('passwd',	['class'=>'form-control frmEspacios','placeholder'=>'Contraseña'])!!}
+            		</div>
 
+            		<div class="col-xs-6">
+						{!!Form::label('Confirmar contraseña')!!}
+            			{!!Form::password('cPasswd',['class'=>'form-control frmEspacios','placeholder'=>'Confirmar contraseña'])!!}
+            		</div>
 
-
-                  <div class="col-xs-4">
-                    <label >Nombre</label>
-                    <input type="text" class="form-control frmEspacios" id="nombre" placeholder="Nombre" required>
+            		<div class="col-xs-3">
+            		   {!!Form::label('Genero')!!}
+                       {!!Form::select('size', array('m' => 'Masculino', 'f' => 'Femenino'))!!}
                   </div>
 
-                  <div class="col-xs-4">
-                    <label >Apellidos</label>
-                    <input type="text" class="form-control frmEspacios" id="Apellidos" placeholder="Apellidos" required>
-                  </div>
-
-                   <div class="col-xs-4">
-                    <label >Correo electrónico</label>
-                    <input type="email" class="form-control frmEspacios" id="email" placeholder="Correo electrónico">
-                  </div>
+                 	<div class="col-xs-5 form-group">
+                        {!!Form::label('Fecha')!!}
                         
-                  <div class="col-xs-6">
-                    <label >Contraseña</label>
-                    <input type="password" class="form-control frmEspacios" id="passwd" placeholder="Contraseña">
-                  </div>
-                  <div class="col-xs-6">
-                    <label >confirmar contraseña</label>
-                    <input type="password" class="form-control frmEspacios" id="passwd" placeholder="Confirmar contraseña">
-                  </div>
+                    </div>
 
-                  <div class="col-xs-3">
-                        <label >Genero</label>
-                            <select class="form-control frmEspacios">
-                                  <option>Masculino</option>
-                                  <option>Femenino</option>
-                            </select>
-                      </div>
+            		<div class="col-xs-7 form-group">
+	                    {!!Form::label('Seleccionar archivo')!!}
+	                    {!!Form::file('image')!!}
+                 	</div>              
 
-                      <div class="col-xs-3">
-                        <label >Fecha</label>
-                        <input type="date" class="form-control frmEspacios" id="email" placeholder="Fecha" required>
-                      </div>
+      				<div class="col-xs-6">
+                    	<div class="col-xs-2">
+            				{!!Form::submit('Registrar',['class'=>'btn btn-primary frmEspacios','placeholder'=>'Nombre'])!!}
+            			</div>
+            			<div class="col-xs-2">
+            				{!!Form::submit('Cancelar',['class'=>'btn btn-danger frmEspacios','placeholder'=>'Nombre'])!!}
+            			</div>
+            		</div>		
+					</div>
+            	{!!Form::close()!!}
 
-                 <div class="col-xs-7">
-                    <label for="">Seleccinar archivo</label>
-                    <input type="file" id="exampleInputFile" class="frmEspacios">
-                 </div>
-
-
-                  
-                  <div class="col-xs-6">
-                    <div class="col-xs-2">
-                    <button type="button" class="btn btn-primary frmEspacios">Registrar</button>
-                     </div>
-                  <div class="col-xs-2">
-                     <button type="button" class="btn btn-danger frmEspacios">Cancelar</button>
-                  </div>
-                </form>
         </div>
     </div>
 

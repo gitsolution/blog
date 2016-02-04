@@ -29,10 +29,5 @@ class frontController extends Controller
     {
         return view('login');
     }
-
-    public function admin()
-    {
-        return view('admin');
-    }
    
 }

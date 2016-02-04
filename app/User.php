@@ -11,16 +11,14 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
 
+    protected $table='usr_logins';
+    protected $fillable = ['id','mail','token','passwd','activate_account','active','register_date','modify_by','modify_date','created_at','updated_at'];
+    protected $guarded=['id'];
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+   
 }

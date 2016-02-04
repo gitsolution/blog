@@ -37,8 +37,14 @@ Route::get('galeria','frontController@galeria');
 
 Route::get('login','frontController@login');
 
-/*edita raul*/
 Route::get('admin/types','typeController@type');
 Route::get('admin/sections','sectiosController@section');
 Route::resource('types','typeController'); 
 Route::resource('sections','sectiosController'); 
+
+Route::get('/','frontController@panel');
+
+Route::resource('usuario','userController');
+
+Route::resource('log','LogController');
+Route::get('logout','LogController@logout');

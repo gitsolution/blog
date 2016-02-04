@@ -1,3 +1,4 @@
+
 .contenedor{margin-left: 210px;}
 
 
@@ -138,3 +139,45 @@
   padding: 2% 4%;
   border: dashed 5px #27c0d8;
 }
+
+.contenedor
+{
+	margin-left: 250px;
+}
+
+/* estilos para registro de usuario*/
+.frmEspacios	
+{
+	margin-bottom: 30px;
+}
+
+#frmLogin
+{
+	/*background: black;*/
+}
+
+.registro
+{
+	background: white;
+	height: 500px;
+}
+
+.titulo
+{
+	padding: 16px;
+	background: #3c8dbc;
+	height: 60px;
+	color: white;
+}
+
+.btnRegistrar
+{
+	background-color: #3c8dbc;
+    border-color: #367fa9;
+    outline: none;
+    font-size: 1.35em;
+    border: 3px solid #000;
+}
+
+/* fin de estilo d registrod de usuario*/
+

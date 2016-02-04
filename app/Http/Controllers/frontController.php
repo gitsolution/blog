@@ -25,5 +25,11 @@ class frontController extends Controller
     	return view('galeria');
     }
 
-    
+
+    public function login()
+    {
+        return view('login');
+    }
+   
+
 }

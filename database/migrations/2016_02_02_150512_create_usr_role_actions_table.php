@@ -13,10 +13,15 @@ class CreateUsrRoleActionsTable extends Migration
     public function up()
     {
         Schema::create('usr_role_actions', function (Blueprint $table) {
+
             $table->increments('id_role')->unsigned();
             $table->foreign('id_role')->references('id')->on('usr_roles');
             $table->integer('id_access')->unsigned();
             $table->foreign('id_access')->references('id')->on('cms_accesses');
+
+            $table->integer('id_role');
+            $table->integer('id_access');
+
             $table->string('action',100);
             $table->boolean('access');
             $table->boolean('active');

@@ -1,4 +1,10 @@
 
+body
+{
+	background-color:rgb(54,130,183) ;
+	color: gray;
+		font-family: Segoe UI;
+}
 .colorFondo
 {
 
@@ -153,5 +159,6 @@ border-radius: 1em;
 }
 .sliderTam{}
 
-
+/*ventana sesion*/
+.modal-footer {   border-top: 0px; }
 

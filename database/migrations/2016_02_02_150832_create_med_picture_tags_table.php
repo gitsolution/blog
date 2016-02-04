@@ -13,10 +13,15 @@ class CreateMedPictureTagsTable extends Migration
     public function up()
     {
         Schema::create('med_picture_tags', function (Blueprint $table) {
+
             $table->increments('id_picture')->unsigned();
             $table->foreign('id_picture')->references('id')->on('med_pictures');
             $table->integer('id_tag')->unsigned();
             $table->foreign('id_tag')->references('id')->on('cat_tags');
+
+            $table->integer('id_picture');
+            $table->integer('id_tag');
+
             $table->boolean('active');
             $table->integer('register_by');
             $table->timestamp('register_date');

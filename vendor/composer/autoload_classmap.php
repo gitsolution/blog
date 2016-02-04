@@ -14,7 +14,11 @@ return array(
     'App\\Http\\Controllers\\Auth\\PasswordController' => $baseDir . '/app/Http/Controllers/Auth/PasswordController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\frontController' => $baseDir . '/app/Http/Controllers/frontController.php',
+
     'App\\Http\\Controllers\\typeController' => $baseDir . '/app/Http/Controllers/typeController.php',
+
+    'App\\Http\\Controllers\\userController' => $baseDir . '/app/Http/Controllers/userController.php',
+
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
@@ -29,6 +33,7 @@ return array(
     'App\\User' => $baseDir . '/app/User.php',
     'App\\cat_tag' => $baseDir . '/app/cat_tag.php',
     'App\\cms_access' => $baseDir . '/app/cms_access.php',
+
     'App\\cms_category' => $baseDir . '/app/cms_category.php',
     'App\\cms_comment' => $baseDir . '/app/cms_comment.php',
     'App\\cms_document' => $baseDir . '/app/cms_document.php',
@@ -42,6 +47,11 @@ return array(
     'App\\men_item' => $baseDir . '/app/men_item.php',
     'App\\men_menu' => $baseDir . '/app/men_menu.php',
     'App\\men_type' => $baseDir . '/app/men_type.php',
+
+    'App\\med_album' => $baseDir . '/app/med_album.php',
+    'App\\med_picture' => $baseDir . '/app/med_picture.php',
+    'App\\med_picture_tag' => $baseDir . '/app/med_picture_tag.php',
+
     'App\\usr_login' => $baseDir . '/app/usr_login.php',
     'App\\usr_login_role' => $baseDir . '/app/usr_login_role.php',
     'App\\usr_profile' => $baseDir . '/app/usr_profile.php',
@@ -73,6 +83,7 @@ return array(
     'Collective\\Html\\HtmlServiceProvider' => $vendorDir . '/laravelcollective/html/src/HtmlServiceProvider.php',
     'CreateCatTagsTable' => $baseDir . '/database/migrations/2016_02_02_150546_create_cat_tags_table.php',
     'CreateCmsAccessesTable' => $baseDir . '/database/migrations/2016_02_02_150229_create_cms_accesses_table.php',
+
     'CreateCmsCategoriesTable' => $baseDir . '/database/migrations/2016_02_03_154346_create_cms_categories_table.php',
     'CreateCmsCommentsTable' => $baseDir . '/database/migrations/2016_02_03_154426_create_cms_comments_table.php',
     'CreateCmsDocumentAlbumsTable' => $baseDir . '/database/migrations/2016_02_03_154452_create_cms_document_albums_table.php',
@@ -86,6 +97,11 @@ return array(
     'CreateMenItemsTable' => $baseDir . '/database/migrations/2016_02_03_154558_create_men_items_table.php',
     'CreateMenMenusTable' => $baseDir . '/database/migrations/2016_02_03_154546_create_men_menus_table.php',
     'CreateMenTypesTable' => $baseDir . '/database/migrations/2016_02_03_154526_create_men_types_table.php',
+
+    'CreateMedAlbumsTable' => $baseDir . '/database/migrations/2016_02_02_150624_create_med_albums_table.php',
+    'CreateMedPictureTagsTable' => $baseDir . '/database/migrations/2016_02_02_150832_create_med_picture_tags_table.php',
+    'CreateMedPicturesTable' => $baseDir . '/database/migrations/2016_02_02_150703_create_med_pictures_table.php',
+
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateUsrLoginRolesTable' => $baseDir . '/database/migrations/2016_02_02_150330_create_usr_login_roles_table.php',

@@ -393,10 +393,10 @@
 
     <!-- Custom Theme JavaScript -->
 
-    <!-- Morris Charts JavaScript -->s
+    <!-- Morris Charts JavaScript -->
     <script src="../bower_components/raphael/raphael-min.js"></script>
 
-    <!-- Custom Theme JavaScript -->s
+    <!-- Custom Theme JavaScript -->
 
     <script src="../dist/js/sb-admin-2.js"></script>
 

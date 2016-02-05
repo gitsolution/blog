@@ -18,15 +18,11 @@ class CreateMedPictureTagsTable extends Migration
             $table->foreign('id_picture')->references('id')->on('med_pictures');
             $table->integer('id_tag')->unsigned();
             $table->foreign('id_tag')->references('id')->on('cat_tags');
-
             $table->integer('id_picture');
             $table->integer('id_tag');
-
             $table->boolean('active');
             $table->integer('register_by');
-            $table->timestamp('register_date');
             $table->integer('modify');
-            $table->dateTime('modify_date');
             $table->timestamps();
         });
     }

@@ -3,15 +3,18 @@
        <!---contact-->
 
 <div class="main-contact">
-  <h3 class="head">SECCION</h3>
-  <p>PAGINA PARA LA SECCION</p>
+ 
   <div class="contact-form">
         {!!Form::open(['route'=>'sections.store', 'method'=>'POST'])!!}
           <div class="row">
+           <h3 class="head">SECCION</h3>
+  <p>PAGINA PARA LA SECCION</p>
               <div class="form-group">
                 <div class="col-md-3">
+              
                   {!!Form::label('tipo','Tipo:')!!}
-                  {!!Form::select('size', array('L' => 'Large', 'S' => 'Small'))!!}
+                  {!!Form::select('orden', [1,2,3,4,5,6], null, array('class'=>'form-control input-md')) !!}
+              <br>
                 </div>
                 <div class="col-md-5">
                   <div class="publiChec">
@@ -34,14 +37,26 @@
                 </div>
               </div>
           </div>
-          <div class="form-group">
-            {!!Form::label('titulo','Titulo:')!!}
-            {!!Form::text('titulo',null,['class'=>'form-control','placeholder'=>''])!!}
+
+  <div class="form-group">
+      <div class="row">
+          <div class="col-md-12">
+              {!!Form::label('date','Fecha De Publicació:')!!}  
           </div>
-          <div class="form-group">
-            {!!Form::label('resumen','Resumen')!!}
-            {!!Form::textarea('resumen',null,['class'=>'form-control','placeholder'=>''])!!}
+          
+          <div class="col-md-3">
+              {!!Form::date('fechaPublicado', \Carbon\Carbon::now(),['class'=>'form-control'])!!}              
           </div>
+      </div>
+      <br>
+      <div class="form-group">
+          {!!Form::label('titulo','Titulo:')!!}
+          {!!Form::text('titulo',null,['class'=>'form-control','placeholder'=>''])!!}
+      </div>
+      <div class="form-group">
+          {!!Form::label('resumen','Resumen')!!}
+          {!!Form::textarea('resumen',null,['class'=>'form-control','placeholder'=>''])!!}
+      </div>
           <div class="form-group">
             {!!Form::label('contenido','Contenido')!!}
             {!!Form::textarea('contenido',null,['class'=>'form-control','placeholder'=>''])!!}
@@ -49,8 +64,9 @@
          <div class="form-group">
                      {!!Form::label('Imagen Principal')!!}
                      {!!Form::file('image')!!}
-                  </div>
+          </div>
           {!!Form::submit()!!}
+
         {!!Form::close()!!} 
   </div>
 </div>

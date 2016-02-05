@@ -18,15 +18,11 @@ class CreateUsrLoginRolesTable extends Migration
             $table->foreign('id_login')->references('id')->on('usr_logins');
             $table->integer('id_role')->unsigned();
             $table->foreign('id_role')->references('id')->on('usr_roles');
-
             $table->integer('id_login');
             $table->integer('id_role');
-
             $table->boolean('active');
             $table->integer('resgister_by');
-            $table->timestamp('register_date');
             $table->integer('modify_by');
-            $table->dateTime('modify_date');
             $table->timestamps();
         });
     }

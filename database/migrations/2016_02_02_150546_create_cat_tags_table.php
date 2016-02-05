@@ -15,14 +15,9 @@ class CreateCatTagsTable extends Migration
 
         Schema::create('cat_tags', function ($table) {
             $table->increments('id');
-
-        Schema::create('cat_tags', function (Blueprint $table) {
-            $table->integer('id');
-
             $table->string('title',250);
             $table->boolean('active');
             $table->integer('register_by');
-            $table->timestamp('register_date');
             $table->timestamps();
         });
     }

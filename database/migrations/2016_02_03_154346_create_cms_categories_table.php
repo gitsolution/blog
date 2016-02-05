@@ -27,9 +27,7 @@ class CreateCmsCategoriesTable extends Migration
             $table->integer('order_by');
             $table->boolean('active');
             $table->integer('register_by');
-            $table->timestamp('register_date');
             $table->integer('modify_by');
-            $table->dateTime('modify_date');
             $table->timestamps();
         });
     }

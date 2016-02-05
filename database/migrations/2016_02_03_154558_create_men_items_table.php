@@ -25,9 +25,7 @@ class CreateMenItemsTable extends Migration
             $table->boolean('publish');
             $table->boolean('active');
             $table->integer('register_by');
-            $table->timestamp('register_date');
             $table->integer('modify_by');
-            $table->dateTime('modify_date');
             $table->timestamps();
         });
     }

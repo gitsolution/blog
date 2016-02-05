@@ -21,12 +21,7 @@ class CreateUsrLoginsTable extends Migration
             $table->string('passwd',100);
             $table->boolean('activate_account');
             $table->boolean('active');
-            $table->timestamp('register_date');
-
-            $table->integer('modify_by');
-
-           $table->dateTime('modify_by');
-            $table->dateTime('modify_date');
+            $table->dateTime('modify_by');
             $table->timestamps();
         });
     }

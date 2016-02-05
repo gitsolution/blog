@@ -19,7 +19,6 @@ class CreateMedPicturesTable extends Migration
             $table->foreign('id_album')->references('id')->on('med_albums');
             $table->string('title',250);
             $table->text('description');
-
             $table->integer('id');
             $table->integer('id_album');
             $table->string('title',250);
@@ -32,14 +31,11 @@ class CreateMedPicturesTable extends Migration
             $table->string('mime_type',20);
             $table->string('extension',20);
             $table->integer('hits');
-
             $table->integer('order_by');
-
             $table->boolean('active');
             $table->integer('register_by');
-            $table->timestamp('register_date');
             $table->integer('modify_by');
-            $table->dateTime('modify_date');
+           
             $table->timestamps();
         });
     }

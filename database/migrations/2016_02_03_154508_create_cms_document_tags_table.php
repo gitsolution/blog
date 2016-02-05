@@ -19,9 +19,7 @@ class CreateCmsDocumentTagsTable extends Migration
             $table->foreign('id_tag')->references('id')->on('cat_tags');
             $table->boolean('active');
             $table->integer('register_by');
-            $table->timestamp('register_date');
             $table->integer('modify_by');
-            $table->dateTime('modify_date');
             $table->timestamps();
         });
     }

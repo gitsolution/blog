@@ -14,9 +14,7 @@ class CreateUsrRolesTable extends Migration
     {
         Schema::create('usr_roles', function (Blueprint $table) {
 
-            $table->increments('id');
-
-            $table->integer('id');
+            $table->increments('id');            
             $table->string('title',250);
             $table->text('description');
             $table->boolean('active');

@@ -13,10 +13,7 @@ class CreateMedAlbumsTable extends Migration
     public function up()
     {
         Schema::create('med_albums', function (Blueprint $table) {
-
             $table->increments('id');
-
-            $table->integer('id');
             $table->string('title',250);
             $table->text('description');
             $table->integer('order');

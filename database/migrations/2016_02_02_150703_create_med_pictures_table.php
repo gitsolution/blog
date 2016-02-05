@@ -19,11 +19,6 @@ class CreateMedPicturesTable extends Migration
             $table->foreign('id_album')->references('id')->on('med_albums');
             $table->string('title',250);
             $table->text('description');
-            $table->integer('id');
-            $table->integer('id_album');
-            $table->string('title',250);
-            $table->text('description');
-            $table->integer('order');
             $table->text('uri');
             $table->boolean('publish');
             $table->dateTime('publish_date');

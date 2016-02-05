@@ -15,7 +15,6 @@ class CreateCmsAccessesTable extends Migration
         Schema::create('cms_accesses', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->integer('id');
             $table->string('title',250);
             $table->text('description');
             $table->boolean('active');

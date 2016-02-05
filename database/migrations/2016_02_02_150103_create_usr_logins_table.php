@@ -15,7 +15,6 @@ class CreateUsrLoginsTable extends Migration
         Schema::create('usr_logins', function (Blueprint $table) {
 
             $table->increments('id');
-           $table->integer('id');
             $table->string('mail',150);
             $table->string('token',100);
             $table->string('passwd',100);

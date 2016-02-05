@@ -60,3 +60,12 @@ Route::resource('usuario','userController');
 
 Route::resource('log','LogController');
 Route::get('logout','LogController@logout');
+
+
+/*************RUTAS DE ALBUMS Y PICTURES ***************/
+Route::resource('admin/media','MediaController');
+///// FORMS
+Route::get('admin/medianew','MediaController@medianew');
+Route::post('admin/media/store','MediaController@store');
+///// Catalogos 
+Route::get('admin/media','MediaController@index');

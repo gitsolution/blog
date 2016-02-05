@@ -2,25 +2,25 @@
   @section('content')
        <!---contact-->
 
-<div class="main-contact">
+<div class="container-fluid">
  
-  <div class="contact-form">
+  <div class="container-fluid">
         {!!Form::open(['route'=>'sections.store', 'method'=>'POST'])!!}
           <div class="row">
-           <h3 class="head">SECCION</h3>
-  <p>PAGINA PARA LA SECCION</p>
-              <div class="form-group">
+            <div class="form-group">
+                  <div class="col-md-12"><h3 class="head">SECCION</h3>
+                       <p>PAGINA PARA LA SECCION</p></div>
                 <div class="col-md-3">
-              
+                     
                   {!!Form::label('tipo','Tipo:')!!}
                   {!!Form::select('orden', [1,2,3,4,5,6], null, array('class'=>'form-control input-md')) !!}
               <br>
                 </div>
                 <div class="col-md-5">
                   <div class="publiChec">
-                      {!!Form::label('privado','Publicar')!!}
+                      {!!Form::label('privado','Piblicar')!!}
                           <div class="material-switch pull-right">
-                            <input id="someSwitchOptionInfo" name="ChekPrivado" value="1" type="checkbox"/>
+                            <input id="someSwitchOptionInfo" name="ChekPublicar" checked="true" type="checkbox"/>
                             <label for="someSwitchOptionInfo" class="label-info"></label>
                         </div>     
                   </div>
@@ -30,7 +30,7 @@
                   <div class="priChec">
                       {!!Form::label('privado','Privado')!!}
                       <div class="material-switch pull-right">
-                          <input id="someSwitchOptionSuccess" name="ChekPublico" value="1" type="checkbox"/>
+                          <input id="someSwitchOptionSuccess" name="ChekPrivado" checked="true" type="checkbox"/>
                           <label for="someSwitchOptionSuccess" class="label-success"></label>
                       </div>           
                   </div>

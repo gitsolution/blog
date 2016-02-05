@@ -37,10 +37,22 @@ Route::get('galeria','frontController@galeria');
 
 Route::get('login','frontController@login');
 
+
+
+
+
+
+
+
+/*************RUTAS DE TYPES Y SECTIOSN ***************/
 Route::get('admin/types','typeController@type');
-Route::get('admin/sections','sectiosController@section');
 Route::resource('types','typeController'); 
-Route::resource('sections','sectiosController'); 
+Route::get('admin/sectionsnew','sectiosController@section'); //formulario sectionsform.blade.php
+Route::resource('admin/sections','sectiosController@index');      //index. catalogo
+Route::resource('sections','sectiosController');            //llamada al metodo store para guardar los datos en la db
+/****************************************************/
+
+
 
 Route::get('/','frontController@panel');
 

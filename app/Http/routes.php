@@ -38,12 +38,6 @@ Route::get('galeria','frontController@galeria');
 Route::get('login','frontController@login');
 
 
-
-
-
-
-
-
 /*************RUTAS DE TYPES Y SECTIOSN ***************/
 Route::get('admin/types','typeController@type');
 Route::resource('types','typeController'); 
@@ -63,9 +57,14 @@ Route::get('logout','LogController@logout');
 
 
 /*************RUTAS DE ALBUMS Y PICTURES ***************/
+///// Catalogos 
+Route::get('admin/media','MediaController@index');
 Route::resource('admin/media','MediaController');
 ///// FORMS
 Route::get('admin/medianew','MediaController@medianew');
 Route::post('admin/media/store','MediaController@store');
-///// Catalogos 
-Route::get('admin/media','MediaController@index');
+///// EDICION
+Route::get('admin/mediaedit/{id}','MediaController@edit');
+Route::put('admin/media/update','MediaController@update');
+////// ELIMINAR
+Route::get('admin/mediadel/{id}','MediaController@delete');

@@ -19,7 +19,7 @@
     {!!Form::label('descripcion','Descripción:')!!}
     {!!Form::textarea('descripcion',null,['class'=>'form-control','placeholder'=>''])!!}
   </div>
-  {!!Form::submit()!!}
+  {!!Form::submit('Crear',['class'=>'btn btn-primary'])!!}
   {!!Form::close()!!}        
     </div>
   @stop

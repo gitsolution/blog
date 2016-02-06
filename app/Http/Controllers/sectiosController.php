@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Session;
+use Redirect;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -37,20 +38,38 @@ class sectiosController extends Controller
        }
      
 		\App\cms_section::create([
-      'id_type'=>'2',//$request['size'],
-      'title' => $request['titulo'],
+      'id_type'=>$request['id_type'],
+      'title' => $request['title'],
       'resumen'=>$request['resumen'],
-      'content'=>$request['contenido'],
-      'main_picture'=>'imagen',//$request['descripcion'],
+      'content'=>$request['content'],
+      'main_picture'=>$request['main_picture'],
       'private'=>$ChekPrivad,
-      'publish_date'=>'2015/03/03',//$request['descripcion'],
+      'publish_date'=>$request['publish_date'],//$request['descripcion'],
       'publish'=>$ChekPubli,
       'uri'=>'cadena',//$request['descripcion'],
       'order_by'=>'1',//$request['descripcion'],
       'active'=>'1',//$request[''],
       'register_by'=>'1',//,$request[''],
       'modify_by'=>'1',
-      'register_by'=>'1', ]);
-  return view('sections');
+      'register_by'=>'1',
+       ]);
+    return redirect('admin/sections');
     }
+
+     public function edit($id)
+    {
+        $Section = \App\cms_section::find($id);
+        return view('sections.sectionform',['Section'=>$Section]);
+    }
+
+       public function update($id, Request $request)
+    {
+        $Section = \App\cms_section::find($id);
+        $Section->fill($request->all());
+        $Section->save();
+
+       
+    }
+
+
 }

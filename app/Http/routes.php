@@ -45,11 +45,11 @@ Route::get('login','frontController@login');
 
 
 /*************RUTAS DE TYPES Y SECTIOSN ***************/
-Route::get('admin/types','typeController@type');
-Route::resource('types','typeController'); 
+Route::get('admin/typesnew','typeController@type');//abre el formulario para nuevo typo
+Route::resource('types','typeController'); //manda a llamar la funcion store
+Route::resource('admin/types','typeController@type');// redirecciona asi mismo despues de guardar
 Route::get('admin/sectionsnew','sectiosController@section'); //formulario sectionsform.blade.php
-Route::resource('admin/sections','sectiosController@index');      //index. catalogo
-Route::resource('sections','sectiosController');            //llamada al metodo store para guardar los datos en la db
+Route::resource('admin/sections','sectiosController');      //index. catalogo
 /****************************************************/
 
 

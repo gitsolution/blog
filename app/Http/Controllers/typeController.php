@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 class typeController extends Controller
 {
+
+
    public function type()
     {
     	return view('Types.typeform');
@@ -29,7 +31,7 @@ class typeController extends Controller
      
 
       ]);
-      return view('Types.typeform');
+      return redirect('admin/types');
 
       
     }

@@ -69,3 +69,5 @@
 </div>
 
   @stop
+  <!--fin de archivo
+  -->

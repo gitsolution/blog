@@ -68,3 +68,10 @@ Route::get('admin/mediaedit/{id}','MediaController@edit');
 Route::put('admin/media/update','MediaController@update');
 ////// ELIMINAR
 Route::get('admin/mediadel/{id}','MediaController@delete');
+////// ORDENAR 
+Route::get('admin/mediaorder/{id}/{orderBy}/{no}','MediaController@order');
+////// PUBLICAR
+Route::get('admin/mediapub/{id}/{pub}','MediaController@publicate');
+/////  INDEX PAGE
+Route::get('admin/mediaind/{id}/{ind}','MediaController@index_page');
+

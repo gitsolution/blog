@@ -4,10 +4,20 @@
 
 <?php  
 if(isset($Section)) {
-  $botonTitulo='Editar';
+$botonTitulo='Editar'; // para cambiar de nombre al submit si es editar o guardar
  $message='Edit';
+ $id_type=$Section->id_type;
  $title=$Section->title;
- $description=$Section->description;
+ $resumen=$Section->resumen;
+ $content=$Section->content;
+ $main_picture=$Section->main_picture;
+  if($Section->private=="0")
+ {
+  $ChekPrivado = "";//;  
+ }
+ else{
+  $ChekPrivado = "checked";//;  
+ } 
  $publish_date = date_create($Section->publish_date);
  if($Section->publish=="0")
  {
@@ -16,6 +26,8 @@ if(isset($Section)) {
  else{
   $ChekPublicar = "checked";//;  
  } 
+ $uri=$Section->uri;
+ $hits=$Section->hits;
  $order_by= $Section->order_by;
 
 
@@ -28,6 +40,7 @@ $botonTitulo='Crear';
  $publish = $Section;
  $publish_date= $Section;
  $order_by= $Section;
+ $id_type=$Section;
 }
  ?>
 
@@ -47,6 +60,7 @@ $botonTitulo='Crear';
                 <div class="col-md-3">
                      
                   {!!Form::label('tipo','Tipo:')!!}
+                 
                   {!!Form::select('id_type', [1,2,3], null, ['class'=>'form-control input-md']) !!}
               <br>
                 </div>
@@ -88,7 +102,7 @@ $botonTitulo='Crear';
           {!!Form::text('title',null,['class'=>'form-control','placeholder'=>''])!!}
       </div>
       <div class="form-group">
-          {!!Form::label('resumen','Resumen')!!}
+          {!!Form::label('Resume','Resumen')!!}
           {!!Form::textarea('resumen',null,['class'=>'form-control','placeholder'=>''])!!}
       </div>
           <div class="form-group">
@@ -106,4 +120,4 @@ $botonTitulo='Crear';
   </div>
 </div>
   @stop
-<!--fin del archivop-->
+<!--formulario para editar y nueva seccion-->

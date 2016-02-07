@@ -79,4 +79,4 @@
  </table> 
  </div>  
 @stop
-      
+<!--este es el formulario para el index estilos-->

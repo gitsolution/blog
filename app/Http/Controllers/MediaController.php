@@ -6,13 +6,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Session;
+use DB;
 
 class MediaController extends Controller
 {
     //
 	public function index(){
-		$medias = \App\Media::All();
+
+		//$medias = \App\Media::All();
+		$flag='1';	
+		$medias =  DB::table('med_albums')->where('active','=', $flag)->get();
 		return view('media/index',compact('medias'));
 	}
 
@@ -88,5 +93,6 @@ class MediaController extends Controller
 	{
 	
 	}
+
 
 }

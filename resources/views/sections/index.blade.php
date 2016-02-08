@@ -2,81 +2,102 @@
 @section('content')
 
 <div class="container-fluid">
+<?php $message=Session::get('message'); ?>
+@if($message=='store')
+<div class="alert alert-success alert-dismissible" role="alert">
+  Albúm creado exitosamente!!!
+</div>
+@endif
 <div class="row">
 <br>
-<div class="col-md-10"><h3>Catalogo de secciones</h3></div> <!--divide la columna en 10 y 2-->
+<div class="col-md-10"><h3>Catálogo de secciones</h3></div> <!--divide la columna en 10 y 2-->
 <div class="col-md-2">
  {!!Form::open()!!}
     {!! link_to('admin/sectionsnew', 'Nueva Sección ',array('class'=>'btn btn-success ')) !!}
  {!!Form::close()!!}
 </div>
-</div>
-<br>
-<table class="table table-hover table-responsive"> 
-<thead >
- <th >
- ID
- </th> 
- <th>
- Tipo
- </th>
- <th>
- Nombre
- </th>
- <th>
- Acceso
- </th>
- <th>
- Publicado
- </th>
- <th>
- Fecha Publicación
- </th>
-  <th>
- Orden
- </th>
- <th>
- 
- </th>
- <th>
- 
- </th>
- <th>
- Vistas
- </th>
-  <th colspan="2">
- Acciones
- </th>
-</thead>
+    </div>
+        <div class="row text-center">
+            {{$Sections->render()}}
+        </div>
+    <table class="table table-hover table-responsive"> 
+          <thead class="center-text" >
+            <th class="ColumColor" >
+            ID
+            </th> 
+            <th  class="ColumColor text-center" >
+            Tipo
+            </th>
+            <th  class="ColumColor text-center" >
+            Nombre
+            </th>
+            <th class="ColumColor text-center" >
+            Acceso
+            </th>
+            <th class="ColumColor text-center" >
+            Publicado
+            </th>
+            <th class="ColumColor text-center" >
+            Fecha Publicación
+            </th>
+            <th class="ColumColor text-center" colspan="2"></th>
+            <th class="ColumColor text-center" >
+            Vistas
+            </th>
+            <th class="ColumColor text-center"  colspan="2">
+            Acciones
+            </th>
+          </thead>
 
 
 @foreach($Sections as $med)
-  <tr>
-  <td> {{$med->id}}</td>
-  <td> {{$med->id_type}}</td>
-  <td> {{$med->title}}</td>
-  <td> {{$med->private}}</td>
-  <td> {{$med->publish}}</td>
-  <td> {{$med->publish_date}}</td>
-  <td> {{$med->order_by}}</td>
-  <td> <boton class="btnIcon"><span class="glyphicon glyphicon-chevron-up"></span></boton></td>
-  <td> <boton class="btnIcon"><span class="glyphicon glyphicon-chevron-down"></span></boton></td>
-  <td> {{$med->hits}}</td> 
-  
-  <td>
-{!!link_to_route('admin.sections.edit', $title = '', $parameters = $med, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}
-  </td>
-    {!!Form::open()!!}
-    <td>
+        <?php 
+            $publish_date = substr($med->publish_date,0,10);
+            $down=$med->order_by-1;
+            $up=$med->order_by+1;   
+            if($down==0)$down=$med->order_by;
+        ?> 
+          <tr>
+          <td> {{$med->id}}</td>
+          <td> {{$med->id_type}}</td>
+          <td> {{$med->title}}</td>
+          <td class="text-center"> 
+             <?php if($med->private=='1'){?>
+                
+              {!!link_to('admin/sectionsPriva/'.$med->id.'/False', '',array('class'=>'glyphicon glyphicon-eye-close')) !!}
+             <?php } 
+             else{ ?>                    
+              {!!link_to('admin/sectionsPriva/'.$med->id.'/True', '',array('class'=>'glyphicon glyphicon-eye-open')) !!}
+                  <?php } ?>
+          </td>
 
-    <boton class="btn btn-danger" ><span class="glyphicon glyphicon-remove"></span>
-    
-    </boton></td>
-    {!!Form::close()!!}
- </tr>
+          <td class="text-center">
+              <?php if($med->publish=='1'){?>
+                
+                {!! link_to('admin/sectionsPublic/'.$med->id.'/False', '',array('class'=>'glyphicon glyphicon-ok')) !!}
+              <?php } 
+              else{ ?>
+                
+                {!! link_to('admin/sectionsPublic/'.$med->id.'/True', '',array('class'=>'glyphicon glyphicon-ban-circle')) !!}
+              <?php } ?>
+          </td>
+          <td class="text-center"> {{$publish_date}}</td>
+          
+          <td> {!!link_to('admin/sectionorder/'.$med->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
+          <td> {!!link_to('admin/sectionorder/'.$med->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down'))!!}</td>
+          <td class="text-center"> {{$med->hits}}</td> 
+          <td> {!!link_to_route('admin.sections.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}</td>
+               {!!Form::open()!!}
+          <td> {!!link_to('admin/sectiondel/'.$med->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-remove')) !!}</td>
+               {!!Form::close()!!}
+          </tr>
 
 @endforeach
- </table> 
- </div>  
+      </table> 
+          <div class="row text-center">
+                {{$Sections ->render()}}
+                <?php //echo $medias->render(); ?>
+          </div>
+  </div>  
 @stop
 <!--este es el formulario para el index estilos-->

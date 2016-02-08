@@ -9,7 +9,7 @@
 					<div class="form-group" id="frmLogin">
 					 <div class="col-xs-4">
             		{!!Form::label('nombre','Nombre')!!}
-            		{!!Form::text('nombre',null,['class'=>'form-control frmEspacios','placeholder'=>'Nombre'])!!}
+            		{!!Form::text('name',null,['class'=>'form-control frmEspacios','placeholder'=>'Nombre'])!!}
             		</div>
 
             		<div class="col-xs-4">
@@ -19,17 +19,17 @@
 
             		<div class="col-xs-4">
             		{!!Form::label('Correo electrónico')!!}
-            		{!!Form::email('correoElectronico',null,['class'=>'form-control frmEspacios','placeholder'=>'Correo electronico'])!!}
+            		{!!Form::email('email',null,['class'=>'form-control frmEspacios','placeholder'=>'Correo electronico'])!!}
             		</div>
 
 					<div class="col-xs-6">
 						{!!Form::label('Contraseña')!!}
-            			{!!Form::password('passwd',	['class'=>'form-control frmEspacios','placeholder'=>'Contraseña'])!!}
+            			{!!Form::password('password',	['class'=>'form-control frmEspacios','placeholder'=>'Contraseña'])!!}
             		</div>
 
             		<div class="col-xs-6">
 						{!!Form::label('Confirmar contraseña')!!}
-            			{!!Form::password('cPasswd',['class'=>'form-control frmEspacios','placeholder'=>'Confirmar contraseña'])!!}
+            			{!!Form::password('password',['class'=>'form-control frmEspacios','placeholder'=>'Confirmar contraseña'])!!}
             		</div>
 
             		<div class="col-xs-3">

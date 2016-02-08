@@ -47,14 +47,17 @@ Route::resource('admin/sections','sectiosController');      //index. catalogo
 /****************************************************/
 
 
+/**************Rutas para registro de usuario*************/
+Route::resource('usuario','userController');//registro de usuario
 
-Route::get('/','frontController@panel');
-
-Route::resource('usuario','userController');
-
+/********Para autentificacion de usuario*****************/
+//AUTENTIFICACION
 Route::resource('log','LogController');
+//PANEL DE ADMINISTRACION DEL USUARIO
+Route::resource('admin','LogController@admin');
+Route::get('admin','LogController@admin');
+//CERRAR SESION
 Route::get('logout','LogController@logout');
-
 
 /*************RUTAS DE ALBUMS Y PICTURES ***************/
 ///// Catalogos 

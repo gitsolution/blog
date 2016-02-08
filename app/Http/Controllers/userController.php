@@ -4,14 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
+use Session;
+use Redirect;
+use App\Http\Requests;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class userController extends Controller
 {
+    /*
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin',['only'=>['create','edit']]);
+        $this->beforeFilter('@find',['only'=>['create']]);
+    }*/
+
+
 	public function index()
 	{
-		//
+        $users=\App\User::All();
+		return view('usuario.index',compact('users'));
 	}
 
     public function create()
@@ -21,35 +36,13 @@ class userController extends Controller
 
     public function store(Request $request)
     {
-    	/*\App\User::create([
-    		'nombre'=>$request['nombre'],
-    		'mail'=>'2',
-    		'token'=>$request['nombre'],
-    		'passwd'=>bcrypt($request['password']),
-    		'activate_account'=>1,
-    		'active'=>1,
-    		'register_date'=>'2016/01/01',
-    		'modify_by'=>'2016/01/01',
-    		'modify_date'=>'2016/01/01',
-    		'created_at'=>'2016/01/01',
-    		'updated_at'=>'2016/01/01'
-    	]);*/
+        \App\User::create([
+                'name'=>$request['name'],
+                'email'=>$request['email'],
+                'password'=>bcrypt($request['password']),
+            ]);
 
-
-\App\User::create([
-    		'nombre'=>'nombre',
-    		'mail'=>'2',
-    		'token'=>'nombre',
-    		'passwd'=>bcrypt($request['password']),
-    		'activate_account'=>1,
-    		'active'=>1,
-    		'register_date'=>'2016/01/01',
-    		'modify_by'=>'2016/01/01',
-    		'modify_date'=>'2016/01/01',
-    		'created_at'=>'2016/01/01',
-    		'updated_at'=>'2016/01/01'
-    	]);
-
-    	return "Usuario registrado correctamente";
+            return redirect('/usuario')->with('message','store');
     }
+    
 }

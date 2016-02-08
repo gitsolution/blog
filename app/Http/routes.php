@@ -41,9 +41,19 @@ Route::get('login','frontController@login');
 /*************RUTAS DE TYPES Y SECTIOSN ***************/
 Route::get('admin/typesnew','typeController@type');//abre el formulario para nuevo typo
 Route::resource('types','typeController'); //manda a llamar la funcion store
+
 Route::resource('admin/types','typeController@type');// redirecciona asi mismo despues de guardar
 Route::get('admin/sectionsnew','sectiosController@section'); //formulario sectionsform.blade.php
 Route::resource('admin/sections','sectiosController');      //index. catalogo
+Route::get('admin/sectionedit/{id}','sectiosController@edit');
+Route::put('admin/section/update','sectiosController@update');
+///// ELIMINAR
+Route::get('admin/sectiondel/{id}','sectiosController@delete');
+//ordenar
+Route::get('admin/sectionorder/{id}/{orderBy}/{no}','sectiosController@order');
+////// PUBLICAR
+Route::get('admin/sectionsPriva/{id}/{priv}','sectiosController@privado');
+Route::get('admin/sectionsPublic/{id}/{pub}','sectiosController@publicate');
 /****************************************************/
 
 

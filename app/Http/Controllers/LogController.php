@@ -13,24 +13,34 @@ use App\Http\Controllers\Controller;
 
 class LogController extends Controller
 {
-    //
 
-    public function store(LoginRequest $request)
+    /*public function __construct()
     {
-    	if(Auth::attempt(['mail'=>$request['correoElectronico'],'passwd'=>$request['passwd']]))
-    	{
-    		return  Redirect::to('');
-    	}
-
-    	Session::flash('message-error','Los datos son incorrectos');
-    	return Redirect::to('index');
-    }
+        $this->middleware('auth',['only'=>'store']);
+    }*/
     
+     public function store(LoginRequest $request)
+    {
+        if(Auth::attempt(['email'=>$request['email'],'password'=>$request['password']]))
+        {
+            //return $request->email."-".$request->password;
+            return  Redirect::to('admin');
+        }
+
+        Session::flash('message-error','Los datos son incorrectos');
+        return Redirect::to('login');
+    }
+
+    public function admin()
+    {
+        return view('admin/index');
+    }
+
 
     public function logout()
     {
-    	Auth::logout();
-    	return Redirect::to("galeria");
+        Auth::logout();
+        return Redirect::to("login");
     }
 }
 

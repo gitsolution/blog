@@ -26,14 +26,14 @@
       <div class="modal-body">
       {!!Form::open(['route'=>'log.store','method'=>'POST'])!!} 
        <div class="form-group">
-                {!!Form::email('correoElectronico',null,['class'=>'form-control input-lg','placeholder'=>'Correo  electronico'])!!}
+                {!!Form::email('email',null,['class'=>'form-control input-lg','placeholder'=>'Correo  electronico'])!!}
         </div>
          <div class="form-group">
-                {!!Form::password('passwd', ['class'=>'form-control input-lg','placeholder'=>'Contraseña'])!!}
+                {!!Form::password('password', ['class'=>'form-control input-lg','placeholder'=>'Contraseña'])!!}
           </div>
 
           <div class="form-group">
-            {!!Form::submit('Iniciar sesion',['class'=>'btn btn-primary btn-lg btn-block','placeholder'=>'Nombre'])!!}
+            {!!Form::submit('Iniciar sesion',['class'=>'btn btn-primary btn-lg btn-block','placeholder'=>'Iniciar sesion'])!!}
           </div>
       {!!Form::close()!!}
           

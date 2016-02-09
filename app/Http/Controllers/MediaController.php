@@ -12,6 +12,13 @@ use DB;
 
 class MediaController extends Controller
 {
+    
+      public function __construct()
+    {
+        $this->middleware('auth');
+    }  
+
+
     //
 	public function index(){
 		$flag='1';	

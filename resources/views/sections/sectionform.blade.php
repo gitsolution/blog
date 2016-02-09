@@ -1,4 +1,4 @@
-@extends('layouts.menuAdmin')
+@extends('layouts.app')
   @section('content')
        <!---contact-->
 

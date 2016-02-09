@@ -253,35 +253,9 @@
                     <!-- /.dropdown-alerts -->
                 </li>
 
-
-<li class="dropdown">
-                    
-                   <div><a></a>
-                       @user = Auth::user();
-                    </div>
-                </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <!-- /.dropdown -->
                 <li class="dropdown">
+
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
@@ -317,7 +291,8 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Secciones</a>
+                        {!!link_to('admin/sections', 'Secciones',array('class'=>'fa fa-dashboard fa-fw')) !!}
+                    
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Categorias<span class="fa arrow"></span></a>

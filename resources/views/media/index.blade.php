@@ -1,4 +1,4 @@
-@extends('layouts.menuAdmin')
+@extends('layouts.app')
 @section('content')
  
  <div class="container-fluid">
@@ -89,7 +89,7 @@
 	</div>
 	<div class="row text-center">
 		{{$medias->render()}}
-		<?php //echo $medias->render(); ?>
+		
 	</div>
 </div>
 

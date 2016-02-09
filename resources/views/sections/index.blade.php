@@ -1,4 +1,4 @@
-@extends('layouts.menuAdmin')
+@extends('layouts.app')
 @section('content')
 
 <div class="container-fluid">
@@ -10,7 +10,7 @@
 @endif
 <div class="row">
 <br>
-<div class="col-md-10"><h3>Catálogo de secciones</h3></div> <!--divide la columna en 10 y 2-->
+<div class="col-md-10"><h3>Catálogo de secciones </h3></div> <!--divide la columna en 10 y 2-->
 <div class="col-md-2">
  {!!Form::open()!!}
     {!! link_to('admin/sectionsnew', 'Nueva Sección ',array('class'=>'btn btn-success ')) !!}

@@ -29,13 +29,15 @@
 /*Route::group(['middleware' => ['web']], function () {
     //
 });*/
-
+Route::get('login','frontController@login');
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
 
 Route::get('index','frontController@index');
 Route::get('contacto','frontController@contacto');
 Route::get('galeria','frontController@galeria');
 
-Route::get('login','frontController@login');
+
 
 
 /*************RUTAS DE TYPES Y SECTIOSN ***************/
@@ -57,17 +59,7 @@ Route::get('admin/sectionsPublic/{id}/{pub}','sectiosController@publicate');
 /****************************************************/
 
 
-/**************Rutas para registro de usuario*************/
-Route::resource('usuario','userController');//registro de usuario
 
-/********Para autentificacion de usuario*****************/
-//AUTENTIFICACION
-Route::resource('log','LogController');
-//PANEL DE ADMINISTRACION DEL USUARIO
-Route::resource('admin','LogController@admin');
-Route::get('admin','LogController@admin');
-//CERRAR SESION
-Route::get('logout','LogController@logout');
 
 /*************RUTAS DE ALBUMS Y PICTURES ***************/
 ///// Catalogos 
@@ -86,5 +78,19 @@ Route::get('admin/mediaorder/{id}/{orderBy}/{no}','MediaController@order');
 ////// PUBLICAR
 Route::get('admin/mediapub/{id}/{pub}','MediaController@publicate');
 /////  INDEX PAGE
-Route::get('admin/mediaind/{id}/{ind}','MediaController@index_page');
+
+
+
+
+
+
+
+
+
+    Route::get('/admin', 'HomeController@index');
+
+});
+
+Route::get('/','LogController@logout');
+
 

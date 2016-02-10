@@ -401,6 +401,24 @@
 
     <script src="../dist/js/sb-admin-2.js"></script>
 
+    [14:55:42] Felipe Antonio Román Albores: /****************************************/
+[14:55:42] Felipe Antonio Román Albores:      <script>
+        function imageUp(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imgUpTo').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    $("#imgLoad").change(function(){
+        imageUp(this);
+    });
+</script>
+
 </body>
 
 </html>

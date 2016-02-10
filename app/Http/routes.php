@@ -30,8 +30,7 @@
 Route::get('login','frontController@login');
 Route::get('/','LogController@logout');
 
-Route::group(['middleware' => 'web'], function () {
-    Route::auth();
+
     /////  INDEX PAGE ADMIN
 Route::get('/admin', 'HomeController@index');
 /// INDEX PAGE FRONTEND
@@ -119,6 +118,9 @@ Route::get('admin/itemorder/{id}/{orderBy}/{no}','ItemController@order');
 Route::get('admin/itempub/{id}/{pub}','ItemController@publicate');
 /////  INDEX PAGE
 Route::get('admin/itemind/{id}/{ind}','ItemController@index_page');
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
 });
 
 

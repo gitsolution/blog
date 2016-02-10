@@ -318,11 +318,14 @@
                                 <li>
                                     <a href="#">Publicaciones <span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
+                                         <li>
+                                              {!!link_to('admin/types', 'Tipos',array('class'=>'')) !!}
+                                        </li>
                                         <li>
                                               {!!link_to('admin/sections', 'Secciones',array('class'=>'')) !!}
                                         </li>
                                         <li>
-                                            <a href="#">Categorías</a>
+                                             {!!link_to('admin/category', 'Categorias',array('class'=>'')) !!}
                                         </li>
                                         <li>
                                             <a href="#">Documentos</a>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.menuAdmin')
 @section('content')
  
  <div class="container-fluid">
@@ -12,7 +12,14 @@
 
 <div class="row">
 	<br>
-	<div class="col-md-10"><h3>Catálogo de Galerías</h3></div> <!--divide la columna en 10 y 2-->
+	<div class="col-md-8"><h3>Catálogo de Galerías</h3></div> <!--divide la columna en 10 y 2-->
+	<div class="col-md-2">
+ 	{!!Form::open()!!}
+   
+    {!! link_to('admin/itemnew', 'Subir imagenes',array('class'=>'btn btn-success')) !!}
+   
+    {!!Form::close()!!}
+	</div>
 	<div class="col-md-2">
  	{!!Form::open()!!}
    
@@ -48,7 +55,7 @@
 			<th>
 			Inicio
 			</th>	
-			<th colspan="2" class="center-text">
+			<th colspan="2" >
 			Acciones
 			</th>
 		</thead>
@@ -61,7 +68,7 @@
 				?> 
 			<tr>
 				<td> {{$med->id}}</td>
-				<td> {{$med->title}}</td>		
+				<td> {{$med->title}}</td>
 				<td> {{ $publish_date }}</td>		
 				<td> {{ $med->hits }}</td>	
 				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Down/'.$down, '-',array('class'=>'btn btn-info')) !!}</td>
@@ -89,10 +96,7 @@
 	</div>
 	<div class="row text-center">
 		{{$medias->render()}}
-		
+		<?php //echo $medias->render(); ?>
 	</div>
 </div>
-
-  @stop
-  <!--fin de archivo
-  -->
+@stop

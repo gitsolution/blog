@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+//use Illuminate\Html\HtmlServiceProvider;
+//use Illuminate\Filesystem\FilesystemServiceProvider;
+use Storage;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -12,13 +15,6 @@ use DB;
 
 class MediaController extends Controller
 {
-    
-      public function __construct()
-    {
-        $this->middleware('auth');
-    }  
-
-
     //
 	public function index(){
 		$flag='1';	
@@ -35,6 +31,7 @@ class MediaController extends Controller
 		return view('mediaform');
 	}
 
+
 	public function store(Request $request){
 		$publish= 0;
 		$index_page=0;
@@ -49,14 +46,23 @@ class MediaController extends Controller
 			$index_page=1;
 		}
 
-		 
+		$path = '/store/'.uniqid().'/';
+		//mkdir($path, 0700);
+		Storage::disk('local')->makeDirectory($path);
+
+
+	   $flag=1;
+       $orderBy =  (DB::table('med_albums')->where('active','=', $flag)->max('order_by'))+1;
+ 
+
 			\App\Media::create([
 			'title'=>$request['title'],
 			'description'=>$request['description'],
-			'order_by'=>$request['order_by'],
+			'order_by'=>$orderBy,
 			'uri'=>$publish,
 			'publish'=>$request['publish'],
 			'publish_date'=>$request['publish_date'],
+			'path'=>$path,
 			'index_page'=>$index_page,
 			'hits'=>'0',//$request['hits'],
 			'active'=>'1',//$request['active'],

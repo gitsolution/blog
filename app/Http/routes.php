@@ -26,13 +26,15 @@
 |
 */
 
-/*Route::group(['middleware' => ['web']], function () {
-    //
-});*/
+
 Route::get('login','frontController@login');
+Route::get('/','LogController@logout');
+
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-
+    /////  INDEX PAGE ADMIN
+Route::get('/admin', 'HomeController@index');
+/// INDEX PAGE FRONTEND
 Route::get('index','frontController@index');
 Route::get('contacto','frontController@contacto');
 Route::get('galeria','frontController@galeria');
@@ -40,18 +42,37 @@ Route::get('galeria','frontController@galeria');
 
 
 
-/*************RUTAS DE TYPES Y SECTIOSN ***************/
-Route::get('admin/typesnew','typeController@type');//abre el formulario para nuevo typo
-Route::resource('types','typeController'); //manda a llamar la funcion store
+/*************RUTAS DE TYPES******************************/
+Route::get('admin/typesnew','typeController@typenew');//abre el formulario para nuevo typo
+Route::resource('admin/types','typeController'); //manda a llamar la funcion store
+Route::get('admin/typesedit/{id}','typeController@edit');
+Route::put('admin/types/update','typeController@update');
+///// ELIMINAR
+Route::get('admin/typedel/{id}','typeController@delete');
 
-Route::resource('admin/types','typeController@type');// redirecciona asi mismo despues de guardar
+/*************RUTAS DE CATEGORIAS******************************/
+Route::get('admin/categorynew','categoryController@categorynew');//abre el formulario para nuevo typo
+Route::resource('admin/category','categoryController'); //manda a llamar la funcion store
+///ACTUALIZAR
+Route::get('admin/categoryedit/{id}','categoryController@edit');
+Route::put('admin/category/update','categoryController@update');
+///// ELIMINAR
+Route::get('admin/categorydel/{id}','categoryController@delete');
+////// PUBLICAR
+Route::get('admin/categoryPriva/{id}/{priv}','categoryController@privado');
+Route::get('admin/categoryPublic/{id}/{pub}','categoryController@publicate');
+//ORDENAR
+Route::get('admin/categoryorder/{id}/{orderBy}/{no}','categoryController@order');
+
+
+/*************RUTAS DE SECTIOSN ****************************/
 Route::get('admin/sectionsnew','sectiosController@section'); //formulario sectionsform.blade.php
 Route::resource('admin/sections','sectiosController');      //index. catalogo
 Route::get('admin/sectionedit/{id}','sectiosController@edit');
 Route::put('admin/section/update','sectiosController@update');
 ///// ELIMINAR
 Route::get('admin/sectiondel/{id}','sectiosController@delete');
-//ordenar
+//ORDENAR
 Route::get('admin/sectionorder/{id}/{orderBy}/{no}','sectiosController@order');
 ////// PUBLICAR
 Route::get('admin/sectionsPriva/{id}/{priv}','sectiosController@privado');
@@ -78,19 +99,27 @@ Route::get('admin/mediaorder/{id}/{orderBy}/{no}','MediaController@order');
 ////// PUBLICAR
 Route::get('admin/mediapub/{id}/{pub}','MediaController@publicate');
 /////  INDEX PAGE
-
-
-
-
-
-
-
-
-
-    Route::get('/admin', 'HomeController@index');
-
+Route::get('admin/mediaind/{id}/{ind}','MediaController@index_page');
+/*************RUTAS DE PICTURES ***************/
+/////  
+Route::get('admin/item','ItemController@index');
+Route::resource('admin/item','ItemController');
+///// FORMS
+/// Route::get('admin/itemnew/{id}','ItemController@create');
+Route::get('admin/itemnew','ItemController@itemnew');
+Route::post('admin/item/store','ItemController@store');
+///// EDICION
+Route::get('admin/itemedit/{id}','ItemController@edit');
+Route::put('admin/item/update','ItemController@update');
+////// ELIMINAR
+Route::get('admin/itemdel/{id}','ItemController@delete');
+////// ORDENAR 
+Route::get('admin/itemorder/{id}/{orderBy}/{no}','ItemController@order');
+////// PUBLICAR
+Route::get('admin/itempub/{id}/{pub}','ItemController@publicate');
+/////  INDEX PAGE
+Route::get('admin/itemind/{id}/{ind}','ItemController@index_page');
 });
 
-Route::get('/','LogController@logout');
 
 

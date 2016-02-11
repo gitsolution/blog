@@ -130,6 +130,16 @@ Route::put('admin/user/update','usuarioController@update');
 Route::get('admin/sectionedit/{id}','sectiosController@edit');
 Route::get('usuario/register','usuarioController@register');
 
+
+Route::resource('mail','mailController');
+
+
+Route::get('password/email','Auth\PasswordController@getEmail');
+Route::get('password/email','Auth\PasswordController@postEmail');
+/*****************Resetear contraseñ*******************/
+Route::get('password/reset/{token}','Auth\PasswordController@getReset');
+Route::post('password/reset','Auth\PasswordController@postReset');
+
 /************************roles de usuario*************************/
 Route::get('/admin', 'HomeController@index');/*pagina principal despues de logearse*/
 Route::resource('rol','rolesController');

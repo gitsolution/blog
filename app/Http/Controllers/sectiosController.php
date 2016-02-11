@@ -20,6 +20,7 @@ class sectiosController extends Controller
   public function index()
    {
        
+       
     $flag='1';  
     $Sections =  DB::table('cms_sections')->where('active','=', $flag)->orderBy('order_by','DESC')->paginate(20);
     

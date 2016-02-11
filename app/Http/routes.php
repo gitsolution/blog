@@ -51,8 +51,8 @@ Route::put('admin/types/update','typeController@update');
 Route::get('admin/typedel/{id}','typeController@delete');
 
 /*************RUTAS DE CATEGORIAS******************************/
-Route::get('admin/categorynew','categoryController@categorynew');//abre el formulario para nuevo typo
-Route::resource('admin/category','categoryController'); //manda a llamar la funcion store
+Route::get('admin/categorynew','categoryController@categorynew');
+Route::resource('admin/category','categoryController'); 
 ///ACTUALIZAR
 Route::get('admin/categoryedit/{id}','categoryController@edit');
 Route::put('admin/category/update','categoryController@update');
@@ -134,6 +134,27 @@ Route::get('usuario/register','usuarioController@register');
 Route::get('/admin', 'HomeController@index');/*pagina principal despues de logearse*/
 Route::resource('rol','rolesController');
 Route::get('admin/roles', 'rolesController@index');
+
+
+
+/*************RUTAS DE DOCUMENTS******************************/
+Route::get('admin/documentnew','DocumentController@categorynew');
+Route::resource('admin/document','DocumentController'); 
+///ACTUALIZAR
+Route::get('admin/documentedit/{id}','DocumentController@edit');
+Route::put('admin/document/update','DocumentController@update');
+///// ELIMINAR
+Route::get('admin/documentdel/{id}','DocumentController@delete');
+////// PUBLICAR
+Route::get('admin/documentPriva/{id}/{priv}','DocumentController@privado');
+Route::get('admin/documentPublic/{id}/{pub}','DocumentController@publicate');
+//ORDENAR
+Route::get('admin/documentorder/{id}/{orderBy}/{no}','DocumentController@order');
+
+
+
+
+
 
 
 });

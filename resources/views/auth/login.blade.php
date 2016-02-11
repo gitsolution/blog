@@ -99,7 +99,7 @@
 
                         <div class="form-group">
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Olvidaste tu contraseña?</a>
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Registrar un nuevo usuario</a>
+                                <a class="btn btn-link" href="{{ url('/register') }}">Registrar un nuevo usuario</a>
                             </div>
                         </div>
                     </form>

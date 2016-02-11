@@ -30,7 +30,7 @@ if(isset($Section))
     $uri=$Section->uri;
     $hits=$Section->hits;
     $order_by= $Section->order_by;
-
+    $path = '../../../'.$Section->main_picture;
 
 }
 
@@ -42,16 +42,18 @@ else{
     $description=$Section;
     $ChekPrivado=$Section;
     $ChekPublicar = $Section;
-    $publish_date= $Section;
+    $publish_date=  date('Y-m-d');
     $order_by= $Section;
     $id_type=$Section;
+    $path = $Section;
   }
+
  ?>
 
 @if($message=='Edit')
- {!!Form::model($Section,['route'=>['admin.sections.update',$Section->id],'method'=>'PUT', 'files'=>true])!!} 
+ {!!Form::model($Section,['route'=>['admin.sections.update',$Section->id],'method'=>'PUT', 'novalidate' => 'novalidate','files' => true])!!} 
 @else
- {!!Form::open(['route'=>'admin.sections.store','method'=>'POST', 'file'=>true])!!}
+ {!!Form::open(['route'=>'admin.sections.store','method'=>'POST','novalidate' => 'novalidate','files' => true])!!}
 @endif
 
 <div class="container-fluid">
@@ -98,7 +100,42 @@ else{
               {!!Form::date('publish_date', $publish_date,['class'=>'form-control'])!!}              
           </div>
       </div>
+      <div class="row">
       <br>
+     <div class="row">
+
+       <div class="form-group" >    
+        <div class="col-md-3">
+               <input type='file' name='file' id="imgLoad"  />
+        </div>       
+       </div>
+
+    </div>
+
+       <div class="row">
+
+       <div class="form-group" >    
+        
+          <div class="col-md-12">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <div class="panel panel-primary">
+                              <div class="panel-heading">
+                                  Imagen
+                              </div>
+                              <div class="panel-body">
+                                  <img id="imgUpTo" src="<?php echo $path ?>" alt="Imagen" />
+                              </div>
+                              <div class="panel-footer">
+                              </div>
+                      </div>      
+              </div>                     
+       </div>
+
+      </div>
+        
+      <br>
+      </div>
+      <div class="row">
       <div class="form-group">
           {!!Form::label('titulo','Titulo:')!!}
           {!!Form::text('title',null,['class'=>'form-control','placeholder'=>''])!!}
@@ -111,17 +148,11 @@ else{
             {!!Form::label('contenido','Contenido')!!}
             {!!Form::textarea('content',null,['class'=>'form-control','placeholder'=>''])!!}
           </div>
-         <div class="form-group">
-                     {!!Form::label('Imagen Principal')!!}
-                     {!!Form::file('main_picture')!!}
-          </div>
-          
-
 
           {!!Form::submit( $botonTitulo,['class'=>'btn btn-danger'])!!}
 
         {!!Form::close()!!} 
-          
+         </div> 
   </div>
 </div>
   @stop

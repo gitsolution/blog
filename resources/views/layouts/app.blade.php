@@ -9,30 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-
-    <link rel="stylesheet" type="text/css" href="../css/admin.css">
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
-    
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Timeline CSS -->
-    <link href="../dist/css/timeline.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+ 
 
     {!!Html::style('css/admin.css')!!}
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
@@ -409,36 +386,33 @@
          
 </div>
 <!-- fin de contenido-->
-
-
-
-    
+   
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    {!! Html::script('../bower_components/jquery/dist/jquery.min.js') !!}
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    {!! Html::script('../bower_components/bootstrap/dist/js/bootstrap.min.js') !!}    
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    {!! Html::script('../bower_components/metisMenu/dist/metisMenu.min.js') !!}    
+    
 
 
     <!-- Morris Charts JavaScript -->
-    <script src="../bower_components/raphael/raphael-min.js"></script>
-
+    {!! Html::script('../bower_components/raphael/raphael-min.js') !!}    
+    
     <!-- Custom Theme JavaScript -->
 
     <!-- Morris Charts JavaScript -->
-    <script src="../bower_components/raphael/raphael-min.js"></script>
+    {!! Html::script('../bower_components/raphael/raphael-min.js') !!}    
+    
 
     <!-- Custom Theme JavaScript -->
-
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-     
-          <script>
+    {!! Html::script('../dist/js/sb-admin-2.js') !!}        
+    
+         <script>
         function imageUp(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -453,7 +427,17 @@
     $("#imgLoad").change(function(){
         imageUp(this);
     });
-</script>
+    </script>
+
+ <script>
+ 
+  $( document ).ready(function() {
+   // $("#imgLoad").change(function(){
+        imageUp(this);
+    //});
+  });
+ 
+  </script>
 
 </body>
 

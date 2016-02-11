@@ -29,7 +29,7 @@
             Tipo
             </th>
             <th  class="ColumColor text-center" >
-            Nombre
+            Sección
             </th>
             <th class="ColumColor text-center" >
             Acceso
@@ -59,7 +59,7 @@
         ?> 
           <tr>
           <td> {{$med->id}}</td>
-          <td> {{$med->id_type}}</td>
+          <td> {{$med->type}}</td>
           <td> {{$med->title}}</td>
           <td class="text-center"> 
              <?php if($med->private=='1'){?>
@@ -70,7 +70,7 @@
               {!!link_to('admin/sectionsPriva/'.$med->id.'/True', '',array('class'=>'glyphicon glyphicon-eye-open')) !!}
                   <?php } ?>
           </td>
-
+ 
           <td class="text-center">
               <?php if($med->publish=='1'){?>
                 
@@ -86,19 +86,12 @@
           <td> {!!link_to('admin/sectionorder/'.$med->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
           <td> {!!link_to('admin/sectionorder/'.$med->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down'))!!}</td>
           <td class="text-center"> {{$med->hits}}</td> 
-<<<<<<< HEAD
-          
-          <td> {!!link_to_route('admin.sections', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}</td>
-               {!!Form::open()!!}
-               
-          <td> {!!link_to('admin/sectiondel/'.$med->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-remove')) !!}</td>
-               {!!Form::close()!!}
-=======
+
           <td> {!!link_to_route('admin.sections.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}
            
            {!!link_to('admin/sectiondel/'.$med->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td>
               
->>>>>>> 0fd685829ceb9efef3250a9671dbf6e8650169c7
+
           </tr>
 
 @endforeach

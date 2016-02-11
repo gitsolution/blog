@@ -13,8 +13,15 @@ class User extends Authenticatable
      */
     protected  $table='users';
 
-    protected $fillable=['name','email','password'];
+    protected $fillable=['name','lastName','email','password','created_at'];
 
-    protected $hidden=['password','remember_token'];
+    protected $guarded=['id'];
 
+    public function setPasswordAtriibute($valor)
+    {
+    	if(!empty($valor))
+    	{
+    		$this->attributes['password']=\Hash::make($valor);
+    	}
+    }
 }

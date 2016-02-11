@@ -80,15 +80,20 @@ Route::get('admin/mediapub/{id}/{pub}','MediaController@publicate');
 /////  INDEX PAGE
 
 
+/*********************rutas de usuario**********************/
+Route::get('/admin', 'HomeController@index');/*pagina principal despues de logearse*/
+Route::resource('usuario','usuarioController');
+Route::get('admin/user', 'usuarioController@index');
+Route::get('admin/userNew', 'usuarioController@create');
+Route::get('admin/userEdit/{id}','usuarioController@edit');
+Route::put('admin/user/update','usuarioController@update');
+Route::get('admin/sectionedit/{id}','sectiosController@edit');
+Route::get('usuario/register','usuarioController@register');
 
-
-
-
-
-
-
-    Route::get('/admin', 'HomeController@index');
-
+/************************roles de usuario*************************/
+Route::get('/admin', 'HomeController@index');/*pagina principal despues de logearse*/
+Route::resource('rol','rolesController');
+Route::get('admin/roles', 'rolesController@index');
 });
 
 Route::get('/','LogController@logout');

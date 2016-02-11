@@ -357,6 +357,42 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+
+
+                        <li>
+                            <a href="s"><i class="fa fa-users fa-fw"></i>Usuarios<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/usuario">Usuarios</a>
+                                </li>
+                                <li>
+                                    <a href="admin/roles">Roles</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>

@@ -14,7 +14,6 @@ use App\Http\Controllers\Controller;
 class LogController extends Controller
 {
 
-
     public function logout()
     {
         Auth::logout();

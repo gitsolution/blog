@@ -1,25 +1,54 @@
-@extends('layouts.menuAdmin')
+@extends('layouts.app')
 @section('content')
 
- <div class="registro">
+<?php  
+if(isset($user)) {
+    $message='Edit';
+    $name=$user->name;
+    $lastName=$user->lastName;
+    $email=$user->email;
+    $created_at = date_create($user->created_at);
+    $nombreBoton='Editar';
+}
 
-            <p class="tituloRegistro col-md-12 frmEspacios titulo"><label>Registrar nuevo</label></p>
+else
+{  
+    $message='New';
+    $user=Null;
+    $name=$user;
+    $lastName=$user;
+    $email = $user;
+    $nombreBoton='Registrar';
+}
 
-					{!!Form::open(['route'=>'usuario.store','method'=>'POST'])!!}
+ ?>
+
+
+    <div class="col-md-12"><h3 class="head">USUARIO</h3>
+                      <p>PÁGINA PARA LOS USUARIOS</p>
+                  </div>
+                
+                <br><br><br>               					   
+               
+               @if($message=='Edit')
+                {!!Form::model($user,['route'=>['usuario.update',$user->id],'method'=>'PUT'])!!} 
+                @else
+                  {!!Form::open(['route'=>'usuario.store','method','POST'])!!} 
+                @endif
 					<div class="form-group" id="frmLogin">
 					 <div class="col-xs-4">
             		{!!Form::label('nombre','Nombre')!!}
-            		{!!Form::text('name',null,['class'=>'form-control frmEspacios','placeholder'=>'Nombre'])!!}
+            		{!!Form::text('name',$name,['class'=>'form-control frmEspacios','placeholder'=>'Nombre'])!!}
             		</div>
 
             		<div class="col-xs-4">
             		{!!Form::label('apellidos','Apellidos')!!}
-            		{!!Form::text('apellidos',null,['class'=>'form-control frmEspacios','placeholder'=>'Apellidos'])!!}
+            		{!!Form::text('lastName',$lastName,['class'=>'form-control frmEspacios','placeholder'=>'Apellidos'])!!}
             		</div>
 
             		<div class="col-xs-4">
             		{!!Form::label('Correo electrónico')!!}
-            		{!!Form::email('email',null,['class'=>'form-control frmEspacios','placeholder'=>'Correo electronico'])!!}
+            		{!!Form::email('email',$email,['class'=>'form-control frmEspacios','placeholder'=>'Correo electronico'])!!}
             		</div>
 
 					<div class="col-xs-6">
@@ -32,33 +61,13 @@
             			{!!Form::password('password',['class'=>'form-control frmEspacios','placeholder'=>'Confirmar contraseña'])!!}
             		</div>
 
-            		<div class="col-xs-3">
-            		   {!!Form::label('Genero')!!}
-                       {!!Form::select('size', array('m' => 'Masculino', 'f' => 'Femenino'))!!}
-                  </div>
-
-                 	<div class="col-xs-5 form-group">
-                        {!!Form::label('Fecha')!!}
-                        
-                    </div>
-
-            		<div class="col-xs-7 form-group">
-	                    {!!Form::label('Seleccionar archivo')!!}
-	                    {!!Form::file('image')!!}
-                 	</div>              
 
       				<div class="col-xs-6">
                     	<div class="col-xs-2">
-            				{!!Form::submit('Registrar',['class'=>'btn btn-primary frmEspacios','placeholder'=>'Nombre'])!!}
-            			</div>
-            			<div class="col-xs-2">
-            				{!!Form::submit('Cancelar',['class'=>'btn btn-danger frmEspacios','placeholder'=>'Nombre'])!!}
-            			</div>
+            				{!!Form::submit($nombreBoton,['class'=>'btn  btn-danger frmEspacios','placeholder'=>'Nombre'])!!}
+                        </div>
             		</div>		
 					</div>
             	{!!Form::close()!!}
-
-        </div>
-    </div>
 
 @stop

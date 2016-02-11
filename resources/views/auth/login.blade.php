@@ -84,22 +84,23 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-5 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember"> Recordar contraseña
+                                        <input type="checkbox" name="remember">Recordar contraseña
                                     </label>
+                                    
+                                    <button type="submit" class="btn btn-primary pull-right">
+                                        <i class="fa fa-btn fa-sign-in text-right"></i>&nbsp;Ingresar
+                                    </button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i>Ingresar
-                                </button>
-
+                            <div class="col-md-7 col-md-offset-4">
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Olvidaste tu contraseña?</a>
+                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Registrar un nuevo usuario</a>
                             </div>
                         </div>
                     </form>

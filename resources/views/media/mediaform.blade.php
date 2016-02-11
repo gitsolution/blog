@@ -17,8 +17,6 @@ if(isset($media)) {
 		$publish = "checked";//;		
 	}	
 	$order_by= $media->order_by;
-
-
 }else{ $message='New'; 
 	$media=Null;
 	$title=$media;

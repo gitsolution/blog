@@ -20,7 +20,7 @@
         <div class="row text-center">
             {{$Sections->render()}}
         </div>
-    <table class="table table-hover table-responsive"> 
+    <table class="table table-hover table-responsive">
           <thead class="center-text" >
             <th class="ColumColor" >
             ID
@@ -86,8 +86,10 @@
           <td> {!!link_to('admin/sectionorder/'.$med->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
           <td> {!!link_to('admin/sectionorder/'.$med->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down'))!!}</td>
           <td class="text-center"> {{$med->hits}}</td> 
-          <td> {!!link_to_route('admin.sections.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}</td>
+          
+          <td> {!!link_to_route('admin.sections', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}</td>
                {!!Form::open()!!}
+               
           <td> {!!link_to('admin/sectiondel/'.$med->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-remove')) !!}</td>
                {!!Form::close()!!}
           </tr>

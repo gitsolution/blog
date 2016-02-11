@@ -98,7 +98,6 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-7 col-md-offset-4">
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Olvidaste tu contraseña?</a>
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Registrar un nuevo usuario</a>
                             </div>

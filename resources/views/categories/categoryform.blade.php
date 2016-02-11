@@ -3,33 +3,33 @@
        <!---contact-->
 
 <?php  
-if(isset($Section)) 
+if(isset($Catego)) 
 {
     $botonTitulo='Editar'; // para cambiar de nombre al submit si es editar o guardar
     $message='Edit';
-    $id_type=$Section->id_type;
-    $title=$Section->title;
-    $resumen=$Section->resumen;
-    $content=$Section->content;
-    $main_picture=$Section->main_picture;
-  if($Section->private=="0")
+    $id_type=$Catego->id_type;
+    $title=$Catego->title;
+    $resumen=$Catego->resumen;
+    $content=$Catego->content;
+    $main_picture=$Catego->main_picture;
+  if($Catego->private=="0")
       {
         $ChekPrivado = "";
       }
   else{
         $ChekPrivado = "checked"; 
       } 
-    $publish_date = date_create($Section->publish_date);
-  if($Section->publish=="0")
+    $publish_date = date_create($Catego->publish_date);
+  if($Catego->publish=="0")
       {
         $ChekPublicar = "";  
       }
   else{
         $ChekPublicar = "checked"; 
       } 
-    $uri=$Section->uri;
-    $hits=$Section->hits;
-    $order_by= $Section->order_by;
+    $uri=$Catego->uri;
+    $hits=$Catego->hits;
+    $order_by= $Catego->order_by;
 
 
 }
@@ -37,33 +37,33 @@ if(isset($Section))
 else{ 
     $botonTitulo=' Crear';
     $message='New'; 
-    $Section=Null;
-    $title=$Section;
-    $description=$Section;
-    $ChekPrivado=$Section;
-    $ChekPublicar = $Section;
-    $publish_date= $Section;
-    $order_by= $Section;
-    $id_type=$Section;
+    $Catego=Null;
+    $title=$Catego;
+    $description=$Catego;
+    $ChekPrivado=$Catego;
+    $ChekPublicar = $Catego;
+    $publish_date= $Catego;
+    $order_by= $Catego;
+    $id_type=$Catego;
   }
  ?>
 
 @if($message=='Edit')
- {!!Form::model($Section,['route'=>['admin.sections.update',$Section->id],'method'=>'PUT'])!!} 
+ {!!Form::model($Catego,['route'=>['admin.category.update',$Catego->id],'method'=>'PUT'])!!} 
 @else
- {!!Form::open(['route'=>'admin.sections.store','method'=>'POST', 'file'=>true])!!}
+ {!!Form::open(['route'=>'admin.category.store','method'=>'POST', 'file'=>true])!!}
 @endif
 
 <div class="container-fluid">
   <div class="container-fluid">
        <div class="row">
             <div class="form-group">
-                  <div class="col-md-12"><h3 class="head">SECCION</h3>
-                      <p>PAGINA PARA LA SECCION</p>
+                  <div class="col-md-12"><h3 class="head">CATEGORÍA</h3>
+                      <p>PAGINA PARA LA CATEGORÍA</p>
                   </div>
                 <div class="col-md-3">
-                  {!!Form::label('tipo','Tipo:')!!}
-                  {!!Form::select('id_type', \App\cms_type::lists('title','id'),null,['class'=>'form-control select2'] )!!}
+                  {!!Form::label('seccion','Seccion:')!!}
+                  {!!Form::select('id_section', \App\cms_section::lists('title','id'),null,['class'=>'form-control select2'] )!!}
                 <br>
                 </div>
                 <div class="col-md-5">
@@ -115,9 +115,6 @@ else{
                      {!!Form::label('Imagen Principal')!!}
                      {!!Form::file('main_picture')!!}
           </div>
-          
-
-
           {!!Form::submit( $botonTitulo,['class'=>'btn btn-danger'])!!}
 
         {!!Form::close()!!} 
@@ -125,4 +122,3 @@ else{
   </div>
 </div>
   @stop
-<!--formulario para editar y nueva seccion-->

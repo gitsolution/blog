@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.menuAdmin')
 
 @section('content')
 
@@ -42,11 +42,7 @@ if(isset($media)) {
  	  {!!Form::label('Descripción:')!!}
  	  {!!Form::textarea('description',$description,['class'=>'form-control', 'placeholder'=>'Ingresa la Descripción del Albúm'])!!}
 </div>
-<div class="form-group" >
-	<div class="col-md-3">
-	 	  {!!Form::label('Orden:')!!}
-  	{!!Form::number('order_by',$order_by,['class'=>'form-control', 'placeholder'=>'Ingresa el Orden del Albúm'])!!} 	  
-	</div> 	  
+<div class="form-group" >	 
 	<div class="col-md-3">
 	 	  {!!Form::label('Fecha Publicación:')!!}
 	 	  {!!Form::date('publish_date',$publish_date,['class'=>'form-control', 'placeholder'=>'Ingresa la Fecha de Publicación del Albúm'])!!}

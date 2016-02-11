@@ -318,11 +318,14 @@
                                 <li>
                                     <a href="#">Publicaciones <span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
+                                         <li>
+                                              {!!link_to('admin/types', 'Tipos',array('class'=>'')) !!}
+                                        </li>
                                         <li>
                                               {!!link_to('admin/sections', 'Secciones',array('class'=>'')) !!}
                                         </li>
                                         <li>
-                                            <a href="#">Categorías</a>
+                                             {!!link_to('admin/category', 'Categorias',array('class'=>'')) !!}
                                         </li>
                                         <li>
                                             <a href="#">Documentos</a>
@@ -433,6 +436,24 @@
     <!-- Custom Theme JavaScript -->
 
     <script src="../dist/js/sb-admin-2.js"></script>
+
+     
+          <script>
+        function imageUp(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imgUpTo').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    $("#imgLoad").change(function(){
+        imageUp(this);
+    });
+</script>
 
 </body>
 

@@ -16,10 +16,11 @@ class CreateMedAlbumsTable extends Migration
             $table->increments('id');
             $table->string('title',250);
             $table->text('description');
-            $table->integer('order');
+            $table->integer('order_by');            
             $table->text('uri');
             $table->boolean('publish');
             $table->dateTime('publish_date');
+            $table->text('path');
             $table->boolean('index_page');
             $table->integer('hits');
             $table->boolean('active');

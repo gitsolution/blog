@@ -61,7 +61,7 @@
                 <div class="panel-heading">Registrarse</div>
                 <div class="panel-body">
 
-                {!!Form::open(['route'=>'usuario.register','method','POST'])!!} 
+                {!!Form::open(['route'=>'usuario.store','method','POST'])!!} 
                 <div class="form-group" id="frmLogin">
                      <div class="col-xs-4">
                     {!!Form::label('nombre','Nombre')!!}

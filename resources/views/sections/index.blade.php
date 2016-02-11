@@ -29,7 +29,7 @@
             Tipo
             </th>
             <th  class="ColumColor text-center" >
-            Nombre
+            Sección
             </th>
             <th class="ColumColor text-center" >
             Acceso
@@ -59,7 +59,7 @@
         ?> 
           <tr>
           <td> {{$med->id}}</td>
-          <td> {{$med->id_type}}</td>
+          <td> {{$med->type}}</td>
           <td> {{$med->title}}</td>
           <td class="text-center"> 
              <?php if($med->private=='1'){?>

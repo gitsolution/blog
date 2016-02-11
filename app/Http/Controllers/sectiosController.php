@@ -20,11 +20,22 @@ class sectiosController extends Controller
   public function index()
    {
        
+
        
     $flag='1';  
     $Sections =  DB::table('cms_sections')->where('active','=', $flag)->orderBy('order_by','DESC')->paginate(20);
     
         return view('sections/index',compact('Sections'));
+
+   // $flag='1';
+    //DB::table('cms_sections')->where('active','=', $flag)->orderBy('order_by','DESC')->paginate(20);
+
+    $Sections = DB::table('cms_sections')
+            ->join('cms_types', 'cms_types.id', '=', 'cms_sections.id_type')
+            ->select('cms_sections.*', 'cms_types.title as type')
+            ->orderBy('order_by','DESC')->paginate(20);
+            return view('sections/index',compact('Sections'));
+
    }
 
 
@@ -49,18 +60,20 @@ class sectiosController extends Controller
        {
          $ChekPrivad='1';
         }
-              $flag=1;
-         $orderBy =  (DB::table('cms_sections')->where('active','=', $flag)->max('order_by'))+1;
-      
-     
+      $flag=1;
+      $orderBy =  (DB::table('cms_sections')->where('active','=', $flag)->max('order_by'))+1;
+    
+      $file = $request->file('file');     
+      $path='store/SEC/'.uniqid().'.'.$file->getClientOriginalExtension();
+      //indicamos que queremos guardar un nuevo archivo en el disco local
+       \Storage::disk('local')->put($path,  \File::get($file));
 
-     
 		  \App\cms_section::create([
           'id_type'=>$request['id_type'],
           'title' => $request['title'],
           'resumen'=>$request['resumen'],
           'content'=>$request['content'],
-          'main_picture'=>$request['main_picture'],
+          'main_picture'=> $path,
           'private'=>$ChekPrivad,
           'publish_date'=>$request['publish_date'],//$request['descripcion'],
           'publish'=>$ChekPubli,

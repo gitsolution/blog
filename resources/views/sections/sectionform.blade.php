@@ -49,7 +49,7 @@ else{
  ?>
 
 @if($message=='Edit')
- {!!Form::model($Section,['route'=>['admin.sections.update',$Section->id],'method'=>'PUT'])!!} 
+ {!!Form::model($Section,['route'=>['admin.sections.update',$Section->id],'method'=>'PUT', 'files'=>true])!!} 
 @else
  {!!Form::open(['route'=>'admin.sections.store','method'=>'POST', 'file'=>true])!!}
 @endif

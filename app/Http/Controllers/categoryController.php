@@ -19,6 +19,12 @@ class categoryController extends Controller
        
     	   	$flag='1';  
     	   	$Catego =  DB::table('cms_categories')->where('active','=', $flag)->orderBy('order_by','DESC')->paginate(20);
+           $Catego = DB::table('cms_categories')
+            ->join('cms_sections', 'cms_sections.id', '=', 'cms_categories.id_section')
+            ->select('cms_categories.*', 'cms_sections.title as section')
+            ->where('cms_categories.active','=', $flag)
+            ->orderBy('order_by','DESC')->paginate(20);
+            
     
         	return view('categories/index',compact('Catego'));
    		}

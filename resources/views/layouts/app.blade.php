@@ -291,11 +291,16 @@
                         </li>
                         <li>
                                    <li>
-                                    <a href="#"><i class="fa fa-magic"></i> Menu <span class="fa arrow "></span></a>
-                                    <ul class="nav nav-third-level">
-                                       
+                                    <a href="#"><i class="fa fa-magic"></i> Menús <span class="fa arrow "></span></a>
+                                   
+                                    <!-- /.nav-third-level --><ul class="nav nav-second-level">
+                                      <li>
+                                            <a href="#" class="">&nbsp;&nbsp;&nbsp; Tipo Menú </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="">&nbsp;&nbsp;&nbsp; Elementos</a>
+                                        </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
                                 </li>
                             
                             

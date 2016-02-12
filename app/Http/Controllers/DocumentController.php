@@ -21,20 +21,20 @@ class DocumentController extends Controller
        
 
     	   	$flag='1';  
-    	   	$Document =  DB::table('cms_documents')->where('active','=', $flag)->orderBy('order_by','DESC')->paginate(20);
-
-          $Document = DB::table('cms_documents')
+             $Document = DB::table('cms_documents')
             ->join('cms_categories', 'cms_categories.id', '=', 'cms_documents.id_category')
             ->select('cms_documents.*', 'cms_categories.title as category')
             ->where('cms_documents.active','=', $flag)
-            ->orderBy('order_by','DESC')->paginate(20);
-    
+            ->orderBy('order_by','DESC')->paginate(20);    
         	return view('documents/index',compact('Document'));
    		}
-	 public function categorynew()
-	 	{
+	 public function documentynew()
+	 {      
+      
+
     		return view('documents/documentform');
-  		}
+    
+    }
 
      public function store(Request $request)
     	{
@@ -95,6 +95,17 @@ class DocumentController extends Controller
         	  Session::flash('message','Usuario Eliminado Correctamente');    
       	    return redirect('admin/document')->with('message','store');
         }
+
+    public function deletePicture($id)
+      {
+          $Document = \App\cms_category::find($id);
+          $Document->main_picture="";
+          $Document->save();
+          Session::flash('message','Imagen Eliminada Correctamente'); 
+          return view('documents.documentform',['Document'=>$Document]);
+      }
+
+
 
 
   	 public function privado($id,$priv)

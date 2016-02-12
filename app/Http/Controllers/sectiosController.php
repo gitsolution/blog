@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Storage;
+use File;
+
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -23,14 +26,11 @@ class sectiosController extends Controller
 
        
     $flag='1';  
-  
-   // $flag='1';
-    //DB::table('cms_sections')->where('active','=', $flag)->orderBy('order_by','DESC')->paginate(20);
-
+ 
     $Sections = DB::table('cms_sections')
-            ->join('cms_types', 'cms_types.id', '=', 'cms_sections.id_type')
+            ->join('cms_types', 'cms_types.id', '=', 'cms_sections.id_type')            
             ->select('cms_sections.*', 'cms_types.title as type')
-            ->where('cms_sections.active','=', $flag)
+            ->where('cms_sections.active','=', $flag)            
             ->orderBy('order_by','DESC')->paginate(20);
             return view('sections/index',compact('Sections'));
 
@@ -61,10 +61,17 @@ class sectiosController extends Controller
       $flag=1;
       $orderBy =  (DB::table('cms_sections')->where('active','=', $flag)->max('order_by'))+1;
     
-      $file = $request->file('file');     
+      $file = $request->file('file');    
+      if($file!=""){ 
       $path='store/SEC/'.uniqid().'.'.$file->getClientOriginalExtension();
       //indicamos que queremos guardar un nuevo archivo en el disco local
-       \Storage::disk('local')->put($path,  \File::get($file));
+       Storage::disk('local')->put($path,  File::get($file));
+      }
+      else
+      {
+        $path="";
+      }
+
 
 		  \App\cms_section::create([
           'id_type'=>$request['id_type'],
@@ -97,11 +104,45 @@ class sectiosController extends Controller
 
   public function update($id, Request $request)
       {
-            $Section = \App\cms_section::find($id);
+            $isUpImg=false;
+            $Section = \App\cms_section::find($id);                      
+            $path=null;
+            $file = $request->file('file');               
+           
+            if($file!=""){
+            $main_picture=$Section->main_picture;
+
+            $path='store/SEC/'.uniqid().'.'.$file->getClientOriginalExtension();                        
+            
+            if($main_picture!=$path)
+            {
+              $isUpImg=true;
+              //indicamos que queremos guardar un nuevo archivo en el disco local
+              Storage::disk('local')->put($path,  File::get($file));
+
+            }
+            }
+          
             $Section->fill($request->all());
+            if($isUpImg){
+            $Section->main_picture=$path;
+            }
             $Section->save();
             Session::flash('message','Usuario Actualizado Correctamente');    
-            return redirect('admin/sections')->with('message','store');       
+            return redirect('admin/sections');       
+      }
+
+
+      public function deletePicture($id)
+      {
+
+          $types = \App\cms_type::All();
+          $Section = \App\cms_section::find($id);
+          $Section->main_picture="";
+          $Section->save();
+          Session::flash('message','Imagen Eliminada Correctamente'); 
+          return view('sections.sectionform',['Section'=>$Section, 'types'=>$types]);
+
       }
 
 
@@ -111,7 +152,7 @@ class sectiosController extends Controller
           $Section->active=0;
           $Section->save();
           Session::flash('message','Usuario Eliminado Correctamente');    
-          return redirect('/admin/sections')->with('message','store');
+          return redirect('/admin/sections');
       }
 
   public function order($id, $orderBy, $no)
@@ -124,7 +165,7 @@ class sectiosController extends Controller
           $Section->order_by=$no;
           $Section->save();   
           Session::flash('message','Ordén del Albúm actualizado');    
-          return redirect('/admin/sections')->with('message','store');
+          return redirect('/admin/sections');
   }
 
   public function setOrderItem($flag,$orderBy, $no)
@@ -156,7 +197,7 @@ class sectiosController extends Controller
     if($pub=='True'){ $pub = 1;}else{ $pub = 0; }
     $Section = DB::table('cms_sections')->where('active','=', $flag)->where('id', '=',$id)->update(['publish'=>$pub]);             
       Session::flash('message','Ordén del Albúm actualizado');    
-    return redirect('/admin/sections')->with('message','store');
+    return redirect('/admin/sections');
   }
 
 

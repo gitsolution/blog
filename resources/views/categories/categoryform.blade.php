@@ -5,8 +5,9 @@
 <?php  
 if(isset($Catego)) 
 {
-    $botonTitulo='Editar'; // para cambiar de nombre al submit si es editar o guardar
+    $botonTitulo='Guardar'; // para cambiar de nombre al submit si es editar o guardar
     $message='Edit';
+    $id=$Catego->id;
     $id_type=$Catego->id_type;
     $title=$Catego->title;
     $resumen=$Catego->resumen;
@@ -30,28 +31,32 @@ if(isset($Catego))
     $uri=$Catego->uri;
     $hits=$Catego->hits;
     $order_by= $Catego->order_by;
+     $path = '../../../'.$Catego->main_picture;
 
 
 }
 
 else{ 
-    $botonTitulo=' Crear';
+    $botonTitulo='Guardar';
     $message='New'; 
     $Catego=Null;
     $title=$Catego;
     $description=$Catego;
     $ChekPrivado=$Catego;
     $ChekPublicar = $Catego;
-    $publish_date= $Catego;
+    $publish_date = date('Y-m-d');
     $order_by= $Catego;
     $id_type=$Catego;
+    $path = $Catego;
+    $id=$Catego;
+
   }
  ?>
 
 @if($message=='Edit')
- {!!Form::model($Catego,['route'=>['admin.category.update',$Catego->id],'method'=>'PUT'])!!} 
+ {!!Form::model($Catego,['route'=>['admin.category.update',$Catego->id],'method'=>'PUT','novalidate' => 'novalidate','files' => true])!!} 
 @else
- {!!Form::open(['route'=>'admin.category.store','method'=>'POST', 'file'=>true])!!}
+ {!!Form::open(['route'=>'admin.category.store','method'=>'POST', 'novalidate' => 'novalidate','files' => true])!!}
 @endif
 
 <div class="container-fluid">
@@ -98,7 +103,46 @@ else{
               {!!Form::date('publish_date', $publish_date,['class'=>'form-control'])!!}              
           </div>
       </div>
+     
+  </div>
+ 
+       <div class="row">
+
+       <div class="form-group" >    
+        <div class="col-md-12">
+               <input type='file' name='file' id="imgLoad"  />
+        </div>
+      </div>
+    </div>
+       <div class="row">
+
+       <div class="form-group" >    
+        
+          <div class="col-md-12">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <center>
+              <div class="panel panel-primary" style="width:300px;">
+                              <div class="panel-heading">                                  
+                                  Imagen 
+                              </div>
+                              <div class="panel-body">
+                                  <img id="imgUpTo" src="<?php echo $path ?>" alt="Imagen" class="img-responsive" />
+                              </div>
+                              <div class="panel-footer text-right">
+                                @if($message=='Edit')
+                                  {!!link_to('admin/delcatpic/'.$id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-remove ')) !!}
+                                @endif
+                              </div>
+                      </div>      
+            </center>
+        </div>                     
+      
+      </div>
+        
       <br>
+      </div>
+
+     <div class="row">
       <div class="form-group">
           {!!Form::label('titulo','Titulo:')!!}
           {!!Form::text('title',null,['class'=>'form-control','placeholder'=>''])!!}
@@ -111,10 +155,7 @@ else{
             {!!Form::label('contenido','Contenido')!!}
             {!!Form::textarea('content',null,['class'=>'form-control','placeholder'=>''])!!}
           </div>
-         <div class="form-group">
-                     {!!Form::label('Imagen Principal')!!}
-                     {!!Form::file('main_picture')!!}
-          </div>
+         
           {!!Form::submit( $botonTitulo,['class'=>'btn btn-danger'])!!}
 
         {!!Form::close()!!} 

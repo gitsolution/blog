@@ -7,7 +7,8 @@ if(isset($Document))
 {
     $botonTitulo='Editar'; // para cambiar de nombre al submit si es editar o guardar
     $message='Edit';
-    $id_type=$Document->id_type;
+    $id=$Document->id;
+    $id_category=$Document->id_category;
     $title=$Document->title;
     $resumen=$Document->resumen;
     $content=$Document->content;
@@ -44,7 +45,8 @@ else{
     $ChekPublicar = $Document;
     $publish_date= $Document;
     $order_by= $Document;
-    $id_type=$Document;
+    $id_category=$Document;
+    $id=$Document;
   }
  ?>
 
@@ -62,8 +64,8 @@ else{
                       <p>PAGINA PARA LA DOCUMENTO</p>
                   </div>
                 <div class="col-md-3">
-                  {!!Form::label('seccion','Categoria:')!!}
-                  {!!Form::select('id_category', \App\cms_category::lists('title','id'),null,['class'=>'form-control select2'] )!!}
+                  {!!Form::label('seccion','Sección:')!!}
+                  {!!Form::select('id_section', \App\cms_section::lists('title','id'),null,['class'=>'form-control select2'] )!!}
                 <br>
                 </div>
                 <div class="col-md-5">
@@ -87,8 +89,17 @@ else{
                 </div>
               </div>
           </div>
+          <div class="row">
 
-  <div class="form-group">
+              <div class="form-group">
+            
+              <div class="col-md-3">
+                  {!!Form::label('seccion','Categoria:')!!}
+                  {!!Form::select('id_category', \App\cms_category::lists('title','id'),null,['class'=>'form-control select2'] )!!}
+                <br>
+                </div>
+                </div>
+          </div>
       <div class="row">
           <div class="col-md-12">
               {!!Form::label('date','Fecha De Publicación:')!!}  
@@ -98,6 +109,41 @@ else{
               {!!Form::date('publish_date', $publish_date,['class'=>'form-control'])!!}              
           </div>
       </div>
+       
+       <div class="row">
+
+       <div class="form-group" >    
+        <div class="col-md-12">
+               <input type='file' name='file' id="imgLoad"  />
+        </div>
+      </div>
+    </div>
+       <div class="row">
+
+       <div class="form-group" >    
+        
+          <div class="col-md-12">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <center>
+              <div class="panel panel-primary" style="width:300px;">
+                              <div class="panel-heading">                                  
+                                  Imagen 
+                              </div>
+                              <div class="panel-body">
+                                  <img id="imgUpTo" src="<?php echo $path ?>" alt="Imagen" class="img-responsive" />
+                              </div>
+                              <div class="panel-footer text-right">
+                                @if($message=='Edit')
+                                  {!!link_to('admin/deldocpic/'.$id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-remove ')) !!}
+                                @endif
+                              </div>
+                      </div>      
+            </center>
+        </div>                     
+      
+      </div>      
+      </div>
+  <div class="form-group">
       <br>
       <div class="form-group">
           {!!Form::label('titulo','Titulo:')!!}

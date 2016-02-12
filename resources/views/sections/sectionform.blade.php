@@ -5,8 +5,9 @@
 <?php  
 if(isset($Section)) 
 {
-    $botonTitulo='Editar'; // para cambiar de nombre al submit si es editar o guardar
+    $botonTitulo='Guardar'; // para cambiar de nombre al submit si es editar o guardar
     $message='Edit';
+    $id=$Section->id;
     $id_type=$Section->id_type;
     $title=$Section->title;
     $resumen=$Section->resumen;
@@ -35,17 +36,18 @@ if(isset($Section))
 }
 
 else{ 
-    $botonTitulo=' Crear';
+    $botonTitulo='Guardar';
     $message='New'; 
     $Section=Null;
     $title=$Section;
     $description=$Section;
     $ChekPrivado=$Section;
     $ChekPublicar = $Section;
-    $publish_date=  date('Y-m-d');
+    $publish_date = date('Y-m-d');
     $order_by= $Section;
     $id_type=$Section;
     $path = $Section;
+    $id=$Section;
   }
 
  ?>
@@ -100,37 +102,38 @@ else{
               {!!Form::date('publish_date', $publish_date,['class'=>'form-control'])!!}              
           </div>
       </div>
-      <div class="row">
       <br>
      <div class="row">
 
        <div class="form-group" >    
-        <div class="col-md-3">
+        <div class="col-md-12">
                <input type='file' name='file' id="imgLoad"  />
-        </div>       
-       </div>
-
+        </div>
+      </div>
     </div>
-
        <div class="row">
 
        <div class="form-group" >    
         
           <div class="col-md-12">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-              <div class="panel panel-primary">
-                              <div class="panel-heading">
-                                  Imagen
+          <center>
+              <div class="panel panel-primary" style="width:300px;">
+                              <div class="panel-heading">                                  
+                                  Imagen 
                               </div>
                               <div class="panel-body">
-                                  <img id="imgUpTo" src="<?php echo $path ?>" alt="Imagen" />
+                                  <img id="imgUpTo" src="<?php echo $path ?>" alt="Imagen" class="img-responsive" />
                               </div>
-                              <div class="panel-footer">
+                              <div class="panel-footer text-right">
+                                @if($message=='Edit')
+                                  {!!link_to('admin/delsecpic/'.$id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-remove ')) !!}
+                                @endif
                               </div>
                       </div>      
-              </div>                     
-       </div>
-
+            </center>
+        </div>                     
+      
       </div>
         
       <br>

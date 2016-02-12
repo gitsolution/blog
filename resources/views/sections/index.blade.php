@@ -64,10 +64,10 @@
           <td class="text-center"> 
              <?php if($med->private=='1'){?>
                 
-              {!!link_to('admin/sectionsPriva/'.$med->id.'/False', '',array('class'=>'glyphicon glyphicon-eye-close')) !!}
+              {!!link_to('admin/sectionsPriva/'.$med->id.'/False', '',array('class'=>'fa fa-lock fa-lg')) !!}
              <?php } 
              else{ ?>                    
-              {!!link_to('admin/sectionsPriva/'.$med->id.'/True', '',array('class'=>'glyphicon glyphicon-eye-open')) !!}
+              {!!link_to('admin/sectionsPriva/'.$med->id.'/True', '',array('class'=>'fa fa-unlock fa-lg')) !!}
                   <?php } ?>
           </td>
  

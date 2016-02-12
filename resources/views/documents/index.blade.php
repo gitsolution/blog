@@ -60,7 +60,7 @@
         ?> 
           <tr>
           <td> {{$med->id}}</td>
-          <td> {{$med->id_category}}</td>
+          <td> {{$med->category}}</td>
           <td> {{$med->title}}</td>
           <td class="text-center"> 
             <?php if($med->private=='1'){?>

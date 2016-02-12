@@ -22,6 +22,12 @@ class DocumentController extends Controller
 
     	   	$flag='1';  
     	   	$Document =  DB::table('cms_documents')->where('active','=', $flag)->orderBy('order_by','DESC')->paginate(20);
+
+          $Document = DB::table('cms_documents')
+            ->join('cms_categories', 'cms_categories.id', '=', 'cms_documents.id_category')
+            ->select('cms_documents.*', 'cms_categories.title as category')
+            ->where('cms_documents.active','=', $flag)
+            ->orderBy('order_by','DESC')->paginate(20);
     
         	return view('documents/index',compact('Document'));
    		}

@@ -10,8 +10,9 @@
     <meta name="author" content="">
 
  
-
+    {!!Html::style('css/bootstrap.css')!!}
     {!!Html::style('css/admin.css')!!}
+
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
     {!!Html::style('../bower_components/bootstrap/dist/css/bootstrap.min.css')!!}
     {!!Html::style('../bower_components/metisMenu/dist/metisMenu.min.css')!!}

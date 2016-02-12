@@ -23,16 +23,14 @@ class sectiosController extends Controller
 
        
     $flag='1';  
-    $Sections =  DB::table('cms_sections')->where('active','=', $flag)->orderBy('order_by','DESC')->paginate(20);
-    
-        return view('sections/index',compact('Sections'));
-
+  
    // $flag='1';
     //DB::table('cms_sections')->where('active','=', $flag)->orderBy('order_by','DESC')->paginate(20);
 
     $Sections = DB::table('cms_sections')
             ->join('cms_types', 'cms_types.id', '=', 'cms_sections.id_type')
             ->select('cms_sections.*', 'cms_types.title as type')
+            ->where('cms_sections.active','=', $flag)
             ->orderBy('order_by','DESC')->paginate(20);
             return view('sections/index',compact('Sections'));
 

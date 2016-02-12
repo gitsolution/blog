@@ -289,64 +289,67 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Menús<span class="fa arrow"></span></a>
-                            
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Publicaciones <span class="fa arrow"></span></a>
+                                   <li>
+                                    <a href="#"><i class="fa fa-magic"></i> Menu <span class="fa arrow "></span></a>
                                     <ul class="nav nav-third-level">
+                                       
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                            
+                            
+                                <li>
+                                    <a href="#"><i class="fa fa-newspaper-o"></i> Publicaciones <span class="fa arrow "></span></a>
+                                    <ul class="nav nav-second-level">
                                          <li>
-                                              {!!link_to('admin/types', 'Tipos',array('class'=>'')) !!}
+                                              {!!link_to('admin/types', '&nbsp;&nbsp;&nbsp; Tipos',array('class'=>'fa fa-file-o')) !!}
                                         </li>
                                         <li>
-                                              {!!link_to('admin/sections', 'Secciones',array('class'=>'')) !!}
+                                              {!!link_to('admin/sections', ' Secciones',array('class'=>'glyphicon glyphicon-book')) !!}
                                         </li>
                                         <li>
-                                             {!!link_to('admin/category', 'Categorias',array('class'=>'')) !!}
+                                             {!!link_to('admin/category', ' Categorias',array('class'=>'glyphicon glyphicon-object-align-horizontal')) !!}
                                         </li>
                                         <li>
-                                            <a href="#">Documentos</a>
+                                             {!!link_to('admin/document', '&nbsp;&nbsp;&nbsp; Documentos',array('class'=>'fa fa-book')) !!}
                                         </li>
                                         <li>
-                                            <a href="#">Comentarios</a>
+                                            <a href="#" class="fa fa-comment-o">&nbsp;&nbsp;&nbsp; Comentarios</a>
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
-                            </ul>
                             
-                            <ul class="nav nav-second-level">
+                            
+                           
                                 <li>
-                                    <a href="#">Media <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
+                                    <a href="#" class="fa fa-camera"> Media <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
                                         <li>
-                                            {!!link_to('admin/media', 'Media',array('')) !!}
+                                            {!!link_to('admin/media', '&nbsp;&nbsp;&nbsp;Albums',array('class'=>'fa fa-picture-o ')) !!}
                                         </li>
                                         <li>
-                                            <a href="#">Categorías</a>
+                                              {!!link_to('admin/item', '&nbsp;&nbsp;&nbsp; Imagenes',array('class'=>'fa fa-file-image-o')) !!}
                                         </li>
-                                        <li>
-                                            <a href="#">Documentos</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Comentarios</a>
-                                        </li>
+                                    
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
-                            </ul>
+                            
                             <!-- /.nav-second-level -->
-                        </li>
+                        
 
 
                         <li>
                             <a href="s"><i class="fa fa-users fa-fw"></i>Usuarios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/usuario">Usuarios</a>
+                                {!!link_to('/usuario', '&nbsp;&nbsp;&nbsp;Usuarios',array('class'=>'fa fa-user ')) !!}
+                                   
                                 </li>
                                 <li>
-                                    <a href="admin/roles">Roles</a>
+                                {!!link_to('admin/roles', '&nbsp;&nbsp;&nbsp;Roles',array('class'=>'fa fa-flag-o ')) !!}
+                                    
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

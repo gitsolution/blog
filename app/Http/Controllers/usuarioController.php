@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
 use DB;
 use App\User;
+use App\usr_login_role;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Mail;
 
 class usuarioController extends Controller
 {
@@ -17,6 +18,8 @@ class usuarioController extends Controller
 		$users = User::paginate(20);
 		return view('usuario.index',compact('users'));
 	}
+
+   
 
     public function create()
     {
@@ -29,16 +32,37 @@ class usuarioController extends Controller
         return view('usuario/create')->with('user',$user);
     }
     
+    /***guardar usuario***/
     public function store(Request $request)
     {
     	User::create([
     		'name'=>$request['name'],
             'lastName'=>$request['lastName'],
-    		'email'=>$request['email'],
+    		$data['email']='email'=>$request['email'],
     		'password'=>bcrypt($request['password']),
     	]);
 
-    	return Redirect::to("usuario");
+        if($request['id_login']=="0")
+        {
+              $id_login = DB::table('users')->where('email', $request['email'])->value('id');
+        
+                usr_login_role::create([
+                            'id_login'=>$id_login,
+                            'id_role'=>$request['id'],
+                            'active'=>'1',
+                        ]);
+        }
+
+        else{
+            $id_login = DB::table('users')->where('email', $request['email'])->value('id');       
+            DB::table('usr_login_role')
+            ->where('id_login', $id_login)
+            ->update(['id_role' => $request['id']]);
+        }
+        
+        
+
+    	return Redirect::to("/admin/userNew");
     }
 
     public function register(Request $request)
@@ -60,6 +84,5 @@ class usuarioController extends Controller
             
         return Redirect::to("usuario");
     }
-
 
 }

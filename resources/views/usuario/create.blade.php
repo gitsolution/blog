@@ -4,21 +4,26 @@
 <?php  
 if(isset($user)) {
     $message='Edit';
+    $id_login=$user->id;
     $name=$user->name;
     $lastName=$user->lastName;
     $email=$user->email;
     $created_at = date_create($user->created_at);
     $nombreBoton='Editar';
+    
+    $categories= App\usr_role::lists('title','id');
 }
 
 else
 {  
     $message='New';
+    $id_login=0;
     $user=Null;
     $name=$user;
     $lastName=$user;
     $email = $user;
     $nombreBoton='Registrar';
+    $categories= App\usr_role::lists('title','id');
 }
 
  ?>
@@ -35,6 +40,7 @@ else
                 @else
                   {!!Form::open(['route'=>'usuario.store','method','POST'])!!} 
                 @endif
+                    {!!Form::text('id_login',$id_login,['class'=>'form-control frmEspacios','placeholder'=>''])!!}
 					<div class="form-group" id="frmLogin">
 					 <div class="col-xs-4">
             		{!!Form::label('nombre','Nombre')!!}
@@ -60,6 +66,13 @@ else
 						{!!Form::label('Confirmar contraseña')!!}
             			{!!Form::password('password',['class'=>'form-control frmEspacios','placeholder'=>'Confirmar contraseña'])!!}
             		</div>
+
+                    <div class="col-xs-12">
+                        <label for="">Roles</label>
+                        {!! Form::label('id', 'Selecciona el rol') !!}
+                        {!! Form::select('id',$categories) !!}
+                    </div>
+
 
 
       				<div class="col-xs-6">

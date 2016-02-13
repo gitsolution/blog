@@ -130,21 +130,33 @@ Route::put('admin/user/update','usuarioController@update');
 Route::get('admin/sectionedit/{id}','sectiosController@edit');
 Route::get('usuario/register','usuarioController@register');
 
-
 Route::resource('mail','mailController');
 
 
+/**********************para enviar correo*********************************/
 Route::get('password/email','Auth\PasswordController@getEmail');
 Route::get('password/email','Auth\PasswordController@postEmail');
-/*****************Resetear contraseñ*******************/
+/*****************Resetear contraseña*******************/
 Route::get('password/reset/{token}','Auth\PasswordController@getReset');
 Route::post('password/reset','Auth\PasswordController@postReset');
+/**********************para confirmar cuenta********************************/
+Route::get('auth/register','Auth\AuthController@getRegister');
+Route::post('auth/register','Auth\AuthController@postRegister');
+Route::get('auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
 
 /************************roles de usuario*************************/
 Route::get('/admin', 'HomeController@index');/*pagina principal despues de logearse*/
-Route::resource('rol','rolesController');
+Route::resource('admin/rol','rolesController');
 Route::get('admin/roles', 'rolesController@index');
+Route::get('admin/rolesNew', 'rolesController@create');
+Route::get('admin/rolesEdit/{id}','rolesController@edit');
+Route::put('admin/rolesUpdate','rolesController@update');
 
+/*para la asignacion de roles de usuarios*/
+Route::resource('admin/assignment/','usr_login_roleController');
+Route::get('admin/assignment', 'usr_login_roleController@index');
+Route::get('admin/assignmentNew', 'usr_login_roleController@create');
+Route::get('admin/rolesEdit/{id}','rolesController@edit');
 
 });
 

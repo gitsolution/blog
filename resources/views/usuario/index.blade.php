@@ -47,6 +47,8 @@
 				<td>{{$created_at}}</td>
 				<td>
 				{!! link_to('admin/userEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
+                {!! link_to('admin/userEdit/'.$user->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-trash')) !!}
+                {!! link_to('admin/assignment/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-tag')) !!}                
 				</td>
 			</tbody>
 		@endForeach

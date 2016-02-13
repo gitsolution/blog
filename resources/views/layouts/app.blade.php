@@ -346,7 +346,7 @@
                                     <a href="/usuario">Usuarios</a>
                                 </li>
                                 <li>
-                                    <a href="admin/roles">Roles</a>
+                                    {!!link_to('admin/roles', 'Tipos',array('class'=>'')) !!}
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

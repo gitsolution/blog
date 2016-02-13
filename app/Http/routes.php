@@ -51,13 +51,14 @@ Route::put('admin/types/update','typeController@update');
 Route::get('admin/typedel/{id}','typeController@delete');
 
 /*************RUTAS DE CATEGORIAS******************************/
-Route::get('admin/categorynew','categoryController@categorynew');//abre el formulario para nuevo typo
-Route::resource('admin/category','categoryController'); //manda a llamar la funcion store
+Route::get('admin/categorynew','categoryController@categorynew');
+Route::resource('admin/category','categoryController'); 
 ///ACTUALIZAR
 Route::get('admin/categoryedit/{id}','categoryController@edit');
 Route::put('admin/category/update','categoryController@update');
 ///// ELIMINAR
 Route::get('admin/categorydel/{id}','categoryController@delete');
+Route::get('admin/delcatpic/{id}','categoryController@deletePicture');
 ////// PUBLICAR
 Route::get('admin/categoryPriva/{id}/{priv}','categoryController@privado');
 Route::get('admin/categoryPublic/{id}/{pub}','categoryController@publicate');
@@ -72,6 +73,7 @@ Route::get('admin/sectionedit/{id}','sectiosController@edit');
 Route::put('admin/section/update','sectiosController@update');
 ///// ELIMINAR
 Route::get('admin/sectiondel/{id}','sectiosController@delete');
+Route::get('admin/delsecpic/{id}','sectiosController@deletePicture');
 //ORDENAR
 Route::get('admin/sectionorder/{id}/{orderBy}/{no}','sectiosController@order');
 ////// PUBLICAR
@@ -165,6 +167,29 @@ Route::get('admin/cms', 'cmsController@index');
 Route::get('admin/cmsNew', 'cmsController@create');
 Route::get('admin/cmsEdit/{id}','cmsController@edit');
 Route::put('admin/cmsUpdate','cmsController@update');
+
+
+/*************RUTAS DE DOCUMENTS******************************/
+Route::get('admin/documentnew','DocumentController@documentynew');
+Route::resource('admin/document','DocumentController'); 
+///ACTUALIZAR
+Route::get('admin/documentedit/{id}','DocumentController@edit');
+Route::put('admin/document/update','DocumentController@update');
+///// ELIMINAR
+Route::get('admin/documentdel/{id}','DocumentController@delete');
+Route::get('admin/deldocpic/{id}','DocumentController@deletePicture');
+
+////// PUBLICAR
+Route::get('admin/documentPriva/{id}/{priv}','DocumentController@privado');
+Route::get('admin/documentPublic/{id}/{pub}','DocumentController@publicate');
+//ORDENAR
+Route::get('admin/documentorder/{id}/{orderBy}/{no}','DocumentController@order');
+
+
+
+
+
+
 
 });
 

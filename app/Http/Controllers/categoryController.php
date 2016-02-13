@@ -1,11 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Storage;
+use File;
+
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use DB;
 use Session;
+use Redirect;
+
 
 class categoryController extends Controller
 {
@@ -40,14 +47,26 @@ class categoryController extends Controller
        		{
          		$ChekPrivad='1';
         	}
-             $flag=1;
-         	$orderBy =  (DB::table('cms_categories')->where('active','=', $flag)->max('order_by'))+1;    
+          
+          $flag=1;
+         	$orderBy =  (DB::table('cms_categories')->where('active','=', $flag)->max('order_by'))+1;
+          if($file!=""){       
+          $file = $request->file('file');     
+          $path='store/CAT/'.uniqid().'.'.$file->getClientOriginalExtension();
+          //indicamos que queremos guardar un nuevo archivo en el disco local
+           Storage::disk('local')->put($path,  File::get($file));
+          }
+          else{
+            $path="";
+          }
+
+
 		  	\App\cms_category::create([
           	'id_section'=>$request['id_section'],
           	'title' => $request['title'],
           	'resumen'=>$request['resumen'],
           	'content'=>$request['content'],
-          	'main_picture'=>$request['main_picture'],
+          	'main_picture'=>$path,
           	'private'=>$ChekPrivad,
           	'publish_date'=>$request['publish_date'],//$request['descripcion'],
           	'publish'=>$ChekPubli,
@@ -70,11 +89,33 @@ class categoryController extends Controller
      
      public function update($id, Request $request)
      	{
-           	$Catego = \App\cms_category::find($id);
-           	$Catego->fill($request->all());
+            $isUpImg=false;
+            $Catego = \App\cms_category::find($id);
+            $path=null;
+            $file = $request->file('file');    
+
+            if($file!=""){
+            $main_picture=$Catego->main_picture;
+
+            $path='store/CAT/'.uniqid().'.'.$file->getClientOriginalExtension();                        
+            
+              if($main_picture!=$path)
+              {
+                $isUpImg=true;
+                //indicamos que queremos guardar un nuevo archivo en el disco local
+                Storage::disk('local')->put($path,  File::get($file));
+
+              }
+            }
+          
+            $Catego->fill($request->all());            
+            if($isUpImg){
+            $Catego->main_picture=$path;
+            }
+
            	$Catego->save();
            	Session::flash('message','Usuario Actualizado Correctamente');    
-           	return redirect('admin/category')->with('message','store');       
+           	return redirect('admin/category');       
      	}
 
      public function delete($id)
@@ -83,8 +124,21 @@ class categoryController extends Controller
           	$Catego->active=0;
           	$Catego->save();
         	  Session::flash('message','Usuario Eliminado Correctamente');    
-      	    return redirect('admin/category')->with('message','store');
+      	    return redirect('admin/category');
         }
+
+
+      public function deletePicture($id)
+      {
+          $Section = \App\cms_section::All();
+          $Catego = \App\cms_category::find($id);
+          $Catego->main_picture="";
+          $Catego->save();
+          Session::flash('message','Imagen Eliminada Correctamente'); 
+          return view('categories.categoryform',['Catego'=>$Catego, 'Section'=>$Section]);
+
+      }
+
 
 
   	 public function privado($id,$priv)
@@ -94,7 +148,7 @@ class categoryController extends Controller
     		if($priv=='True'){ $priv = 1;}else{ $priv = 0; }
     		$Catego = DB::table('cms_categories')->where('active','=', $flag)->where('id', '=',$id)->update(['private'=>$priv]);             
       		Session::flash('message','Ordén del Albúm actualizado');    
-    		return redirect('/admin/category')->with('message','store');
+    		return redirect('/admin/category');
   		}
 
   	 public function publicate($id,$pub){
@@ -102,7 +156,7 @@ class categoryController extends Controller
     		if($pub=='True'){ $pub = 1;}else{ $pub = 0; }
     		$Catego = DB::table('cms_categories')->where('active','=', $flag)->where('id', '=',$id)->update(['publish'=>$pub]);    
     		Session::flash('message','Ordén del Albúm actualizado');
-    		return redirect('/admin/category')->with('message','store');
+    		return redirect('/admin/category');
   		}
 
 
@@ -115,7 +169,7 @@ class categoryController extends Controller
           	$Catego->order_by=$no;
           	$Catego->save();   
           	Session::flash('message','Ordén del Albúm actualizado');    
-          	return redirect('/admin/category')->with('message','store');
+          	return redirect('/admin/category');
   		}
 
   	public function setOrderItem($flag,$orderBy, $no)

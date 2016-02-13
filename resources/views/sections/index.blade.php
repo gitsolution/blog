@@ -1,13 +1,12 @@
 @extends('layouts.app')
 @section('content')
-
-<div class="container-fluid">
-<?php $message=Session::get('message'); ?>
-@if($message=='store')
+@if(Session::has('message'))
 <div class="alert alert-success alert-dismissible" role="alert">
-  Albúm creado exitosamente!!!
+<button type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></button>
+  {{Session::get('message')}}
 </div>
 @endif
+<div class="container-fluid">
 <div class="row">
 <br>
 <div class="col-md-10"><h3>Catálogo de secciones </h3></div> <!--divide la columna en 10 y 2-->
@@ -89,7 +88,9 @@
 
           <td> {!!link_to_route('admin.sections.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}
            
-           {!!link_to('admin/sectiondel/'.$med->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td>
+           {!!link_to('admin/sectiondel/'.$med->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}
+
+           </td>
               
 
           </tr>

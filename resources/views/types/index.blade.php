@@ -29,7 +29,7 @@
             <th class="ColumColor text-center" >
             Creado
             </th>
-            <th class="ColumColor text-center"  colspan="2">
+            <th class="ColumColor text-center">
             Acciones
             </th>
           </thead>
@@ -45,10 +45,10 @@
           <td> {{$creat}}</td>
           <td class="text-center"> 
           {!! link_to('admin/typesedit/'.$med->id,' ',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
-          <!--{!!link_to_route('admin.types.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}--></td>
-               {!!Form::open()!!}
-          <td> 
-          {!!link_to('admin/typedel/'.$med->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-remove')) !!}
+          <!--{!!link_to_route('admin.types.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}-->
+          
+          
+          {!!link_to('admin/typedel/'.$med->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-trash')) !!}
           </td>
               <!-- {!!Form::close()!!}-->
           </tr>

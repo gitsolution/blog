@@ -3,71 +3,69 @@
        <!---contact-->
 
 <?php  
-if(isset($Section)) 
+if(isset($Document)) 
 {
-    $botonTitulo='Guardar'; // para cambiar de nombre al submit si es editar o guardar
+    $botonTitulo='Editar'; // para cambiar de nombre al submit si es editar o guardar
     $message='Edit';
-    $id=$Section->id;
-    $id_type=$Section->id_type;
-    $title=$Section->title;
-    $resumen=$Section->resumen;
-    $content=$Section->content;
-    $main_picture=$Section->main_picture;
-  if($Section->private=="0")
+    $id=$Document->id;
+    $id_category=$Document->id_category;
+    $title=$Document->title;
+    $resumen=$Document->resumen;
+    $content=$Document->content;
+    $main_picture=$Document->main_picture;
+  if($Document->private=="0")
       {
         $ChekPrivado = "";
       }
   else{
         $ChekPrivado = "checked"; 
       } 
-    $publish_date = date_create($Section->publish_date);
-  if($Section->publish=="0")
+    $publish_date = date_create($Document->publish_date);
+  if($Document->publish=="0")
       {
         $ChekPublicar = "";  
       }
   else{
         $ChekPublicar = "checked"; 
       } 
-    $uri=$Section->uri;
-    $hits=$Section->hits;
-    $order_by= $Section->order_by;
-    $path = '../../../'.$Section->main_picture;
+    $uri=$Document->uri;
+    $hits=$Document->hits;
+    $order_by= $Document->order_by;
+
 
 }
 
 else{ 
-    $botonTitulo='Guardar';
+    $botonTitulo=' Crear';
     $message='New'; 
-    $Section=Null;
-    $title=$Section;
-    $description=$Section;
-    $ChekPrivado=$Section;
-    $ChekPublicar = $Section;
-    $publish_date = date('Y-m-d');
-    $order_by= $Section;
-    $id_type=$Section;
-    $path = $Section;
-    $id=$Section;
+    $Document=Null;
+    $title=$Document;
+    $description=$Document;
+    $ChekPrivado=$Document;
+    $ChekPublicar = $Document;
+    $publish_date= $Document;
+    $order_by= $Document;
+    $id_category=$Document;
+    $id=$Document;
   }
-
  ?>
 
 @if($message=='Edit')
- {!!Form::model($Section,['route'=>['admin.sections.update',$Section->id],'method'=>'PUT', 'novalidate' => 'novalidate','files' => true])!!} 
+ {!!Form::model($Document,['route'=>['admin.document.update',$Document->id],'method'=>'PUT'])!!} 
 @else
- {!!Form::open(['route'=>'admin.sections.store','method'=>'POST','novalidate' => 'novalidate','files' => true])!!}
+ {!!Form::open(['route'=>'admin.document.store','method'=>'POST'])!!}
 @endif
 
 <div class="container-fluid">
   <div class="container-fluid">
        <div class="row">
             <div class="form-group">
-                  <div class="col-md-12"><h3 class="head">SECCION</h3>
-                      <p>PAGINA PARA LA SECCION</p>
+                  <div class="col-md-12"><h3 class="head">DOCUMENTO</h3>
+                      <p>PAGINA PARA LA DOCUMENTO</p>
                   </div>
                 <div class="col-md-3">
-                  {!!Form::label('tipo','Tipo:')!!}
-                  {!!Form::select('id_type', \App\cms_type::lists('title','id'),null,['class'=>'form-control select2'] )!!}
+                  {!!Form::label('seccion','Sección:')!!}
+                  {!!Form::select('id_section', \App\cms_section::lists('title','id'),null,['class'=>'form-control select2'] )!!}
                 <br>
                 </div>
                 <div class="col-md-5">
@@ -91,8 +89,17 @@ else{
                 </div>
               </div>
           </div>
+          <div class="row">
 
-  <div class="form-group">
+              <div class="form-group">
+            
+              <div class="col-md-3">
+                  {!!Form::label('seccion','Categoria:')!!}
+                  {!!Form::select('id_category', \App\cms_category::lists('title','id'),null,['class'=>'form-control select2'] )!!}
+                <br>
+                </div>
+                </div>
+          </div>
       <div class="row">
           <div class="col-md-12">
               {!!Form::label('date','Fecha De Publicación:')!!}  
@@ -102,8 +109,8 @@ else{
               {!!Form::date('publish_date', $publish_date,['class'=>'form-control'])!!}              
           </div>
       </div>
-      <br>
-     <div class="row">
+       
+       <div class="row">
 
        <div class="form-group" >    
         <div class="col-md-12">
@@ -127,18 +134,17 @@ else{
                               </div>
                               <div class="panel-footer text-right">
                                 @if($message=='Edit')
-                                  {!!link_to('admin/delsecpic/'.$id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-remove ')) !!}
+                                  {!!link_to('admin/deldocpic/'.$id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-remove ')) !!}
                                 @endif
                               </div>
                       </div>      
             </center>
         </div>                     
       
+      </div>      
       </div>
-        
+  <div class="form-group">
       <br>
-      </div>
-      <div class="row">
       <div class="form-group">
           {!!Form::label('titulo','Titulo:')!!}
           {!!Form::text('title',null,['class'=>'form-control','placeholder'=>''])!!}
@@ -151,12 +157,14 @@ else{
             {!!Form::label('contenido','Contenido')!!}
             {!!Form::textarea('content',null,['class'=>'form-control','placeholder'=>''])!!}
           </div>
-
+         <div class="form-group">
+                     {!!Form::label('Imagen Principal')!!}
+                     {!!Form::file('main_picture')!!}
+          </div>
           {!!Form::submit( $botonTitulo,['class'=>'btn btn-danger'])!!}
 
         {!!Form::close()!!} 
-         </div> 
+          
   </div>
 </div>
   @stop
-<!--formulario para editar y nueva seccion-->

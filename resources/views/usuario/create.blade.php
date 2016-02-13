@@ -68,9 +68,8 @@ else
             		</div>
 
                     <div class="col-xs-12">
-                        <label for="">Roles</label>
                         {!! Form::label('id', 'Selecciona el rol') !!}
-                        {!! Form::select('id',$categories) !!}
+                        {!! Form::select('id',$categories, ['class'=>'form-control']) !!}
                     </div>
 
 

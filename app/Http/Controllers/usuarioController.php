@@ -45,7 +45,7 @@ class usuarioController extends Controller
         if($request['id_login']=="0")
         {
               $id_login = DB::table('users')->where('email', $request['email'])->value('id');
-        
+            
                 usr_login_role::create([
                             'id_login'=>$id_login,
                             'id_role'=>$request['id'],
@@ -54,13 +54,12 @@ class usuarioController extends Controller
         }
 
         else{
-            $id_login = DB::table('users')->where('email', $request['email'])->value('id');       
-            DB::table('usr_login_role')
+           
+            $id_login=$request['id_login'];
+            DB::table('usr_login_roler')
             ->where('id_login', $id_login)
             ->update(['id_role' => $request['id']]);
-        }
-        
-        
+        }        
 
     	return Redirect::to("/admin/userNew");
     }

@@ -158,6 +158,14 @@ Route::get('admin/assignment', 'usr_login_roleController@index');
 Route::get('admin/assignmentNew', 'usr_login_roleController@create');
 Route::get('admin/rolesEdit/{id}','rolesController@edit');
 
+
+/************************cmd access**********************************/
+Route::resource('admin/cms','cmsController');
+Route::get('admin/cms', 'cmsController@index');
+Route::get('admin/cmsNew', 'cmsController@create');
+Route::get('admin/cmsEdit/{id}','cmsController@edit');
+Route::put('admin/cmsUpdate','cmsController@update');
+
 });
 
 

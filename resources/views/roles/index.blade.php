@@ -51,6 +51,7 @@
 				<td>{{$rol->created_at}}</td>
 				<td>
 				{!! link_to('admin/rolesEdit/'.$rol->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
+        {!! link_to('admin/rolesDelete/'.$rol->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-trash')) !!} 
 				</td>
 
 			</tbody>

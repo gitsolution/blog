@@ -35,13 +35,14 @@ class usuarioController extends Controller
     /***guardar usuario***/
     public function store(Request $request)
     {
+        var_dump($request['id_login']);        
     	User::create([
     		'name'=>$request['name'],
             'lastName'=>$request['lastName'],
     		$data['email']='email'=>$request['email'],
     		'password'=>bcrypt($request['password']),
     	]);
-
+ 
         if($request['id_login']=="0")
         {
               $id_login = DB::table('users')->where('email', $request['email'])->value('id');
@@ -51,15 +52,7 @@ class usuarioController extends Controller
                             'id_role'=>$request['id'],
                             'active'=>'1',
                         ]);
-        }
-
-        else{
-           
-            $id_login=$request['id_login'];
-            DB::table('usr_login_roler')
-            ->where('id_login', $id_login)
-            ->update(['id_role' => $request['id']]);
-        }        
+        }      
 
     	return Redirect::to("/admin/userNew");
     }
@@ -80,8 +73,22 @@ class usuarioController extends Controller
         $user = User::find($id);
         $user->fill($request->all());      
         $user->save();
+
+        $idRole = $request['id'];
+        $usrRole= new usr_login_role;
+        $usrRole->where('id_login', '=', $id)
+        ->update(['id_role' => $idRole]);
+
+        return "actualizado";
             
         return Redirect::to("usuario");
+    }
+
+    public function delete($id)
+    {
+        $query=User::destroy($id);
+
+        return view('usuario.index');
     }
 
 }

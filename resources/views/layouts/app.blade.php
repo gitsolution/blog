@@ -354,12 +354,9 @@
                                    
                                 </li>
                                 <li>
-<<<<<<< HEAD
-                                    {!!link_to('admin/roles', 'Tipos',array('class'=>'')) !!}
-=======
+
                                 {!!link_to('admin/roles', '&nbsp;&nbsp;&nbsp;Roles',array('class'=>'fa fa-flag-o ')) !!}
                                     
->>>>>>> d7caa47e88b29669ab5d6602f911d0f892cddc9c
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

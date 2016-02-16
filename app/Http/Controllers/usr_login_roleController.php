@@ -37,4 +37,11 @@ class usr_login_roleController extends Controller
         $roles=usr_role::find($id);
         return view('roles.rolesform')->with('roles',$roles);
     }
+
+     public function delete($id)
+    {
+        $query=usr_role::destroy($id);
+
+        return view('roles.index');
+    }
 }

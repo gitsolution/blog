@@ -26,7 +26,6 @@
 |
 */
 
-
 Route::get('login','frontController@login');
 Route::get('/','LogController@logout');
 
@@ -132,6 +131,7 @@ Route::put('admin/user/update','usuarioController@update');
 Route::get('admin/sectionedit/{id}','sectiosController@edit');
 Route::get('usuario/register','usuarioController@register');
 
+
 Route::resource('mail','mailController');
 
 
@@ -158,9 +158,8 @@ Route::put('admin/rolesUpdate','rolesController@update');
 Route::resource('admin/assignment/','usr_login_roleController');
 Route::get('admin/assignment', 'usr_login_roleController@index');
 Route::get('admin/assignmentNew', 'usr_login_roleController@create');
-Route::get('admin/rolesEdit/{id}','rolesController@edit');
-
-
+Route::get('admin/rolesEdit/{id}','usr_login_roleController@edit');
+Route::get('admin/rolesDelete/{id}','usr_login_roleController@delete');
 /************************cmd access**********************************/
 Route::resource('admin/cms','cmsController');
 Route::get('admin/cms', 'cmsController@index');
@@ -184,11 +183,6 @@ Route::get('admin/documentPriva/{id}/{priv}','DocumentController@privado');
 Route::get('admin/documentPublic/{id}/{pub}','DocumentController@publicate');
 //ORDENAR
 Route::get('admin/documentorder/{id}/{orderBy}/{no}','DocumentController@order');
-
-
-
-
-
 
 
 });

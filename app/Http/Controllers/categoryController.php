@@ -50,6 +50,7 @@ class categoryController extends Controller
           
           $flag=1;
          	$orderBy =  (DB::table('cms_categories')->where('active','=', $flag)->max('order_by'))+1;
+              $file = $request->file('file'); 
           if($file!=""){       
           $file = $request->file('file');     
           $path='store/CAT/'.uniqid().'.'.$file->getClientOriginalExtension();
@@ -114,7 +115,7 @@ class categoryController extends Controller
             }
 
            	$Catego->save();
-           	Session::flash('message','Usuario Actualizado Correctamente');    
+           	Session::flash('message','Categoria Actualizada Correctamente');    
            	return redirect('admin/category');       
      	}
 
@@ -123,7 +124,7 @@ class categoryController extends Controller
           	$Catego = \App\cms_category::find($id);
           	$Catego->active=0;
           	$Catego->save();
-        	  Session::flash('message','Usuario Eliminado Correctamente');    
+        	  Session::flash('message','Categoria Eliminada Correctamente');    
       	    return redirect('admin/category');
         }
 
@@ -147,7 +148,7 @@ class categoryController extends Controller
     
     		if($priv=='True'){ $priv = 1;}else{ $priv = 0; }
     		$Catego = DB::table('cms_categories')->where('active','=', $flag)->where('id', '=',$id)->update(['private'=>$priv]);             
-      		Session::flash('message','Ordén del Albúm actualizado');    
+      		Session::flash('message','Ordén dela Categoria actualizada');    
     		return redirect('/admin/category');
   		}
 
@@ -155,7 +156,7 @@ class categoryController extends Controller
     		$flag=1;
     		if($pub=='True'){ $pub = 1;}else{ $pub = 0; }
     		$Catego = DB::table('cms_categories')->where('active','=', $flag)->where('id', '=',$id)->update(['publish'=>$pub]);    
-    		Session::flash('message','Ordén del Albúm actualizado');
+    		Session::flash('message','Ordén dela categoria actualizada');
     		return redirect('/admin/category');
   		}
 

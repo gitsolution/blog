@@ -71,13 +71,13 @@
 				<td> {{$med->title}}</td>
 				<td> {{ $publish_date }}</td>		
 				<td> {{ $med->hits }}</td>	
-				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Down/'.$down, '-',array('class'=>'btn btn-info')) !!}</td>
-				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Up/'.$up, '+',array('class'=>'btn btn-info')) !!}</td>
-				<td>
+				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
+				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
+				<td class="text-center">
 				<?php if($med->publish=='1'){?>
-				{!!  link_to('admin/mediapub/'.$med->id.'/False', 'Ok',array('class'=>'btn btn-success')) !!}
+				{!!  link_to('admin/mediapub/'.$med->id.'/False', '',array('class'=>'glyphicon glyphicon-ok')) !!}
 				<?php } else{ ?>
-				{!! link_to('admin/mediapub/'.$med->id.'/True', 'No',array('class'=>'btn btn-warning')) !!}
+				{!! link_to('admin/mediapub/'.$med->id.'/True', '',array('class'=>'glyphicon glyphicon-ban-circle')) !!}
 				<?php } ?>
 				</td>
 				<td> 
@@ -87,8 +87,8 @@
 					{!! link_to('admin/mediaind/'.$med->id.'/True', 'No',array('class'=>'btn btn-warning')) !!}
 				<?php } ?>
 				</td>
-				<td>{!! link_to('admin/mediaedit/'.$med->id, 'Editar ',array('class'=>'btn btn-info')) !!}</td>         
-				<td>{!! link_to('admin/mediadel/'.$med->id, 'Eliminar',array('class'=>'btn btn-danger')) !!}</td>    
+				<td>{!! link_to('admin/mediaedit/'.$med->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
+				{!! link_to('admin/mediadel/'.$med->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td>    
 		    </td>
 			</tr>
 		@endforeach

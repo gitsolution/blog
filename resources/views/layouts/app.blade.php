@@ -12,6 +12,12 @@
  
     {!!Html::style('css/bootstrap.css')!!}
     {!!Html::style('css/admin.css')!!}
+    
+    
+    {!!Html::script('js/ckeditor.js')!!}
+    {!!Html::script('js/sample.js')!!}
+    
+    
 
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
     {!!Html::style('../bower_components/bootstrap/dist/css/bootstrap.min.css')!!}
@@ -262,15 +268,6 @@
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
-
- 
-           
-
-
-
-
-
-
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
@@ -324,10 +321,7 @@
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
-                                </li>
-                            
-                            
-                           
+                                </li>                                                     
                                 <li>
                                     <a href="#" class="fa fa-camera"> Media <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
@@ -336,16 +330,11 @@
                                         </li>
                                         <li>
                                               {!!link_to('admin/item', '&nbsp;&nbsp;&nbsp; Imagenes',array('class'=>'fa fa-file-image-o')) !!}
-                                        </li>
-                                    
+                                        </li>                                    
                                     </ul>
                                     <!-- /.nav-third-level -->
-                                </li>
-                            
+                                </li>                            
                             <!-- /.nav-second-level -->
-                        
-
-
                         <li>
                             <a href="s"><i class="fa fa-users fa-fw"></i>Usuarios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -360,28 +349,6 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
@@ -395,7 +362,7 @@
          
 </div>
 <!-- fin de contenido-->
-   
+   {!! Html::script('js/jquery-2.1.0.min.js') !!} 
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -420,7 +387,7 @@
 
     <!-- Custom Theme JavaScript -->
     {!! Html::script('../dist/js/sb-admin-2.js') !!}        
-    
+            
          <script>
         function imageUp(input) {
             if (input.files && input.files[0]) {
@@ -448,6 +415,9 @@
  
   </script>
 
-</body>
+  <script>
+  initSample();
+</script>
 
+</body>
 </html>

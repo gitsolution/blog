@@ -31,6 +31,7 @@ if(isset($Document))
     $uri=$Document->uri;
     $hits=$Document->hits;
     $order_by= $Document->order_by;
+    $path=$Document->path;
 
 
 }
@@ -47,6 +48,7 @@ else{
     $order_by= $Document;
     $id_category=$Document;
     $id=$Document;
+    $path=$Document;
   }
  ?>
 
@@ -65,7 +67,7 @@ else{
                   </div>
                 <div class="col-md-3">
                   {!!Form::label('seccion','Sección:')!!}
-                  {!!Form::select('id_section', \App\cms_section::lists('title','id'),null,['class'=>'form-control select2'] )!!}
+                  {!!Form::select('id_section', $section ,null,['class'=>'form-control select2'], ['id'=>'id_section'] )!!}
                 <br>
                 </div>
                 <div class="col-md-5">
@@ -95,7 +97,7 @@ else{
             
               <div class="col-md-3">
                   {!!Form::label('seccion','Categoria:')!!}
-                  {!!Form::select('id_category', \App\cms_category::lists('title','id'),null,['class'=>'form-control select2'] )!!}
+                  {!!Form::select('id_category',['placehordel'=>'selecciona'], null, ['class'=>'form-control select2'], ['id'=>'id_category'])!!}
                 <br>
                 </div>
                 </div>

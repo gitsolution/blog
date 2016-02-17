@@ -84,7 +84,7 @@ class ItemController extends Controller
 			'register_by'=>'1',//$request['resgiter_by'],
 			'modify_by'=>'1',//$request['modify_by'], 
 			]);
-		return redirect('/admin/item')->with('message','store');
+		return redirect('/admin/item');
 
 	}
 
@@ -127,7 +127,7 @@ class ItemController extends Controller
 		$item->active=0;
 		$item->save();
 		Session::flash('message','Imagen Eliminada Correctamente');		
-		return redirect('/admin/item')->with('message','store');
+		return redirect('/admin/item');
 	}
 
 
@@ -140,7 +140,7 @@ class ItemController extends Controller
 		$item->order_by=$no;
 		$item->save();		
 		Session::flash('message','Ordén del Albúm actualizado');		
-		return redirect('/admin/item')->with('message','store');
+		return redirect('/admin/item');
 	}
 
 
@@ -162,7 +162,7 @@ class ItemController extends Controller
 		if($pub=='True'){ $pub = 1;}else{ $pub = 0; }
 		$item = DB::table('med_pictures')->where('active','=', $flag)->where('id', '=',$id)->update(['publish'=>$pub]);			       
 	    Session::flash('message','Ordén del Albúm actualizado');		
-		return redirect('/admin/item')->with('message','store');
+		return redirect('/admin/item');
 	}
 
   
@@ -174,7 +174,7 @@ class ItemController extends Controller
 			if($ind=='True'){ $ind = 1;}else{ $ind = 0; }
 		$item = DB::table('med_pictures')->where('active','=', $flag)->where('id', '=',$id)->update(['index_page'=>$ind]);			       
 	    Session::flash('message','Ordén del Albúm actualizado');		
-		return redirect('/admin/item')->with('message','store');
+		return redirect('/admin/item');
 	
 	}
 	public function destroy($id)

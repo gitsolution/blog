@@ -142,15 +142,30 @@ else{
       <div class="form-group">
           {!!Form::label('titulo','Titulo:')!!}
           {!!Form::text('title',null,['class'=>'form-control','placeholder'=>''])!!}
+
+ 
       </div>
       <div class="form-group">
           {!!Form::label('Resume','Resumen')!!}
-          {!!Form::textarea('resumen',null,['class'=>'form-control','placeholder'=>''])!!}
+          <main>
+          <div class="adjoined-bottom">
+    <div class="grid-container">
+      <div class="grid-width-100">
+        
+           {!!Form::textarea('resumen',null,['class'=>'form-control','id'=>'editor'])!!}
+        
+      </div>
+    </div>
+  </div>
+
+  
+    
+</main>
       </div>
           <div class="form-group">
-            {!!Form::label('contenido','Contenido')!!}
-            {!!Form::textarea('content',null,['class'=>'form-control','placeholder'=>''])!!}
-          </div>
+          {!!Form::label('Resume','Contenido')!!}
+             {!!Form::textarea('content',null,['class'=>'form-control'])!!}
+        </div>
 
           {!!Form::submit( $botonTitulo,['class'=>'btn btn-danger'])!!}
 
@@ -158,5 +173,10 @@ else{
          </div> 
   </div>
 </div>
+
+ 
+
+
+
   @stop
 <!--formulario para editar y nueva seccion-->

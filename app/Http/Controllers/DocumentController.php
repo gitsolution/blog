@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use DB;
 use Session;
 use Redirect;
+use \App\cms_category;
+use \App\cms_section;
+use \App\cms_document;
 
 class DocumentController extends Controller
 {
@@ -25,14 +28,16 @@ class DocumentController extends Controller
             ->join('cms_categories', 'cms_categories.id', '=', 'cms_documents.id_category')
             ->select('cms_documents.*', 'cms_categories.title as category')
             ->where('cms_documents.active','=', $flag)
-            ->orderBy('order_by','DESC')->paginate(20);    
-        	return view('documents/index',compact('Document'));
+            ->orderBy('order_by','DESC')->paginate(20); 
+             $section= cms_section::lists('title','id');   
+
+        	return view('documents/index',compact('Document',"section"));
    		}
 	 public function documentynew()
 	 {      
-      
+       $section= cms_section::lists('title','id');   
 
-    		return view('documents/documentform');
+    		return view('documents/documentform', compact('section'));
     
     }
 
@@ -152,6 +157,19 @@ class DocumentController extends Controller
         	var_dump($noAux);
     		$Document =  Null; 
     		$Document = DB::table('cms_documents')->where('active','=', $flag)->where('order_by', '=',$no)->update(['order_by'=>$noAux]);   
- 		}
+ 		  }
+    
+
+ public function GetCategory(Request $request, $id){
+        if($request->ajax()){
+            $categories = cms_category::category($id);
+            return response()->json($categories);
+        }
+    }
+
+
+      
+
+      
     
 }

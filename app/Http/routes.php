@@ -164,13 +164,7 @@ Route::get('admin/documentPriva/{id}/{priv}','DocumentController@privado');
 Route::get('admin/documentPublic/{id}/{pub}','DocumentController@publicate');
 //ORDENAR
 Route::get('admin/documentorder/{id}/{orderBy}/{no}','DocumentController@order');
-
-
-
-
-
-
-
+Route::get('towns/{id}','DocumentController@GetCategory');
 });
 
 

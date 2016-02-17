@@ -50,7 +50,7 @@
           </thead>
 
 
-@foreach($Catego as $med)
+    @foreach($Catego as $med)
         <?php 
             $publish_date = substr($med->publish_date,0,10);
             $down=$med->order_by-1;
@@ -59,7 +59,7 @@
         ?> 
           <tr>
           <td> {{$med->id}}</td>
-          <td> {{$med->id_section}}</td>
+          <td> {{$med->section}}</td>
           <td> {{$med->title}}</td>
           <td class="text-center"> 
             <?php if($med->private=='1'){?>

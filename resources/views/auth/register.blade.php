@@ -61,42 +61,74 @@
                 <div class="panel-heading">Registrarse</div>
                 <div class="panel-body">
 
-                {!!Form::open(['route'=>'usuario.store','method','POST'])!!} 
-                <div class="form-group" id="frmLogin">
-                     <div class="col-xs-4">
-                    {!!Form::label('nombre','Nombre')!!}
-                    {!!Form::text('name','',['class'=>'form-control frmEspacios','placeholder'=>'Nombre'])!!}
-                    </div>
 
-                    <div class="col-xs-4">
-                    {!!Form::label('apellidos','Apellidos')!!}
-                    {!!Form::text('lastName','',['class'=>'form-control frmEspacios','placeholder'=>'Apellidos'])!!}
-                    </div>
-
-                    <div class="col-xs-4">
-                    {!!Form::label('Correo electrónico')!!}
-                    {!!Form::email('email','',['class'=>'form-control frmEspacios','placeholder'=>'Correo electronico'])!!}
-                    </div>
-
-                    <div class="col-xs-6">
-                        {!!Form::label('Contraseña')!!}
-                        {!!Form::password('password',   ['class'=>'form-control frmEspacios','placeholder'=>'Contraseña'])!!}
-                    </div>
-
-                    <div class="col-xs-6">
-                        {!!Form::label('Confirmar contraseña')!!}
-                        {!!Form::password('password',['class'=>'form-control frmEspacios','placeholder'=>'Confirmar contraseña'])!!}
-                    </div>
+                <div class="text-info">
+                    @if(Session::has('message'))
+                        {{Session::get('message')}}
+                    @endif
+                </div>
 
 
-                    <div class="col-xs-6">
-                        <div class="col-xs-2">
-                            {!!Form::submit('Registrar',['class'=>'btn  btn-danger fa-user frmEspacios','placeholder'=>'Nombre'])!!}
-                        </div>
-                    </div>      
-                    </div>
-                {!!Form::close()!!}
-                
+                <form method="POST" action="{{url('auth/register')}}">
+
+                    {!! csrf_field() !!}
+
+ 
+
+                    <div class='form-group'>
+
+                         <label for="name">Nombre:</label>
+
+                        <input type="text" name="name" class="form-control" value="{{ old('name') }}" />
+
+                        <div class="text-danger">{{$errors->first('name')}}</div>
+
+                 </div>
+
+ 
+
+                <div class="form-group">
+
+                    <label for="email">Email:</label>
+
+                    <input type="email" name="email" class="form-control" value="{{ old('email') }}" />
+
+                    <div class="text-danger">{{$errors->first('email')}}</div>
+
+                </div>
+
+ 
+
+                <div class="form-group">
+
+                    <label for="password">Password:</label>
+
+                    <input type="password" class="form-control" name="password" />
+
+                    <div class="text-danger">{{$errors->first('password')}}</div>
+
+                </div>
+
+ 
+
+                <div class="form-group">
+
+                    <label for="password_confirmation">Confirmar Password:</label>
+
+                    <input type="password" class="form-control" name="password_confirmation" />
+
+                </div>
+
+ 
+
+    <div>
+
+        <button type="submit" class="btn btn-primary">Registrarme</button>
+
+    </div>
+
+</form>
+               
                         
                 </div>
             </div>

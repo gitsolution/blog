@@ -1,21 +1,19 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use Redirect;
 use Session;
 use DB;
-use App\usr_role;
+use App\cms_access;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class rolesController extends Controller
+class cmsController extends Controller
 {
     public function index()
 	{	
-		$roles = usr_role::All();
-		return view('roles.index',compact('roles'));		
+		$cms = cms_access::All();
+		return view('cms.index',compact('cms'));		
 	}
 
 	public function store(Request $request)
@@ -27,37 +25,34 @@ class rolesController extends Controller
           	$activado='1';
         }
 
-    	usr_role::create([
+    	cms_access::create([
     		'title'=>$request['title'],
             'description'=>$request['description'],
     		'active'=>$activado,
     	]);
         
-       return Redirect::to("admin/roles");
+       return Redirect::to("admin/cms");
 
     }
 
     public function create()
     {
-    	return view('roles.rolesform');
+    	return view('cms.cmsForm');
     }
 
     public function edit($id)
     {
-        $roles=usr_role::find($id);
-        return view('roles.rolesform',['roles'=>$roles]);
+        $cms=cms_access::find($id);
+        return view('cms.cmsform',['cms'=>$cms]);
     }
-
-
 
     public function update($id,Request $request){
-        $roles = usr_role::find($id);
-        $roles->fill($request->all());      
-        $roles->save();
+        $cms = cms_access::find($id);
+        $cms->fill($request->all());      
+        $cms->save();
             
-        return Redirect::to("admin/roles");
+        return Redirect::to("admin/cms");
     }
-
 
 
 }

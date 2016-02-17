@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Storage;
+use File;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -14,21 +15,26 @@ use DB;
 class ItemController extends Controller
 {
     //
-	public function index(){
+	public function index($id_media){
 
 		$flag='1';	
-		
-		$media = DB::table('med_albums')->orderBy('order_by','DESC')->get();
-        $items =  DB::table('med_pictures')->where('active','=', $flag)->orderBy('order_by','DESC')->paginate(20);
-		return view('pics/index',['items'=>$items,'medias'=>$media]);
+		$media=\App\Media::find($id_media); 	
+		$items =  DB::table('med_pictures')
+		    ->join('med_albums', 'med_pictures.id_album', '=', 'med_albums.id')            
+            ->select('med_pictures.*', 'med_albums.title as album')        
+        	->where('med_pictures.active','=', $flag)
+        	->where('id_album','=',$id_media)->orderBy('med_pictures.order_by','DESC')->paginate(20);
+			return view('pics/index',['items'=>$items,'media'=>$media]);
 		
 		//return view('pics/index',compact('items'));
 	}
 
-	public function itemnew(){
-		$flag='1';	
-		$media = DB::table('med_albums')->where('active','=', $flag)->orderBy('order_by','DESC')->get();			
-        $item = null;
+	public function itemnew($id_media){
+		$flag='1';	 
+		//$x = DB::table('med_albums')->where('id','=', $id_media)->where('active','=', $flag)->orderBy('order_by','DESC')->get();	
+		//var_dump($x);
+		$media=\App\Media::find($id_media);
+		$item= null;
         return view('pics/itemform',['item'=>$item,'media'=>$media]);		
 	}
 
@@ -44,10 +50,12 @@ class ItemController extends Controller
 	public function store(Request $request){
 		$publish= 0;
 		$index_page=0;
+		$extension="";
 		if($request['publish']='on')
 		{
 			$publish=1;
 		}
+
 
 
 		if($request['index_page']='on')
@@ -55,17 +63,24 @@ class ItemController extends Controller
 			$index_page=1;
 		}
 		     //obtenemos el campo file definido en el formulario
-       $file = $request->file('file');
- 		
+       	  $flag=1;
+          $orderBy =  (DB::table('cms_categories')->where('active','=', $flag)->max('order_by'))+1;
+          $file = $request->file('file');     
+          
 
- 		//obtenemos el nombre del archivo
-       //$nombre = $file->getClientOriginalName();
-        $media = \App\Media::find($request->id_album);
- 		$path=$media->path.uniqid().'.'.$file->getClientOriginalExtension();
- 		$extension = $file->getClientOriginalExtension();
-       //indicamos que queremos guardar un nuevo archivo en el disco local
-       \Storage::disk('local')->put($path,  \File::get($file));
-	   $flag=1;	   
+          if($file!=""){       
+          $media = \App\Media::find($request->id_album);
+		  $path=$media->path.uniqid().'.'.$file->getClientOriginalExtension();
+          $extension = $file->getClientOriginalExtension();
+          //indicamos que queremos guardar un nuevo archivo en el disco local
+           Storage::disk('local')->put($path,  File::get($file));
+          }
+          else{
+            $path="";
+          }
+
+
+ 	   $flag=1;	   
        $orderBy =  (DB::table('med_pictures')->where('active','=', $flag)->max('order_by'))+1;		 
 			\App\Item::create([
 			'id_album'=>$request['id_album'],	
@@ -84,7 +99,9 @@ class ItemController extends Controller
 			'register_by'=>'1',//$request['resgiter_by'],
 			'modify_by'=>'1',//$request['modify_by'], 
 			]);
-		return redirect('/admin/item');
+
+		return redirect('/admin/item/'.$request->id_album);
+
 
 	}
 
@@ -106,20 +123,44 @@ class ItemController extends Controller
 
 	public function edit($id){
 		$flag='1';	
-		$media = DB::table('med_albums')->where('active','=', $flag)->orderBy('order_by','DESC')->get();
-		$item =  \App\Item::find($id); 		
-        return view('pics/itemform',['item'=>$item,'media'=>$media]);
-		
-			//$item = \App\Item::find($id);		
-			//return view('item/itemform')->with('item',$item);
+		$item =  \App\Item::find($id); 	
+
+		$media = \App\Media::find($item->id_album); 		
+
+        return view('pics/itemform',['item'=>$item,'media'=>$media]);		
     	}
 
 	public function update($id,Request $request){
-        $item = \App\Item::find($id);
-		$item->fill($request->all());		
-		$item->save();
+         $isUpImg=false;
+  		 $item = \App\Item::find($id);		 
+         $media = \App\Media::find($item->id_album);
+            $path=null;
+            $file = $request->file('file');    
+
+            if($file!=""){
+            $picture=$item->path;
+
+            $path = $media->path.uniqid().'.'.$file->getClientOriginalExtension();                                    
+            
+
+              if($picture!=$path)
+              {
+
+                $isUpImg=true;
+                //indicamos que queremos guardar un nuevo archivo en el disco local
+                Storage::disk('local')->put($path,  File::get($file));
+
+              }
+            }
+          
+            $item->fill($request->all());            
+            if($isUpImg){
+	            $item->path=$path;               
+            }    
+
+ 		$item->save();
 		Session::flash('message','Usuario Actualizado Correctamente');		
-		return redirect('/admin/item')->with('message','store');
+		return redirect('/admin/item/'.$item->id_album);
 	}
 
 	public function delete($id){
@@ -127,9 +168,20 @@ class ItemController extends Controller
 		$item->active=0;
 		$item->save();
 		Session::flash('message','Imagen Eliminada Correctamente');		
-		return redirect('/admin/item');
+
+		return redirect('/admin/item/'.$item->id_album);
+
 	}
 
+    public function deletePicture($id)
+      {
+          $item = \App\med_picture::find($id);
+          $media = \App\Media::find($item->id_album);
+          $item->path="";
+          $item->save();
+          Session::flash('message','Imagen Eliminada Correctamente'); 
+          return redirect('/admin/itemedit/'.$item->id);
+      }
 
 	public function order($id, $orderBy, $no){
 		// Actualizamos el registro con id
@@ -140,11 +192,13 @@ class ItemController extends Controller
 		$item->order_by=$no;
 		$item->save();		
 		Session::flash('message','Ordén del Albúm actualizado');		
-		return redirect('/admin/item');
+
+		return redirect('/admin/item/'.$item->id_album);
+
 	}
 
 
-	public function setOrderItem($flag,$orderBy, $no)
+	public function setOrderItem($flag,$orderBy,$no)
 	{
 		$noAux=$no;
 		$item = DB::table('med_pictures')->where('active','=', $flag)->where('order_by', '=',$no)->get();		
@@ -155,14 +209,19 @@ class ItemController extends Controller
 		}
 		$item =  Null;	
 		$item = DB::table('med_pictures')->where('active','=', $flag)->where('order_by', '=',$no)->update(['order_by'=>$noAux]);		
+	
 	}
 
 	public function publicate($id,$pub){
 		$flag=1;
 		if($pub=='True'){ $pub = 1;}else{ $pub = 0; }
 		$item = DB::table('med_pictures')->where('active','=', $flag)->where('id', '=',$id)->update(['publish'=>$pub]);			       
+	   	$item = null;
+	    $item=\App\Item::find($id);	
 	    Session::flash('message','Ordén del Albúm actualizado');		
-		return redirect('/admin/item');
+		return redirect('/admin/item/'.$item->id_album);
+	
+
 	}
 
   
@@ -173,8 +232,11 @@ class ItemController extends Controller
        	$flag=1; 
 			if($ind=='True'){ $ind = 1;}else{ $ind = 0; }
 		$item = DB::table('med_pictures')->where('active','=', $flag)->where('id', '=',$id)->update(['index_page'=>$ind]);			       
+
 	    Session::flash('message','Ordén del Albúm actualizado');		
-		return redirect('/admin/item');
+
+		return redirect('/admin/item/'.$item->id_album);
+
 	
 	}
 	public function destroy($id)

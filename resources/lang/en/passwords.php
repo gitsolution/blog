@@ -16,7 +16,7 @@ return [
     'password' => 'Las contraseñas deben tener al menos 6 caracteres.',
     'reset' => 'Tu contraseña ha sido restablecida!',
     'sent' => 'Hemos enviado un correo para restablecer su contraseña!',
-    'token' => 'Token para restablece la contraseña no e valido.',
+    'token' => 'Token para restablece la contraseña no es valido.',
     'user' => "No podemos encontrar el usuario con con esta direccion de correo electronico.",
 
 ];

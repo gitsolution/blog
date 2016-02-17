@@ -38,6 +38,12 @@ Route::get('index','frontController@index');
 Route::get('contacto','frontController@contacto');
 Route::get('galeria','frontController@galeria');
 
+
+Route::get('/getStreets?suburb={id}', function($id) {
+   return cms_category::whereSuburb($id)->get();
+});
+
+
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
@@ -104,17 +110,18 @@ Route::get('admin/mediapub/{id}/{pub}','MediaController@publicate');
 Route::get('admin/mediaind/{id}/{ind}','MediaController@index_page');
 /*************RUTAS DE PICTURES ***************/
 /////  
-Route::get('admin/item','ItemController@index');
+Route::get('admin/item/{id_media}','ItemController@index');
 Route::resource('admin/item','ItemController');
 ///// FORMS
-/// Route::get('admin/itemnew/{id}','ItemController@create');
-Route::get('admin/itemnew','ItemController@itemnew');
+Route::get('admin/itemnew/{id_media}','ItemController@itemnew');
+//Route::get('admin/itemnew','ItemController@itemnew');
 Route::post('admin/item/store','ItemController@store');
 ///// EDICION
 Route::get('admin/itemedit/{id}','ItemController@edit');
 Route::put('admin/item/update','ItemController@update');
 ////// ELIMINAR
 Route::get('admin/itemdel/{id}','ItemController@delete');
+Route::get('admin/delpic/{id}','ItemController@deletePicture');
 ////// ORDENAR 
 Route::get('admin/itemorder/{id}/{orderBy}/{no}','ItemController@order');
 ////// PUBLICAR
@@ -164,7 +171,75 @@ Route::get('admin/documentPriva/{id}/{priv}','DocumentController@privado');
 Route::get('admin/documentPublic/{id}/{pub}','DocumentController@publicate');
 //ORDENAR
 Route::get('admin/documentorder/{id}/{orderBy}/{no}','DocumentController@order');
-Route::get('towns/{id}','DocumentController@GetCategory');
+
+
+
+
+
+///// Catalogos de menus
+Route::get('admin/menus','MenuController@index');
+Route::resource('admin/menus','MenuController');
+///// FORMS
+Route::get('admin/menunew','MenuController@menunew');
+Route::post('admin/menus/store','MenuController@store');
+
+
+///// EDICION
+Route::get('admin/menuedit/{id}','MenuController@edit');
+
+Route::put('admin/menu/update','MenuController@update');
+////// ELIMINAR
+Route::get('admin/menudel/{id}','MenuController@delete');
+////// ORDENAR 
+Route::get('admin/menuorder/{id}/{orderBy}/{no}','MenuController@order');
+////// PUBLICAR
+Route::get('admin/menupub/{id}/{pub}','MenuController@publicate');
+/////  INDEX PAGE
+Route::get('admin/menuind/{id}/{ind}','MenuController@index_page');
+
+
+/////  Catalogo de Elementos del Menu
+Route::get('admin/itemmenu/{id_menu}','ItemMenuController@index');
+Route::resource('admin/itemmenu','ItemMenuController');
+///// FORMS
+
+Route::get('admin/itemmenunew/{id_menu}/','ItemMenuController@itemnew');
+/////  Paso 1. Seleccionar la opción de menú
+Route::get('admin/optionmenu/{id_menu}/{parent_id}','ItemMenuController@optionmenu');
+/////  Paso 2. Seleccionar Tipo de Menu 
+Route::get('admin/optionmenu/{id_menu}/{parent_id}/{typemenu}','ItemMenuController@typemenu');
+/////  Paso 1. 
+
+/////  Paso 1. 
+
+
+
+Route::get('admin/itemmenunew/{id_menu}/{level}/{menutype}','ItemMenuController@itemnew3');
+Route::get('admin/itemmenunew/{id_menu}/{level}/{menutype}/{id_menutype}','ItemMenuController@itemnew4');
+
+Route::get('admin/itemsubmenu/{id_menu}','ItemMenuController@submenu');
+//Route::get('admin/itemnew','ItemController@itemnew');
+Route::post('admin/itemmenu/store','ItemMenuController@store');
+///// EDICION
+Route::get('admin/itemmenuedit/{id}','ItemMenuController@edit');
+Route::put('admin/itemmenu/update','ItemMenuController@update');
+////// ELIMINAR
+Route::get('admin/itemmenudel/{id}','ItemMenuController@delete');
+Route::get('admin/delitemmenupic/{id}','ItemMenuController@deletePicture');
+////// ORDENAR 
+Route::get('admin/itemmenuorder/{id}/{orderBy}/{no}','ItemMenuController@order');
+////// PUBLICAR
+Route::get('admin/itemmenupub/{id}/{pub}','ItemMenuController@publicate');
+/////  INDEX PAGE
+Route::get('admin/itemmenuind/{id}/{ind}','ItemMenuController@index_page');
+
+
+//Route::get('getSelect','DocumentController@');
+Route::get('admin/getSelect/{id_section}','DocumentController@getCategories');
+
+
+
+
 });
 
 

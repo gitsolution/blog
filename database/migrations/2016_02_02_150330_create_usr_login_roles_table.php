@@ -15,7 +15,7 @@ class CreateUsrLoginRolesTable extends Migration
         Schema::create('usr_login_roles', function (Blueprint $table) {
 
             $table->integer('id_login')->unsigned();
-            $table->foreign('id_login')->references('id')->on('usr_logins');
+            $table->foreign('id_login')->references('id')->on('users');
             $table->integer('id_role')->unsigned();
             $table->foreign('id_role')->references('id')->on('usr_roles');
             $table->boolean('active');

@@ -201,5 +201,13 @@ class sectiosController extends Controller
   }
 
 
+    public function getData($id){
+          $Sections = DB::table('cms_sections')
+            ->select('cms_sections.id', 'cms_sections.title as section')
+            ->where('cms_sections.active','=', $flag)            
+            ->orderBy('order_by','DESC')->get();
+            return $Sections;
+    }
+
 
 }

@@ -5,16 +5,16 @@
 
 $chkActivado="null";
 
-if(isset($roles)) {
+if(isset($cms)) {
+  echo "existe cmsssssssssssssssssssss";
     $message='Edit';
-    $title=$roles->title;
-    $description=$roles->description;
-    $chk=$roles->active;
+    $title=$cms->title;
+    $description=$cms->description;
+    $chk=$cms->active;
     $nameButtom="Editar";
 
     if($chk==1)
       {
-        echo "";
         $chkActivado = "checked";
       }
       
@@ -26,27 +26,26 @@ if(isset($roles)) {
 
 else
 {  
+  echo "no existe cmsssssssssssssssssssss";
     $message='New';
-    $roles=Null;
-    $title=$roles;
-    $description=$roles;  
+    $cms=Null;
+    $title=$cms;
+    $description=$cms;  
     $nameButtom="Registrar";  
 }
 ?>
 
-    <div class="col-md-12"><h3 class="head">Roles</h3>
-                      <p>PÁGINA PARA LOS ROLES</p>
+    <div class="col-md-12"><h3 class="head">Cms</h3>
+                      <p>PÁGINA PARA LOS CMS</p>
                   </div>
                 
                 <br><br><br>                          
             
                @if($message=='Edit')
-                {!!Form::model($roles,['route'=>['admin.rol.update',$roles->id],'method'=>'PUT'])!!} 
+                {!!Form::model($cms,['route'=>['admin.cms.update',$cms->id],'method'=>'PUT'])!!} 
                 @else
-                  {!!Form::open(['route'=>'admin.rol.store','method','POST'])!!}  
+                  {!!Form::open(['route'=>'admin.cms.store','method','POST'])!!}  
                 @endif
-
-                  {!!Form::open(['route'=>'admin.rol.store','method','POST'])!!}  
                
                     <div class="form-group" id="frmLogin">
                            <div class="col-xs-6">

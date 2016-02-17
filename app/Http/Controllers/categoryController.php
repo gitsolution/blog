@@ -25,9 +25,14 @@ class categoryController extends Controller
    		{
        
     	   	$flag='1';  
-    	   	$Catego =  DB::table('cms_categories')->where('active','=', $flag)->orderBy('order_by','DESC')->paginate(20);
-    
-        	return view('categories/index',compact('Catego'));
+              $Catego = DB::table('cms_categories')
+            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
+            ->select('cms_categories.*', 'cms_sections.title as section')
+            ->where('cms_categories.active','=', $flag)            
+            ->orderBy('order_by','DESC')->paginate(20);
+
+
+    	return view('categories/index',compact('Catego'));
    		}
 	 public function categorynew()
 	 	{
@@ -189,5 +194,16 @@ class categoryController extends Controller
     		$Catego =  Null; 
     		$Catego = DB::table('cms_categories')->where('active','=', $flag)->where('order_by', '=',$no)->update(['order_by'=>$noAux]);   
  		}
+
+
+        public function getData($id){
+          $ListCategoties = DB::table('cms_categories')
+            ->select('cms_categories.id', 'cms_categories.title as category')
+            ->where('cms_categories.active','=', $flag)            
+             ->where('cms_categories.id_section','=', $id)            
+            ->orderBy('order_by','DESC')->get();
+            return $ListCategoties;
+    }
+
 
 }

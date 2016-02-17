@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
+use View;
 use Session;
 use Redirect;
 use \App\cms_category;
@@ -21,8 +22,6 @@ class DocumentController extends Controller
     
   	 public function index()
    		{
-       
-
     	   	$flag='1';  
              $Document = DB::table('cms_documents')
             ->join('cms_categories', 'cms_categories.id', '=', 'cms_documents.id_category')
@@ -35,9 +34,17 @@ class DocumentController extends Controller
    		}
 	 public function documentynew()
 	 {      
-       $section= cms_section::lists('title','id');   
 
-    		return view('documents/documentform', compact('section'));
+      $flag = 1;
+
+      $Sections = DB::table('cms_sections')->get();   
+
+      $Categories = DB::table('cms_categories')->where('active','=', $flag)->get();   
+
+
+       return view('documents.documentform',['Sections'=>$Sections,'Categories'=>$Categories]);
+
+
     
     }
 
@@ -141,6 +148,19 @@ class DocumentController extends Controller
           	Session::flash('message','Ordén del Albúm actualizado');    
           	return redirect('/admin/document')->with('message','store');
   		}
+
+
+     public function getCategories($id_section, Request $request)
+      {
+
+        //var_dump($request);
+
+      $flag=1;
+      $Categories = DB::table('cms_categories')->where('active','=', $flag)->where('id_section', '=',$id_section)->get();     
+
+      return View::make('documents.selCat',['Categories' => $Categories]);
+      }
+
 
   	public function setOrderItem($flag,$orderBy, $no)
   		{

@@ -1,25 +1,13 @@
 @extends('layouts.app')
 @section('content')
  
- <div class="container-fluid">
-  
-<?php $message=Session::get('message'); ?>
-@if($message=='store')
-<div class="alert alert-success alert-dismissible" role="alert">
-	Albúm creado exitosamente!!!
-</div>
-@endif
-
+<div class="container-fluid">
 <div class="row">
 	<br>
 	<div class="col-md-8"><h3>Catálogo de Galerías</h3></div> <!--divide la columna en 10 y 2-->
 	<div class="col-md-2">
- 	{!!Form::open()!!}
-   
-    {!! link_to('admin/itemnew', 'Subir imagenes',array('class'=>'btn btn-success')) !!}
-   
-    {!!Form::close()!!}
-	</div>
+ 	 
+ 	</div>
 	<div class="col-md-2">
  	{!!Form::open()!!}
    
@@ -44,6 +32,9 @@
 			Fecha Publicación
 			</th>
 			<th>
+			Imágenes
+			</th>
+			<th>
 			Visualizaciones
 			</th>
 			<th colspan="2" class="center-text">
@@ -66,25 +57,32 @@
 				$up=$med->order_by+1;		
 				if($down==0)$down=$med->order_by;
 				?> 
-			<tr>
+				<tr>
 				<td> {{$med->id}}</td>
 				<td> {{$med->title}}</td>
 				<td> {{ $publish_date }}</td>		
+				<td>
+				{!!link_to('admin/item/'.$med->id, '',array('class'=>'glyphicon glyphicon-upload')) !!}
+				</td>         				
+				
 				<td> {{ $med->hits }}</td>	
-				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
-				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
-				<td class="text-center">
+
+				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Down/'.$down.'/'.$med->id, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
+
+				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Up/'.$up.'/'.$med->id, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
+				<td>
 				<?php if($med->publish=='1'){?>
-				{!!  link_to('admin/mediapub/'.$med->id.'/False', '',array('class'=>'glyphicon glyphicon-ok')) !!}
+				{!!  link_to('admin/mediapub/'.$med->id.'/False/'.$med->id, '',array('class'=>'glyphicon glyphicon-ok')) !!}
 				<?php } else{ ?>
-				{!! link_to('admin/mediapub/'.$med->id.'/True', '',array('class'=>'glyphicon glyphicon-ban-circle')) !!}
+				{!! link_to('admin/mediapub/'.$med->id.'/True/'.$med->id, '',array('class'=>'glyphicon glyphicon-ban-circle')) !!}
+
 				<?php } ?>
 				</td>
 				<td> 
 				<?php if($med->index_page=='1'){?>
-					{!! link_to('admin/mediaind/'.$med->id.'/False', 'Ok',array('class'=>'btn btn-success')) !!}
+					{!! link_to('admin/mediaind/'.$med->id.'/False/'.$med->id, 'Ok',array('class'=>'btn btn-success')) !!}
 				<?php } else{ ?>
-					{!! link_to('admin/mediaind/'.$med->id.'/True', 'No',array('class'=>'btn btn-warning')) !!}
+					{!! link_to('admin/mediaind/'.$med->id.'/True/'.$med->id, 'No',array('class'=>'btn btn-warning')) !!}
 				<?php } ?>
 				</td>
 				<td>{!! link_to('admin/mediaedit/'.$med->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}

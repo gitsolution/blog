@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
  
     {!!Html::style('css/bootstrap.css')!!}
@@ -36,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="http://itsolution.mx" target="_blank">IT Solution. Web Solution.</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -262,15 +263,6 @@
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
-
- 
-           
-
-
-
-
-
-
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
@@ -295,10 +287,8 @@
                                    
                                     <!-- /.nav-third-level --><ul class="nav nav-second-level">
                                       <li>
-                                            <a href="#" class="">&nbsp;&nbsp;&nbsp; Tipo Menú </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="">&nbsp;&nbsp;&nbsp; Elementos</a>
+                                              {!!link_to('admin/menus', '&nbsp;&nbsp;&nbsp; Menú',array('class'=>'fa fa-file-o')) !!}
+
                                         </li>
                                     </ul>
                                 </li>
@@ -324,28 +314,18 @@
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
-                                </li>
-                            
-                            
-                           
+                                </li>                           
                                 <li>
                                     <a href="#" class="fa fa-camera"> Media <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
                                             {!!link_to('admin/media', '&nbsp;&nbsp;&nbsp;Albums',array('class'=>'fa fa-picture-o ')) !!}
                                         </li>
-                                        <li>
-                                              {!!link_to('admin/item', '&nbsp;&nbsp;&nbsp; Imagenes',array('class'=>'fa fa-file-image-o')) !!}
-                                        </li>
                                     
                                     </ul>
                                     <!-- /.nav-third-level -->
-                                </li>
-                            
-                            <!-- /.nav-second-level -->
-                        
-
-
+                                </li>                            
+                            <!-- /.nav-second-level -->                        
                         <li>
                             <a href="s"><i class="fa fa-users fa-fw"></i>Usuarios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -354,35 +334,12 @@
                                    
                                 </li>
                                 <li>
-
                                 {!!link_to('admin/roles', '&nbsp;&nbsp;&nbsp;Roles',array('class'=>'fa fa-flag-o ')) !!}
                                     
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
@@ -439,16 +396,36 @@
     });
     </script>
 
- <script>
- 
-  $( document ).ready(function() {
-   // $("#imgLoad").change(function(){
-        imageUp(this);
-    //});
-  });
- 
-  </script>
+<script>
 
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+
+function getval(sel) {
+    //   alert(sel.value);
+    }
+
+$(window).load(function(){
+            $('#id_section').change(function(){
+                var id=$(this).val();
+                    $.ajax({
+                        type:"GET",
+                        url: "getSelect/"+id,
+                        data: { id_section :  $(this).val() },
+                        success: function(){
+                        //do stuff after the AJAX calls successfully completes
+                        alert(data);
+                    }
+                });
+            });
+    });
+
+</script>
 </body>
-
+<!--         function selectBox(e) {
+        $.get('getCategories/' + $(this).val(), function(data) {
+        $("#id_category").html(data);        
+    }
+}
+ -->
 </html>

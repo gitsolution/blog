@@ -15,8 +15,6 @@
     {!!Html::style('css/admin.css')!!}
     {!!Html::script('js/ckeditor.js')!!}
     {!!Html::script('js/sample.js')!!}
-    
-    
 
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
     {!!Html::style('../bower_components/bootstrap/dist/css/bootstrap.min.css')!!}
@@ -318,23 +316,18 @@
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
-
-                                </li>                                                     
-
- 
+                                </li>                           
                                 <li>
                                     <a href="#" class="fa fa-camera"> Media <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
                                             {!!link_to('admin/media', '&nbsp;&nbsp;&nbsp;Albums',array('class'=>'fa fa-picture-o ')) !!}
                                         </li>
-
-                                                                        
+                                    
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>                            
-                            <!-- /.nav-second-level -->
-
+                            <!-- /.nav-second-level -->                        
                         <li>
                             <a href="s"><i class="fa fa-users fa-fw"></i>Usuarios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -362,7 +355,7 @@
          
 </div>
 <!-- fin de contenido-->
-   {!! Html::script('js/jquery-2.1.0.min.js') !!} 
+   
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -387,7 +380,7 @@
 
     <!-- Custom Theme JavaScript -->
     {!! Html::script('../dist/js/sb-admin-2.js') !!}        
-            
+    
          <script>
         function imageUp(input) {
             if (input.files && input.files[0]) {
@@ -407,41 +400,21 @@
 
 <script>
 
- 
-
-
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-
-function getval(sel) {
-    //   alert(sel.value);
-    }
-
-$(window).load(function(){
-            $('#id_section').change(function(){
-                var id=$(this).val();
-                    $.ajax({
-                        type:"GET",
-                        url: "getSelect/"+id,
-                        data: { id_section :  $(this).val() },
-                        success: function(){
-                        //do stuff after the AJAX calls successfully completes
-                        alert(data);
-                    }
-                });
-            });
+$("#id_section").change(event => {    
+    $.get(`getSelect/${event.target.value}`, function(res, sta){
+        $("#id_category").empty();
+        res.forEach(element => {
+            $("#id_category").append(`<option value=${element.id}> ${element.title} </option>`);
+        });
     });
+});
 
 </script>
- <script>
+
+<script>
   initSample();
 </script>
 </body>
-<!--         function selectBox(e) {
-        $.get('getCategories/' + $(this).val(), function(data) {
-        $("#id_category").html(data);        
-    }
-}
- -->
 </html>
-

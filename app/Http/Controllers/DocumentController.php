@@ -8,6 +8,7 @@ use File;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use DB;
 use View;
 use Session;
@@ -61,18 +62,19 @@ class DocumentController extends Controller
         	}
  
           $orderBy =  (DB::table('cms_documents')->where('active','=', $flag)->max('order_by'))+1;    
-          $file = $request['file']; 
+          $file = $request->file('file');   
  
           if($file!=""){       
-          $file = $request->file('file');               
-          $path='store/DOC/'.uniqid().'.'.$file->getClientOriginalExtension();
+          $file = $request->file('file');   
+          $path ='store/DOC/'.uniqid().'.'.$file->getClientOriginalExtension();
           //indicamos que queremos guardar un nuevo archivo en el disco local
            Storage::disk('local')->put($path,  File::get($file));
           }
           else{
             $path="";
           }
-
+          var_dump($path);
+          return;
 
              \App\cms_document::create([
           	'id_category' => $request['id_category'],
@@ -83,7 +85,7 @@ class DocumentController extends Controller
           	'private'=>$ChekPrivad,
           	'publish_date'=>$request['publish_date'],//$request['descripcion'],
           	'publish'=>$ChekPubli,
-          	'hits'=>'1',
+          	'hits'=>'0',
           	'uri'=>'cadena',//$request['descripcion'],
           	'order_by'=>$orderBy,//$request['descripcion'],
           	'active'=>'1',//$request[''],
@@ -118,11 +120,10 @@ class DocumentController extends Controller
             $Document = \App\cms_document::find($id);
             $path=null;
 
-             $file = $request->file('file');  
- 
-           if($file!=""){
+            $file = $request->file('file');    
+            if($file!=""){
+           
             $main_picture=$Document->main_picture;
-
 
             $path='store/DOC/'.uniqid().'.'.$file->getClientOriginalExtension();                        
             
@@ -214,6 +215,16 @@ class DocumentController extends Controller
        }  
       }
 
+
+     public function getEditCategories($no, $id_section, Request $request)
+      {
+        $Categories=null;
+        if($request->ajax()){
+          $flag=1;
+          $Categories = DB::table('cms_categories')->where('active','=', $flag)->where('id_section', '=',$id_section)->get();     
+          return response()->json($Categories);
+       }  
+      }
 
   	public function setOrderItem($flag,$orderBy, $no)
   		{

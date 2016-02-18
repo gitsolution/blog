@@ -13,6 +13,7 @@ if(isset($Document))
     $resumen=$Document->resumen;
     $content=$Document->content;
 
+
   if($Document->private=="0")
       {
         $ChekPrivado = "";
@@ -31,10 +32,8 @@ if(isset($Document))
     $uri=$Document->uri;
     $hits=$Document->hits;
     $order_by= $Document->order_by;
-
-    $path=$Document->main_picture;
-
-
+    $path='../../../'.$Document->main_picture;
+ 
 }
 
 else{ 
@@ -43,8 +42,7 @@ else{
     $message='New'; 
     $Document=Null;
     $title=$Document;
-    $resumen=$Document;
-    $content=$Document;
+    $description=$Document;
     $ChekPrivado=$Document;
     $ChekPublicar = $Document; 
     $order_by= $Document;
@@ -69,13 +67,11 @@ else{
                   </div>
                 <div class="col-md-3">
                   {!!Form::label('seccion','Sección:')!!}
-
-                  <select name="id_section" id="id_section" onchange="getval(this);" class="form-control select2">
+                  <select name="id_section" id="id_section"  class="form-control select2">
                   @foreach($Sections as $sec)
                   <option value="<?php echo $sec->id; ?>"><?php echo $sec->title; ?></option>
                   @endforeach
                 </select>                  
-
                 <br>
                 </div>
                 <div class="col-md-5">
@@ -105,13 +101,14 @@ else{
             
               <div class="col-md-3">
                   {!!Form::label('seccion','Categoria:')!!}
+
+
                   <select name="id_category" id="id_category" class="form-control select2">
                   @foreach($Categories as $cat)
 
                   <option value="<?php echo $cat->id; ?>"><?php echo $cat->title; ?></option>
                   @endforeach
                 </select>
-
 
                 <br>
                 </div>
@@ -164,26 +161,27 @@ else{
       <br>
       <div class="form-group">
           {!!Form::label('titulo','Titulo:')!!}
-          {!!Form::text('title',$title,['class'=>'form-control','placeholder'=>''])!!}
+          {!!Form::text('title',null,['class'=>'form-control','placeholder'=>''])!!}
       </div>
-      <div class="form-group">
-          {!!Form::label('Resume','Resumen')!!}
-          {!!Form::textarea('resumen',$resumen,['class'=>'form-control'])!!}
-          <script  type = "text/javascript" > 
-             CKEDITOR . replace (  'resumen'  ); 
-            CKEDITOR . add            
-          </script>
-      </div>
+       <div class="form-group">
+                {!!Form::label('Resume','Resumen')!!}
+                {!!Form::textarea('resumen',$resumen,['class'=>'form-control'])!!}
+                <script  type = "text/javascript" > 
+                  CKEDITOR . replace (  'resumen'  ); 
+                  CKEDITOR . add            
+                </script>
+          </div>
 
-      <div class="form-group">
-          {!!Form::label('contenido','Contenido')!!}
-          {!!Form::textarea('content',$resumen,['class'=>'form-control'])!!}
-          <script  type = "text/javascript" > 
-            CKEDITOR . replace (  'content'  ); 
-            CKEDITOR . add            
-          </script>
-      </div>
-         
+          <div class="form-group">
+                {!!Form::label('Resume','Contenido')!!}
+                {!!Form::textarea('content',$content,['class'=>'form-control'])!!}
+                <script  type = "text/javascript" > 
+                  CKEDITOR . replace (  'content'  ); 
+                  CKEDITOR . add            
+                </script>
+          </div>
+       
+
           {!!Form::submit( $botonTitulo,['class'=>'btn btn-danger'])!!}
 
         {!!Form::close()!!} 

@@ -22,7 +22,7 @@ class typeController extends Controller
     $flag='1';  
     $Types =  DB::table('cms_types')->where('active','=', $flag)->paginate(20);
     
-        return view('types/index',compact('Types','id'));
+        return view('types/index',compact('Types'));
    }
 
 

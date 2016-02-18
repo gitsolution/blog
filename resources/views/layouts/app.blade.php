@@ -13,8 +13,6 @@
  
     {!!Html::style('css/bootstrap.css')!!}
     {!!Html::style('css/admin.css')!!}
-    
-    
     {!!Html::script('js/ckeditor.js')!!}
     {!!Html::script('js/sample.js')!!}
     

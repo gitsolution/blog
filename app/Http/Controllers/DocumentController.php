@@ -64,7 +64,7 @@ class DocumentController extends Controller
              $flag=1;
          	$orderBy =  (DB::table('cms_documents')->where('active','=', $flag)->max('order_by'))+1;    
 		  	\App\cms_document::create([
-          	'id_category' => $request['id_category'],
+          	'id_category' => $request['  '],
           	'title' => $request['title'],
           	'resumen'=>$request['resumen'],
           	'content'=>$request['content'],

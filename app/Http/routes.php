@@ -149,6 +149,10 @@ Route::get('password/email','Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}','Auth\PasswordController@getReset');
 Route::post('password/reset','Auth\PasswordController@postReset');
 
+Route::get('auth/register','Auth\AuthController@getRegister');
+Route::post('auth/register','Auth\AuthController@postRegister');
+Route::get('auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
+
 /************************roles de usuario*************************/
 Route::get('/admin', 'HomeController@index');/*pagina principal despues de logearse*/
 Route::resource('rol','rolesController');

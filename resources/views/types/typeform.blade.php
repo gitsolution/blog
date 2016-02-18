@@ -8,6 +8,7 @@
            $message='Edit';
            $title=$Types->title;
            $description=$Types->description;
+           
         
         }
 
@@ -18,7 +19,7 @@
            $Types=Null;
            $title=$Types;
            $description=$Types;
-           
+        
          
         }
 
@@ -35,14 +36,16 @@
   <div class="container-fluid">
     <h3 class="head">Types</h3>
             <br>
-       
+
           <div class="form-group">
+              
+
              {!!Form::label('titulo','Titulo:')!!}
-              {!!Form::text('title',null,['class'=>'form-control','placeholder'=>''])!!}
+              {!!Form::text('title',$title,['class'=>'form-control','placeholder'=>''])!!}
           </div>
           <div class="form-group">
               {!!Form::label('descripcion','Descripción:')!!}
-              {!!Form::textarea('description',null,['class'=>'form-control','placeholder'=>''])!!}
+              {!!Form::textarea('description',$description,['class'=>'form-control','placeholder'=>''])!!}
           </div>
               {!!Form::submit($botonTitulo,['class'=>'btn btn-primary'])!!}
         {!!Form::close()!!}        

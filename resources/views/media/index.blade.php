@@ -19,34 +19,34 @@
 <div class="row text-center">
 	{{$medias->render()}}
 </div>
-	<div class="row">
+	
 		<table class="table table-responsive table-hover"> 
 		<thead class="center-text">
-			<th>
+			<th class="ColumColor">
 			ID
 			</th>	
-			<th>
+			<th class="ColumColor">
 			Albúm
 			</th>
-			<th>
+			<th class="ColumColor">
 			Fecha Publicación
 			</th>
-			<th>
+			<th class="ColumColor">
 			Imágenes
 			</th>
-			<th>
+			<th class="ColumColor">
 			Visualizaciones
 			</th>
-			<th colspan="2" class="center-text">
+			<th colspan="2" class="center-text ColumColor">
 			Ordén
 			</th>
-			<th>
+			<th class="ColumColor">
 			Publicado
 			</th>
-			<th>
+			<th class="ColumColor">
 			Inicio
 			</th>	
-			<th colspan="2" >
+			<th colspan="2" class="ColumColor">
 			Acciones
 			</th>
 		</thead>
@@ -91,10 +91,11 @@
 			</tr>
 		@endforeach
 		</table>
-	</div>
+	
 	<div class="row text-center">
 		{{$medias->render()}}
-		<?php //echo $medias->render(); ?>
+		
 	</div>
 </div>
+
 @stop

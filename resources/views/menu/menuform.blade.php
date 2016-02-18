@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
- <div class="container-fluid">
+ 
 <?php  
 if(isset($menu)) {
 	$message='Edit';
@@ -28,6 +28,7 @@ if(isset($menu)) {
 @else
  {!!Form::open(['route'=>'admin.menus.store','method','POST'])!!} 
 @endif
+<div class="container-fluid">
  <div class="row">
  <div class="form-group" >
  	  {!!Form::label('Nombre:')!!}
@@ -55,14 +56,16 @@ if(isset($menu)) {
 	</div>                        
  
 </div>
-</div>
-<div clas="row">
+
+
 <div class="form-group" >
+<div clas="row">
 	<div class="col-md-12">
 	 {!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
 	</div>
 </div>
 </div>
  {!!Form::close()!!}
+ </div>
  </div>
 @stop

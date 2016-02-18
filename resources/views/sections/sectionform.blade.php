@@ -40,7 +40,8 @@ else{
     $message='New'; 
     $Section=Null;
     $title=$Section;
-    $description=$Section;
+    $resumen=$Section;
+    $content=$Section;
     $ChekPrivado=$Section;
     $ChekPublicar = $Section;
     $publish_date = date('Y-m-d');
@@ -58,7 +59,6 @@ else{
  {!!Form::open(['route'=>'admin.sections.store','method'=>'POST','novalidate' => 'novalidate','files' => true])!!}
 @endif
 
-<div class="container-fluid">
   <div class="container-fluid">
        <div class="row">
             <div class="form-group">
@@ -145,27 +145,24 @@ else{
 
  
       </div>
-      <div class="form-group">
-          {!!Form::label('Resume','Resumen')!!}
-          <main>
-          <div class="adjoined-bottom">
-    <div class="grid-container">
-      <div class="grid-width-100">
-        
-           {!!Form::textarea('resumen',null,['class'=>'form-control','id'=>'editor'])!!}
-        
-      </div>
-    </div>
-  </div>
-
-  
     
-</main>
-      </div>
           <div class="form-group">
-          {!!Form::label('Resume','Contenido')!!}
-             {!!Form::textarea('content',null,['class'=>'form-control'])!!}
-        </div>
+                {!!Form::label('Resume','Resumen')!!}
+                {!!Form::textarea('resumen',$resumen,['class'=>'form-control'])!!}
+                <script  type = "text/javascript" > 
+                  CKEDITOR . replace (  'resumen'  ); 
+                  CKEDITOR . add            
+                </script>
+          </div>
+
+          <div class="form-group">
+                {!!Form::label('Resume','Contenido')!!}
+                {!!Form::textarea('content',$content,['class'=>'form-control'])!!}
+                <script  type = "text/javascript" > 
+                  CKEDITOR . replace (  'content'  ); 
+                  CKEDITOR . add            
+                </script>
+          </div>
 
           {!!Form::submit( $botonTitulo,['class'=>'btn btn-danger'])!!}
 

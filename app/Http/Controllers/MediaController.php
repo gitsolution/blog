@@ -57,7 +57,7 @@ class MediaController extends Controller
 
 			\App\Media::create([
 			'title'=>$request['title'],
-			'description'=>$request['description'],
+			'description'=>$request['content'],
 			'order_by'=>$orderBy,
 			'uri'=>$publish,
 			'publish'=>$request['publish'],

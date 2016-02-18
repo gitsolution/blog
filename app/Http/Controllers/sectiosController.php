@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use DB;
 use Session;
 use Redirect;
+use Auth;
 
 class sectiosController extends Controller
 {
@@ -85,9 +86,9 @@ class sectiosController extends Controller
           'uri'=>'cadena',//$request['descripcion'],
           'order_by'=>$orderBy,//$request['descripcion'],
           'active'=>'1',//$request[''],
-          'register_by'=>'1',//,$request[''],
-          'modify_by'=>'1',
-          'register_by'=>'1',
+          'register_by'=>Auth::User()->id,
+          'modify_by'=>Auth::User()->id,
+      
           ]);
                       
 
@@ -127,6 +128,7 @@ class sectiosController extends Controller
             if($isUpImg){
             $Section->main_picture=$path;
             }
+            $Section->modify_by=Auth::User()->id;
             $Section->save();
             Session::flash('message','Usuario Actualizado Correctamente');    
             return redirect('admin/sections');       

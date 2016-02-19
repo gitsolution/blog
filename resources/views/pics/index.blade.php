@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
  <?php $id_media= $media->id; ?>
- <div class="container-fluid">
-<div class="row">
+<div class="container-fluid">
+<div class="">
 	<br>
 	<div class="col-md-8">
 	<h3>Catálogo de Imágenes de {{ $media->title }}</h3>
@@ -18,10 +18,10 @@
     {!!Form::close()!!}
 	</div>
 </div>
-<div class="row text-center">
+<div class=" text-center">
 	{{$items->render()}}
 </div>
-	<div class="row">
+	<div class="">
 		<table class="table table-responsive table-hover"> 
 		<thead class="center-text">
 			<th class="ColumColor">
@@ -81,14 +81,15 @@
 				</td>
 				<td>{!! link_to('admin/itemedit/'.$item->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
 				{!! link_to('admin/itemdel/'.$item->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td>    
-		    </td>
+		    
 			</tr>
 		@endforeach
 		</table>
-	</div>
-	<div class="row text-center">
+	
+	<div class=" text-center">
 		{{$items->render()}}
 		
 	</div>
+</div>
 </div>
 @stop

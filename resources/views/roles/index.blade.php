@@ -2,7 +2,7 @@
 @section('content')
 
 
-<div class="row">
+<div class="container-fluid">
 <br>
 <div class="col-md-10"><h3>Catálago de roles</h3></div> <!--divide la columna en 10 y 2-->
 <div class="col-md-2">
@@ -10,7 +10,7 @@
     {!! link_to('admin/rolesNew', 'Nuevo roles ',array('class'=>'btn btn-success ')) !!}
  {!!Form::close()!!}
 </div>
-    </div>
+    
 
     
 <table class="table table-hover table-responsive">
@@ -64,5 +64,5 @@
 
 	</table>
 
-	
+	</div>
 @stop

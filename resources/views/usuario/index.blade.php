@@ -2,7 +2,8 @@
 @section('content')
 
 
-<div class="row">
+<div class="container-fluid">
+
 <br>
 <div class="col-md-10"><h3>Catálago de usuarios</h3></div> <!--divide la columna en 10 y 2-->
 <div class="col-md-2">
@@ -10,7 +11,7 @@
     {!! link_to('admin/userNew', 'Nuevo usuario ',array('class'=>'btn btn-success ')) !!}
  {!!Form::close()!!}
 </div>
-    </div>
+   
 
 <table class="table table-hover table-responsive">
           <thead class="center-text" >
@@ -57,6 +58,6 @@
             {!!$users->render()!!}
         </div>
 
-
+ </div>
 	
 @stop

@@ -172,9 +172,6 @@ Route::get('admin/cmsEdit/{id}','cmsController@edit');
 Route::put('admin/cmsUpdate','cmsController@update');
 
 
-
-
-
 /******************modulos de configuracion*********************/
 Route::resource('admin/config','configController');
 Route::get('admin/configPermission', 'configController@index');

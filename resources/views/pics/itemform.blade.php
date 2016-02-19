@@ -2,6 +2,7 @@
 @section('content')
  <div class="container-fluid">
 <?php  
+
 if(isset($item)) {
 	$message='Edit';
 	$title=$item->title;
@@ -15,7 +16,8 @@ if(isset($item)) {
 		$publish = "checked";//;		
 	}	
 	$order_by= $item->order_by;
-
+    $path=$item->path;
+    $id= $item->id;
 
 }else{ 
 	$message='New'; 
@@ -23,11 +25,16 @@ if(isset($item)) {
 	$title=$item;
 	$description=$item;
 	$publish = $item;
-	$publish_date= $item;
+	$publish_date= date('Y-m-d');
 	$order_by= $item;
+	$path=$item;
+	$id= $item;
 
 }
+ $id_album=$media->id;
+ $album=$media->title;
  
+
  ?>
 
 
@@ -41,43 +48,52 @@ if(isset($item)) {
  <div class="row">
  <div class="form-group" >
   <div class="col-md-3">
-                  {!!Form::label('Album','Album:')!!}
-                  {!!Form::select('id_album', \App\Media::lists('title','id'),null,['class'=>'form-control select2'])!!}
+        	  {!!Form::label('Album:'.$album)!!} 
+        	   		<input type="hidden" name="id_album" value="{{ $id_album }}">
+        
                 <br>
  </div>
 </div>
 </div>
 
- <div class="row">
-
- <div class="form-group" >    
-  <div class="col-md-3">
-   		   <input type='file' name='file' id="imgLoad" />
-  </div>       
- </div>
-
-</div>
-
- <div class="row">
-
- <div class="form-group" >    
   
- 		<div class="col-md-12">
- 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-				<div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Imagen
-                        </div>
-                        <div class="panel-body">
-                            <img id="imgUpTo" src="#" alt="Imagen" />
-                        </div>
-                        <div class="panel-footer">
-                        </div>
-                </div>      
-        </div>                     
- </div>
+       <div class="row">
 
-</div>
+       <div class="form-group" >    
+        <div class="col-md-12">
+               <input type='file' name='file' id="imgLoad"  />
+        </div>
+      </div>
+    </div>
+       <div class="row">
+
+       <div class="form-group" >    
+        
+          <div class="col-md-12">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <center>
+              <div class="panel panel-primary" style="width:300px;">
+                              <div class="panel-heading">                                  
+                                  Imagen 
+                              </div>
+                              <div class="panel-body">
+                                  <img id="imgUpTo" src="<?php echo $path ?>" alt="Imagen" class="img-responsive" />
+                              </div>
+                              <div class="panel-footer text-right">
+                                @if($message=='Edit')
+                                  {!!link_to('admin/delpic/'.$id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-remove ')) !!}
+                                @endif
+                              </div>
+                      </div>      
+            </center>
+        </div>                     
+      
+      </div>
+        
+      <br>
+      </div>
+
+ 
 
 
 

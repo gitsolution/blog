@@ -42,7 +42,8 @@ else{
     $message='New'; 
     $Document=Null;
     $title=$Document;
-    $description=$Document;
+    $resumen=$Document;
+    $content=$Document;
     $ChekPrivado=$Document;
     $ChekPublicar = $Document; 
     $order_by= $Document;
@@ -163,13 +164,23 @@ else{
           {!!Form::label('titulo','Titulo:')!!}
           {!!Form::text('title',null,['class'=>'form-control','placeholder'=>''])!!}
       </div>
-      <div class="form-group">
-          {!!Form::label('Resume','Resumen')!!}
-          {!!Form::textarea('resumen',null,['class'=>'form-control','placeholder'=>''])!!}
-      </div>
+          
           <div class="form-group">
-            {!!Form::label('contenido','Contenido')!!}
-            {!!Form::textarea('content',null,['class'=>'form-control','placeholder'=>''])!!}
+                {!!Form::label('Resume','Resumen')!!}
+                {!!Form::textarea('resumen',$resumen,['class'=>'form-control'])!!}
+                <script  type = "text/javascript" > 
+                  CKEDITOR.replace (  'resumen'  ); 
+                  CKEDITOR.add            
+                </script>
+          </div>
+
+          <div class="form-group">
+                {!!Form::label('Resume','Contenido')!!}
+                {!!Form::textarea('content',$content,['class'=>'form-control'])!!}
+                <script  type = "text/javascript" > 
+                  CKEDITOR.replace (  'content'  ); 
+                  CKEDITOR.add            
+                </script>
           </div>
 
        

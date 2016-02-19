@@ -40,7 +40,7 @@ else
                 @else
                   {!!Form::open(['route'=>'usuario.store','method','POST'])!!} 
                 @endif
-                    {!!Form::text('id_login',$id_login,['class'=>'form-control frmEspacios','placeholder'=>''])!!}
+                    {!!Form::hidden('id_login',$id_login,['class'=>'form-control frmEspacios','placeholder'=>''])!!}
 					<div class="form-group" id="frmLogin">
 					 <div class="col-xs-4">
             		{!!Form::label('nombre','Nombre')!!}
@@ -67,11 +67,7 @@ else
             			{!!Form::password('password',['class'=>'form-control frmEspacios','placeholder'=>'Confirmar contraseña'])!!}
             		</div>
 
-                    <div class="col-xs-12">
-                        {!! Form::label('id', 'Selecciona el rol') !!}
-                        {!! Form::select('id',$categories, ['class'=>'form-control']) !!}
-                    </div>
-
+                  
 
 
       				<div class="col-xs-6">

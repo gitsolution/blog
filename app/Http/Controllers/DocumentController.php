@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Storage;
 use File;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -30,6 +30,10 @@ class DocumentController extends Controller
             ->where('cms_documents.active','=', $flag)
             ->orderBy('order_by','DESC')->paginate(20);    
         	return view('documents/index',compact('Document'));
+
+        
+
+
    		}
 	 public function documentynew()
 	 {      
@@ -73,9 +77,6 @@ class DocumentController extends Controller
           else{
             $path="";
           }
-          var_dump($path);
-          return;
-
              \App\cms_document::create([
           	'id_category' => $request['id_category'],
           	'title' => $request['title'],
@@ -83,17 +84,17 @@ class DocumentController extends Controller
           	'content'=>$request['content'],
           	'main_picture'=>$path,
           	'private'=>$ChekPrivad,
-          	'publish_date'=>$request['publish_date'],//$request['descripcion'],
+          	'publish_date'=>$request['publish_date'],
           	'publish'=>$ChekPubli,
           	'hits'=>'0',
-          	'uri'=>'cadena',//$request['descripcion'],
-          	'order_by'=>$orderBy,//$request['descripcion'],
-          	'active'=>'1',//$request[''],
-          	'register_by'=>'1',//,$request[''],
-          	'modify_by'=>'1',
+          	'uri'=>'cadena',
+          	'order_by'=>$orderBy,
+          	'active'=>'1',
+          	'register_by'=>Auth::User()->id,
+          	'modify_by'=>Auth::User()->id,
           	
           	]);
-                      
+             Session::flash('message','Documento creado con exito');               
           	return redirect('admin/document');
         }
 
@@ -121,6 +122,18 @@ class DocumentController extends Controller
             $path=null;
 
             $file = $request->file('file');    
+              $ChekPubli='0';
+        if($request ['ChekPublicar']== 'on')
+        {
+          $ChekPubli='1';
+        }
+
+        $ChekPrivad='0';
+        if($request ['ChekPrivado']== 'on')   
+       {
+         $ChekPrivad='1';
+        }
+
             if($file!=""){
            
             $main_picture=$Document->main_picture;
@@ -140,10 +153,11 @@ class DocumentController extends Controller
             if($isUpImg){
             $Document->main_picture=$path;
             }
-
-
+            $Document->private=$ChekPrivad;
+            $Document->publish=$ChekPubli;
+            $Document->modify_by=Auth::User()->id;
            	$Document->save();
-           	Session::flash('message','Usuario Actualizado Correctamente');    
+           	Session::flash('message','Documento Actualizado Correctamente');    
            	return redirect('admin/document');       
      	}
      public function delete($id)
@@ -151,7 +165,7 @@ class DocumentController extends Controller
           	$Document = \App\cms_document::find($id);
           	$Document->active=0;
           	$Document->save();
-        	  Session::flash('message','Usuario Eliminado Correctamente');    
+        	  Session::flash('message','Documento Eliminado Correctamente');    
       	    return redirect('admin/document')->with('message','store');
         }
 

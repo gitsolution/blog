@@ -247,7 +247,8 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class=""  role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} 
+                               <div class="UserColor">{{ Auth::user()->name }}</div>
+                                 
                             </a>
 
                           

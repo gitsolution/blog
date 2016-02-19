@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Storage;
 use File;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -79,9 +79,9 @@ class categoryController extends Controller
           	'uri'=>'cadena',//$request['descripcion'],
           	'order_by'=>$orderBy,//$request['descripcion'],
           	'active'=>'1',//$request[''],
-          	'register_by'=>'1',//,$request[''],
-          	'modify_by'=>'1',
-          	'register_by'=>'1',
+          	'register_by'=>Auth::User()->id,//,$request[''],
+          	'modify_by'=>Auth::User()->id,
+          	
           	]);
                       
           	return redirect('admin/category');
@@ -99,6 +99,20 @@ class categoryController extends Controller
             $Catego = \App\cms_category::find($id);
             $path=null;
             $file = $request->file('file');    
+
+  $ChekPubli='0';
+        if($request ['ChekPublicar']== 'on')
+        {
+          $ChekPubli='1';
+        }
+
+        $ChekPrivad='0';
+        if($request ['ChekPrivado']== 'on')   
+       {
+         $ChekPrivad='1';
+        }
+
+
 
             if($file!=""){
             $main_picture=$Catego->main_picture;
@@ -118,6 +132,9 @@ class categoryController extends Controller
             if($isUpImg){
             $Catego->main_picture=$path;
             }
+            $Catego->private=$ChekPrivad;
+            $Catego->publish=$ChekPubli;
+            $Catego->modify_by=Auth::User()->id;
 
            	$Catego->save();
            	Session::flash('message','Categoria Actualizada Correctamente');    

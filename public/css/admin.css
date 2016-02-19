@@ -15,6 +15,14 @@ textarea{
 	resize:none;
 }
 
+.UserColor
+{
+color: black;
+font-style: bold;
+font-size: 16px;
+
+}
+
 /*check box*/
 .material-switch > input[type="checkbox"] {
     display: none;   

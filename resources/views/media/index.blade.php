@@ -40,7 +40,7 @@
 			<th colspan="2" class="center-text ColumColor">
 			Ordén
 			</th>
-			<th class="ColumColor">
+			<th class="ColumColor text-center">
 			Publicado
 			</th>
 			<th class="ColumColor">
@@ -62,7 +62,7 @@
 				<td> {{$med->title}}</td>
 				<td> {{ $publish_date }}</td>		
 				<td>
-				{!!link_to('admin/item/'.$med->id, '',array('class'=>'glyphicon glyphicon-upload')) !!}
+				&nbsp;&nbsp;&nbsp;&nbsp;{!!link_to('admin/item/'.$med->id, '',array('class'=>'fa fa-upload fa-lg')) !!}
 				</td>         				
 				
 				<td> {{ $med->hits }}</td>	
@@ -70,7 +70,7 @@
 				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Down/'.$down.'/'.$med->id, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
 
 				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Up/'.$up.'/'.$med->id, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
-				<td>
+				<td class="text-center">
 				<?php if($med->publish=='1'){?>
 				{!!  link_to('admin/mediapub/'.$med->id.'/False/'.$med->id, '',array('class'=>'glyphicon glyphicon-ok')) !!}
 				<?php } else{ ?>

@@ -110,6 +110,20 @@ class sectiosController extends Controller
             $path=null;
             $file = $request->file('file');               
            
+  $ChekPubli='0';
+        if($request ['ChekPublicar']== 'on')
+        {
+          $ChekPubli='1';
+        }
+
+        $ChekPrivad='0';
+        if($request ['ChekPrivado']== 'on')   
+       {
+         $ChekPrivad='1';
+        }
+
+        
+
             if($file!=""){
             $main_picture=$Section->main_picture;
 

@@ -26,14 +26,12 @@ class ItemController extends Controller
         	->where('id_album','=',$id_media)->orderBy('med_pictures.order_by','DESC')->paginate(20);
 			return view('pics/index',['items'=>$items,'media'=>$media]);
 		
-		//return view('pics/index',compact('items'));
+		
 	}
 
 	public function itemnew($id_media){
 		$flag='1';	 
-		//$x = DB::table('med_albums')->where('id','=', $id_media)->where('active','=', $flag)->orderBy('order_by','DESC')->get();	
-		//var_dump($x);
-		$media=\App\Media::find($id_media);
+	    $media=\App\Media::find($id_media);
 		$item= null;
         return view('pics/itemform',['item'=>$item,'media'=>$media]);		
 	}

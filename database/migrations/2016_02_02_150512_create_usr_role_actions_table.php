@@ -19,6 +19,7 @@ class CreateUsrRoleActionsTable extends Migration
             $table->integer('id_access')->unsigned();
             $table->foreign('id_access')->references('id')->on('cms_accesses');        
             $table->string('action',100);
+            $table->boolean('allowed');
             $table->boolean('access');
             $table->boolean('active');
             $table->integer('register_by');

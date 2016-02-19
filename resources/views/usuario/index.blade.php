@@ -27,6 +27,9 @@
             Correo eléctronico
             </th>
             <th class="ColumColor text-left" >
+            Rol
+            </th>
+            <th class="ColumColor text-left" >
             Creado el
             </th>
             <th class="ColumColor text-left">
@@ -44,9 +47,11 @@
 				<td>{{$user->name}}</td>
 				<td>{{$user->lastName}}</td>
 				<td>{{$user->email}}</td>
+                <td>{{$user->usuarios}}</td>
 				<td>{{$created_at}}</td>
 				<td>
-				{!! link_to('admin/userEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}            
+				{!! link_to('admin/userEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!} 
+                {!! link_to('admin/permissionEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-cog')) !!}           
 				</td>
 			</tbody>
 		@endForeach

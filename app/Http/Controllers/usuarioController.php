@@ -15,7 +15,15 @@ class usuarioController extends Controller
 {
     public function index()
 	{	
-		$users = User::paginate(20);
+        $flag="1";
+		
+        $users = DB::table('users')
+            ->leftJoin('usr_login_roles', 'users.id', '=', 'usr_login_roles.id_login')   
+            ->leftJoin('usr_roles', 'usr_login_roles.id_role', '=', 'usr_roles.id')       
+            ->select('users.*', 'usr_roles.title as usuarios')
+            ->where('users.active','=', $flag)            
+            ->orderBy('name','DESC')->paginate(20);
+            
 		return view('usuario.index',compact('users'));
 	}
 
@@ -34,25 +42,16 @@ class usuarioController extends Controller
     
     /***guardar usuario***/
     public function store(Request $request)
-    {
-        var_dump($request['id_login']);        
+    {       
     	User::create([
     		'name'=>$request['name'],
             'lastName'=>$request['lastName'],
     		$data['email']='email'=>$request['email'],
     		'password'=>bcrypt($request['password']),
+            'active'=>'1',
     	]);
  
-        if($request['id_login']=="0")
-        {
-              $id_login = DB::table('users')->where('email', $request['email'])->value('id');
-            
-                usr_login_role::create([
-                            'id_login'=>$id_login,
-                            'id_role'=>$request['id'],
-                            'active'=>'1',
-                        ]);
-        }      
+       
 
     	return Redirect::to("/admin/userNew");
     }
@@ -64,6 +63,7 @@ class usuarioController extends Controller
             'lastName'=>$request['lastName'],
             'email'=>$request['email'],
             'password'=>bcrypt($request['password']),
+            'active'=>'1',
         ]);
 
         return Redirect::to("login");

@@ -108,13 +108,13 @@ class AuthController extends Controller
             $data['confirm_token']=$user->confirm_token = str_random(100);
             $user->save();
 
-            /*
+            
             Mail::send('mails/registerr', ['data' => $data], function($mail)
                 use($data){
                  $mail->subject('Confirma tu cuenta');
                  $mail->to($data['email'], $data['name']);
                 
-            });*/
+            });
 
             return redirect("auth/register")->with("message", "Hemos enviado un enlace de confirmación a su 
                 cuenta de correo electrónico");

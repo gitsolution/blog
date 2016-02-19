@@ -120,4 +120,12 @@ textarea{
 }
 
 /* editado raul fin*/
+.btn span.glyphicon {       
+ opacity: 0;    
+}
+.btn.active span.glyphicon {    
+ opacity: 1;    
+}
+
+
 

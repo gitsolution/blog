@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\usr_login_role;
 use App\usr_role;
+use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,15 +17,24 @@ class usr_login_roleController extends Controller
 		return view('assignment.index',compact('usrRole'));
 	}
 
-     public function store()
+     public function store(Request $request)
     {
-        usr_login_roles::create([
-            'id_login'=>$request['id_login'],
-            'id_role'=>$request['id_role'],
-            'active'=>$request['chec'],
-        ]);
+        $activado='0';
+        
+                if($request ['ChekActivacion']== "on")
+                {
+                    $activado='1';
+                }
 
-        return Redirect::to("login");
+                \App\usr_login_role::create([
+                    'id_login'=>$request['idUser'],
+                    'id_role'=>$request['id'],
+                    'active'=> $activado,
+                ]);
+
+        
+
+        return view('layouts.app');
     }
 
     public function create()
@@ -42,6 +52,6 @@ class usr_login_roleController extends Controller
     {
         $query=usr_role::destroy($id);
 
-        return view('roles.index');
+        return view('layouts.app');
     }
 }

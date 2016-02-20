@@ -246,10 +246,10 @@
                        
                     @else
                         <li class="dropdown">
-                            <a href="#" class=""  role="button" aria-expanded="false">
-                               <div class="UserColor">{{ Auth::user()->name }}</div>
+                            
+                               <div class="UserColor">&nbsp;&nbsp;&nbsp;{{ Auth::user()->name }}</div>
                                  
-                            </a>
+                            
 
                           
                         </li>

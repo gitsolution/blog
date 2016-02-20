@@ -141,8 +141,9 @@ class sectiosController extends Controller
             }
           
             $Section->fill($request->all());
-            if($isUpImg){
-            $Section->main_picture=$path;
+            if($isUpImg)
+            {
+              $Section->main_picture=$path;
             }
  
             $Section->private=$ChekPrivad;

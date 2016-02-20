@@ -46,7 +46,7 @@
 </head>
 
 <body>
-<br><br><br><br><br><br>
+<br><br><br>
 
 
 
@@ -74,18 +74,26 @@
                     {!! csrf_field() !!}
 
  
+                <div class="form-group">
 
-                    <div class='form-group'>
+                    <label for="name">Nombre:</label>
 
-                         <label for="name">Nombre:</label>
+                    <input type="text" name="name" class="form-control" value="{{ old('name') }}" />
 
-                        <input type="text" name="name" class="form-control" value="{{ old('name') }}" />
+                    <div class="text-danger">{{$errors->first('email')}}</div>
 
-                        <div class="text-danger">{{$errors->first('name')}}</div>
-
-                 </div>
+                </div>
 
  
+                <div class="form-group">
+
+                    <label for="lastName">Apellidos:</label>
+
+                    <input type="lastName" name="lastName" class="form-control" value="{{ old('email') }}" />
+
+                    <div class="text-danger">{{$errors->first('email')}}</div>
+
+                </div>
 
                 <div class="form-group">
 

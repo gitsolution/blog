@@ -19,7 +19,7 @@ class rolesController extends Controller
 	}
 
 	public function store(Request $request)
-    {    	    	
+    {    	   	
     	$activado='0';
         if($request ['ChekActivacion']== "on")
         {
@@ -34,7 +34,6 @@ class rolesController extends Controller
     	]);
         
        return Redirect::to("admin/roles");
-
     }
 
     public function create()
@@ -45,19 +44,40 @@ class rolesController extends Controller
     public function edit($id)
     {
         $roles=usr_role::find($id);
-        return view('roles.rolesform',['roles'=>$roles]);
+        return view('roles.rolesform',compact('roles'));
     }
 
+    public function update($id,Request $request)
+    {
+        $activado='0';
+        if($request ['ChekActivacion']== "on")
+        {
+            $activado='1';
+        }
 
+        $roles=DB::table('usr_login_roles')->where('id_login', $id)->update('id_role',$request['title']);
 
-    public function update($id,Request $request){
-        $roles = usr_role::find($id);
-        $roles->fill($request->all());      
+        $roles->active=$activado;      
         $roles->save();
-            
+           return "llego hast aqui";
         return Redirect::to("admin/roles");
     }
 
+    public function activar($id,$active)
+    {
+        $priv=1;    
+        if($active=='True')
+        { 
+            $active = 1;
+        }
+
+        else
+        { $active = 0; }
+
+        $roles = DB::table('usr_roles')->where('id', '=',$id)->update(['active'=>$active]);             
+      Session::flash('message','Rol actualizado');    
+        return redirect('/admin/roles')->with('message','store');
+    }
 
 
 }

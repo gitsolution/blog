@@ -139,9 +139,17 @@ Route::put('admin/user/update','usuarioController@update');
 Route::get('admin/sectionedit/{id}','sectiosController@edit');
 Route::get('usuario/register','usuarioController@register');
 
+/**********************para perfil de usuario*******************************/
+Route::resource('admin/perfil','perfilController');
+Route::get('admin/perfilEdit','perfilController@index');
+Route::get('admin/perfil','perfilController@store');
+Route::get('admin/perfilNew','perfilController@perfil');//editar usuario
+Route::put('admin/perfilUpdate','perfilController@update');//editar usuario
 
+Route::get('admin/sectionedit/{id}','sectiosController@edit');
+Route::put('admin/section/update','sectiosController@update');
+/**********************para enviar correo*********************************/
 Route::resource('mail','mailController');
-
 
 Route::get('password/email','Auth\PasswordController@getEmail');
 Route::get('password/email','Auth\PasswordController@postEmail');
@@ -151,14 +159,49 @@ Route::post('password/reset','Auth\PasswordController@postReset');
 
 Route::get('auth/register','Auth\AuthController@getRegister');
 Route::post('auth/register','Auth\AuthController@postRegister');
-Route::get('auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
+Route::get('auth/register/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
+
 
 /************************roles de usuario*************************/
 Route::get('/admin', 'HomeController@index');/*pagina principal despues de logearse*/
-Route::resource('rol','rolesController');
+Route::resource('admin/rol','rolesController');
 Route::get('admin/roles', 'rolesController@index');
 
+Route::get('admin/rolesNew', 'rolesController@create');
+Route::get('admin/rolesEdit/{id}','rolesController@edit');
+Route::put('admin/rolesUpdate','rolesController@update');
+Route::get('admin/rolActive/{id}/{acti}','rolesController@activar');
 
+/*para la asignacion de roles de usuarios*/
+Route::resource('admin/assignment','usr_login_roleController');
+
+//Route::get('admin/assignment', 'usr_login_roleController@index');
+Route::get('admin/rolesDelete/{id}','usr_login_roleController@delete');
+Route::get('admin/rolesUpdate','usr_login_roleController@update');
+Route::get('admin/permissionEdit/{id}', 'usr_login_roleController@obtener');
+/************************cms access**********************************/
+Route::resource('admin/cms','cmsController');
+Route::get('admin/cms', 'cmsController@index');
+Route::get('admin/cmsNew', 'cmsController@create');
+Route::get('admin/cmsEdit/{id}','cmsController@edit');
+Route::put('admin/cmsUpdate','cmsController@update');
+Route::get('admin/cmsActive/{id}/{acti}','cmsController@activar');
+
+/******************modulos de configuracion*********************/
+Route::resource('admin/config','configController');
+Route::get('admin/configPermission', 'configController@index');
+Route::get('admin/configPermission/{idModulo}/{idRol}', 'configController@create');
+
+/************************para permisos de usuarios************************************/
+Route::resource('admin/configUpdate', 'roleActionController');
+
+
+
+
+/******************permission modules****************************/
+Route::resource('admin/permission','module_permission');
+Route::get('admin/permission/{id}', 'module_permission@index');
+Route::get('admin/permissionModules','module_permission@create');
 
 /*************RUTAS DE DOCUMENTS******************************/
 Route::get('admin/documentnew','DocumentController@documentynew');

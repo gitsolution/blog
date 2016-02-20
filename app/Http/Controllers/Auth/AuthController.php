@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\usr_profile;
+use DB;
+use Auth;
+use Session;
+use Redirect; 
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -30,7 +35,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new authentication controller instance.
@@ -69,7 +74,7 @@ class AuthController extends Controller
     public function postRegister(Request $request)
     {
         $rules=[
-            'name' => 'required|min:3|max:16|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            //'name' => 'required|min:3|max:16|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|min:6|max:18|confirmed',
         ];
@@ -101,25 +106,30 @@ class AuthController extends Controller
         else
         {
             $user = new User;
-            $data['name']=$user->name = $request->name;
             $data['email']=$user->email = $request->email;
             $user->password = bcrypt($request->password);
+            $user->active='0';
             $user->remember_token = str_random(100);
             $data['confirm_token']=$user->confirm_token = str_random(100);
             $user->save();
 
-            /*
+            $usr=DB::table('users')->where('email',$request->email)->select('id')->first();
+            $perfil = new usr_profile;
+            $perfil->id=$usr->id;
+            $data['name']=$perfil->name=$request->name;
+            $perfil->lastname=$request->lastName;
+            $perfil->save();
+
             Mail::send('mails/registerr', ['data' => $data], function($mail)
                 use($data){
                  $mail->subject('Confirma tu cuenta');
                  $mail->to($data['email'], $data['name']);
                 
-            });*/
+            });
 
             return redirect("auth/register")->with("message", "Hemos enviado un enlace de confirmación a su 
                 cuenta de correo electrónico");
         }
-
     }
 
 
@@ -135,13 +145,14 @@ class AuthController extends Controller
             $confirm_token = str_random(100);
             $user->where('email', '=', $email)
             ->update(['active' => $active, 'confirm_token' => $confirm_token]);
-            return redirect('auth/register')
-            ->with('message', 'Enhorabuena ' . $the_user[0]['name'] . ' ya puede iniciar sesión');
+            
+            Auth::logout();
+            return Redirect::to("admin");
         }
 
         else
         {
-            return redirect('/');
+            return redirect('/login');
         }
 
     }

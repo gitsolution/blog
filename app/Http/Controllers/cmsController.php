@@ -47,11 +47,35 @@ class cmsController extends Controller
     }
 
     public function update($id,Request $request){
+        $activado='0';
+        if($request ['ChekActivacion']== "on")
+        {
+            echo "El check esta activado";
+            $activado='1';
+        }
+
         $cms = cms_access::find($id);
+        $cms->active=$activado;
         $cms->fill($request->all());      
         $cms->save();
             
         return Redirect::to("admin/cms");
+    }
+
+    public function activar($id,$active)
+    {
+        $priv=1;    
+        if($active=='True')
+        { 
+            $active = 1;
+        }
+
+        else
+        { $active = 0; }
+
+        $roles = DB::table('cms_accesses')->where('id', '=',$id)->update(['active'=>$active]);             
+        Session::flash('message','Rol actualizado');    
+        return redirect('/admin/cms')->with('message','store');
     }
 
 

@@ -15,7 +15,18 @@ class usuarioController extends Controller
 {
     public function index()
 	{	
-		$users = User::paginate(20);
+        $flag="1";
+		
+       
+        $users = DB::table('usr_profiles')
+            ->leftJoin('users', 'usr_profiles.id', '=', 'users.id')   
+            ->leftJoin('usr_login_roles', 'usr_login_roles.id_login', '=', 'users.id') 
+            ->leftJoin('usr_roles', 'usr_login_roles.id_login', '=', 'usr_roles.id')        
+            ->select('usr_profiles.*', 'usr_roles.title as roles','users.email as email')
+            ->where('users.active','=', $flag)    
+             ->groupBy('users.id')        
+            ->orderBy('usr_profiles.name','DESC')->paginate(20);
+            
 		return view('usuario.index',compact('users'));
 	}
 
@@ -34,25 +45,16 @@ class usuarioController extends Controller
     
     /***guardar usuario***/
     public function store(Request $request)
-    {
-        var_dump($request['id_login']);        
+    {       
     	User::create([
     		'name'=>$request['name'],
             'lastName'=>$request['lastName'],
     		$data['email']='email'=>$request['email'],
     		'password'=>bcrypt($request['password']),
+            'active'=>'1',
     	]);
  
-        if($request['id_login']=="0")
-        {
-              $id_login = DB::table('users')->where('email', $request['email'])->value('id');
-            
-                usr_login_role::create([
-                            'id_login'=>$id_login,
-                            'id_role'=>$request['id'],
-                            'active'=>'1',
-                        ]);
-        }      
+       
 
     	return Redirect::to("/admin/userNew");
     }
@@ -64,12 +66,16 @@ class usuarioController extends Controller
             'lastName'=>$request['lastName'],
             'email'=>$request['email'],
             'password'=>bcrypt($request['password']),
+            'active'=>'1',
         ]);
 
         return Redirect::to("login");
     }
 
     public function update($id,Request $request){
+       
+        var_dump($id);
+        return ;
         $user = User::find($id);
         $user->fill($request->all());      
         $user->save();
@@ -78,8 +84,6 @@ class usuarioController extends Controller
         $usrRole= new usr_login_role;
         $usrRole->where('id_login', '=', $id)
         ->update(['id_role' => $idRole]);
-
-        return "actualizado";
             
         return Redirect::to("usuario");
     }

@@ -246,17 +246,21 @@
                        
                     @else
                         <li class="dropdown">
-                            
-                               <div class="UserColor">&nbsp;&nbsp;&nbsp;{{ Auth::user()->name }}</div>
+
+                          
+                               <div class="UserColor">&nbsp;&nbsp;&nbsp;{{ Auth::user()->email }} </div>
                                  
                             
 
                           
                         </li>
                     @endif
-                   
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li>
+                        {!!link_to('admin/perfilNew', '&nbsp;&nbsp;&nbsp; Perfil',array('class'=>'fa fa-user')) !!}
                         </li>
+                        <li>
+                             {!!link_to('admin/menus', '&nbsp;&nbsp;&nbsp; Menú',array('class'=>'fa fa-file-o')) !!}
+                   
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
@@ -334,12 +338,19 @@
                             <a href="s"><i class="fa fa-users fa-fw"></i>Usuarios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                {!!link_to('/usuario', '&nbsp;&nbsp;&nbsp;Usuarios',array('class'=>'fa fa-user ')) !!}
-                                   
+                                    {!!link_to('/usuario', '&nbsp;&nbsp;&nbsp;Usuarios',array('class'=>'fa fa-user ')) !!}                                   
                                 </li>
+                                
                                 <li>
-                                {!!link_to('admin/roles', '&nbsp;&nbsp;&nbsp;Roles',array('class'=>'fa fa-flag-o ')) !!}
-                                    
+                                    {!!link_to('admin/roles', '&nbsp;&nbsp;&nbsp;Roles',array('class'=>'fa fa-flag-o ')) !!}                                     
+                                </li>
+
+                                 <li>
+                                    {!!link_to('admin/cms', '&nbsp;&nbsp;&nbsp;Módulos',array('class'=>'fa fa-cubes')) !!}                         
+                                </li>
+
+                                <li>
+                                    {!!link_to('admin/configPermission', '&nbsp;&nbsp;&nbsp;Configuracion',array('class'=>'fa fa fa-cog')) !!}
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

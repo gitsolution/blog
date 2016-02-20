@@ -18,6 +18,7 @@ class CreateCmsAccessesTable extends Migration
             $table->string('title',250);
             $table->text('description');
             $table->boolean('active');
+            $table->text('rules');
             $table->integer('register_by');
             $table->integer('modify_by');
             $table->timestamps();

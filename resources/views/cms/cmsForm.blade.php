@@ -6,7 +6,6 @@
 $chkActivado="null";
 
 if(isset($cms)) {
-  echo "existe cmsssssssssssssssssssss";
     $message='Edit';
     $title=$cms->title;
     $description=$cms->description;
@@ -26,7 +25,6 @@ if(isset($cms)) {
 
 else
 {  
-  echo "no existe cmsssssssssssssssssssss";
     $message='New';
     $cms=Null;
     $title=$cms;

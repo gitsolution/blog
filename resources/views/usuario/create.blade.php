@@ -2,6 +2,8 @@
 @section('content')
 
 <?php  
+
+
 if(isset($user)) {
     $message='Edit';
     $id_login=$user->id;
@@ -66,8 +68,6 @@ else
 						{!!Form::label('Confirmar contraseña')!!}
             			{!!Form::password('password',['class'=>'form-control frmEspacios','placeholder'=>'Confirmar contraseña'])!!}
             		</div>
-
-                  
 
 
       				<div class="col-xs-6">

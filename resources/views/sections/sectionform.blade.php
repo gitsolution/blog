@@ -60,7 +60,9 @@ else{
 @endif
 
   <div class="container-fluid">
-       <div class="row">
+
+      <div class="row">
+        <div class="row">
             <div class="form-group">
                   <div class="col-md-12"><h3 class="head">SECCION</h3>
                       <p>PAGINA PARA LA SECCION</p>
@@ -89,11 +91,9 @@ else{
                       </div>           
                   </div>
                 </div>
-              </div>
-          </div>
+        
 
-  <div class="form-group">
-      <div class="row">
+
           <div class="col-md-12">
               {!!Form::label('date','Fecha De Publicación:')!!}  
           </div>
@@ -101,16 +101,15 @@ else{
           <div class="col-md-3">
               {!!Form::date('publish_date', $publish_date,['class'=>'form-control'])!!}              
           </div>
-      </div>
       <br>
-     <div class="row">
+
 
        <div class="form-group" >    
         <div class="col-md-12">
                <input type='file' name='file' id="imgLoad"  />
         </div>
       </div>
-    </div>
+    
        <div class="row">
 
        <div class="form-group" >    
@@ -138,7 +137,10 @@ else{
         
       <br>
       </div>
-      <div class="row">
+</div>
+</div>
+
+
       <div class="form-group">
           {!!Form::label('titulo','Titulo:')!!}
           {!!Form::text('title',null,['class'=>'form-control','placeholder'=>''])!!}
@@ -164,16 +166,14 @@ else{
                 </script>
           </div>
 
-          {!!Form::submit( $botonTitulo,['class'=>'btn btn-danger'])!!}
+          {!!Form::submit( $botonTitulo,['class'=>'btn btn-primary'])!!}
+           {!! link_to('admin/sections', 'Cancelar',array('class'=>'btn btn-danger')) !!}
 
         {!!Form::close()!!} 
-         </div> 
-  </div>
+       
+  
+      </div>
 </div>
-
- 
-
-
 
   @stop
 <!--formulario para editar y nueva seccion-->

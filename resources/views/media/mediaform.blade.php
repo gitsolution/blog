@@ -3,6 +3,7 @@
 @section('content')
 
  <div class="container-fluid">
+ <br>
 <?php  
 if(isset($media)) {
 	$message='Edit';
@@ -15,8 +16,20 @@ if(isset($media)) {
 	}
 	else{
 		$publish = "checked";//;		
-	}	
+	}
+	if($media->index_page=="0")
+	{
+		$index_page = "";//;		
+	}
+	else{
+		$index_page = "checked";//;		
+	}
+
 	$order_by= $media->order_by;
+
+
+
+
 }else{ $message='New'; 
 	$media=Null;
 	$title=$media;
@@ -24,6 +37,7 @@ if(isset($media)) {
 	$publish = $media;
 	$publish_date= $media;
 	$order_by= $media;
+	$index_page=$media;
 }
  ?>
 
@@ -51,32 +65,40 @@ if(isset($media)) {
       </div>
 
 
-<div class="form-group" >	 
+<div class="form-group" >
+<div class="row">
 	<div class="col-md-3">
 	 	  {!!Form::label('Fecha Publicación:')!!}
 	 	  {!!Form::date('publish_date',$publish_date,['class'=>'form-control', 'placeholder'=>'Ingresa la Fecha de Publicación del Albúm'])!!}
 	</div>
-
-	<div class="col-md-3">
+ <br>
+	<div class="col-md-5">
+	 <div class="publiChecme">
 				        Publicar:
                         <div class="material-switch pull-right">
                             <input id="someSwitchOption1" name="publish" type="checkbox"  <?php echo $publish ?> />
                             <label for="someSwitchOption1" class="label-primary" ></label>
                         </div>
-	</div>                        
-    <div class="col-md-3">
+	</div>      </div>
+    
+    <div class="col-md-4">
+    <div class="privaChecme">
                         Página de Inicio:
                         <div class="material-switch pull-right">
-                            <input id="someSwitchOption2" name="index_page" type="checkbox"  />
+                            <input id="someSwitchOption2" name="index_page" type="checkbox" <?php echo $index_page ?>   />
                             <label for="someSwitchOption2" class="label-primary"></label>
                         </div>
+	</div>
 	</div>
 </div>
 </div>
 <div clas="row">
 <div class="form-group" >
-	<div class="col-md-12">
+	<div class="col-md-1">
 	 {!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
+	</div>
+	<div class="col-md-3">
+	 {!! link_to('admin/media', 'Cancelar',array('class'=>'btn btn-danger')) !!}
 	</div>
 </div>
 </div>

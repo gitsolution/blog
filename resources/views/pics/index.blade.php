@@ -2,7 +2,9 @@
 @section('content')
  <?php $id_media= $media->id; ?>
 <div class="container-fluid">
-<div class="">
+<div class="row">
+	<br>
+
 	<br>
 	<div class="col-md-8">
 	<h3>Catálogo de Imágenes de {{ $media->title }}</h3>
@@ -21,8 +23,10 @@
 <div class=" text-center">
 	{{$items->render()}}
 </div>
-	<div class="">
-		<table class="table table-responsive table-hover"> 
+
+<div class="row">
+<div class="table-responsive">
+	<table class="table table-hover"> 
 		<thead class="center-text">
 			<th class="ColumColor">
 			ID
@@ -85,11 +89,12 @@
 			</tr>
 		@endforeach
 		</table>
-	
+</div>	
+</div>
 	<div class=" text-center">
 		{{$items->render()}}
 		
 	</div>
-</div>
-</div>
+
+
 @stop

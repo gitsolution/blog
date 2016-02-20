@@ -60,9 +60,15 @@ else{
  {!!Form::open(['route'=>'admin.category.store','method'=>'POST', 'novalidate' => 'novalidate','files' => true])!!}
 @endif
 
-<div class="container-fluid">
+
   <div class="container-fluid">
-       <div class="row">
+       
+
+     <div class="row">
+      <div class="form-group">
+
+
+<div class="row">
             <div class="form-group">
                   <div class="col-md-12"><h3 class="head">CATEGORÍA</h3>
                       <p>PAGINA PARA LA CATEGORÍA</p>
@@ -94,7 +100,7 @@ else{
               </div>
           </div>
 
-  <div class="form-group">
+  
       <div class="row">
           <div class="col-md-12">
               {!!Form::label('date','Fecha De Publicación:')!!}  
@@ -105,7 +111,7 @@ else{
           </div>
       </div>
      
-  </div>
+  
  
        <div class="row">
 
@@ -143,8 +149,10 @@ else{
       <br>
       </div>
 
-     <div class="row">
-      <div class="form-group">
+
+
+
+      
           {!!Form::label('titulo','Titulo:')!!}
           {!!Form::text('title',$title,['class'=>'form-control','placeholder'=>''])!!}
       </div>
@@ -166,8 +174,8 @@ else{
           </script>
       </div>
          
-          {!!Form::submit( $botonTitulo,['class'=>'btn btn-danger'])!!}
-
+          {!!Form::submit( $botonTitulo,['class'=>'btn btn-primary'])!!}
+           {!! link_to('admin/category', 'Cancelar',array('class'=>'btn btn-danger')) !!}
         {!!Form::close()!!} 
           
   </div>

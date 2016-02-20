@@ -350,7 +350,7 @@
             <!-- /.navbar-static-side -->
         </nav>
 
- <div class="contenedor">
+ <div id="page-wrapper">
          
             @yield('content')
 

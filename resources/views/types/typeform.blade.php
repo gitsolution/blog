@@ -48,6 +48,7 @@
               {!!Form::textarea('description',$description,['class'=>'form-control','placeholder'=>''])!!}
           </div>
               {!!Form::submit($botonTitulo,['class'=>'btn btn-primary'])!!}
+               {!! link_to('admin/types', 'Cancelar',array('class'=>'btn btn-danger')) !!}
         {!!Form::close()!!}        
   </div>
   @stop

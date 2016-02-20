@@ -5,6 +5,9 @@
 
 if(isset($item)) {
 	$message='Edit';
+  $id_media=$item->id;
+  
+  
 	$title=$item->title;
 	$description=$item->description;
 	$publish_date = date_create($item->publish_date);
@@ -22,6 +25,7 @@ if(isset($item)) {
 }else{ 
 	$message='New'; 
 	$item=Null;
+
 	$title=$item;
 	$description=$item;
 	$publish = $item;
@@ -47,19 +51,21 @@ if(isset($item)) {
 @endif
  <div class="row">
  <div class="form-group" >
-  <div class="col-md-3">
-        	  {!!Form::label('Album:'.$album)!!} 
-        	   		<input type="hidden" name="id_album" value="{{ $id_album }}">
-        
-                <br>
- </div>
-</div>
-</div>
+  
+ 
 
   
        <div class="row">
 
-       <div class="form-group" >    
+       <div class="form-group" > 
+        <div class="col-md-8">
+    <br>
+     {!!Form::label('Album:'.$album)!!} 
+    <input type="hidden" name="id_album" value="{{ $id_album }}">
+        
+                <br>
+ </div>
+   
         <div class="col-md-12">
                <input type='file' name='file' id="imgLoad"  />
         </div>
@@ -106,29 +112,33 @@ if(isset($item)) {
  	  {!!Form::label('Descripción:')!!}
  	  {!!Form::textarea('description',$description,['class'=>'form-control', 'placeholder'=>'Ingresa la Descripción de la Imagen'])!!}
 </div>
-<div class="form-group" >	 
-	<div class="col-md-3">
+	 <div class="form-group">
+   <div class="row">
+	  <div class="col-md-3">
 	 	  {!!Form::label('Fecha Publicación:')!!}
 	 	  {!!Form::date('publish_date',$publish_date,['class'=>'form-control', 'placeholder'=>'Ingresa la Fecha de Publicación del Albúm'])!!}
-	</div>
-
-	<div class="col-md-6">
-				        Publicar:
+      </div>
+        <div class="col-md-5">
+        <div class="publiChec">
+                Publicar:
                         <div class="material-switch pull-right">
                             <input id="someSwitchOption1" name="publish" type="checkbox"  <?php echo $publish ?> />
                             <label for="someSwitchOption1" class="label-primary" ></label>
                         </div>
-	</div>                        
- 
-</div>
-</div>
-<div clas="row">
-<div class="form-group" >
-	<div class="col-md-12">
-	 {!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
+  </div> 
+  </div>
+      </div>
 	</div>
-</div>
-</div>
+          <div class="row">
+ <div class="col-md-1">
+   {!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
+  </div>
+  <div class="col-md-3">
+   {!! link_to('', 'Cancelar',array('class'=>'btn btn-danger')) !!}
+  </div>
+</div>        
+
  {!!Form::close()!!}
  </div>
+</div>
 @stop

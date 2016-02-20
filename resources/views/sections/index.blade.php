@@ -20,7 +20,8 @@
         <div class="row text-center">
             {{$Sections->render()}}
         </div>
-    <table class="table table-hover table-responsive">
+        <div class="table-responsive">
+    <table class="table table-hover">
           <thead class="center-text" >
             <th class="ColumColor" >
             ID
@@ -98,6 +99,7 @@
 
 @endforeach
       </table> 
+      </div>
           <div class="row text-center">
                 {{$Sections ->render()}}
                 <?php //echo $medias->render(); ?>

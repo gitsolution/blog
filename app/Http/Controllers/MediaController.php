@@ -85,8 +85,26 @@ class MediaController extends Controller
     	}
 
 	public function update($id,Request $request){
+
+		       $index_page='0';
+        if($request ['index_page']== 'on')
+        {
+          $index_page='1';
+        }
+
+        $publish='0';
+        if($request ['publish']== 'on')   
+       {
+         $publish='1';
+        }
+
+
         $media = \App\Media::find($id);
-		$media->fill($request->all());		
+		$media->fill($request->all());	
+		
+		$media->index_page=$index_page;
+        $media->publish=$publish;
+
 		$media->save();
 		Session::flash('message','Usuario Actualizado Correctamente');		
 		return redirect('/admin/media')->with('message','store');

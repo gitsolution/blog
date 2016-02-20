@@ -12,8 +12,8 @@
 </div>
     </div>
 
-    
-<table class="table table-hover table-responsive">
+    <div class="table-responsive">
+<table class="table table-hover ">
           <thead class="center-text" >
             <th class="ColumColor text-left" >
             ID
@@ -58,6 +58,7 @@
 	
 
 	</table>
+	</div>
 
 	
 @stop

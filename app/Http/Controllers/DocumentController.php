@@ -117,6 +117,7 @@ class DocumentController extends Controller
      
      public function update($id, Request $request)
      	{
+           
             $isUpImg=false;
             $Document = \App\cms_document::find($id);
             $path=null;
@@ -153,6 +154,7 @@ class DocumentController extends Controller
             if($isUpImg){
             $Document->main_picture=$path;
             }
+
             $Document->private=$ChekPrivad;
             $Document->publish=$ChekPubli;
             $Document->modify_by=Auth::User()->id;

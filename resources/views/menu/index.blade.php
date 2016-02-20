@@ -18,8 +18,8 @@
 <div class="row text-center">
 	{{$menus->render()}}
 </div>
-	
-		<table class="table table-responsive table-hover"> 
+	<div class="table-responsive">
+		<table class="table table-hover"> 
 		<thead class="center-text">
 			<th class="ColumColor">
 			ID
@@ -61,7 +61,7 @@
 		@endforeach
 
 		</table>
-	
+	</div>
 	<div class="row text-center">
 		{{$menus->render()}}
 	</div>

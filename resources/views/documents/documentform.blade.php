@@ -42,7 +42,8 @@ else{
     $message='New'; 
     $Document=Null;
     $title=$Document;
-    $description=$Document;
+    $resumen=$Document;
+    $content=$Document;
     $ChekPrivado=$Document;
     $ChekPublicar = $Document; 
     $order_by= $Document;
@@ -58,9 +59,12 @@ else{
  {!!Form::open(['route'=>'admin.document.store','method'=>'POST','novalidate' => 'novalidate','files' => true])!!}
 @endif
 
-<div class="container-fluid">
+
   <div class="container-fluid">
-       <div class="row">
+      
+
+  <div class="row">
+   <div class="row">
             <div class="form-group">
                   <div class="col-md-12"><h3 class="head">DOCUMENTO</h3>
                       <p>PAGINA PARA LA DOCUMENTO</p>
@@ -95,6 +99,7 @@ else{
                 </div>
               </div>
           </div>
+
           <div class="row">
 
               <div class="form-group">
@@ -114,6 +119,7 @@ else{
                 </div>
                 </div>
           </div>
+
       <div class="row">
           <div class="col-md-12">
               {!!Form::label('date','Fecha De Publicación:')!!}  
@@ -157,24 +163,34 @@ else{
       
       </div>      
       </div>
-  <div class="form-group">
       <br>
       <div class="form-group">
           {!!Form::label('titulo','Titulo:')!!}
           {!!Form::text('title',null,['class'=>'form-control','placeholder'=>''])!!}
       </div>
-      <div class="form-group">
-          {!!Form::label('Resume','Resumen')!!}
-          {!!Form::textarea('resumen',null,['class'=>'form-control','placeholder'=>''])!!}
-      </div>
+          
           <div class="form-group">
-            {!!Form::label('contenido','Contenido')!!}
-            {!!Form::textarea('content',null,['class'=>'form-control','placeholder'=>''])!!}
+                {!!Form::label('Resume','Resumen')!!}
+                {!!Form::textarea('resumen',$resumen,['class'=>'form-control'])!!}
+                <script  type = "text/javascript" > 
+                  CKEDITOR.replace (  'resumen'  ); 
+                  CKEDITOR.add            
+                </script>
+          </div>
+
+          <div class="form-group">
+                {!!Form::label('Resume','Contenido')!!}
+                {!!Form::textarea('content',$content,['class'=>'form-control'])!!}
+                <script  type = "text/javascript" > 
+                  CKEDITOR.replace (  'content'  ); 
+                  CKEDITOR.add            
+                </script>
           </div>
 
        
 
-          {!!Form::submit( $botonTitulo,['class'=>'btn btn-danger'])!!}
+          {!!Form::submit( $botonTitulo,['class'=>'btn btn-primary'])!!}
+           {!! link_to('admin/document', 'Cancelar',array('class'=>'btn btn-danger')) !!}
 
         {!!Form::close()!!} 
           

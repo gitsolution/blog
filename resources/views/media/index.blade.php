@@ -19,8 +19,8 @@
 <div class="row text-center">
 	{{$medias->render()}}
 </div>
-	
-		<table class="table table-responsive table-hover"> 
+	<div class="table-responsive">
+		<table class="table table-hover"> 
 		<thead class="center-text">
 			<th class="ColumColor">
 			ID
@@ -40,13 +40,13 @@
 			<th colspan="2" class="center-text ColumColor">
 			Ordén
 			</th>
-			<th class="ColumColor">
+			<th class="ColumColor text-center">
 			Publicado
 			</th>
-			<th class="ColumColor">
+			<th class="ColumColor text-center">
 			Inicio
 			</th>	
-			<th colspan="2" class="ColumColor">
+			<th colspan="2" class="ColumColor text-center">
 			Acciones
 			</th>
 		</thead>
@@ -62,36 +62,36 @@
 				<td> {{$med->title}}</td>
 				<td> {{ $publish_date }}</td>		
 				<td>
-				{!!link_to('admin/item/'.$med->id, '',array('class'=>'glyphicon glyphicon-upload')) !!}
+				&nbsp;&nbsp;&nbsp;&nbsp;{!!link_to('admin/item/'.$med->id, '',array('class'=>'fa fa-upload fa-lg')) !!}
 				</td>         				
 				
 				<td> {{ $med->hits }}</td>	
 
-				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Down/'.$down.'/'.$med->id, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
+				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Down/'.$down.'/', '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
 
-				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Up/'.$up.'/'.$med->id, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
-				<td>
+				<td> {!! link_to('admin/mediaorder/'.$med->id.'/Up/'.$up.'/', '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
+				<td class="text-center">
 				<?php if($med->publish=='1'){?>
-				{!!  link_to('admin/mediapub/'.$med->id.'/False/'.$med->id, '',array('class'=>'glyphicon glyphicon-ok')) !!}
+				{!!  link_to('admin/mediapub/'.$med->id.'/False/', '',array('class'=>'glyphicon glyphicon-ok')) !!}
 				<?php } else{ ?>
-				{!! link_to('admin/mediapub/'.$med->id.'/True/'.$med->id, '',array('class'=>'glyphicon glyphicon-ban-circle')) !!}
+				{!! link_to('admin/mediapub/'.$med->id.'/True/', '',array('class'=>'glyphicon glyphicon-ban-circle')) !!}
 
 				<?php } ?>
 				</td>
-				<td> 
+				<td class="text-center"> 
 				<?php if($med->index_page=='1'){?>
-					{!! link_to('admin/mediaind/'.$med->id.'/False/'.$med->id, 'Ok',array('class'=>'btn btn-success')) !!}
+					{!! link_to('admin/mediaind/'.$med->id.'/False/', '',array('class'=>'fa fa-check-square-o fa-lg')) !!}
 				<?php } else{ ?>
-					{!! link_to('admin/mediaind/'.$med->id.'/True/'.$med->id, 'No',array('class'=>'btn btn-warning')) !!}
+					{!! link_to('admin/mediaind/'.$med->id.'/True/', '',array('class'=>'fa fa-square-o fa-lg')) !!}
 				<?php } ?>
 				</td>
-				<td>{!! link_to('admin/mediaedit/'.$med->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
+				<td class="text-center">{!! link_to('admin/mediaedit/'.$med->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
 				{!! link_to('admin/mediadel/'.$med->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td>    
-		    </td>
+		    
 			</tr>
 		@endforeach
 		</table>
-	
+	</div>
 	<div class="row text-center">
 		{{$medias->render()}}
 		

@@ -247,7 +247,9 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class=""  role="button" aria-expanded="false">
-                                {{ Auth::user()->email }} 
+
+                               <div class="UserColor">{{ Auth::user()->email }} </div>
+                                 
                             </a>
 
                           
@@ -258,7 +260,7 @@
                         </li>
                         <li>
                              {!!link_to('admin/menus', '&nbsp;&nbsp;&nbsp; Menú',array('class'=>'fa fa-file-o')) !!}
-                        </li>
+                   
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>

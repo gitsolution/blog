@@ -3,16 +3,16 @@
 
 
 <div class="container-fluid">
-<br>
+<br><div class="row">
 <div class="col-md-10"><h3>Catálago de cms</h3></div> <!--divide la columna en 10 y 2-->
 <div class="col-md-2">
  {!!Form::open()!!}
     {!! link_to('admin/cmsNew', 'Nuevo cms ',array('class'=>'btn btn-success ')) !!}
  {!!Form::close()!!}
 </div>
-
-    
-<table class="table table-hover">
+</div>
+    <div class="table-responsive">
+<table class="table table-hover ">
           <thead class="center-text" >
             <th class="ColumColor text-left" >
             ID
@@ -62,6 +62,7 @@
 		@endForeach
 
 	</table>
-</div>
+	</div>
+
 	
 @stop

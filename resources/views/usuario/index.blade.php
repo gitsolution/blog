@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
+
 <div class="container-fluid">
-<div class="row">
+
 <br>
 <div class="col-md-10"><h3>Catálago de usuarios</h3></div> <!--divide la columna en 10 y 2-->
 <div class="col-md-2">
@@ -10,6 +11,7 @@
     {!! link_to('admin/userNew', 'Nuevo usuario ',array('class'=>'btn btn-success ')) !!}
  {!!Form::close()!!}
 </div>
+
 </div>
 <div class="table-responsive">
 <table class="table table-hover">
@@ -60,6 +62,8 @@
             {!!$users->render()!!}
         </div>
 
-    </div>
+ 
+ </div>
+ 
 	
 @stop

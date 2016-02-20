@@ -70,8 +70,6 @@ else
             		</div>
 
 
-
-
       				<div class="col-xs-6">
                     	<div class="col-xs-2">
             				{!!Form::submit($nombreBoton,['class'=>'btn  btn-danger frmEspacios','placeholder'=>'Nombre'])!!}

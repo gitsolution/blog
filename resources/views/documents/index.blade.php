@@ -19,15 +19,16 @@
         <div class="row text-center">
             {{$Document->render()}}
         </div>
-    <table class="table table-hover table-responsive"> 
+<div class="table-responsive">
+    <table class="table table-hover "> 
           <thead class="center-text" >
             <th class="ColumColor" >
             ID
             </th> 
-            <th  class="ColumColor text-center" >
+            <th  class="ColumColor " >
          	  Categoria
             </th>
-            <th  class="ColumColor text-center" >
+            <th  class="ColumColor " >
             Titulo
             </th>
             <th class="ColumColor text-center" >
@@ -36,14 +37,15 @@
             <th class="ColumColor text-center" >
             Publicado
             </th>
-            <th class="ColumColor text-center" >
+            <th class="ColumColor " >
             Fecha Publicación
             </th>
-            <th class="ColumColor text-center">
+            <th class="ColumColor ">
             Vistas
             </th>
-            <th class="ColumColor text-center" colspan="2">Orden</th>
-            
+            <th class="ColumColor" colspan="2"s>
+            Orden
+            </th>
             <th class="ColumColor text-center" >
             Acciones
             </th>
@@ -59,15 +61,15 @@
         ?> 
           <tr>
           <td> {{$med->id}}</td>
-          <td> {{$med->id_category}}</td>
+          <td> {{$med->category}}</td>
           <td> {{$med->title}}</td>
           <td class="text-center"> 
             <?php if($med->private=='1'){?>
                 
-             {!!link_to('admin/documentPriva/'.$med->id.'/False', '',array('class'=>'glyphicon glyphicon-eye-close')) !!}
+             {!!link_to('admin/documentPriva/'.$med->id.'/False', '',array('class'=>'fa fa-lock fa-lg')) !!}
              <?php } 
              else{ ?>                    
-             {!!link_to('admin/documentPriva/'.$med->id.'/True', '',array('class'=>'glyphicon glyphicon-eye-open')) !!}
+             {!!link_to('admin/documentPriva/'.$med->id.'/True', '',array('class'=>'fa fa-unlock fa-lg')) !!}
                   <?php } ?>
           </td>
 
@@ -86,7 +88,7 @@
           </td>
           <td> {!!link_to('admin/documentorder/'.$med->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down'))!!}
           </td>
-          <td> 
+          <td class="text-center"> 
             {!!link_to_route('admin.document.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}
          
            {!!link_to('admin/documentdel/'.$med->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-trash')) !!}
@@ -96,6 +98,7 @@
 
 @endforeach
       </table> 
+      </div>
           <div class="row text-center">
                 {{$Document ->render()}}
                

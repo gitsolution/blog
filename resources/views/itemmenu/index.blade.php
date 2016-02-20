@@ -27,7 +27,8 @@
 	{{$itemMenus->render()}}
 </div>
 	<div class="row">
-		<table class="table table-responsive table-hover"> 
+	<div class="table-responsive">
+		<table class="table table-hover"> 
 		<thead class="center-text">
 			<th>
 			ID
@@ -75,6 +76,7 @@
 			</tr>
 		@endforeach
 		</table>
+		</div>
 	</div>
 	<div class="row text-center">
 		{{$itemMenus->render()}}

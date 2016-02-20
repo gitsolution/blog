@@ -1976,12 +1976,22 @@ pre code {
     margin-left: 63%;
     margin-top: 13%;
     width: 55%;}
+
   .publiChec{
  margin-left: 60%;
     margin-top: 8%;
     width: 33%;}
   
+  .publiChecme{
+ margin-left: 10%;
+    margin-top: 2%;
+    width: 28%;}
 
+    .privaChecme{
+ margin-left: 0%;
+    margin-top: 1%;
+    width: 55%;}
+  
   .col-md-1 {
     width: 8.33333333%;
   }

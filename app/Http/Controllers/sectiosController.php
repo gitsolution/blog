@@ -105,11 +105,27 @@ class sectiosController extends Controller
 
   public function update($id, Request $request)
       {
+        $ChekPubli='0';
+        if($request ['ChekPublicar']== 'on')
+        {
+          $ChekPubli='1';
+        }
+
+        $ChekPrivad='0';
+        if($request ['ChekPrivado']== 'on')   
+       {
+         $ChekPrivad='1';
+        }
+            
             $isUpImg=false;
             $Section = \App\cms_section::find($id);                      
             $path=null;
             $file = $request->file('file');               
            
+       
+
+        
+
             if($file!=""){
             $main_picture=$Section->main_picture;
 
@@ -129,9 +145,12 @@ class sectiosController extends Controller
             {
               $Section->main_picture=$path;
             }
-              $Section->modify_by=Auth::User()->id;
-              $Section->save();
-            Session::flash('message','Usuario Actualizado Correctamente');    
+ 
+            $Section->private=$ChekPrivad;
+            $Section->publish=$ChekPubli;
+            $Section->modify_by=Auth::User()->id;
+            $Section->save();
+            Session::flash('message','Seccion Actualizada Correctamente');    
             return redirect('admin/sections');       
       }
 
@@ -154,7 +173,7 @@ class sectiosController extends Controller
           $Section = \App\cms_section::find($id);
           $Section->active=0;
           $Section->save();
-          Session::flash('message','Usuario Eliminado Correctamente');    
+          Session::flash('message','Sección Eliminada Correctamente');    
           return redirect('/admin/sections');
       }
 
@@ -167,7 +186,7 @@ class sectiosController extends Controller
           $Section = \App\cms_section::find($id);
           $Section->order_by=$no;
           $Section->save();   
-          Session::flash('message','Ordén del Albúm actualizado');    
+         
           return redirect('/admin/sections');
   }
 
@@ -191,15 +210,15 @@ class sectiosController extends Controller
     
     if($priv=='True'){ $priv = 1;}else{ $priv = 0; }
     $Section = DB::table('cms_sections')->where('active','=', $flag)->where('id', '=',$id)->update(['private'=>$priv]);             
-      Session::flash('message','Ordén del Albúm actualizado');    
-    return redirect('/admin/sections')->with('message','store');
+      
+    return redirect('/admin/sections');
   }
 
   public function publicate($id,$pub){
     $flag=1;
     if($pub=='True'){ $pub = 1;}else{ $pub = 0; }
     $Section = DB::table('cms_sections')->where('active','=', $flag)->where('id', '=',$id)->update(['publish'=>$pub]);             
-      Session::flash('message','Ordén del Albúm actualizado');    
+     
     return redirect('/admin/sections');
   }
 

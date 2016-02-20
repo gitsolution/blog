@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Storage;
+use File;
+
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use DB;
+use View;
 use Session;
 use Redirect;
 
@@ -18,8 +23,6 @@ class DocumentController extends Controller
     
   	 public function index()
    		{
-       
-
     	   	$flag='1';  
              $Document = DB::table('cms_documents')
             ->join('cms_categories', 'cms_categories.id', '=', 'cms_documents.id_category')
@@ -30,15 +33,23 @@ class DocumentController extends Controller
    		}
 	 public function documentynew()
 	 {      
-      
+      $flag = 1;
 
-    		return view('documents/documentform');
+      $Sections = DB::table('cms_sections')->get();   
+
+      $Categories = DB::table('cms_categories')->where('active','=', $flag)->get();   
+
+
+    		//return view('documents/documentform');
+        return view('documents.documentform',['Sections'=>$Sections,'Categories'=>$Categories]);
+
     
     }
 
      public function store(Request $request)
     	{
-    		$ChekPubli='0';
+          $flag=1;
+       		$ChekPubli='0';
         	if($request ['ChekPublicar']== 'on')
         	{
           		$ChekPubli='1';
@@ -49,18 +60,32 @@ class DocumentController extends Controller
        		{
          		$ChekPrivad='1';
         	}
-             $flag=1;
-         	$orderBy =  (DB::table('cms_documents')->where('active','=', $flag)->max('order_by'))+1;    
-		  	\App\cms_document::create([
+ 
+          $orderBy =  (DB::table('cms_documents')->where('active','=', $flag)->max('order_by'))+1;    
+          $file = $request->file('file');   
+ 
+          if($file!=""){       
+          $file = $request->file('file');   
+          $path ='store/DOC/'.uniqid().'.'.$file->getClientOriginalExtension();
+          //indicamos que queremos guardar un nuevo archivo en el disco local
+           Storage::disk('local')->put($path,  File::get($file));
+          }
+          else{
+            $path="";
+          }
+          var_dump($path);
+          return;
+
+             \App\cms_document::create([
           	'id_category' => $request['id_category'],
           	'title' => $request['title'],
           	'resumen'=>$request['resumen'],
           	'content'=>$request['content'],
-          	'main_picture'=>$request['main_picture'],
+          	'main_picture'=>$path,
           	'private'=>$ChekPrivad,
           	'publish_date'=>$request['publish_date'],//$request['descripcion'],
           	'publish'=>$ChekPubli,
-          	'hits'=>'1',
+          	'hits'=>'0',
           	'uri'=>'cadena',//$request['descripcion'],
           	'order_by'=>$orderBy,//$request['descripcion'],
           	'active'=>'1',//$request[''],
@@ -75,17 +100,51 @@ class DocumentController extends Controller
 
      public function edit($id)
    		{
-       		$Document = \App\cms_document::find($id);
-       		return view('documents/documentform')->with('Document',$Document);
-     	}
+       	
+         $flag = 1;
+
+        $Document = \App\cms_document::find($id);
+
+        $Category = \App\cms_category::find($Document->id_category);
+        $Sections = DB::table('cms_sections')->get();   
+        $Categories = DB::table('cms_categories')->where('active','=', $flag)->where('id_section','=', $Category->id_section)->get(); 
+        return view('documents.documentform',['Sections'=>$Sections,'Categories'=>$Categories, 'Document'=>$Document]);
+     	
+
+
+      }
      
      public function update($id, Request $request)
      	{
-           	$Document = \App\cms_document::find($id);
-           	$Document->fill($request->all());
+            $isUpImg=false;
+            $Document = \App\cms_document::find($id);
+            $path=null;
+
+            $file = $request->file('file');    
+            if($file!=""){
+           
+            $main_picture=$Document->main_picture;
+
+            $path='store/DOC/'.uniqid().'.'.$file->getClientOriginalExtension();                        
+            
+              if($main_picture!=$path)
+              {
+                $isUpImg=true;
+                //indicamos que queremos guardar un nuevo archivo en el disco local
+                Storage::disk('local')->put($path,  File::get($file));
+
+              }
+            }
+          
+            $Document->fill($request->all());            
+            if($isUpImg){
+            $Document->main_picture=$path;
+            }
+
+
            	$Document->save();
            	Session::flash('message','Usuario Actualizado Correctamente');    
-           	return redirect('admin/document')->with('message','store');       
+           	return redirect('admin/document');       
      	}
      public function delete($id)
 	    {
@@ -98,11 +157,19 @@ class DocumentController extends Controller
 
     public function deletePicture($id)
       {
-          $Document = \App\cms_category::find($id);
+        $flag=1;
+         $Document = \App\cms_document::find($id);
+        $Category = \App\cms_category::find($Document->id_category);
+        $Sections = DB::table('cms_sections')->get();   
+        $Categories = DB::table('cms_categories')->where('active','=', $flag)->where('id_section','=', $Category->id_section)->get(); 
+     
           $Document->main_picture="";
           $Document->save();
-          Session::flash('message','Imagen Eliminada Correctamente'); 
-          return view('documents.documentform',['Document'=>$Document]);
+          Session::flash('message','Imagen Eliminada Correctamente');      
+        return view('documents.documentform',['Sections'=>$Sections,'Categories'=>$Categories, 'Document'=>$Document]);
+     
+
+
       }
 
 
@@ -136,6 +203,28 @@ class DocumentController extends Controller
           	Session::flash('message','Ordén del Albúm actualizado');    
           	return redirect('/admin/document')->with('message','store');
   		}
+
+
+     public function getCategories($id_section, Request $request)
+      {
+        $Categories=null;
+        if($request->ajax()){
+          $flag=1;
+          $Categories = DB::table('cms_categories')->where('active','=', $flag)->where('id_section', '=',$id_section)->get();     
+          return response()->json($Categories);
+       }  
+      }
+
+
+     public function getEditCategories($no, $id_section, Request $request)
+      {
+        $Categories=null;
+        if($request->ajax()){
+          $flag=1;
+          $Categories = DB::table('cms_categories')->where('active','=', $flag)->where('id_section', '=',$id_section)->get();     
+          return response()->json($Categories);
+       }  
+      }
 
   	public function setOrderItem($flag,$orderBy, $no)
   		{

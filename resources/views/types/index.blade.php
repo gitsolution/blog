@@ -12,8 +12,10 @@
  {!!Form::close()!!}
 </div>
     </div>
+
         <div class="row text-center">
             {{$Types->render()}}
+
         </div>
     <table class="table table-hover table-responsive"> 
           <thead class="center-text" >

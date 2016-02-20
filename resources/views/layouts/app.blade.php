@@ -8,10 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
  
     {!!Html::style('css/bootstrap.css')!!}
     {!!Html::style('css/admin.css')!!}
+    {!!Html::script('js/ckeditor.js')!!}
+    {!!Html::script('js/sample.js')!!}
 
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
     {!!Html::style('../bower_components/bootstrap/dist/css/bootstrap.min.css')!!}
@@ -36,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="http://itsolution.mx" target="_blank">IT Solution. Web Solution.</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -244,13 +247,17 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class=""  role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} 
+                                {{ Auth::user()->email }} 
                             </a>
 
                           
                         </li>
                     @endif
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li>
+                        {!!link_to('admin/perfilNew', '&nbsp;&nbsp;&nbsp; Perfil',array('class'=>'fa fa-user')) !!}
+                        </li>
+                        <li>
+                             {!!link_to('admin/menus', '&nbsp;&nbsp;&nbsp; Menú',array('class'=>'fa fa-file-o')) !!}
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
@@ -262,15 +269,6 @@
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
-
- 
-           
-
-
-
-
-
-
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
@@ -295,10 +293,8 @@
                                    
                                     <!-- /.nav-third-level --><ul class="nav nav-second-level">
                                       <li>
-                                            <a href="#" class="">&nbsp;&nbsp;&nbsp; Tipo Menú </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="">&nbsp;&nbsp;&nbsp; Elementos</a>
+                                              {!!link_to('admin/menus', '&nbsp;&nbsp;&nbsp; Menú',array('class'=>'fa fa-file-o')) !!}
+
                                         </li>
                                     </ul>
                                 </li>
@@ -324,28 +320,18 @@
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
-                                </li>
-                            
-                            
-                           
+                                </li>                           
                                 <li>
                                     <a href="#" class="fa fa-camera"> Media <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
                                             {!!link_to('admin/media', '&nbsp;&nbsp;&nbsp;Albums',array('class'=>'fa fa-picture-o ')) !!}
                                         </li>
-                                        <li>
-                                              {!!link_to('admin/item', '&nbsp;&nbsp;&nbsp; Imagenes',array('class'=>'fa fa-file-image-o')) !!}
-                                        </li>
                                     
                                     </ul>
                                     <!-- /.nav-third-level -->
-                                </li>
-                            
-                            <!-- /.nav-second-level -->
-                        
-
-
+                                </li>                            
+                            <!-- /.nav-second-level -->                        
                         <li>
                             <a href="s"><i class="fa fa-users fa-fw"></i>Usuarios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -367,35 +353,13 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
 
- <div class="contenedor">
+ <div id="page-wrapper">
          
             @yield('content')
 
@@ -445,16 +409,23 @@
     });
     </script>
 
- <script>
- 
-  $( document ).ready(function() {
-   // $("#imgLoad").change(function(){
-        imageUp(this);
-    //});
-  });
- 
-  </script>
+<script>
 
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+$("#id_section").change(event => {    
+    $.get(`getSelect/${event.target.value}`, function(res, sta){
+        $("#id_category").empty();
+        res.forEach(element => {
+            $("#id_category").append(`<option value=${element.id}> ${element.title} </option>`);
+        });
+    });
+});
+
+</script>
+
+<script>
+  initSample();
+</script>
 </body>
-
 </html>

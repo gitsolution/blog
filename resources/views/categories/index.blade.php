@@ -50,7 +50,7 @@
           </thead>
 
 
-@foreach($Catego as $med)
+    @foreach($Catego as $med)
         <?php 
             $publish_date = substr($med->publish_date,0,10);
             $down=$med->order_by-1;
@@ -59,15 +59,15 @@
         ?> 
           <tr>
           <td> {{$med->id}}</td>
-          <td> {{$med->id_section}}</td>
+          <td> {{$med->section}}</td>
           <td> {{$med->title}}</td>
           <td class="text-center"> 
             <?php if($med->private=='1'){?>
                 
-             {!!link_to('admin/categoryPriva/'.$med->id.'/False', '',array('class'=>'glyphicon glyphicon-eye-close')) !!}
+             {!!link_to('admin/categoryPriva/'.$med->id.'/False', '',array('class'=>'fa fa-lock fa-lg')) !!}
              <?php } 
              else{ ?>                    
-             {!!link_to('admin/categoryPriva/'.$med->id.'/True', '',array('class'=>'glyphicon glyphicon-eye-open')) !!}
+             {!!link_to('admin/categoryPriva/'.$med->id.'/True', '',array('class'=>'fa fa-unlock fa-lg')) !!}
                   <?php } ?>
           </td>
 

@@ -12,9 +12,8 @@ if(isset($roles)) {
     $chk=$roles->active;
     $nameButtom="Editar";
 
-    if($chk==1)
+      if($roles->active==1)
       {
-        echo "";
         $chkActivado = "checked";
       }
       
@@ -45,8 +44,6 @@ else
                 @else
                   {!!Form::open(['route'=>'admin.rol.store','method','POST'])!!}  
                 @endif
-
-                  {!!Form::open(['route'=>'admin.rol.store','method','POST'])!!}  
                
                     <div class="form-group" id="frmLogin">
                            <div class="col-xs-6">

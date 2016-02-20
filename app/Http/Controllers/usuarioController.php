@@ -17,12 +17,15 @@ class usuarioController extends Controller
 	{	
         $flag="1";
 		
-        $users = DB::table('users')
-            ->leftJoin('usr_login_roles', 'users.id', '=', 'usr_login_roles.id_login')   
-            ->leftJoin('usr_roles', 'usr_login_roles.id_role', '=', 'usr_roles.id')       
-            ->select('users.*', 'usr_roles.title as usuarios')
-            ->where('users.active','=', $flag)            
-            ->orderBy('name','DESC')->paginate(20);
+       
+        $users = DB::table('usr_profiles')
+            ->leftJoin('users', 'usr_profiles.id', '=', 'users.id')   
+            ->leftJoin('usr_login_roles', 'usr_login_roles.id_login', '=', 'users.id') 
+            ->leftJoin('usr_roles', 'usr_login_roles.id_login', '=', 'usr_roles.id')        
+            ->select('usr_profiles.*', 'usr_roles.title as roles','users.email as email')
+            ->where('users.active','=', $flag)    
+             ->groupBy('users.id')        
+            ->orderBy('usr_profiles.name','DESC')->paginate(20);
             
 		return view('usuario.index',compact('users'));
 	}
@@ -70,6 +73,9 @@ class usuarioController extends Controller
     }
 
     public function update($id,Request $request){
+       
+        var_dump($id);
+        return ;
         $user = User::find($id);
         $user->fill($request->all());      
         $user->save();
@@ -78,8 +84,6 @@ class usuarioController extends Controller
         $usrRole= new usr_login_role;
         $usrRole->where('id_login', '=', $id)
         ->update(['id_role' => $idRole]);
-
-        return "actualizado";
             
         return Redirect::to("usuario");
     }

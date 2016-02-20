@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use DB;
 use Session;
 use Redirect;
+use Auth;
 
 class sectiosController extends Controller
 {
@@ -85,9 +86,9 @@ class sectiosController extends Controller
           'uri'=>'cadena',//$request['descripcion'],
           'order_by'=>$orderBy,//$request['descripcion'],
           'active'=>'1',//$request[''],
-          'register_by'=>'1',//,$request[''],
-          'modify_by'=>'1',
-          'register_by'=>'1',
+          'register_by'=>Auth::User()->id,
+          'modify_by'=>Auth::User()->id,
+      
           ]);
                       
 
@@ -124,10 +125,12 @@ class sectiosController extends Controller
             }
           
             $Section->fill($request->all());
-            if($isUpImg){
-            $Section->main_picture=$path;
+            if($isUpImg)
+            {
+              $Section->main_picture=$path;
             }
-            $Section->save();
+              $Section->modify_by=Auth::User()->id;
+              $Section->save();
             Session::flash('message','Usuario Actualizado Correctamente');    
             return redirect('admin/sections');       
       }
@@ -200,6 +203,14 @@ class sectiosController extends Controller
     return redirect('/admin/sections');
   }
 
+
+    public function getData($id){
+          $Sections = DB::table('cms_sections')
+            ->select('cms_sections.id', 'cms_sections.title as section')
+            ->where('cms_sections.active','=', $flag)            
+            ->orderBy('order_by','DESC')->get();
+            return $Sections;
+    }
 
 
 }

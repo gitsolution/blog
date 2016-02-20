@@ -27,28 +27,28 @@
 	<div class="row">
 		<table class="table table-responsive table-hover"> 
 		<thead class="center-text">
-			<th>
+			<th class="ColumColor text-center" >
 			ID
 			</th>	
-			<th>
+			<th class="ColumColor text-center" >
 			Albúm
 			</th>
-			<th>
+			<th class="ColumColor text-center" >
 				Imagen
 			</th>
-			<th>
+			<th class="ColumColor text-center" >
 			Fecha Publicación
 			</th>
-			<th>
+			<th class="ColumColor text-center" >
 			Visualizaciones
 			</th>
-			<th colspan="2" class="center-text">
+			<th colspan="2" class="ColumColor text-center" >
 			Ordén
 			</th>
-			<th>
+			<th class="ColumColor text-center" >
 			Publicado
 			</th>
-			<th colspan="2" >
+			<th class="ColumColor text-center"  >
 			Acciones
 			</th>
 		</thead>
@@ -72,17 +72,17 @@
 				</td>		
 				<td> {{ $publish_date }}</td>		
 				<td> {{ $item->hits }}</td>	
-				<td> {!! link_to('admin/itemorder/'.$item->id.'/Down/'.$down, '-',array('class'=>'btn btn-info')) !!}</td>
-				<td> {!! link_to('admin/itemaorder/'.$item->id.'/Up/'.$up, '+',array('class'=>'btn btn-info')) !!}</td>
-				<td>
+				<td> {!! link_to('admin/itemorder/'.$item->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
+				<td> {!! link_to('admin/itemaorder/'.$item->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
+				<td class="text-center">
 				<?php if($item->publish=='1'){?>
-				{!!  link_to('admin/itempub/'.$item->id.'/False', 'Ok',array('class'=>'btn btn-success')) !!}
+				{!!  link_to('admin/itempub/'.$item->id.'/False', '',array('class'=>'glyphicon glyphicon-ok')) !!}
 				<?php } else{ ?>
-				{!! link_to('admin/itempub/'.$item->id.'/True', 'No',array('class'=>'btn btn-warning')) !!}
+				{!! link_to('admin/itempub/'.$item->id.'/True', '',array('class'=>'glyphicon glyphicon-ban-circle')) !!}
 				<?php } ?>
 				</td>
-				<td>{!! link_to('admin/itemedit/'.$item->id, 'Editar ',array('class'=>'btn btn-info')) !!}</td>         
-				<td>{!! link_to('admin/itemdel/'.$item->id, 'Eliminar',array('class'=>'btn btn-danger')) !!}</td>    
+				<td class="text-center" >{!! link_to('admin/itemedit/'.$item->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
+				{!! link_to('admin/itemdel/'.$item->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td>    
 		    </td>
 			</tr>
 		@endforeach

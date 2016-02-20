@@ -13,10 +13,8 @@ class CreateUsrProfilesTable extends Migration
     public function up()
     {
         Schema::create('usr_profiles', function (Blueprint $table) {
-
-            
-            $table->integer('id_login')->unsigned();
-            $table->foreign('id_login')->references('id') ->on('usr_logins');
+            $table->integer('id')->unsigned();
+            $table->foreign('id')->references('id') ->on('users');
             $table->string('name',500);
             $table->string('lastname',500);
             $table->text('picture');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use View;
+use DB;
 use Illuminate\Http\Request;
 use App\cms_access;
 use App\Http\Requests;
@@ -11,7 +12,9 @@ class configController extends Controller
 {
     public function index()
     {
-    	$modulos=\App\cms_access::All();
+    	
+       
+        $modulos=DB::table('cms_accesses')->where('active',1)->get();
     	return view('configuracion/index',compact('modulos'));
     }
 

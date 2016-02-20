@@ -8,13 +8,14 @@ $categories= App\usr_role::lists('title','id');
 $banderaModulo=0;
 
 
-if(isset($modulos)) {
+if(isset($modulos)) 
+{
     $banderaModulo=1;
 }
 
 else
 {
-
+    $modulos=null;
 }
 
 
@@ -30,10 +31,10 @@ else
                     <div class="col-xs-12">
                         {!! Form::label('id', 'Selecciona el rol') !!}
                         {!! Form::select('id',$categories, null,['class'=>'form-control select2']) !!}
-                    </div>
+                    
 
 
-                    <br><br><br><br>
+                    <br><br>
                     @if($banderaModulo==1)
                         @foreach($modulos as $modulo)
                         <div class="row" >
@@ -42,7 +43,7 @@ else
                                  <button type="submit" class="btn btn-default btn-lg btn-block" name="boton" value="<?php echo $modulo->id ?>"><?php echo $modulo->title ?></button>
                                 </div>
                             </div>
-                        </div><br>
+                        </div><br>  
                                 
                         @endForeach 
                     @else
@@ -50,7 +51,7 @@ else
                         </div>
                     @endif
                     <button type="submit" class="btn btn-info">Enviar</button>
-
+</div>
                  {!!Form::close()!!}
                         
     </div>

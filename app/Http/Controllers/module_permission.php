@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use View;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
@@ -17,7 +17,8 @@ class module_permission extends Controller
     public function edit($id)
     {
     	$user = User::find($id);
-        return view('modules/index')->with('user',$user);
+        $idUser=$id;
+        return View::make('modules/index',compact('user','idUser'));
     }
 
     public function store()

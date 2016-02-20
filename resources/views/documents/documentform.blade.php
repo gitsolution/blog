@@ -5,14 +5,15 @@
 <?php  
 if(isset($Document)) 
 {
-    $botonTitulo='Editar'; // para cambiar de nombre al submit si es editar o guardar
+    $botonTitulo='Guardar'; // para cambiar de nombre al submit si es editar o guardar
     $message='Edit';
     $id=$Document->id;
     $id_category=$Document->id_category;
     $title=$Document->title;
     $resumen=$Document->resumen;
     $content=$Document->content;
-    $main_picture=$Document->main_picture;
+
+
   if($Document->private=="0")
       {
         $ChekPrivado = "";
@@ -31,29 +32,30 @@ if(isset($Document))
     $uri=$Document->uri;
     $hits=$Document->hits;
     $order_by= $Document->order_by;
-
-
+    $path='../../../'.$Document->main_picture;
+ 
 }
 
 else{ 
-    $botonTitulo=' Crear';
+    $publish_date= date('Y-m-d');
+    $botonTitulo='Guardar';
     $message='New'; 
     $Document=Null;
     $title=$Document;
     $description=$Document;
     $ChekPrivado=$Document;
-    $ChekPublicar = $Document;
-    $publish_date= $Document;
+    $ChekPublicar = $Document; 
     $order_by= $Document;
     $id_category=$Document;
     $id=$Document;
+    $path=$Document;
   }
  ?>
 
 @if($message=='Edit')
- {!!Form::model($Document,['route'=>['admin.document.update',$Document->id],'method'=>'PUT'])!!} 
+ {!!Form::model($Document,['route'=>['admin.document.update',$Document->id],'method'=>'PUT','novalidate' => 'novalidate','files' => true])!!} 
 @else
- {!!Form::open(['route'=>'admin.document.store','method'=>'POST'])!!}
+ {!!Form::open(['route'=>'admin.document.store','method'=>'POST','novalidate' => 'novalidate','files' => true])!!}
 @endif
 
 <div class="container-fluid">
@@ -65,7 +67,11 @@ else{
                   </div>
                 <div class="col-md-3">
                   {!!Form::label('seccion','Sección:')!!}
-                  {!!Form::select('id_section', \App\cms_section::lists('title','id'),null,['class'=>'form-control select2'] )!!}
+                  <select name="id_section" id="id_section"  class="form-control select2">
+                  @foreach($Sections as $sec)
+                  <option value="<?php echo $sec->id; ?>"><?php echo $sec->title; ?></option>
+                  @endforeach
+                </select>                  
                 <br>
                 </div>
                 <div class="col-md-5">
@@ -95,7 +101,15 @@ else{
             
               <div class="col-md-3">
                   {!!Form::label('seccion','Categoria:')!!}
-                  {!!Form::select('id_category', \App\cms_category::lists('title','id'),null,['class'=>'form-control select2'] )!!}
+
+
+                  <select name="id_category" id="id_category" class="form-control select2">
+                  @foreach($Categories as $cat)
+
+                  <option value="<?php echo $cat->id; ?>"><?php echo $cat->title; ?></option>
+                  @endforeach
+                </select>
+
                 <br>
                 </div>
                 </div>
@@ -157,10 +171,9 @@ else{
             {!!Form::label('contenido','Contenido')!!}
             {!!Form::textarea('content',null,['class'=>'form-control','placeholder'=>''])!!}
           </div>
-         <div class="form-group">
-                     {!!Form::label('Imagen Principal')!!}
-                     {!!Form::file('main_picture')!!}
-          </div>
+
+       
+
           {!!Form::submit( $botonTitulo,['class'=>'btn btn-danger'])!!}
 
         {!!Form::close()!!} 

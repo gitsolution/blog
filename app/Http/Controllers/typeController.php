@@ -6,6 +6,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 use Session; 
+use User;
+use Auth;
 
 class typeController extends Controller
 {
@@ -16,7 +18,7 @@ class typeController extends Controller
     
   public function index()
    {
-       
+      
     $flag='1';  
     $Types =  DB::table('cms_types')->where('active','=', $flag)->paginate(20);
     
@@ -40,10 +42,12 @@ public function typenew(){
       \App\cms_type::create([
       'title' => $request['title'],
       'description'=>$request['description'],
-      'active'=>'1',//$request[''],
-      'register_by'=>'1',//,$request[''],
-      'modify_by'=>'1',
-      'register_by'=>'1',
+      'active'=>'1',
+
+      'register_by'=>Auth::User()->id,
+      
+      'modify_by'=>Auth::User()->id,
+      
       ]);
       return redirect('admin/types');
       
@@ -58,6 +62,7 @@ public function typenew(){
       {
             $Types = \App\cms_type::find($id);
             $Types->fill($request->all());
+            $Types->modify_by=Auth::User()->id;
             $Types->save();
             Session::flash('message','Usuario Actualizado Correctamente');    
             return redirect('admin/types')->with('message','store');       

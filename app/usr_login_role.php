@@ -10,5 +10,5 @@ class usr_login_role extends Model
 
     protected $fillable=['id_login','id_role','active'];
 
-    protected $guarded=['id_login'];
+    protected $guarded=['id_login','id_role'];
 }

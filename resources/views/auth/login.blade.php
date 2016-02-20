@@ -97,15 +97,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Olvidaste tu contraseña?</a>
-                                <a class="btn btn-link" href="{{ url('/register') }}">Registrar un nuevo usuario</a>
+                            <div class="form-group">
+                                 <div class="col-md-12 col-md-offset-4">
+                                    <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Olvidaste tu contraseña?</a>
+                                    <a class="btn btn-link" href="{{ url('/register') }}">Registrar un nuevo usuario</a>
+                                </div>
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
+             
    
 <!-- fin de contenido-->
 

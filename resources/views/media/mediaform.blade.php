@@ -38,10 +38,19 @@ if(isset($media)) {
  	  {!!Form::label('Nombre:')!!}
  	  {!!Form::text('title',$title,['class'=>'form-control', 'placeholder'=>'Ingresa el Nombre del Albúm'])!!}
  </div>
- <div class="form-group" >
- 	  {!!Form::label('Descripción:')!!}
- 	  {!!Form::textarea('description',$description,['class'=>'form-control', 'placeholder'=>'Ingresa la Descripción del Albúm'])!!}
-</div>
+
+
+
+        <div class="form-group">
+          {!!Form::label('Descripción:')!!}
+          {!!Form::textarea('content',$description,['class'=>'form-control'])!!}
+          <script  type = "text/javascript" > 
+            CKEDITOR . replace (  'content'  ); 
+            CKEDITOR . add            
+          </script>
+      </div>
+
+
 <div class="form-group" >	 
 	<div class="col-md-3">
 	 	  {!!Form::label('Fecha Publicación:')!!}

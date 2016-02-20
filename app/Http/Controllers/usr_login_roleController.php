@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\usr_login_role;
 use App\usr_role;
+use App\User;
 use DB;
+use View;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -13,8 +15,7 @@ class usr_login_roleController extends Controller
 {
 	 public function index()
 	{	
-		$usrRole = usr_role::paginate(20);
-		return view('assignment.index',compact('usrRole'));
+		
 	}
 
      public function store(Request $request)
@@ -30,9 +31,7 @@ class usr_login_roleController extends Controller
                     'id_login'=>$request['idUser'],
                     'id_role'=>$request['id'],
                     'active'=> $activado,
-                ]);
-
-        
+                ]);        
 
         return view('layouts.app');
     }
@@ -48,10 +47,28 @@ class usr_login_roleController extends Controller
         return view('roles.rolesform')->with('roles',$roles);
     }
 
+    public function update($id,Request $request)
+    {
+        $idRole = $request['id'];
+        $usrRole= new usr_login_role;
+        $usrRole->where('id_login', '=', $id)
+        ->update(['id_role' => $idRole]);
+         
+        return Redirect::to("usuario");
+    }
+
      public function delete($id)
     {
         $query=usr_role::destroy($id);
 
         return view('layouts.app');
+    }
+
+    public function obtener($id)
+    {
+        $user = User::find($id);
+        $idUser=$id;
+
+        return View::make('modules/index',compact('user','idUser'));
     }
 }

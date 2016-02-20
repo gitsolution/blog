@@ -41,7 +41,8 @@ else{
     $message='New'; 
     $Catego=Null;
     $title=$Catego;
-    $description=$Catego;
+    $resumen=$Catego;
+    $content=$Catego;
     $ChekPrivado=$Catego;
     $ChekPublicar = $Catego;
     $publish_date = date('Y-m-d');
@@ -145,16 +146,25 @@ else{
      <div class="row">
       <div class="form-group">
           {!!Form::label('titulo','Titulo:')!!}
-          {!!Form::text('title',null,['class'=>'form-control','placeholder'=>''])!!}
+          {!!Form::text('title',$title,['class'=>'form-control','placeholder'=>''])!!}
       </div>
       <div class="form-group">
           {!!Form::label('Resume','Resumen')!!}
-          {!!Form::textarea('resumen',null,['class'=>'form-control','placeholder'=>''])!!}
+          {!!Form::textarea('resumen',$resumen,['class'=>'form-control'])!!}
+          <script  type = "text/javascript" > 
+             CKEDITOR . replace (  'resumen'  ); 
+            CKEDITOR . add            
+          </script>
       </div>
-          <div class="form-group">
-            {!!Form::label('contenido','Contenido')!!}
-            {!!Form::textarea('content',null,['class'=>'form-control','placeholder'=>''])!!}
-          </div>
+
+      <div class="form-group">
+          {!!Form::label('Resume','Contenido')!!}
+          {!!Form::textarea('content',$content,['class'=>'form-control'])!!}
+          <script  type = "text/javascript" > 
+            CKEDITOR . replace (  'content'  ); 
+            CKEDITOR . add            
+          </script>
+      </div>
          
           {!!Form::submit( $botonTitulo,['class'=>'btn btn-danger'])!!}
 

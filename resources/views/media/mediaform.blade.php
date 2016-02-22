@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
- <div class="container-fluid">
- <br>
 <?php  
 if(isset($media)) {
 	$message='Edit';
@@ -46,6 +43,8 @@ if(isset($media)) {
 @else
  {!!Form::open(['route'=>'admin.media.store','method','POST'])!!} 
 @endif
+ <div class="container-fluid">
+ <br>
  <div class="row">
  <div class="form-group" >
 
@@ -104,4 +103,5 @@ if(isset($media)) {
 </div>
  {!!Form::close()!!}
  </div>
+</div>
 @stop

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
- <div class="container-fluid">
+ 
 <?php  
 
 if(isset($item)) {
@@ -49,6 +49,7 @@ if(isset($item)) {
 @else
  {!!Form::open(['route'=>'admin.item.store','method','POST','novalidate' => 'novalidate','files' => true])!!} 
 @endif
+<div class="container-fluid">
  <div class="row">
  <div class="form-group" >
   

@@ -34,7 +34,8 @@ Route::get('/','LogController@logout');
     /////  INDEX PAGE ADMIN
 Route::get('/admin', 'HomeController@index');
 /// INDEX PAGE FRONTEND
-Route::get('index','frontController@index');
+Route::resource('inicio','frontController@index');
+Route::resource('historia','frontController@historia');
 Route::get('contacto','frontController@contacto');
 Route::get('galeria','frontController@galeria');
 
@@ -48,6 +49,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
 
+
 /*************RUTAS DE TYPES******************************/
 Route::get('admin/typesnew','typeController@typenew');//abre el formulario para nuevo typo
 Route::resource('admin/types','typeController'); //manda a llamar la funcion store
@@ -55,6 +57,7 @@ Route::get('admin/typesedit/{id}','typeController@edit');
 Route::put('admin/types/update','typeController@update');
 ///// ELIMINAR
 Route::get('admin/typedel/{id}','typeController@delete');
+
 
 /*************RUTAS DE CATEGORIAS******************************/
 Route::get('admin/categorynew','categoryController@categorynew');

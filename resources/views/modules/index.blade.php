@@ -47,6 +47,7 @@
                 @else
                     {!!Form::open(['route'=>'admin.assignment.store','method','POST'])!!}
                 @endif
+                <div class="container-fluid">
                         <div class="col-md-6">
                             {!! Form::hidden('idUser', $idUsuario) !!}
                             {!! Form::label('id', 'Usuario') !!}
@@ -76,7 +77,7 @@
                                 {!!Form::submit($button,['class'=>'btn  btn-danger frmEspacios','placeholder'=>'Nombre'])!!}
                              </div>
                         </div>   
-
                     {!!Form::close()!!}
+                    </div>
 
 @stop

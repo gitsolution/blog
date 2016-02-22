@@ -9,14 +9,17 @@ use App\Http\Controllers\Controller;
 
 class frontController extends Controller
 {
-    /*public function __construct()
-    {
-        $this->middleware('auth',['only'=>'admin']);
-    }*/
+
 
     public function index()
     {
-    	return view('frontend.index');
+    	return view('frontend.home');
     } 
+    
+    public function historia()
+    {
+    	return view('frontend.home');
+    } 
+    
     
 }

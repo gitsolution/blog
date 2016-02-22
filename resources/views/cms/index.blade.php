@@ -63,6 +63,6 @@
 
 	</table>
 	</div>
-
+</div>
 	
 @stop

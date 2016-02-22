@@ -12,8 +12,6 @@ class configController extends Controller
 {
     public function index()
     {
-    	
-       
         $modulos=DB::table('cms_accesses')->where('active',1)->get();
     	return view('configuracion/index',compact('modulos'));
     }

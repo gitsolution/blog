@@ -13,14 +13,14 @@ if(isset($cms)) {
     $nameButtom="Editar";
 
     if($chk==1)
-      {
-        $chkActivado = "checked";
-      }
+    {
+       $chkActivado = "checked";
+    }
       
-      else
-      {
-        $chkActivado = ""; 
-      } 
+    else
+    {
+      $chkActivado = ""; 
+    } 
 }
 
 else

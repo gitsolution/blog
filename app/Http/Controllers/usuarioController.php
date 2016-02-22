@@ -61,7 +61,7 @@ class usuarioController extends Controller
     		'name'=>$request['name'],
             'lastName'=>$request['lastName'],
     		'email'=>$request['email'],
-    		'password'=>bcrypt($request['password']),
+    		'password'=>($request['password']),//bcrypt
             'active'=>$activado,
             'register_by'=>Auth::User()->id,
             'modify_by'=>Auth::User()->id,
@@ -84,7 +84,7 @@ class usuarioController extends Controller
             'name'=>$request['name'],
             'lastName'=>$request['lastName'],
             'email'=>$request['email'],
-            'password'=>bcrypt($request['password']),
+            'password'=>($request['password']),//bcrypt
             'active'=>'1',
         ]);
 

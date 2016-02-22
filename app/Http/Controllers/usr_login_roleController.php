@@ -24,81 +24,47 @@ class usr_login_roleController extends Controller
      public function store(Request $request)
     {
        $b=0;
-       $vRol;
        $c=0;
+       $rolActive = array();
+       $rolNoActive=array();
+        
        $dato = $request['vRoles'];
        $num=count($dato);        
        $roles=DB::table('usr_roles')->select('id')->get();
-        
-       echo "total: ".$num."<br>";
 
         foreach ($roles as $rol) 
         {
-        for($i=0;$i<$num;$i++)
-        {      
-        if($c<$num)
-        {  
-            echo "dato[$i]".$dato[$i]."<br>";
-            foreach ($roles as $rol) 
+            for($i=0;$i<$num;$i++)
             {
-                echo $rol->id."==".$dato[$i]."<br>";
                 if($rol->id==$dato[$i])
-                {   echo "iguales".$rol->id."<br>";
+                {  
+                    $rolActive[$c]=$rol->id;
+                    //echo "Active: ".$rolActive[$c]."<br>";
                     $b=1;
-                    break;
-                }
-
-                else
-                { echo "no iguales".$rol->id."<br>";
-                    $b=0;
-                    $vRol=$rol->id;
-                }
-            }
-
-            $c++;
-            if($b==1)
-            {
-                //echo "Con valor 1: ".$dato[$i]."<br>";                
-                /*\App\usr_login_role::create([
+                    \App\usr_login_role::create([
                         'id_login'=>$request['idUser'],
                         'id_role'=>$dato[$i],
                         'active'=>'1',
                         'register_by'=>Auth::User()->id,
                         'modify_by'=>Auth::User()->id,
                     ]);   
-                    */
+                }
             }
 
-            else
+            if($b==0)
             {
-                //echo "Con valor 0: ".$vRol=$rol->id."<br>"; 
-                /*
+                $rolNoActive[$c]=$rol->id;
+                //echo "No: ".$rolNoActive[$c]."<br>";
                 \App\usr_login_role::create([
                         'id_login'=>$request['idUser'],
                         'id_role'=>$rol->id,
                         'active'=> '0',
                         'register_by'=>Auth::User()->id,
                         'modify_by'=>Auth::User()->id,
-                    ]);   */
-
+                    ]);
             }
             $b=0;
-            }
-            }
-            break;
-         }
-       
-       return ;
-
-
-       for($i=0;$i<$num;$i++)
-       {
-           \App\usr_login_role::create([
-                    'id_login'=>$request['idUser'],
-                    'id_role'=>$dato[$i],
-                    'active'=> '1',
-                ]);   
-           
+            $c++;
         }
 
         return view('layouts.app');
@@ -117,28 +83,42 @@ class usr_login_roleController extends Controller
 
     public function update($id,Request $request)
     {
-        /*actualiza rol*/
-       $dato = $request['vRoles'];
-        $num=count($dato);   
-
-      
-        for($i=0;$i<$num;$i++)
+        $dato = $request['vRoles'];
+        $num=count($dato);
+        $roles=DB::table('usr_roles')->select('id')->get();
+        $c=0;
+        $b=0;
+        
+        foreach ($roles as $rol) 
         {
-            $userExist = DB::table('usr_login_roles')->where('id_login',$id)->where('id_role',$dato[$i])->select('id_login','id_role','active')->first();
+            for($i=0;$i<$num;$i++)
+            {
+                if($rol->id==$dato[$i])
+                {  
+                    $rolActive[$c]=$rol->id;
+                    //echo "Active: ".$rolActive[$c]."<br>";
+                    $usrRole= new usr_login_role;
+                    $usrRole->where('id_login', '=', $id)->where('id_role','=',$rolActive[$c])
+                    ->update(['active' => 1]); 
+                    $b=1;
+                    
+                }
+            }
 
-           var_dump($userExist);
-           
+            if($b==0)
+            {
+                $rolNoActive[$c]=$rol->id;
+                $usrRole= new usr_login_role;
+                $usrRole->where('id_login', '=', $id)->where('id_role','=',$rolNoActive[$c])
+                ->update(['active' => 0]); 
+                
+            }
+            $b=0;
+            $c++;
         }
 
-        return;
-
-
-        echo $idRole = $request['id'];
-        $usrRole= new usr_login_role;
-        $usrRole->where('id_login', '=', $id)
-        ->update(['id_role' => $idRole]);
-
         return view('layouts.app');
+
     }
 
      public function delete($id)

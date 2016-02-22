@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use usr_role_action;
 use App\Http\Requests;
@@ -11,8 +10,14 @@ class roleActionController extends Controller
 {
     public function store(Request $request)
     {
-    	$request['idRole']."<br>";
-    	$request['idModulo']."<br>";
+
+    	echo $request['idRole']."<br>";
+    	echo $request['idModulo']."<br>";
+
+         
+        echo json_encode($request['menuIndex']);
+        echo json_encode($request['index']);
+        return ;
 
     	$dato = $request['menuIndex'];
     	$num=count($dato);
@@ -29,6 +34,13 @@ class roleActionController extends Controller
 
     	echo "Json: ".$chkJson;
     	
+        $ura = new \App\usr_role_action;
+        $ura=$chkJson->toJson();
+      
+        $ura->save();
+        
+
+
     	$ura = new \App\usr_role_action;
     	$ura->id_role=$request['idRole'];
 	    $ura->id_access=$request['idModulo'];

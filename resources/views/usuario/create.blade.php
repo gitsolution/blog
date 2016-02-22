@@ -3,13 +3,23 @@
 
 <?php  
 
-
 if(isset($user)) {
     $message='Edit';
     $id_login=$user->id;
     $name=$user->name;
     $lastName=$user->lastName;
     $email=$user->email;
+    $chk=$user->active;
+    if($chk==1)
+    {
+      $chkActivado = "checked";
+    }
+     
+    else
+    {
+      $chkActivado = ""; 
+    }
+
     $created_at = date_create($user->created_at);
     $nombreBoton='Editar';
     
@@ -24,6 +34,7 @@ else
     $name=$user;
     $lastName=$user;
     $email = $user;
+    $chkActivado="0";
     $nombreBoton='Registrar';
     $categories= App\usr_role::lists('title','id');
 }
@@ -42,7 +53,7 @@ else
                 @else
                   {!!Form::open(['route'=>'usuario.store','method','POST'])!!} 
                 @endif
-                    {!!Form::hidden('id_login',$id_login,['class'=>'form-control frmEspacios','placeholder'=>''])!!}
+                    
 					<div class="form-group" id="frmLogin">
 					 <div class="col-xs-4">
             		{!!Form::label('nombre','Nombre')!!}
@@ -69,13 +80,22 @@ else
             			{!!Form::password('password',['class'=>'form-control frmEspacios','placeholder'=>'Confirmar contraseña'])!!}
             		</div>
 
+                    <div class="col-xs-3">
+                      <div class="priChec">
+                          {!!Form::label('activado','Activado')!!}
+                          <div class="material-switch pull-right">
+                              <input id="someSwitchOptionSuccess" name="ChekActivacion" <?php echo $chkActivado ?>  type="checkbox"/>
+                              <label for="someSwitchOptionSuccess" class="label-success"></label>
+                          </div>           
+                      </div>
+                    </div>
 
-      				<div class="col-xs-6">
+      				<div class="col-xs-12">
                     	<div class="col-xs-2">
             				{!!Form::submit($nombreBoton,['class'=>'btn  btn-danger frmEspacios','placeholder'=>'Nombre'])!!}
                         </div>
             		</div>		
-					</div>
+				</div>
             	{!!Form::close()!!}
 
 @stop

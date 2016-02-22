@@ -17,7 +17,7 @@ class User extends Authenticatable
 
     protected $guarded=['id'];
 
-    public function setPasswordAtriibute($valor)
+    public function setPasswordAttribute($valor)
     {
     	if(!empty($valor))
     	{

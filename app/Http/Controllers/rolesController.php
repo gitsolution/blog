@@ -52,14 +52,28 @@ class rolesController extends Controller
         $activado='0';
         if($request ['ChekActivacion']== "on")
         {
+            echo "El check esta activado";
             $activado='1';
         }
 
-        $roles=DB::table('usr_login_roles')->where('id_login', $id)->update('id_role',$request['title']);
+        $cms = cms_access::find($id);
+        $cms->active=$activado;
+        $cms->fill($request->all());      
+        $cms->save();
+        /*********catalgo de rol***************/
+        $activado='0';
+        if($request ['ChekActivacion']== "on")
+        {
+            $activado='1';
+        }
+
+        $roles=usr_role;
+        DB::table('usr_roles')->where('id', $id)->update('id_role',$request['title']);
 
         $roles->active=$activado;      
         $roles->save();
-           return "llego hast aqui";
+        return "catalago de roles";
+           
         return Redirect::to("admin/roles");
     }
 

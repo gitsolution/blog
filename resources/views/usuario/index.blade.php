@@ -48,7 +48,10 @@
 				<td>{{$user->name}}</td>
 				<td>{{$user->lastname}}</td>
                 <td>{{$user->email}}</td>
-                <td>{{$user->roles}}</td>
+
+               
+                    <td>{{$user->roles}}</td>
+
 				<td>{{$created_at}}</td>
 				<td>
 				{!! link_to('admin/userEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!} 

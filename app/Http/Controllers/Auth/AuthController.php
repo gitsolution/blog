@@ -107,7 +107,7 @@ class AuthController extends Controller
         {
             $user = new User;
             $data['email']=$user->email = $request->email;
-            $user->password = bcrypt($request->password);
+            $user->password = ($request->password);//bcrypt
             $user->active='0';
             $user->remember_token = str_random(100);
             $data['confirm_token']=$user->confirm_token = str_random(100);

@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -75,7 +74,7 @@ Route::get('admin/categoryPublic/{id}/{pub}','categoryController@publicate');
 Route::get('admin/categoryorder/{id}/{orderBy}/{no}','categoryController@order');
 
 
-/*************RUTAS DE SECTIOSN ****************************/
+/*************RUTAS DE SECTIONS ****************************/
 Route::get('admin/sectionsnew','sectiosController@section'); //formulario sectionsform.blade.php
 Route::resource('admin/sections','sectiosController');      //index. catalogo
 Route::get('admin/sectionedit/{id}','sectiosController@edit');
@@ -181,7 +180,7 @@ Route::resource('admin/assignment','usr_login_roleController');
 //Route::get('admin/assignment', 'usr_login_roleController@index');
 Route::get('admin/rolesDelete/{id}','usr_login_roleController@delete');
 Route::get('admin/rolesUpdate','usr_login_roleController@update');
-Route::get('admin/permissionEdit/{id}', 'usr_login_roleController@obtener');
+Route::get('admin/permissionEdit/{id}', 'usr_login_roleController@updateRol');
 /************************cms access**********************************/
 Route::resource('admin/cms','cmsController');
 Route::get('admin/cms', 'cmsController@index');

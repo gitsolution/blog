@@ -26,7 +26,6 @@ class categoryaCreateRequest extends Request
         return [
             'title'=>'request',
             'resumen'=>'request',
-
         ];
     }
 }

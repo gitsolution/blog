@@ -1,6 +1,6 @@
 @extends('frontend.index')
 <?php
- $titulo=DB::table('cms_sections')->select('title','resumen')->where('id','=',5)->first();
+ $titulo=DB::table('cms_sections')->select('title','resumen')->where('id','=',1)->first();
   ?>
 @section('content')
 <!-- Image Background Page Header -->

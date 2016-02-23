@@ -7,7 +7,7 @@ use Redirect;
 use Session;
 use DB;
 use App\usr_role;
-use App\Http\Requests;
+use App\Http\Requests\rolesRequest;
 use App\Http\Controllers\Controller;
 
 class rolesController extends Controller
@@ -18,12 +18,11 @@ class rolesController extends Controller
 		return view('roles.index',compact('roles'));		
 	}
 
-	public function store(Request $request)
+	public function store(rolesRequest $request)
     {    	   	
     	$activado='0';
         if($request ['ChekActivacion']== "on")
         {
-        	echo "El check esta activado";
           	$activado='1';
         }
 
@@ -32,6 +31,7 @@ class rolesController extends Controller
             'description'=>$request['description'],
     		'active'=>$activado,
     	]);
+        
         
        return Redirect::to("admin/roles");
     }
@@ -49,31 +49,17 @@ class rolesController extends Controller
 
     public function update($id,Request $request)
     {
-        $activado='0';
-        if($request ['ChekActivacion']== "on")
-        {
-            echo "El check esta activado";
-            $activado='1';
-        }
-
-        $cms = cms_access::find($id);
-        $cms->active=$activado;
-        $cms->fill($request->all());      
-        $cms->save();
-        /*********catalgo de rol***************/
-        $activado='0';
+         $activado='0';
         if($request ['ChekActivacion']== "on")
         {
             $activado='1';
         }
 
-        $roles=usr_role;
-        DB::table('usr_roles')->where('id', $id)->update('id_role',$request['title']);
+        $usrRol = usr_role::find($id);
+        $usrRol->active=$activado;
+        $usrRol->fill($request->all());      
+        $usrRol->save();
 
-        $roles->active=$activado;      
-        $roles->save();
-        return "catalago de roles";
-           
         return Redirect::to("admin/roles");
     }
 

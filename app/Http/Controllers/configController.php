@@ -20,7 +20,7 @@ class configController extends Controller
     {
     	$idRole=$request['id'];
     	$idModulo=$request['boton'];
-    	return View::make('configuracion.permission',compact('idRole','idModulo'));
+    	return View::make('configuracion.registerPermission',compact('idRole','idModulo'));
     }
 
     public function create(Request $request)

@@ -196,7 +196,7 @@ Route::get('admin/configPermission/{idModulo}/{idRol}', 'configController@create
 
 /************************para permisos de usuarios************************************/
 Route::resource('admin/configUpdate', 'roleActionController');
-
+Route::get('admin/permissionUpdate/{idRole}/{idModulo}/{action}/{active}','roleActionController@actualizar');
 
 
 

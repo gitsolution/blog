@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class LoginRequest extends Request
+class rolesUpdateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class LoginRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,7 +24,7 @@ class LoginRequest extends Request
     public function rules()
     {
         return [
-                      
+            //
         ];
     }
 }

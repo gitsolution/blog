@@ -50,7 +50,7 @@ else
                         <div class="col-md-12"><h3 class="head">No hay módulos disponibles</h3>
                         </div>
                     @endif
-                    <button type="submit" class="btn btn-info">Enviar</button>
+                    
 </div>
                  {!!Form::close()!!}
                         

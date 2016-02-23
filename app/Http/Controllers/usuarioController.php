@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use Redirect;
 use Session;
 use DB;
 use App\User;
 use App\usr_login_role;
 use App\usr_profile;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Mail;
 use Auth;

@@ -175,12 +175,12 @@ class categoryController extends Controller
   		}
 
   	 public function publicate($id,$pub){
-    		$flag=1;
-    		if($pub=='True'){ $pub = 1;}else{ $pub = 0; }
-    		$Catego = DB::table('cms_categories')->where('active','=', $flag)->where('id', '=',$id)->update(['publish'=>$pub]);    
-    		Session::flash('message','Ordén dela categoria actualizada');
-    		return redirect('/admin/category');
-  		}
+            $flag=1;
+            if($pub=='True'){ $pub = 1;}else{ $pub = 0; }
+            $Catego = DB::table('cms_categories')->where('active','=', $flag)->where('id', '=',$id)->update(['publish'=>$pub]);    
+            Session::flash('message','Ordén dela categoria actualizada');
+            return redirect('/admin/category');
+        }
 
 
  	 public function order($id, $orderBy, $no)

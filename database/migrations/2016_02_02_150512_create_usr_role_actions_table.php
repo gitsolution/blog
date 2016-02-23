@@ -13,7 +13,7 @@ class CreateUsrRoleActionsTable extends Migration
     public function up()
     {
         Schema::create('usr_role_actions', function (Blueprint $table) {
-
+            $table->increments('id');
             $table->integer('id_role')->unsigned();
             $table->foreign('id_role')->references('id')->on('usr_roles');
             $table->integer('id_access')->unsigned();

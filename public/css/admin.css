@@ -25,10 +25,15 @@ font-family:Segoe UI;
 }
 
 .derecha{
-
-
+    margin-top: 10px;
 }
-
+.contimage{
+width: 50%;
+margin-left: 20%;
+}
+img{
+    width: 100%;
+}
 
 
 /*check box*/

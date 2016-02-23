@@ -35,8 +35,8 @@ Route::get('/admin', 'HomeController@index');
 /// INDEX PAGE FRONTEND
 Route::resource('inicio','frontController@index');
 Route::resource('historia','frontController@historia');
-Route::get('contacto','frontController@contacto');
-Route::get('galeria','frontController@galeria');
+Route::get('mision','frontController@mision');
+Route::get('vision','frontController@vision');
 
 
 Route::get('/getStreets?suburb={id}', function($id) {

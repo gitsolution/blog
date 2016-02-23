@@ -18,8 +18,15 @@ class frontController extends Controller
     
     public function historia()
     {
-    	return view('frontend.home');
+    	return view('frontend.historia');
     } 
     
-    
+    public function mision()
+    {
+    	return view('frontend.mision');
+    }
+      public function vision()
+    {
+        return view('frontend.vision');
+    }
 }

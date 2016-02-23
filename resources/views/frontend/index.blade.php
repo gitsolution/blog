@@ -35,16 +35,20 @@
             
   
             <div class="navbar-header">
-            <div class="derecha" style="width: 295px; height: 98px;">
-                     <a href="#"><img src="img/logo.png" class="img-responsive"></a>
+             <div class="row">
+             <div class="derecha col-md-7" style="width: 235px; height: 50px;">
+                     <a href="#"><img src="img/logo.png" class="img-responsive logo"></a>
                     </div>
-              
+
+              <div class="col-md-5">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                </div>
+                </div>
                 
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,10 +62,10 @@
                         <a href="historia">Historia</a>
                     </li>
                     <li>
-                        <a href="#">Misión</a>
+                        <a href="mision">Misión</a>
                     </li>
                     <li>
-                        <a href="#">Visión</a>
+                        <a href="vision">Visión</a>
                     </li>
                      <li>
                         <a href="#">Valores</a>
@@ -77,6 +81,9 @@
                     </li>
                      <li>
                         <a href="#">Información</a>
+                    </li>
+                    <li>
+                       
                     </li> 
                     
                 </ul>

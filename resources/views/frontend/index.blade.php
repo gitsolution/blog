@@ -88,17 +88,14 @@
                     
                 </ul>
             </div>
-            
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
+    <div class="container">
 
             @yield('content')
 
     
         <hr>
-
         <!-- Footer -->
         <footer>
             <div class="row">

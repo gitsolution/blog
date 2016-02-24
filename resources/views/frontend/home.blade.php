@@ -1,5 +1,4 @@
 @extends('frontend.index')
-
 @section('content')
 <!-- Image Background Page Header -->
     <!-- Note: The background image is set within the business-casual.css file. -->

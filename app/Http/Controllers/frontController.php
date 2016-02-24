@@ -15,7 +15,7 @@ class frontController extends Controller
          $roles=DB::table('cms_sections')
             ->leftjoin('cms_categories', 'cms_sections.id', '=', 'cms_categories.id_section')            
             ->select('cms_categories.title', 'cms_categories.main_picture', 'cms_categories.resumen')
-            ->where('cms_categories.id_section','=','5' )
+            ->where('cms_categories.id_section','=','1' )
             ->where('cms_categories.active','=','1' )
             ->get(); 
 

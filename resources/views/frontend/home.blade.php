@@ -1,7 +1,4 @@
 @extends('frontend.index')
-<?php
- $titulo=DB::table('cms_sections')->select('title','resumen')->where('id','=',1)->first();
-  ?>
 @section('content')
 <!-- Image Background Page Header -->
     <!-- Note: The background image is set within the business-casual.css file. -->
@@ -13,11 +10,11 @@
 
     <!-- Page Content -->
     <div class="container">
-
+     @if($titulo!=null)
         <hr>
 
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-8" style="word-wrap: break-word;">
                 <h2>   <?php
                    
                     echo $titulo->title;
@@ -65,6 +62,11 @@
                 <h2>Marketing Box #3</h2>
                 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
             </div>
+        </div>
+        @else
+            <br><br><br><br>
+          <h2>No existe contenido en esta sección</h2>
+        @endif
         </div>
         <!-- /.row -->
 @stop

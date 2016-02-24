@@ -1,30 +1,7 @@
 @extends('frontend.index')
-<?php
- $titulo=DB::table('cms_sections')->select('title','resumen')->where('id','=',7)->first();
-
-     $roles=DB::table('med_albums')
-            ->leftjoin('med_pictures', 'med_albums.id', '=', 'med_pictures.id_album')            
-            ->select('med_pictures.title', 'med_pictures.path', 'med_pictures.description')
-            ->where('med_pictures.id_album','=','3' )
-            ->where('med_pictures.active','=','1' )
-            ->get(); 
-            $titul=array();
-            $picture=array();
-              $description=array();
-            $i=0;
-
-           
-        foreach ($roles as $rol) 
-        {
-               $titul[$i]=$rol->title;
-            $picture[$i]=$rol->path; 
-            $description[$i]=$rol->description; 
-            $i++;
-        }
-
-  ?>
 @section('content')
    <!-- Page Content -->
+   @if($titulo!=null && $roles!=null)
     <div class="container">
   
         <hr>
@@ -64,4 +41,9 @@
           </div>
         <!-- /.row -->
         </div>
+        @else
+          <br><br><br><br>
+          <h2>No existe contenido en esta sección</h2>
+
+      @endif
 @stop

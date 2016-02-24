@@ -12,7 +12,28 @@ class frontController extends Controller
     public function index()
     {
         $titulo=DB::table('cms_sections')->select('title','resumen')->where('id','=',1)->first();
-    	return view('frontend.home',compact('titulo'));
+         $roles=DB::table('cms_sections')
+            ->leftjoin('cms_categories', 'cms_sections.id', '=', 'cms_categories.id_section')            
+            ->select('cms_categories.title', 'cms_categories.main_picture', 'cms_categories.resumen')
+            ->where('cms_categories.id_section','=','5' )
+            ->where('cms_categories.active','=','1' )
+            ->get(); 
+
+                 $titul=array();
+            $picture=array();
+              $description=array();
+            $i=0;
+
+           
+        foreach ($roles as $rol) 
+        {
+               $titul[$i]=$rol->title;
+            $picture[$i]=$rol->main_picture; 
+            $description[$i]=$rol->resumen; 
+            $i++;
+        }
+
+    	return view('frontend.home',compact('titulo','','titul','rol','picture','description'));
     }
     
     public function historia()

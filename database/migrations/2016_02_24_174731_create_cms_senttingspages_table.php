@@ -1,10 +1,9 @@
 <?php
 
 use Illuminate\Database\Schema\Blueprint;
-use App\men_type;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMenTypesTable extends Migration
+class CreateCmsSenttingspagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +12,15 @@ class CreateMenTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('men_types', function (Blueprint $table) {
+        Schema::create('cms_senttingspages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title',250);
-            $table->text('description');
-            $table->text('uri');
-            $table->integer('order_by');
-            $table->datetime('publish');
-            $table->boolean('active');
+            $table->string('clave',500);
+            $table->text('value');
+           $table->boolean('active');
             $table->integer('register_by');
             $table->integer('modify_by');
             $table->timestamps();
         });
-    
-       
     }
 
     /**
@@ -36,6 +30,6 @@ class CreateMenTypesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('men_types');
+        Schema::drop('cms_senttingspages');
     }
 }

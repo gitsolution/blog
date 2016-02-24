@@ -89,6 +89,15 @@ Route::get('admin/sectionsPriva/{id}/{priv}','sectiosController@privado');
 Route::get('admin/sectionsPublic/{id}/{pub}','sectiosController@publicate');
 /****************************************************/
 
+/*************RUTAS DE SETINGS ****************************/
+Route::get('admin/setingnew','setingController@seting'); //formulario sectionsform.blade.php
+Route::resource('admin/seting','setingController');      //index. catalogo
+Route::get('admin/setingedit/{id}','setingController@edit');
+Route::put('admin/seting/update','setingController@update');
+///// ELIMINAR
+Route::get('admin/setingdel/{id}','setingController@delete');
+/****************************************************/
+
 
 
 

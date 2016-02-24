@@ -72,6 +72,5 @@
           <h2>No existe contenido en esta sección</h2>
         @endif
         </div>
-        <!-- /.row -->
-        </div>
+       
 @stop

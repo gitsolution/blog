@@ -74,7 +74,7 @@
                         <a href="#">Servicios</a>
                     </li>
                      <li>
-                        <a href="#">Covertura</a>
+                        <a href="#">Cobertura</a>
                     </li>
                      <li>
                         <a href="#">Atención a usuarios</a>
@@ -91,7 +91,6 @@
         </div>
     </nav>
     <div class="container">
-
             @yield('content')
 
     

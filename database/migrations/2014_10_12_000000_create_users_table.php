@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             'name'=>'Admin',
             'lastName'=>'Admin',
             'email'=>'admin@admin',
-            'password'=>'$2y$10$v6qK6pruMmcuxotTHn8wJedV8eQJWRhWnut/8C/3xK1vv11KGzsOe',
+            'password'=>'itsolution',
             'active'=>'1',
             'confirm_token'=>'',
         ]);

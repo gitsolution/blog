@@ -1,31 +1,4 @@
 @extends('frontend.index')
-<?php
- $titulo=DB::table('cms_sections')->select('title','resumen')->where('id','=',5)->first();
-  
-  
-  $roles=DB::table('cms_sections')
-            ->leftjoin('cms_categories', 'cms_sections.id', '=', 'cms_categories.id_section')            
-            ->select('cms_categories.title', 'cms_categories.main_picture', 'cms_categories.resumen')
-            ->where('cms_categories.id_section','=','5' )
-            ->where('cms_categories.active','=','1' )
-            ->get(); 
-
-                 $titul=array();
-            $picture=array();
-              $description=array();
-            $i=0;
-
-           
-        foreach ($roles as $rol) 
-        {
-               $titul[$i]=$rol->title;
-            $picture[$i]=$rol->main_picture; 
-            $description[$i]=$rol->resumen; 
-            $i++;
-        }
-
-
-  ?>
 @section('content')
 <!-- Image Background Page Header -->
     <!-- Note: The background image is set within the business-casual.css file. -->
@@ -37,11 +10,11 @@
 
     <!-- Page Content -->
     <div class="container">
-
+     @if($titulo!=null)
         <hr>
 
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-8" style="word-wrap: break-word;">
                 <h2>   <?php
                    
                     echo $titulo->title;
@@ -93,6 +66,11 @@
           @endfor
          
           
+        </div>
+        @else
+            <br><br><br><br>
+          <h2>No existe contenido en esta sección</h2>
+        @endif
         </div>
         <!-- /.row -->
         </div>

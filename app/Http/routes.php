@@ -248,7 +248,7 @@ Route::get('admin/menuind/{id}/{ind}','MenuController@index_page');
 
 
 /////  Catalogo de Elementos del Menu
-Route::get('admin/itemmenu/{id_menu}','ItemMenuController@index');
+/*Route::get('admin/itemmenu/{id_menu}','ItemMenuController@index');
 Route::resource('admin/itemmenu','ItemMenuController');
 ///// FORMS
 
@@ -281,10 +281,33 @@ Route::get('admin/itemmenuorder/{id}/{orderBy}/{no}','ItemMenuController@order')
 Route::get('admin/itemmenupub/{id}/{pub}','ItemMenuController@publicate');
 /////  INDEX PAGE
 Route::get('admin/itemmenuind/{id}/{ind}','ItemMenuController@index_page');
-
+*/
 
 //Route::get('getSelect','DocumentController@');
 Route::get('admin/getSelect/{id_section}','DocumentController@getCategories');
+
+//Route::get('getSelect','DocumentController@');
+Route::get('admin/getSelect/{id_section}','DocumentController@getCategories');
+
+Route::get('admin/document/{no}/getSelect/{id_section}','DocumentController@getEditCategories');
+
+Route::get('admin/{menu}/{no}/getSelect/{id_section}','ItemMenuController@getEditCategories');
+
+
+
+
+////////////////// RUTAS PARA LOS MENUS
+//Route::get('admin/{menu}','ItemMenuController@addmenu');
+Route::get('admin/itemmenu/{id_menu}/{level}','ItemMenuController@index');
+
+Route::get('admin/{menu}/{id_menu}/{id_parent}','ItemMenuController@typemenu');
+
+Route::get('admin/{menu}/{id_menu}/{id_parent}','ItemMenuController@optionmenu');
+
+Route::resource('admin/itemmenuadd','ItemMenuController@store');
+
+ 
+// Route::get('admin/optionmenu/{id_menu}/{parent_id}/{menu}','ItemMenuController@typemenu');
 
 
 

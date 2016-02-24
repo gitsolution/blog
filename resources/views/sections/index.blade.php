@@ -23,10 +23,10 @@
         <div class="table-responsive">
     <table class="table table-hover">
           <thead class="center-text" >
-            <th class="ColumColor" >
+            <th class="ColumColor columbord" >
             ID
             </th> 
-            <th  class="ColumColor text-center" >
+            <th  class="ColumColor text-center " >
             Tipo
             </th>
             <th  class="ColumColor text-center" >
@@ -41,11 +41,11 @@
             <th class="ColumColor text-center" >
             Fecha Publicación
             </th>
-            <th class="ColumColor text-center" colspan="2"></th>
+            <th class="ColumColor text-center" colspan="2"> orden</th>
             <th class="ColumColor text-center" >
             Vistas
             </th>
-            <th class="ColumColor text-center"  >
+            <th class="ColumColor text-center columbord"  >
             Acciones
             </th>
           </thead>

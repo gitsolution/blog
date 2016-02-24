@@ -86,13 +86,12 @@ class MenuController extends Controller
 	public function order($id, $orderBy, $no){
 		// Actualizamos el registro con id
 		$flag=1;
-		$this->setOrderItem($flag,$orderBy, $no);
-	
+		$this->setOrderItem($flag,$orderBy, $no);	
 		$menu = \App\Menu::find($id);
 		$menu->order_by=$no;
 		$menu->save();		
 		Session::flash('message','Ordén del Albúm actualizado');		
-		return redirect('/admin/menus')->with('message','store');
+		return redirect('/admin/menus');
 	}
 
 

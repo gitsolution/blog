@@ -10,7 +10,7 @@
 <div class="row">
 	<br>
 	<div class="col-md-8">
-	<h3>Catálogo de Imágenes de {{ $menu->title }}</h3>
+	<h3>Catálogo de Elementos de {{ $menu->title }}</h3>
 	</div> <!--divide la columna en 10 y 2-->
 	<div class="col-md-2 text-right">	
  	 {!! link_to('admin/menus', 'Menús',array('class'=>'btn btn-info')) !!}
@@ -27,12 +27,14 @@
 	{{$itemMenus->render()}}
 </div>
 	<div class="row">
-	<div class="table-responsive">
-		<table class="table table-hover"> 
+		<table class="table table-responsive table-hover"> 
 		<thead class="center-text">
 			<th>
 			ID
 			</th>	
+			<th>
+			Submenús
+			</th>
 			<th>
 			Elemento
 			</th>
@@ -45,7 +47,7 @@
 			<th>
 			Publicado
 			</th>
-			<th colspan="2" >
+			<th>
 			Acciones
 			</th>
 		</thead>
@@ -58,25 +60,26 @@
 			<tr>
 				<td> {{$imenu->id}}</td>
 				<td> {{$imenu->title}}</td>
-				<td> 
-				{!! link_to('admin/itemsubmenu/'.$imenu->id, '',array('class'=>'glyphicon glyphicon-menu-hamburger')) !!} 
+				<td> 												
+				{!! link_to('admin/itemmenu/'.$imenu->id_menu.'/'.$imenu->id, '',array('class'=>'glyphicon glyphicon-upload')) !!} 
 				</td>
-				<td> {!! link_to('admin/itemmenuorder/'.$imenu->id.'/Down/'.$down, '-',array('class'=>'btn btn-info')) !!}</td>
-				<td> {!! link_to('admin/itemmenuorder/'.$imenu->id.'/Up/'.$up, '+',array('class'=>'btn btn-info')) !!}</td>
+				<td> 												
+				{!! link_to('admin/optionmenu/'.$imenu->id_menu.'/'.$imenu->id, '',array('class'=>'glyphicon glyphicon-menu-hamburger')) !!} 
+				</td>
+				<td> {!! link_to('admin/itemmenuorder/'.$imenu->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
+				<td> {!! link_to('admin/itemmenuorder/'.$imenu->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
 				<td>
 				<?php if($imenu->publish=='1'){?>
-				{!!  link_to('admin/itemmenupub/'.$imenu->id.'/False', 'Ok',array('class'=>'btn btn-success')) !!}
+				{!!  link_to('admin/itemmenupub/'.$imenu->id.'/False', '',array('class'=>'glyphicon glyphicon-ok')) !!}
 				<?php } else{ ?>
-				{!! link_to('admin/itemmenupub/'.$imenu->id.'/True', 'No',array('class'=>'btn btn-warning')) !!}
+				{!! link_to('admin/itemmenupub/'.$imenu->id.'/True', '',array('class'=>'glyphicon glyphicon-ban-circle')) !!}
 				<?php } ?>
-				</td>
-				<td>{!! link_to('admin/itemmenuedit/'.$imenu->id, 'Editar ',array('class'=>'btn btn-info')) !!}</td>         
-				<td>{!! link_to('admin/itemmenudel/'.$imenu->id, 'Eliminar',array('class'=>'btn btn-danger')) !!}</td>    
+				</td>         
+				<td>{!! link_to('admin/itemmenudel/'.$imenu->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td>    
 		    </td>
 			</tr>
 		@endforeach
 		</table>
-		</div>
 	</div>
 	<div class="row text-center">
 		{{$itemMenus->render()}}

@@ -68,7 +68,7 @@
                         <a href="vision">Visión</a>
                     </li>
                      <li>
-                        <a href="#">Valores</a>
+                        <a href="valores">Valores</a>
                     </li>
                      <li>
                         <a href="#">Servicios</a>

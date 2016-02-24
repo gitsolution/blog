@@ -37,6 +37,7 @@ Route::resource('inicio','frontController@index');
 Route::resource('historia','frontController@historia');
 Route::get('mision','frontController@mision');
 Route::get('vision','frontController@vision');
+Route::get('valores','frontController@valores');
 
 
 Route::get('/getStreets?suburb={id}', function($id) {

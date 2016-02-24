@@ -42,7 +42,7 @@ class frontController extends Controller
      $roles=DB::table('med_albums')
             ->leftjoin('med_pictures', 'med_albums.id', '=', 'med_pictures.id_album')            
             ->select('med_pictures.title', 'med_pictures.path', 'med_pictures.description')
-            ->where('med_pictures.id_album','=','3' )
+            ->where('med_pictures.id_album','=','1' )
             ->where('med_pictures.active','=','1' )
             ->get(); 
             $titul=array();
@@ -57,17 +57,24 @@ class frontController extends Controller
             $description[$i]=$rol->description; 
             $i++;
         }
-    	return view('frontend.historia',compact('titulo','titul','picture','description','roles'));
+    	return view('frontend.historia',compact('titulo','titul','picture','description','roles','rol'));
     } 
     
     public function mision()
     {
-        $Mision=DB::table('cms_sections')->select('title','resumen','main_picture')->where('id','=',6)->first();
+        $Mision=DB::table('cms_sections')->select('title','resumen','main_picture')->where('id','=',1)->first();
     	return view('frontend.mision',compact('Mision'));
     }
-      public function vision()
+    
+    public function vision()
     {
-        $vision=DB::table('cms_sections')->select('title','resumen','main_picture')->where('id','=',6)->first();
+        $vision=DB::table('cms_sections')->select('title','resumen','main_picture')->where('id','=',2)->first();
         return view('frontend.vision',compact('vision'));
+    }
+
+     public function valores()
+    {
+        $valores=DB::table('cms_sections')->select('title','resumen','main_picture')->where('id','=',3)->first();
+        return view('frontend.valores',compact('valores'));
     }
 }

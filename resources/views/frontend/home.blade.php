@@ -62,5 +62,9 @@
           <h2>No existe contenido en esta sección</h2>
         @endif
         </div>
+<<<<<<< HEAD
         <!-- /.row -->
+=======
+       
+>>>>>>> dc9c4effb69a112c50627d762fa45132bfe4a532
 @stop

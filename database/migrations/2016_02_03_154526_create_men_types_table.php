@@ -26,6 +26,7 @@ class CreateMenTypesTable extends Migration
             $table->timestamps();
         });
     
+<<<<<<< HEAD
           /*men_type::create([
             'title'=>'topmenu',
             'description'=>'menu de ariba',
@@ -34,6 +35,9 @@ class CreateMenTypesTable extends Migration
             'modify_by'=>'1',
         ]);*/
     
+=======
+       
+>>>>>>> dc9c4effb69a112c50627d762fa45132bfe4a532
     }
 
     /**

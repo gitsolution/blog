@@ -146,7 +146,6 @@ class frontController extends Controller
               $description=array();
             $i=0;
 
-            var_dump($roles);
         foreach ($roles as $rol) 
         {
                $titul[$i]=$rol->title;

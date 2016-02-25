@@ -30,7 +30,7 @@
 			<th class="ColumColor">
 			Elementos
 			</th>			 
-			<th class="center-text ColumColor">
+			<th class="center-text ColumColor" colspan="2">
 			Ordén
 			</th>
 			<th class="ColumColor" colspan="2" >

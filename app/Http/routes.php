@@ -26,7 +26,7 @@
 */
 
 
-Route::get('login','frontController@login');
+
 Route::get('/','LogController@logout');
 
 

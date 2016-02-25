@@ -37,7 +37,7 @@
             <div class="navbar-header">
              <div class="row">
              <div class="derecha col-md-7" style="width: 235px; height: 50px;">
-                     <a href="#"><img src="img/logo.png" class="img-responsive logo"></a>
+                     <a href="inicio"><img src="img/logo.png" class="img-responsive logo"></a>
                     </div>
 
               <div class="col-md-5">
@@ -68,10 +68,10 @@
                         <a href="vision">Visión</a>
                     </li>
                      <li>
-                        <a href="#">Valores</a>
+                        <a href="valores">Valores</a>
                     </li>
                      <li>
-                        <a href="#">Servicios</a>
+                        <a href="servicios">Servicios</a>
                     </li>
                      <li>
                         <a href="#">Cobertura</a>

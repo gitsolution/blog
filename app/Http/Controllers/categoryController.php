@@ -65,6 +65,12 @@ class categoryController extends Controller
           else{
             $path="";
           }
+        $uri=str_replace(" ","-",trim($request['title']));
+        //Obtenemos la uri en base al titulo  
+        $uri=$this->string2url($uri);//
+        //Generamos una Uri única
+        $table='cms_categories';
+        $uri=$this->validateFriendlyUri($uri,$table);
 
 
 		  	\App\cms_category::create([
@@ -86,6 +92,32 @@ class categoryController extends Controller
                       
           	return redirect('admin/category');
         }
+
+
+  function validateFriendlyUri($uri, $table){
+       $flag=1;
+       $id=0;      
+       $id = (DB::table($table)->where('active','=', $flag)->where('uri','=', $uri)->max('id'));   
+        
+        if($id>0){
+          $uri=$uri.'-'.($id+1);
+        }
+
+        return $uri;
+      }
+
+
+      function string2url($cadena) {
+        $cadena = trim($cadena);
+        $arr1=array("À","Á","Â","Ã","Ä","Å","à","á","â","ã","ä","å","Ò","Ó","Ô","Õ","Ö","Ø","ò","ó","ô","õ","ö","ø","È","É","Ê","Ë","è","é","ê","ë","Ç","ç","Ì","Í","Î","Ï","ì","í","î","ï","Ù","Ú","Û","Ü","ù","ú","û","ü","ÿ","Ñ","ñ");
+        $arr2=array("a","a","a","a","a","a","a","a","a","a","a","a","o","o","o","o","o","o","o","o","o","o","o","o","e","e","e","e","e","e","e","e","c","c","i","i","i","i","i","i","i","i","u","u","u","u","u","u","u","u","y","n","n");
+        $cadena = str_replace($arr1,$arr2,$cadena);
+       
+        return $cadena;
+      }
+
+
+
 
      public function edit($id)
    		{

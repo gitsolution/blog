@@ -31,13 +31,19 @@ Route::get('/','LogController@logout');
 
 
     /////  INDEX PAGE ADMIN
-Route::get('/admin', 'HomeController@index');
+//Route::get('/admin', 'HomeController@index');
 /// INDEX PAGE FRONTEND
-Route::resource('inicio','frontController@index');
-Route::resource('historia','frontController@historia');
+Route::resource('inicio','frontController');
+Route::resource('index','frontController@index');
+Route::resource('index','frontController@storecotizacion');
+Route::get('historia','frontController@historia');
 Route::get('mision','frontController@mision');
 Route::get('vision','frontController@vision');
-
+Route::get('valores','frontController@valores');
+Route::get('servicios','frontController@servicios');
+Route::get('contacto','frontController@contacto');
+//Route::get('contactoEnviar','frontController@enviar');
+Route::get('frmcotizacion','frontController@cotizacion');
 
 Route::get('/getStreets?suburb={id}', function($id) {
    return cms_category::whereSuburb($id)->get();
@@ -174,7 +180,7 @@ Route::get('auth/register/email/{email}/confirm_token/{confirm_token}', 'Auth\Au
 
 
 /************************roles de usuario*************************/
-Route::get('/admin', 'HomeController@index');/*pagina principal despues de logearse*/
+//Route::get('/admin', 'HomeController@index');/*pagina principal despues de logearse*/
 Route::resource('admin/rol','rolesController');
 Route::get('admin/roles', 'rolesController@index');
 

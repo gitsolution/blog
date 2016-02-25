@@ -32,19 +32,38 @@ $botonTitulo='GUARDAR';
    <input type="hidden" name="id_parent" value="{{ $id_parent }}">        
    <input type="hidden" name="level" value="{{ $level }}">        
  </div>
+
 <div class="row">
-  <div class="form-group" >	 
-  	<div class="col-md-6">
+  <div class="form-group" >  
+    <div class="col-md-2">
     {!!Form::label('Tamaño del Menú:')!!}
-      {!!Form::select('size', array('Short' => 'Pequeño', 'Medium' => 'Mediano', 'Long' => 'Largo'), 'Short', ['class'=>'form-control select2'] )!!}				
-  	</div>                        
-    <div class="col-md-6">
-                  Publicar:
+      {!!Form::select('size', array('Short' => 'Pequeño', 'Medium' => 'Mediano', 'Long' => 'Largo'), 'Short', ['class'=>'form-control select2'] )!!}        
+    </div>                        
+    <div class="col-md-2">
+    {!!Form::label('Comportamiento:')!!}
+      {!!Form::select('target', array('_self' => 'Misma Ventana', '_blank' => 'Nueva Ventana'), '_self', ['class'=>'form-control select2'] )!!}        
+    </div>                        
+    
+    <div class="col-md-2">
+          <div class="priChec">
+
+        {!!Form::label('publicar','Publicar')!!}
         <div class="material-switch pull-right">
             <input id="someSwitchOption1" name="publish" type="checkbox" />
             <label for="someSwitchOption1" class="label-primary" ></label>
         </div>
-    </div>                       
+        </div>
+    </div>
+    <div class="col-md-2">
+      <div class="priChec">
+        {!!Form::label('privado','Privado')!!}
+          <div class="material-switch pull-right">
+          <input id="someSwitchOptionSuccess" name="ChekPrivado" type="checkbox"/>
+            <label for="someSwitchOptionSuccess" class="label-success"></label>
+          </div>           
+        </div>
+      </div>
+
   </div>
 </div>
 <br>       

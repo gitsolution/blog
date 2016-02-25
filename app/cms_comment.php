@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class cms_comment extends Model
 {
-        protected $table='cms_comments'
+        protected $table='cms_comments';
 }

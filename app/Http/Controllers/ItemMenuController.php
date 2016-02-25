@@ -271,74 +271,50 @@ public function optionmenu($option, $id_menu, $id_parent){
 		case 'LinkToSec':		
 			$id_section = $request['id_section'];
 
+			$Section=\App\cms_section::find($id_section); 	
+
 			if($id_section!=""){
-				$uri="Sec/".$id_section;
+				$uri="Sec/".$Section->uri;
 			}
 				
 			break;
 		  	case 'LinkToCatList':
-		    /*$Sections =  DB::table('cms_sections')->where('active','=', $flag)->orderBy('order_by','DESC')->get();  		
-		   	$id_section=  (DB::table('cms_sections')->where('active','=', $flag)->min('id'));
-		   	$Categories = DB::table('cms_categories')->where('active','=', $flag)->where('id_section','=', $id_section)->orderBy('order_by','DESC')->get();  		
-			*/
-
-		   	$id_section = $request['id_section'];
-
-			if($id_section!=""){
-				$uri="CatList/".$id_section;
+		    $id_category = $request['id_category'];
+			$Category=\App\cms_category::find($id_category); 	
+			$Section=\App\cms_section::find($Category->id_section); 	
+			if($id_category!=""){
+				$uri="CatList/".$Section->uri;
 			}
 				
 
 		    break;
 		     case 'LinkToCat':
-		     /*
-			$Sections =  DB::table('cms_sections')->where('active','=', $flag)->orderBy('order_by','DESC')->get();  		
-		   	$id_section=  (DB::table('cms_sections')->where('active','=', $flag)->min('id'));
-		   	$Categories = DB::table('cms_categories')->where('active','=', $flag)->where('id_section','=', $id_section)->orderBy('order_by','DESC')->get();  		
-			*/
-			$id_category=$request['id_category'];
+		    
+		   	$id_category = $request['id_category'];
+			$Category=\App\cms_category::find($id_category); 	
+
 		   	if($id_category!=""){
-				$uri="Cat/".$id_category;
+				$uri="Cat/".$Category->uri;
 			}
 
 
 		    break;       
 		    case 'LinkToDocList':
-
-		    /*
-		   	$Sections = DB::table('cms_sections')->where('active','=', $flag)->orderBy('order_by','DESC')->get();  		
-		   	$id_section = (DB::table('cms_sections')->where('active','=', $flag)->min('id'));
-		   	$Categories = DB::table('cms_categories')->where('active','=', $flag)->where('id_section','=', $id_section)->orderBy('order_by','DESC')->get();
-		   
-		   	$id_category = (DB::table('cms_categories')->where('active','=', $flag)->min('id'));		   	  		
-					   			    
-			$Documents = DB::table('cms_documents')->where('active','=', $flag)->where('id_category','=', $id_category)->orderBy('order_by','DESC')->get();  		
-			$id_document = (DB::table('cms_documents')->where('active','=', $flag)->min('id'));		   	  		
-			*/
-			$id_category=$request['id_category'];
+		    $id_document = $request['id_document'];
+			$Document=\App\cms_document::find($id_document);
+			$Category=\App\cms_category::find($Document->id_category); 	
 		   	if($id_category!=""){
-				$uri="DocList/".$id_category;
+				$uri="DocList/".$Category->uri;
 			}
 
-
-
-
-				
 		    break;
 		    case 'LinkToDoc':
-		   /* $Sections = DB::table('cms_sections')->where('active','=', $flag)->orderBy('order_by','DESC')->get();  		
-		   	$id_section = (DB::table('cms_sections')->where('active','=', $flag)->min('id'));
-		   	$Categories = DB::table('cms_categories')->where('active','=', $flag)->where('id_section','=', $id_section)->orderBy('order_by','DESC')->get();
-		   
-		   	$id_category = (DB::table('cms_categories')->where('active','=', $flag)->min('id'));		   	  		
-					   			    
-			$Documents = DB::table('cms_documents')->where('active','=', $flag)->where('id_category','=', $id_category)->orderBy('order_by','DESC')->get();  		
-			$id_document = (DB::table('cms_documents')->where('active','=', $flag)->min('id'));		   	  		
-			*/
+		    $id_document = $request['id_document'];
+			$Document=\App\cms_document::find($id_document);
+			
 
-			$id_document=$request['id_document'];
-		   	if($id_document!=""){
-				$uri="Doc/".$id_document;
+		    if($id_document!=""){
+				$uri="Doc/".$Document->uri;
 			}
 
 		
@@ -351,9 +327,11 @@ public function optionmenu($option, $id_menu, $id_parent){
 		    case 'LinkToGallery':
 			// $Galleries = DB::table('med_albums')->where('active','=', $flag)->orderBy('order_by','DESC')->get();  				   	
 			
-		    $id_galleries=$request['id_galleries'];		   	
+		    $id_galleries=$request['id_galleries'];
+		    $Gallery=\App\Media::find($id_galleries);
+		   	
 			if($id_galleries!=""){
-				$uri="Gal/".$id_galleries;
+				$uri="Gal/".$Gallery->uri;
 			}		   	
 
 		    break;      
@@ -411,8 +389,8 @@ public function optionmenu($option, $id_menu, $id_parent){
 			'private'=>$private,									
 			'publish'=>$request['publish'],						
 			'active'=>'1',
-			'register_by'=>'1',
-			'modify_by'=>'1', 
+			'register_by'=>Auth::User()->id,
+          	'modify_by'=>Auth::User()->id,
 			]);	
 
 			return redirect('/admin/itemmenu/'.$id_menu.'/'.$id_parent);

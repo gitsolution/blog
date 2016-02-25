@@ -26,19 +26,24 @@
 */
 
 
-Route::get('login','frontController@login');
+
 Route::get('/','LogController@logout');
 
 
     /////  INDEX PAGE ADMIN
-Route::get('/admin', 'HomeController@index');
+//Route::get('/admin', 'HomeController@index');
 /// INDEX PAGE FRONTEND
-Route::resource('inicio','frontController@index');
-Route::resource('historia','frontController@historia');
+Route::resource('inicio','frontController');
+Route::resource('index','frontController@index');
+Route::resource('index','frontController@storecotizacion');
+Route::get('historia','frontController@historia');
 Route::get('mision','frontController@mision');
 Route::get('vision','frontController@vision');
 Route::get('valores','frontController@valores');
-
+Route::get('servicios','frontController@servicios');
+Route::get('contacto','frontController@contacto');
+//Route::get('contactoEnviar','frontController@enviar');
+Route::get('frmcotizacion','frontController@cotizacion');
 
 Route::get('/getStreets?suburb={id}', function($id) {
    return cms_category::whereSuburb($id)->get();
@@ -166,7 +171,7 @@ Route::get('auth/register/email/{email}/confirm_token/{confirm_token}', 'Auth\Au
 
 
 /************************roles de usuario*************************/
-Route::get('/admin', 'HomeController@index');/*pagina principal despues de logearse*/
+//Route::get('/admin', 'HomeController@index');/*pagina principal despues de logearse*/
 Route::resource('admin/rol','rolesController');
 Route::get('admin/roles', 'rolesController@index');
 
@@ -249,7 +254,7 @@ Route::get('admin/menuind/{id}/{ind}','MenuController@index_page');
 
 
 /////  Catalogo de Elementos del Menu
-Route::get('admin/itemmenu/{id_menu}','ItemMenuController@index');
+/*Route::get('admin/itemmenu/{id_menu}','ItemMenuController@index');
 Route::resource('admin/itemmenu','ItemMenuController');
 ///// FORMS
 
@@ -282,10 +287,33 @@ Route::get('admin/itemmenuorder/{id}/{orderBy}/{no}','ItemMenuController@order')
 Route::get('admin/itemmenupub/{id}/{pub}','ItemMenuController@publicate');
 /////  INDEX PAGE
 Route::get('admin/itemmenuind/{id}/{ind}','ItemMenuController@index_page');
-
+*/
 
 //Route::get('getSelect','DocumentController@');
 Route::get('admin/getSelect/{id_section}','DocumentController@getCategories');
+
+//Route::get('getSelect','DocumentController@');
+Route::get('admin/getSelect/{id_section}','DocumentController@getCategories');
+
+Route::get('admin/document/{no}/getSelect/{id_section}','DocumentController@getEditCategories');
+
+Route::get('admin/{menu}/{no}/getSelect/{id_section}','ItemMenuController@getEditCategories');
+
+
+
+
+////////////////// RUTAS PARA LOS MENUS
+//Route::get('admin/{menu}','ItemMenuController@addmenu');
+Route::get('admin/itemmenu/{id_menu}/{level}','ItemMenuController@index');
+
+Route::get('admin/{menu}/{id_menu}/{id_parent}','ItemMenuController@typemenu');
+
+Route::get('admin/{menu}/{id_menu}/{id_parent}','ItemMenuController@optionmenu');
+
+Route::resource('admin/itemmenuadd','ItemMenuController@store');
+
+ 
+// Route::get('admin/optionmenu/{id_menu}/{parent_id}/{menu}','ItemMenuController@typemenu');
 
 
 

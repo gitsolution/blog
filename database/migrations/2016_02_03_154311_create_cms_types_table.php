@@ -13,7 +13,6 @@ class CreateCmsTypesTable extends Migration
     public function up()
     {
         Schema::create('cms_types', function ($table) {
-            $table->engine='InnoDB';
             $table->increments('id');
             $table->string('title',250); 
             $table->text('description'); 
@@ -22,6 +21,7 @@ class CreateCmsTypesTable extends Migration
             $table->integer('modify_by');
             $table->timestamps();
         });
+       
     }
 
     /**

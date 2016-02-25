@@ -18,12 +18,12 @@
 <div class="row text-center">
 	{{$menus->render()}}
 </div>
-	<div class="table-responsive">
-		<table class="table table-hover"> 
+	<div class="row">
+		<table class="table table-responsive table-hover"> 
 		<thead class="center-text">
 			<th class="ColumColor">
 			ID
-			</th>	
+			</th >	
 			<th class="ColumColor">
 		    Menu
 			</th>
@@ -33,7 +33,7 @@
 			<th class="center-text ColumColor">
 			Ordén
 			</th>
-			<th colspan="2" class="ColumColor" >
+			<th class="ColumColor" colspan="2" >
 			Acciones
 			</th>
 		</thead>
@@ -50,12 +50,12 @@
 				<td> {{$men->id}}</td>
 				<td> {{$men->title}}</td>
 				<td>
-				{!!link_to('admin/itemmenu/'.$men->id, '',array('class'=>'glyphicon glyphicon-upload')) !!}
+				{!!link_to('admin/itemmenu/'.$men->id.'/0', '',array('class'=>'glyphicon glyphicon-upload')) !!}
 				</td>         								
-				<td> {!! link_to('admin/menuorder/'.$men->id.'/Down/'.$down.'/'.$men->id, '-',array('class'=>'btn btn-info')) !!}</td>
-				<td> {!! link_to('admin/menuorder/'.$men->id.'/Up/'.$up.'/'.$men->id, '+',array('class'=>'btn btn-info')) !!}</td>
-				<td>{!! link_to('admin/menuedit/'.$men->id, 'Editar ',array('class'=>'btn btn-info')) !!}</td>         
-				<td>{!! link_to('admin/menudel/'.$men->id, 'Eliminar',array('class'=>'btn btn-danger')) !!}</td>    
+				<td> {!! link_to('admin/menuorder/'.$men->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
+				<td> {!! link_to('admin/menuorder/'.$men->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
+				<td>{!! link_to('admin/menuedit/'.$men->id, ' ',array('class'=>'img-responsive btn btn-primary glyphicon glyphicon-pencil')) !!}</td>         
+				<td>{!! link_to('admin/menudel/'.$men->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td>    
 		    </td>
 			</tr>
 		@endforeach

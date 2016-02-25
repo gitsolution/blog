@@ -17,7 +17,7 @@
 
 			<div class="col-md-4">
 				<div>
-					<a href="<?php echo '../'.$id_menu.'/'.$id_parent.'/LinkTo'; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a un Link Externo</a>
+					<a href="<?php echo '../../LinkTo/'.$id_menu.'/'.$id_parent ?>" class="btn btn-default btn-lg btn-block" >Vínculo a un Link Externo</a>
 				</div>
 			</div>
 		</div>
@@ -25,7 +25,7 @@
 		<div class="row" >
 			<div class="col-md-4">
 				<div>
-					<a href="<?php echo $id_menu.'/Section'; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Sección</a>
+					<a href="<?php echo '../../LinkToSec/'.$id_menu.'/'.$id_parent; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Sección</a>
 				</div>
 			</div>
 		</div>
@@ -33,7 +33,7 @@
 		<div class="row" >
 			<div class="col-md-4">
 				<div>
-					<a href="<?php echo $id_menu.'/CategoryList'; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Lista de Categorías</a>
+					<a href="<?php echo '../../LinkToCatList/'.$id_menu.'/'.$id_parent; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Lista de Categorías</a>
 				</div>
 			</div>
 		</div>
@@ -41,7 +41,7 @@
 		<div class="row" >
 			<div class="col-md-4">
 				<div>
-					<a href="<?php echo $id_menu.'/Category'; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Categoría</a>
+					<a href="<?php echo '../../LinkToCat/'.$id_menu.'/'.$id_parent; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Categoría</a>
 				</div>
 			</div>
 		</div>
@@ -49,7 +49,7 @@
 		<div class="row" >
 			<div class="col-md-4">
 				<div>
-					<a href="<?php echo $id_menu.'/DocumentList'; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Lista de Documentos</a>
+					<a href="<?php echo '../../LinkToDocList/'.$id_menu.'/'.$id_parent; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Lista de Documentos</a>
 				</div>
 			</div>
 		</div>
@@ -57,21 +57,21 @@
 		<div class="row" >
 			<div class="col-md-4">
 				<div>
-					<a href="<?php echo $id_menu.'/Document'; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Documento</a>
+					<a href="<?php echo '../../LinkToDoc/'.$id_menu.'/'.$id_parent; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Documento</a>
 				</div>
 			</div>
 		</div>	
 		<div class="row" >
 			<div class="col-md-4">
 				<div>
-					<a href="<?php echo $id_menu.'/GalleryList'; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Lista de Galerías</a>
+					<a href="<?php echo '../../LinkToGalList/'.$id_menu.'/'.$id_parent; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Lista de Galerías</a>
 				</div>
 			</div>
 		</div>
 		<div class="row" >
 			<div class="col-md-4">
 				<div>
-					<a href="<?php echo $id_menu.'/Gallery'; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Galería</a>
+					<a href="<?php echo '../../LinkToGallery/'.$id_menu.'/'.$id_parent; ?>" class="btn btn-default btn-lg btn-block" >Vínculo a una Galería</a>
 				</div>
 			</div>
 		</div>

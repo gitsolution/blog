@@ -14,7 +14,7 @@
         <hr>
 
         <div class="row">
-            <div class="col-sm-8" style="word-wrap: break-word;">
+            <div class="col-sm-8" style="word-wrap: break-word; text-align: justify;">
                 <h2>   <?php
                    
                     echo $titulo->title;
@@ -27,18 +27,14 @@
                     <a class="btn btn-default btn-lg" href="#">Ver mas&raquo;</a>
                 </p>
             </div>
-            <div class="col-sm-4">
-                <h2>Contact Us</h2>
-                <address>
-                    <strong>Start Bootstrap</strong>
-                    <br>3481 Melrose Place
-                    <br>Beverly Hills, CA 90210
-                    <br>
-                </address>
-                <address>
-                    <abbr title="Phone">P:</abbr>(123) 456-7890
-                    <br>
-                    <abbr title="Email">E:</abbr> <a href="mailto:#">name@example.com</a>
+            <div class="col-sm-4" style="word-wrap: break-word; text-align: justify;">
+                <h2><?php
+                   
+                    echo $contacto->title;
+                     ?></h2>
+                <address style="word-wrap: break-word; text-align: justify;">
+                    <?php 
+                    echo $contacto->resumen ;?>
                 </address>
             </div>
         </div>
@@ -47,22 +43,16 @@
         
  <div class="form-group">
          @for($i=0; $i< count($titul);$i++) 
-               @if($i==3)
-                     
-               <div class="row">@endif
-     
-     
-            <div class="col-md-4">
+             @if($i==3)
+                <?php echo "&nbsp<br><br>" ?>
+              @endif
+            <div class="col-md-4" style="text-align: justify;">
             <img class=" img-center" src="<?php echo $picture[$i]?>" alt="">
                           
                 <h2> <?php echo $titul[$i];  ?></h2>
-                <p>
+                
                     <?php echo $description[$i];  ?>
-                </p>
           </div>
-          
-                @if($i==3)
-            </div>@endif
           @endfor
          
           
@@ -73,5 +63,4 @@
         @endif
         </div>
         <!-- /.row -->
-        </div>
 @stop

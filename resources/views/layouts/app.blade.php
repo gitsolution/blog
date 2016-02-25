@@ -367,7 +367,8 @@
 
          
 </div>
- <div class="panel-footer">     </div>
+ <div class="panel-footer">   
+ </div>
 <!-- fin de contenido-->
    
     <!-- /#wrapper -->

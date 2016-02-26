@@ -95,17 +95,29 @@
 
     
         <hr>
+           </div>
         <!-- Footer -->
-        <footer>
+        <footer class="panel-footer">
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <div class="col-md-4 " >
+                   
+                </div>
+                <div class="col-md-2 text-center posFoo">
+                 
+                  <a href="http://www.cnbv.gob.mx/Paginas/default.aspx"> <img src="img/cnbv.jpg " class="img-responsive text-center poscondu" style="width: 200px;"></a>
+                    </div>
+                    <div class="col-md-2 text-center poscondu">
+                   <a href="http://www.condusef.gob.mx/"> <img src="img/condusef.jpg" class="text-center" style="width: 110px;"></a>   </div>
+                   <div class="col-md-2 text-center">           
+                  <a href="http://www.buro.gob.mx/">  <img src="img/buroent.jpg" class="img-responsive" style="width: 80px;"></a></div>
                 </div>
             </div>
             <!-- /.row -->
         </footer>
 
-    </div>
+
+ 
     <!-- /.container -->
 
     <!-- jQuery -->

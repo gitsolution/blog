@@ -209,7 +209,7 @@ class Route
 
         $uri = preg_replace('/\{(\w+?)\?\}/', '{$1}', $this->uri);
 
-        $this->compiled = with(
+        $this->compiled = (
             new SymfonyRoute($uri, $optionals, $this->wheres, [], $this->domain() ?: '')
         )->compile();
     }
@@ -506,6 +506,12 @@ class Route
     {
         foreach ($parameters as $key => &$value) {
             $value = isset($value) ? $value : Arr::get($this->defaults, $key);
+        }
+
+        foreach ($this->defaults as $key => $value) {
+            if (! isset($parameters[$key])) {
+                $parameters[$key] = $value;
+            }
         }
 
         return $parameters;

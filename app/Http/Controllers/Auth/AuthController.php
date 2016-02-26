@@ -77,6 +77,7 @@ class AuthController extends Controller
             //'name' => 'required|min:3|max:16|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|min:6|max:18|confirmed',
+            'g-recaptcha-response' => 'required|recaptcha',
         ];
 
 

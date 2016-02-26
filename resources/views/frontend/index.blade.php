@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <title>IT Solution</title>
 
     <!-- Bootstrap Core CSS -->

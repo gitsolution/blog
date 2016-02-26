@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\contactoRequest;
 use App\Http\Controllers\Controller;
 use Mail;
 
 class frontController extends Controller
 {
-    public function store(Request $request)
+    public function store(contactoRequest $request)
     {
-        if(isset($request['enviar']))
-        {
             $data['name']=$request['name'];
             $data['email']=$request['email'];
             $data['phone']=$request['phone'];
@@ -25,28 +24,8 @@ class frontController extends Controller
             });
 
             return "Correo enviado de contacto";
-        }
-
-        if(isset($request['solicitar']))
-        {
-            $data['name']=$request['name'];
-            $data['email']=$request['email'];
-            $data['phone']=$request['phone'];
-            $data['montoaproximado']=$request['montoaproximado'];
-            $data['ventasmensuales']=$request['ventasmensuales'];
-            $data['oficioprofesion']=$request['oficioprofesion'];
-            $data['destinocredito']=$request['destinocredito'];
-            $data['asunt']=$request['asunt'];
-
-            Mail::send('mails.frmcotizacion', ['data' => $data], function($mail)
-            use($data){
-                $mail->subject('Cotización');
-                $mail->to('iver.fabi13@gmail.com');
-            });
-
-        return "Correo enviado de solicitud";
-        }
     }
+    
 
     public function storecotizacion(Request $request)
     {

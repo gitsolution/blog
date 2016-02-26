@@ -10,7 +10,7 @@
 <div class="row">
 	<br>
 	<div class="col-md-8">
-	<h3>Catálogo de Elementos de {{ $menu->title }}</h3>
+	<h3>Catálogo de Elementos deeee {{ $menu->title }}</h3>
 	</div> <!--divide la columna en 10 y 2-->
 	<div class="col-md-2 text-right">	
  	 {!! link_to('admin/menus', 'Menús',array('class'=>'btn btn-info')) !!}
@@ -76,7 +76,7 @@
 				<?php } ?>
 				</td>         
 				<td>{!! link_to('admin/itemmenudel/'.$imenu->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td>    
-		    </td>
+		    
 			</tr>
 		@endforeach
 		</table>

@@ -158,4 +158,13 @@ img{
 }
 
 
-
+.colorfooter{
+    background-color: rgb(224,228,231);
+    padding: 16px;
+}
+.posFoo{
+    margin-left: 85px;
+}
+.poscondu{
+    margin-left: 90px;
+}

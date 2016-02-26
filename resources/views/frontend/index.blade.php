@@ -94,18 +94,32 @@
             @yield('content')
 
     
-        <hr>
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+        
+        <div class="row colorfooter ">
+                <div class="col-lg-4 " >
+                    <div  style="width:300px;" class="posFoo">
+                   <img src="img/cnbv.png " class="img-responsive text-center">
                 </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div  style="width:180px;" class="posFoo poscondu">
+                    <img src="img/condusef.png" class="text-center">
+                    
+                </div>
+                </div>
+                <div class="col-lg-4" >
+                <div  style="width:130px;" class="posFoo">
+                <img src="img/buroent.png" class="img-responsive">
+                </div></div>
             </div>
-            <!-- /.row -->
-        </footer>
-
     </div>
+        <!-- Footer -->
+    
+
+        
+    
+            <!-- /.row -->
+        
     <!-- /.container -->
 
     <!-- jQuery -->

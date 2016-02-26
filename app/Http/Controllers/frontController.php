@@ -58,10 +58,10 @@ class frontController extends Controller
             ->where('cms_categories.active','=','1' )
             ->get(); 
 
-                 $titul=array();
-            $picture=array();
-              $description=array();
-            $i=0;
+                $titul=array();
+                $picture=array();
+                $description=array();
+                $i=0;
 
            
         foreach ($roles as $rol) 

@@ -74,7 +74,8 @@ class AuthController extends Controller
     public function postRegister(Request $request)
     {
         $rules=[
-            //'name' => 'required|min:3|max:16|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'name'=>'required|alpha|min:2|max:30|max:255',
+            'lastName'=>'required|alpha|min:2|max:40|max:255',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|min:6|max:18|confirmed',
             'g-recaptcha-response' => 'required|recaptcha',
@@ -82,18 +83,29 @@ class AuthController extends Controller
 
 
          $messages = [
-            'name.required' => 'El campo es requerido',
-            'name.min' => 'El mínimo de caracteres permitidos son 3',
-            'name.max' => 'El máximo de caracteres permitidos son 16',
-            'name.regex' => 'Sólo se aceptan letras',
+            'name.required'=>'Por favor complete su nombre',
+            'name.alpha'=>'El nombre solo debe contener letras',
+            'name.min'=>'El nombre debe tener al menos 2 caracteres',
+            'name.max'=>'El nombre debe tener máximo 30 caracteres',
+
+            'lastName.required'=>'Por favor complete su nombre',
+            'lastName.alpha'=>'El nombre solo debe contener letras',
+            'lastName.min'=>'El nombre debe tener al menos 2 caracteres',
+            'lastName.max'=>'El nombre debe tener máximo 40 caracteres',
+
+
             'email.required' => 'El campo es requerido',
             'email.email' => 'El formato de email es incorrecto',
             'email.max' => 'El máximo de caracteres permitidos son 255',
             'email.unique' => 'El email ya existe',
+
             'password.required' => 'El campo es requerido',
             'password.min' => 'El mínimo de caracteres permitidos son 6',
             'password.max' => 'El máximo de caracteres permitidos son 18',
             'password.confirmed' => 'Los passwords no coinciden',
+
+            'g-recaptcha-response.required'=>'El campo captcha es requerido',
+            'g-recaptcha-response.recaptcha'=>'Captcha incorrecto',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);

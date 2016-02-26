@@ -61,7 +61,6 @@
                 <div class="panel-heading">Registrarse</div>
                 <div class="panel-body">
 
-
                 <div class="text-info">
                     @if(Session::has('message'))
                         {{Session::get('message')}}
@@ -80,7 +79,7 @@
 
                     <input type="text" name="name" class="form-control" value="{{ old('name') }}" />
 
-                    <div class="text-danger">{{$errors->first('email')}}</div>
+                    <div class="text-danger">{{$errors->first('name')}}</div>
 
                 </div>
 
@@ -89,9 +88,9 @@
 
                     <label for="lastName">Apellidos:</label>
 
-                    <input type="lastName" name="lastName" class="form-control" value="{{ old('email') }}" />
+                    <input type="lastName" name="lastName" class="form-control" value="{{ old('lastName') }}" />
 
-                    <div class="text-danger">{{$errors->first('email')}}</div>
+                    <div class="text-danger">{{$errors->first('lastName')}}</div>
 
                 </div>
 
@@ -112,7 +111,6 @@
                     <label for="password">Password:</label>
 
                     <input type="password" class="form-control" name="password" />
-
                     <div class="text-danger">{{$errors->first('password')}}</div>
 
                 </div>
@@ -127,13 +125,19 @@
 
                 </div>
 
+
+                <div class="form-group">
+                 <div class="col-xs-10"><br>
+                    {!! Recaptcha::render() !!}
+                    <div class="text-danger">{{$errors->first('g-recaptcha-response')}}</div>
+                 <div class="bg-danger" id="_recaptcha_rsgesponse_field"></div>
+                 </div>
+                </div>
  
 
-    <div>
-
-        <button type="submit" class="btn btn-primary">Registrarme</button>
-
-    </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Registrarme</button>
+                </div>
 
 </form>
                

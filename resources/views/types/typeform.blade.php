@@ -4,7 +4,7 @@
     <?php  
           if(isset($Types)) 
         {
-           $botonTitulo='Editar'; // para cambiar de nombre al submit si es editar o guardar
+           $botonTitulo='Guardar'; // para cambiar de nombre al submit si es editar o guardar
            $message='Edit';
            $title=$Types->title;
            $description=$Types->description;
@@ -14,7 +14,7 @@
 
       else
         { 
-           $botonTitulo=' Crear';
+           $botonTitulo=' Guardar';
            $message='New'; 
            $Types=Null;
            $title=$Types;

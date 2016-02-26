@@ -195,5 +195,6 @@ else{
         {!!Form::close()!!} 
           
   </div>
+  <br><br>
 </div>
   @stop

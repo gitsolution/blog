@@ -50,7 +50,7 @@ class frontController extends Controller
     public function index()
     {
         $titulo=DB::table('cms_sections')->select('title','resumen')->where('id','=',2)->first();
-        $contacto=DB::table('cms_sections')->select('title','resumen')->where('id','=',4)->first();
+//$contacto=DB::table('cms_sections')->select('title','resumen')->where('id','=',4)->first();
         $roles=DB::table('cms_sections')
             ->leftjoin('cms_categories', 'cms_sections.id', '=', 'cms_categories.id_section')            
             ->select('cms_categories.title', 'cms_categories.main_picture', 'cms_categories.resumen')

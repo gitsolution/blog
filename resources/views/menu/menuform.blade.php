@@ -30,7 +30,7 @@ if(isset($menu)) {
 @endif
  <div class="row">
  <div class="form-group" >
- 	  {!!Form::label('Nombre:')!!}
+ 	  {!!Form::label('Posición:')!!}
       {!!Form::select('id_men_type', \App\TypeMenu::lists('title','id'),null,['class'=>'form-control select2'] )!!}
                
  </div>

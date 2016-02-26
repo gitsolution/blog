@@ -318,6 +318,15 @@ Route::get('admin/{menu}/{no}/getSelect/{id_section}','ItemMenuController@getEdi
 
 
 
+
+
+//Route::get('admin/getSelectMenu/{id_section}','ItemMenuController@getEditCategories');
+
+Route::get('admin/getSelectDoc/{id_category}','ItemMenuController@getEditDocuments');
+
+
+
+
 ////////////////// RUTAS PARA LOS MENUS
 //Route::get('admin/{menu}','ItemMenuController@addmenu');
 Route::get('admin/itemmenu/{id_menu}/{level}','ItemMenuController@index');

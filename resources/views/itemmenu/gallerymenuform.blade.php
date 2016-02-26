@@ -21,7 +21,7 @@ $botonTitulo='GUARDAR';
           
               </div>
           </div>
-
+<div class="row">
   <div class="form-group" >
  	  {!!Form::label('Nombre del Elemento:')!!}
  	  {!!Form::text('title',null,['class'=>'form-control', 'placeholder'=>'Ingresa el Nombre del elemento del Menú'])!!}
@@ -32,7 +32,7 @@ $botonTitulo='GUARDAR';
    <input type="hidden" name="id_parent" value="{{ $id_parent }}">        
    <input type="hidden" name="level" value="{{ $level }}">        
  </div>
-
+</div>
 <div class="row">
   <div class="form-group" >  
     <div class="col-md-2">

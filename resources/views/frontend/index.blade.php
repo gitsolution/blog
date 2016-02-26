@@ -55,23 +55,31 @@
             
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                            <li>
+                <li>
                     <a href="inicio">Home</a>
                 </li>
-                    <li>
-                        <a href="historia">Historia</a>
+                 
+                    <li class="dropdown">
+                     <a href="" class="dropdown-toggle" data-toggle="dropdown">Quienes somos</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="historia">Historia</a>
+                            </li> 
+                            <li>
+                                <a href="mision">Misión</a>
+                            </li>
+                            <li>
+                                <a href="vision">Visión</a>
+                            </li>
+                            <li>
+                                <a href="valores">Valores</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="mision">Misión</a>
-                    </li>
-                    <li>
-                        <a href="vision">Visión</a>
-                    </li>
+                   
+            
                      <li>
-                        <a href="valores">Valores</a>
-                    </li>
-                     <li>
-                        <a href="servicios">Servicios</a>
+                        <a href="servicios">Servicios financieros</a>
                     </li>
                      <li>
                         <a href="#">Cobertura</a>
@@ -103,14 +111,14 @@
                 </div>
                 <div class="col-md-2 text-center posFoo">
                  
-                  <a href="http://www.cnbv.gob.mx/Paginas/default.aspx"> <img src="img/cnbv.jpg " class="img-responsive text-center poscondu" style="width: 200px;"></a>
+                  <a href="http://www.cnbv.gob.mx/Paginas/default.aspx"> <img src="img/cnbv.png " class="img-responsive text-center poscondu" style="width: 200px;"></a>
 
                     </div>
                     <div class="col-md-2 text-center poscondu">
-                   <a href="http://www.condusef.gob.mx/"> <img src="img/condusef.jpg" class="text-center" style="width: 110px;"></a> 
+                   <a href="http://www.condusef.gob.mx/"> <img src="img/condusef.png" class="text-center" style="width: 110px;"></a> 
                    </div>
                    <div class="col-md-2 text-center">           
-                  <a href="http://www.buro.gob.mx/">  <img src="img/buroent.jpg" class="img-responsive" style="width: 80px;"></a>
+                  <a href="http://www.buro.gob.mx/">  <img src="img/buroent.png" class="img-responsive" style="width: 80px;"></a>
                   </div>
 
                 </div>

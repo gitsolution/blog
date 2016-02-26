@@ -396,7 +396,7 @@
     <!-- Custom Theme JavaScript -->
     {!! Html::script('../dist/js/sb-admin-2.js') !!}        
     
-         <script>
+<script>
         function imageUp(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -411,7 +411,7 @@
     $("#imgLoad").change(function(){
         imageUp(this);
     });
-    </script>
+</script>
 
 <script>
 
@@ -421,10 +421,38 @@ $("#id_section").change(event => {
     $.get(`getSelect/${event.target.value}`, function(res, sta){
         $("#id_category").empty();
         res.forEach(element => {
+            console.log(element.title);
+            console.log(element.id);
             $("#id_category").append(`<option value=${element.id}> ${element.title} </option>`);
         });
     });
 });
+
+
+$("#id_section_menu").change(event => {    
+    $.get(`../../getSelect/${event.target.value}`, function(res, sta){
+        $("#id_category_menu").empty();
+        res.forEach(element => {
+            console.log(element.title);
+            console.log(element.id);
+            $("#id_category_menu").append(`<option value=${element.id}> ${element.title} </option>`);
+        });
+    });
+});
+
+
+$("#id_category_menu").change(event => {    
+    $.get(`../../getSelectDoc/${event.target.value}`, function(res, sta){
+        $("#id_document_menu").empty();
+        res.forEach(element => {
+        console.log(event.target.value);
+           console.log(element.title);
+           console.log(element.id);            
+           $("#id_document_menu").append(`<option value=${element.id}> ${element.title} </option>`);
+        });
+    });
+});
+
 
 </script>
 

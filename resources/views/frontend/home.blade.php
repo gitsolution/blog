@@ -29,11 +29,12 @@
             </div>
             <div class="col-sm-4" style="word-wrap: break-word; text-align: justify;">
                 <h2><?php                   
-                    echo $contacto->title;
+                 //   echo $contacto->title;
                      ?></h2>
                 <address style="word-wrap: break-word; text-align: justify;">
                     <?php 
-                    echo $contacto->resumen ;?>
+                   // echo $contacto->resumen ;
+                    ?>
                 </address>
             </div>
         </div>

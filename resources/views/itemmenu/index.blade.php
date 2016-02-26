@@ -1,16 +1,15 @@
 @extends('layouts.app')
 @section('content')
  <?php $id_menu = $menu->id; 
- if($menu->id_parent=='')
- 	{ $id_parent=0;}
- else
- 	{$id_parent=$menu->id_parent;}
+ 
+
+
   ?>
  <div class="container-fluid">
 <div class="row">
 	<br>
 	<div class="col-md-8">
-	<h3>Catálogo de Elementos deeee {{ $menu->title }}</h3>
+	<h3>Catálogo de Elementos de {{ $menu->title }}</h3>
 	</div> <!--divide la columna en 10 y 2-->
 	<div class="col-md-2 text-right">	
  	 {!! link_to('admin/menus', 'Menús',array('class'=>'btn btn-info')) !!}
@@ -61,10 +60,10 @@
 				<td> {{$imenu->id}}</td>
 				<td> {{$imenu->title}}</td>
 				<td> 												
-				{!! link_to('admin/itemmenu/'.$imenu->id_menu.'/'.$imenu->id, '',array('class'=>'glyphicon glyphicon-upload')) !!} 
+				{!! link_to('admin/itemmenu/'.$imenu->id_menu.'/'.$imenu->id, '',array('class'=>'glyphicon glyphicon-menu-hamburger')) !!} 
 				</td>
 				<td> 												
-				{!! link_to('admin/optionmenu/'.$imenu->id_menu.'/'.$imenu->id, '',array('class'=>'glyphicon glyphicon-menu-hamburger')) !!} 
+				{!! link_to('admin/optionmenu/'.$imenu->id_menu.'/'.$imenu->id, '',array('class'=>'glyphicon glyphicon-upload')) !!} 
 				</td>
 				<td> {!! link_to('admin/itemmenuorder/'.$imenu->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
 				<td> {!! link_to('admin/itemmenuorder/'.$imenu->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
@@ -76,7 +75,7 @@
 				<?php } ?>
 				</td>         
 				<td>{!! link_to('admin/itemmenudel/'.$imenu->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td>    
-		    
+		    </td>
 			</tr>
 		@endforeach
 		</table>

@@ -30,10 +30,10 @@
 Route::get('/','LogController@logout');
 
 
-    /////  INDEX PAGE ADMIN
+/////  INDEX PAGE ADMIN
 //Route::get('/admin', 'HomeController@index');
 /// INDEX PAGE FRONTEND
-Route::resource('inicio','frontController');
+
 Route::resource('index','frontController@index');
 Route::resource('index','frontController@storecotizacion');
 Route::get('historia','frontController@historia');
@@ -41,7 +41,14 @@ Route::get('mision','frontController@mision');
 Route::get('vision','frontController@vision');
 Route::get('valores','frontController@valores');
 Route::get('servicios','frontController@servicios');
+
+Route::group(['middleware' => 'web'], function () {
+
+/******************paginas con captcha ***************************/
+Route::resource('inicio','frontController');
 Route::get('contacto','frontController@contacto');
+Route::resource('cotizacion','cotizacioncontroller');
+
 //Route::get('contactoEnviar','frontController@enviar');
 Route::get('frmcotizacion','frontController@cotizacion');
 
@@ -50,7 +57,7 @@ Route::get('/getStreets?suburb={id}', function($id) {
 });
 
 
-Route::group(['middleware' => 'web'], function () {
+
     Route::auth();
 
 

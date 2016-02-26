@@ -28,8 +28,7 @@
                 </p>
             </div>
             <div class="col-sm-4" style="word-wrap: break-word; text-align: justify;">
-                <h2><?php
-                   
+                <h2><?php                   
                     echo $contacto->title;
                      ?></h2>
                 <address style="word-wrap: break-word; text-align: justify;">

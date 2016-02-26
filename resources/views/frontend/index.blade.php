@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <title>IT Solution</title>
 
     <!-- Bootstrap Core CSS -->
@@ -93,34 +93,32 @@
     <div class="container">
             @yield('content')
 
-    
-        
-        <div class="row colorfooter ">
-                <div class="col-lg-4 " >
-                    <div  style="width:300px;" class="posFoo">
-                   <img src="img/cnbv.png " class="img-responsive text-center">
-                </div>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <div  style="width:180px;" class="posFoo poscondu">
-                    <img src="img/condusef.png" class="text-center">
-                    
-                </div>
-                </div>
-                <div class="col-lg-4" >
-                <div  style="width:130px;" class="posFoo">
-                <img src="img/buroent.png" class="img-responsive">
-                </div></div>
-            </div>
-    </div>
-        <!-- Footer -->
-    
+<hr>    
+</div>
 
-        
-    
-            <!-- /.row -->
-        
-    <!-- /.container -->
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-md-4 " >
+                   
+                </div>
+                <div class="col-md-2 text-center posFoo">
+                 
+                  <a href="http://www.cnbv.gob.mx/Paginas/default.aspx"> <img src="img/cnbv.jpg " class="img-responsive text-center poscondu" style="width: 200px;"></a>
+
+                    </div>
+                    <div class="col-md-2 text-center poscondu">
+                   <a href="http://www.condusef.gob.mx/"> <img src="img/condusef.jpg" class="text-center" style="width: 110px;"></a> 
+                   </div>
+                   <div class="col-md-2 text-center">           
+                  <a href="http://www.buro.gob.mx/">  <img src="img/buroent.jpg" class="img-responsive" style="width: 80px;"></a>
+                  </div>
+
+                </div>
+            </div>
+
+        </footer>
+
+
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

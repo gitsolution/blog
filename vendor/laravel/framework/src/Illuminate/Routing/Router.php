@@ -307,6 +307,27 @@ class Router implements RegistrarContract
     }
 
     /**
+     * Set the unmapped global resource parameters to singular.
+     *
+     * @return void
+     */
+    public function singularResourceParameters()
+    {
+        ResourceRegistrar::singularParameters();
+    }
+
+    /**
+     * Set the global resource parameter mapping.
+     *
+     * @param  array $parameters
+     * @return void
+     */
+    public function resourceParameters(array $parameters = [])
+    {
+        ResourceRegistrar::setParameters($parameters);
+    }
+
+    /**
      * Register an array of resource controllers.
      *
      * @param  array  $resources
@@ -911,6 +932,42 @@ class Router implements RegistrarContract
     public function middlewareGroup($name, array $middleware)
     {
         $this->middlewareGroups[$name] = $middleware;
+
+        return $this;
+    }
+
+    /**
+     * Add a middleware to the beginning of a middleware group.
+     *
+     * If the middleware is already in the group, it will not be added again.
+     *
+     * @param  string  $group
+     * @param  string  $middleware
+     * @return $this
+     */
+    public function prependMiddlewareToGroup($group, $middleware)
+    {
+        if (isset($this->middlewareGroups[$group]) && ! in_array($middleware, $this->middlewareGroups[$group])) {
+            array_unshift($this->middlewareGroups[$group], $middleware);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add a middleware to the end of a middleware group.
+     *
+     * If the middleware is already in the group, it will not be added again.
+     *
+     * @param  string  $group
+     * @param  string  $middleware
+     * @return $this
+     */
+    public function pushMiddlewareToGroup($group, $middleware)
+    {
+        if (isset($this->middlewareGroups[$group]) && ! in_array($middleware, $this->middlewareGroups[$group])) {
+            $this->middlewareGroups[$group][] = $middleware;
+        }
 
         return $this;
     }

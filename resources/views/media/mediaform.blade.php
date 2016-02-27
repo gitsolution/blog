@@ -32,7 +32,7 @@ if(isset($media)) {
 	$title=$media;
 	$description=$media;
 	$publish = $media;
-	$publish_date= $media;
+	$publish_date = date('Y-m-d');
 	$order_by= $media;
 	$index_page=$media;
 }

@@ -260,20 +260,19 @@ public function optionmenu($option, $id_menu, $id_parent){
 		}
 		break;
 		case 'LinkToSec':		
-			$id_section = $request['id_section'];
+			$id_section = $request['id_section_menu'];
 
 			$Section=\App\cms_section::find($id_section); 	
 
-			if($id_section!=""){
+			if($id_section>0){
 				$uri="Sec/".$Section->uri;
 			}
 				
 			break;
 		  	case 'LinkToCatList':
-		    $id_category = $request['id_category'];
-			$Category=\App\cms_category::find($id_category); 	
-			$Section=\App\cms_section::find($Category->id_section); 	
-			if($id_category!=""){
+		    $id_section = $request['id_section_menu'];
+			$Section=\App\cms_section::find($id_section); 	
+			if($id_section!=""){
 				$uri="CatList/".$Section->uri;
 			}
 				
@@ -281,36 +280,34 @@ public function optionmenu($option, $id_menu, $id_parent){
 		    break;
 		     case 'LinkToCat':
 		    
-		   	$id_category = $request['id_category'];
+		   	$id_category = $request['id_category_menu'];
 			$Category=\App\cms_category::find($id_category); 	
 
-		   	if($id_category!=""){
+		   	if($id_category>0){
 				$uri="Cat/".$Category->uri;
 			}
 
 
 		    break;       
 		    case 'LinkToDocList':
-		    $id_document = $request['id_document'];
-			$Document=\App\cms_document::find($id_document);
-			$Category=\App\cms_category::find($Document->id_category); 	
+		    $id_category = $request['id_category_menu'];
+			$Category=\App\cms_category::find($id_category); 	
 		   	if($id_category!=""){
 				$uri="DocList/".$Category->uri;
 			}
 
 		    break;
 		    case 'LinkToDoc':
-		    $id_document = $request['id_document'];
+		    $id_document = $request['id_document_menu'];
 			$Document=\App\cms_document::find($id_document);
 			
-
-		    if($id_document!=""){
+		    if($id_document>0){
 				$uri="Doc/".$Document->uri;
-			}
-
-		
+			}		
 		    break;      
 		    case 'LinkToGalList':		    
+		    $id_galleries=1;
+
 		    	$uri="Galleries";
 			
 		    break;   
@@ -319,15 +316,15 @@ public function optionmenu($option, $id_menu, $id_parent){
 		    $id_galleries=$request['id_galleries'];
 		    $Gallery=\App\Media::find($id_galleries);
 		   	
-			if($id_galleries!=""){
+			if($id_galleries>0){
 				$uri="Gal/".$Gallery->uri;
-			}		   	
+			}	
 
 		    break;      
 			default:
 			return null ;
 }
-
+ 
 /*******************************************************/
 
 
@@ -441,7 +438,8 @@ public function optionmenu($option, $id_menu, $id_parent){
         
 		$item->save();
 		Session::flash('message','Usuario Actualizado Correctamente');		
-		return redirect('/admin/itemmenu/'.$item->id_menu);
+				return redirect('/admin/itemmenu/'.$item->id_menu.'/'.$item->id_parent);
+
 	}
 
 	public function delete($id){
@@ -449,7 +447,8 @@ public function optionmenu($option, $id_menu, $id_parent){
 		$item->active=0;
 		$item->save();
 		Session::flash('message','Imagen Eliminada Correctamente');		
-		return redirect('/admin/itemmenu/'.$item->id_menu);
+		return redirect('/admin/itemmenu/'.$item->id_menu.'/'.$item->id_parent);
+
 	}
 
     public function deleteItem($id)
@@ -474,7 +473,7 @@ public function optionmenu($option, $id_menu, $id_parent){
 		$item->order_by=$no;
 		$item->save();		
 		Session::flash('message','Ordén del Albúm actualizado');		
-		return redirect('/admin/itemmenu/'.$item->id_menu);
+		return redirect('/admin/itemmenu/'.$item->id_menu.'/'.$item->id_parent);
 	}
 
 
@@ -497,7 +496,8 @@ public function optionmenu($option, $id_menu, $id_parent){
 		$item = DB::table('men_items')->where('active','=', $flag)->where('id', '=',$id)->update(['publish'=>$pub]);	
 		$item = \App\ItemMenu::find($id);		       
 	    Session::flash('message','Ordén del Albúm actualizado');		
-		return redirect('/admin/itemmenu/'.$item->id_menu);
+		return redirect('/admin/itemmenu/'.$item->id_menu.'/'.$item->id_parent);
+
 	}
  
       public function getEditCategories($no, $id_section, Request $request)

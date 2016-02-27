@@ -24,8 +24,9 @@ class contactoRequest extends Request
     public function rules()
     {
         return [
-            'name'=>'required|alpha|min:2|max:70|max:255',
-            'phone'=>'required|numeric|min:6|max:13',
+            'name' => 'required|min:3|max:70|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'email'=>'email',
+            'phone'=>'required|digits_between:6,15',
             'asunt'=>'required',
             'g-recaptcha-response' => 'required|recaptcha',
         ];
@@ -35,14 +36,15 @@ class contactoRequest extends Request
     {
         return [
             'name.required'=>'Por favor complete su nombre',
-            'name.alpha'=>'El nombre solo debe contener letras',
             'name.min'=>'El nombre debe tener al menos 2 caracteres',
-            'name.max'=>'El nombre debe tener máximo 70 caracteres',
+            'name.max'=>'El nombre no debe tener mas de 70 caracteres',
+            'name.regex'=>'El nombre solo debe contener letras',
+            
+            
+            'email'=>'Ingrese de manera correcta su correo',
 
             'phone.required'=>'Por favor ingrese su numero telefonico',
-            'phone.numeric'=>'El número de teléfono debe estar conformado por solo números',
-            'phone.min'=>'El número de telefono debe tener al menos 6 numeros',
-            'phone.max'=>'El número de telefono no debe tener más de 6 numeros',
+            'phone.digits_between'=>'El número de teléfono debe tener al menos 2 o hasta 15 numero',
 
             'asunt.required'=>'Por favor agrege un asunto',
             'g-recaptcha-response.required'=>'El campo captcha es requerido',

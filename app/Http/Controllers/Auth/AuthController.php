@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\User;
 use App\usr_profile;
 use DB;
@@ -35,7 +34,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/Inicio';
 
     /**
      * Create a new authentication controller instance.
@@ -74,8 +73,8 @@ class AuthController extends Controller
     public function postRegister(Request $request)
     {
         $rules=[
-            'name'=>'required|alpha|min:2|max:30|max:255',
-            'lastName'=>'required|alpha|min:2|max:40|max:255',
+            'name' => 'required|min:2|max:30|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'lastName'=>'required|min:3|max:70|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|min:6|max:18|confirmed',
             'g-recaptcha-response' => 'required|recaptcha',
@@ -84,15 +83,15 @@ class AuthController extends Controller
 
          $messages = [
             'name.required'=>'Por favor complete su nombre',
-            'name.alpha'=>'El nombre solo debe contener letras',
             'name.min'=>'El nombre debe tener al menos 2 caracteres',
-            'name.max'=>'El nombre debe tener máximo 30 caracteres',
+            'name.max'=>'El nombre no debe tener mas de 30 caracteres',
+            'name.regex'=>'El nombre solo debe contener letras',
+        
 
-            'lastName.required'=>'Por favor complete su nombre',
-            'lastName.alpha'=>'El nombre solo debe contener letras',
-            'lastName.min'=>'El nombre debe tener al menos 2 caracteres',
-            'lastName.max'=>'El nombre debe tener máximo 40 caracteres',
-
+            'lastName.required'=>'Por favor complete su apellido',
+            'lastName.min'=>'El apellido debe tener al menos 2 caracteres',
+            'lastName.max'=>'El apellido no debe tener mas de 50 caracteres',
+            'lastName.regex'=>'El apellido solo debe contener letras',
 
             'email.required' => 'El campo es requerido',
             'email.email' => 'El formato de email es incorrecto',
@@ -160,12 +159,12 @@ class AuthController extends Controller
             ->update(['active' => $active, 'confirm_token' => $confirm_token]);
             
             Auth::logout();
-            return Redirect::to("admin");
+            return Redirect::to("login");
         }
 
         else
         {
-            return redirect('/login');
+            return redirect('/inicio');
         }
 
     }

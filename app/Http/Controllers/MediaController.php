@@ -65,7 +65,7 @@ class MediaController extends Controller
 			'title'=>$request['title'],
 			'description'=>$request['content'],
 			'order_by'=>$orderBy,
-			'uri'=>$publish,
+			'uri'=>$uri,
 			'publish'=>$request['publish'],
 			'publish_date'=>$request['publish_date'],
 			'path'=>$path,

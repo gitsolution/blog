@@ -67,9 +67,7 @@ $botonTitulo='GUARDAR';
       </div>
     </div>
  <div class="row">
-
-       <div class="form-group" >    
-        
+       <div class="form-group" >            
           <div class="col-md-12">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <center>

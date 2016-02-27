@@ -159,8 +159,10 @@ img{
 
 
 .colorfooter{
-    background-color: rgb(224,228,231);
+  
     padding: 16px;
+    bottom: 0;
+    
 }
 .posFoo{
     margin-left: 85px;

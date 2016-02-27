@@ -78,6 +78,9 @@
                     <li>
                         <a class="nav-link" href="Contacto">Contacto</a>
                     </li> 
+                        <li>
+                        <a class="nav-link" href="Galleries">Galeria</a>
+                    </li> 
                     
                 </ul>
             </div>

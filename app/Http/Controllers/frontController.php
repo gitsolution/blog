@@ -20,10 +20,10 @@ class frontController extends Controller
             Mail::send('mails.contacto', ['data' => $data], function($mail)
                 use($data){
                  $mail->subject('Comentario');
-                 $mail->to('iver.fabi13@gmail.com');
+                 $mail->to('analista_de_credito@hotmail.com');
             });
 
-            return "Correo enviado de contacto";
+            return view('frontend.contacto');
     }
     
 

@@ -24,7 +24,7 @@ class cotizacioncontroller extends Controller
         Mail::send('mails.frmcotizacion', ['data' => $data], function($mail)
         use($data){
             $mail->subject('Cotización');
-            $mail->to('iver.fabi13@gmail.com');
+            $mail->to('analista_de_credito@hotmail.com');
         });
 
             return "Correo enviado de solicitud";

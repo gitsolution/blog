@@ -130,15 +130,15 @@
                    </strong>
                 </address> 
                 </div>
-                <div class="col-md-2 text-center posFoo">
+                <div class="col-md-2 text-center ">
                  
-                  <a href="http://www.cnbv.gob.mx/Paginas/default.aspx" target="_blank"> <img src="img/cnbv.png " class="img-responsive text-center poscondu" style="width: 200px;"></a>
+                  <a href="http://www.cnbv.gob.mx/Paginas/default.aspx" target="_blank"> <img src="img/cnbv.png " class="img-responsive text-center " style="width: 200px;"></a>
 
                     </div>
-                    <div class="col-md-2 text-center poscondu">
+                    <div class="col-md-2">
                    <a href="http://www.condusef.gob.mx/"  target="_blank"> <img src="img/condusef.png" class="text-center" style="width: 110px;"></a> 
                    </div>
-                   <div class="col-md-2 text-center">           
+                   <div class="col-md-2">           
                   <a href="http://www.buro.gob.mx/"  target="_blank">  <img src="img/buroent.png" class="img-responsive" style="width: 80px;"></a>
                   </div>
 

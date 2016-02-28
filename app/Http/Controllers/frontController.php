@@ -20,7 +20,7 @@ class frontController extends Controller
             Mail::send('mails.contacto', ['data' => $data], function($mail)
                 use($data){
                  $mail->subject('Comentario');
-                 $mail->to('analista_de_credito@hotmail.com');
+                 $mail->to('analista_de_credito@hotmail.com')->bcc('romanalbores@gmail.com');
             });
 
             return view('frontend.contacto');

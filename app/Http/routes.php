@@ -44,6 +44,9 @@ Route::get('Cobertura','frontController@page');
 Route::get('Atencion-a-usuarios','frontController@page');
 Route::get('Informacion','frontController@page');
 Route::get('Politica-de-Privacidad','frontController@page');
+Route::get('Blog','frontController@BlogList');
+Route::get('Login','frontController@page');
+
 
 /// INDEX PAGE FRONTEND
 Route::get('Sec/{option}','frontController@section');
@@ -190,7 +193,6 @@ Route::get('auth/register/email/{email}/confirm_token/{confirm_token}', 'Auth\Au
 
 
 /************************roles de usuario*************************/
-//Route::get('/admin', 'HomeController@index');/*pagina principal despues de logearse*/
 Route::resource('admin/rol','rolesController');
 Route::get('admin/roles', 'rolesController@index');
 

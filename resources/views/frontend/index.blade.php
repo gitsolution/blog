@@ -67,10 +67,7 @@
                         <a class="nav-link" href="Servicios-Financieros">Servicios</a>
                     </li>
                      <li>
-                        <a class="nav-link" href="Cobertura">Cobertura</a>
-                    </li>
-                     <li>
-                        <a class="nav-link" href="Atencion-a-usuarios">Atención a usuarios</a>
+                        <a class="nav-link" href="Cobertura">Atención a usuarios</a>
                     </li>
                      <li>
                         <a class="nav-link" href="Informacion">Información</a>
@@ -78,53 +75,65 @@
                     <li>
                         <a class="nav-link" href="Contacto">Contacto</a>
                     </li> 
-                        <li>
+                    <li>
                         <a class="nav-link" href="Galleries">Galeria</a>
                     </li> 
-                    
+                    <li>
+                        <a class="nav-link" href="Blog">Blog</a>
+                    </li> 
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container">
-            @yield('content')
-
-<hr>    
+	<hr>    
+      @yield('content')
 </div>
+<div id="wrap">
 
+    <div id="main" class="clearfix">
+
+    </div>
+
+</div>
         <footer class="panel-footer">
             <div class="container">
                 <div class="row">
-                <div class="col-md-3"></div>
-               <div class="col-md-9">
-                <ul class="nav navbar-nav">
+               <div class="col-md-12">
+                <ul class="footer_menu">
                 <li>
-                    <a class="nav-link" href="Inicio">Inicio</a>
+                    <a class="" href="Inicio">Inicio</a>
                 </li>
-                 
-                    <li class="dropdown">
-                     <a class="nav-link" href="Empresa">Empresa</a>                        
-                    </li>
-
+                <li>
+                    <a class="" href="Blog">Blog</a>
+                </li>                                  
                      <li>
-                        <a class="nav-link" href="Servicios-Financieros">Servicios</a>
-                    </li>
-                      
-                     <li>
-                        <a class="nav-link" href="Atencion-a-usuarios">Atención a usuarios</a>
+                        <a class="" href="Atencion-a-usuarios">Atención a usuarios</a>
                     </li>
                      <li>
-                        <a class="nav-link" href="Informacion">Información</a>
+                        <a class="" href="Informacion">Información</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="Politica-de-Privacidad">Póliticas</a>
+                        <a class="" href="Politica-de-Privacidad">Póliticas</a>
                     </li> 
-                    
+                    <li>
+                        <a class="" href="Login">Login</a>
+                    </li> 
+                    <li>
+                        <a class="" href="#" target="_blank">Correo</a>
+                    </li> 
+
+
                 </ul>
                 </div>
                 </div>
             <div class="row">
                 <div class="col-md-4 " >
+                <h3>Datos de Contacto</h3>
+<b>Mail:</b> contacto@valorproductivo.com.mx
+<br> 
+<b>Teléfono de atención al cliente:</b> 01 962 625 3100.     
+<br>
                 <address> <strong>
                    Dirección: 6a Avenida Sur No.28-B, Col. Centro, Tapachula de Córdova y Ordóñez, Chiapas.
                    </strong>

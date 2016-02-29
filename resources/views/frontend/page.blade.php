@@ -1,8 +1,10 @@
 @extends('frontend.index')
 @section('content')
-
     <!-- Page Content -->
     <div class="container">
+<br>
+ <hr>
+
         <div class="row">
         <div class="col-md-8" style="text-align: justify;">     @if(isset($Sections))
     
@@ -11,7 +13,15 @@
                    
                     echo $Sections->title;
                      ?></h2>
-                <p>
+                
+          		<p>
+                    <?php 
+                    	if($Sections->main_picture!=""){
+                    	echo ("<img src='".$Sections->main_picture."' >");
+                    }; ?>
+                </p>
+                
+          		<p>
                     <?php 
                     echo $Sections->resumen; ?>
                 </p>
@@ -19,13 +29,7 @@
                     <?php 
                     echo $Sections->content; ?>
                 </p>
-                <p>
-                    <a class="btn btn-default btn-lg" href="#">Ver mas&raquo;</a>
-                </p>
         
-                
-        
-      
 <br>
     
         @else

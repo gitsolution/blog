@@ -2,8 +2,9 @@
 
 @section('content')
 
+
 <hr>
-<hr>
+<div class="col-md-6">
 {!!Form::open(['route'=>'Inicio.store','method','POST'])!!}
 
     @if (count($errors) > 0)
@@ -55,4 +56,10 @@
      </div>
 
 {!!Form::close()!!}
+</div>
+<div class="col-md-6">
+<br>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d826.2863845470714!2d-92.26740050669942!3d14.906520081823249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x858e0f2193bdb483%3A0x45cacceb26e3d55e!2sSexta+Avenida+Sur+28%2C+Centro%2C+30830+Tapachula+de+C%C3%B3rdova+y+Ordo%C3%B1ez%2C+Chis.!5e0!3m2!1ses-419!2smx!4v1456773955538" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>    
+
+</div>
 @stop

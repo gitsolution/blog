@@ -50,9 +50,7 @@ text-decoration: none;
 a{
     text-decoration: none;
 }
-.panel-primary:hover { 
-    background-color: yellow;
-}
+
 
 /*check box*/
 .material-switch > input[type="checkbox"] {
@@ -183,3 +181,24 @@ a{
 
     font-size: 12px !important;
 }
+
+.hoverclas:hover
+{     -webkit-transform: scale(1.1); 
+   
+   position: relative; 
+   z-index: 5; 
+}
+
+.shadow
+{
+    
+-webkit-box-shadow: 0 3px 6px rgba(0,0,0,.5); 
+}
+
+.piealbum{
+    background-color: rgb(171,183,183);
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+

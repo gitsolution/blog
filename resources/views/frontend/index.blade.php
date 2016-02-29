@@ -16,6 +16,7 @@
     {!!Html::style('css/admin.css')!!}
     <!-- Custom CSS -->
     {!!Html::style('css/business-frontpage.css')!!}
+    {!!Html::style('../css/lightbox.css')!!}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -131,6 +132,7 @@
             <div class="row">
                 <div class="col-md-4 " >
              <div class="footcontac">
+            
 <b>Mail:</b> contacto@valorproductivo.com.mx
 <br> 
 <b>Teléfono de atención al cliente:</b> 01 962 625 3100.     
@@ -144,7 +146,7 @@
                 </div>
                 <div class="col-md-2 text-center ">
                  
-                  <a href="http://www.cnbv.gob.mx/Paginas/default.aspx" target="_blank"> <img src="img/cnbv.png " class="../img-responsive text-center " style="width: 200px;"></a>
+                  <a href="http://www.cnbv.gob.mx/Paginas/default.aspx" target="_blank"> <img src="../img/cnbv.png " class="../img-responsive text-center " style="width: 200px;"></a>
 
                     </div>
                     <div class="col-md-2">
@@ -153,9 +155,7 @@
                    <div class="col-md-2">           
                   <a href="http://www.buro.gob.mx/"  target="_blank">  <img src="../img/buroent.png" class="img-responsive" style="width: 80px;"></a>
                   </div>
-                    <div class="col-md-2">           
-                  <a href="https://www.facebook.com/Valor-Productivo-SOFOM-541325692555731/?ref=ts&fref=ts"  target="_blank">  <img src="../img/facebook.png" class="img-responsive" style="width: 40px;"></a>
-                  </div>
+                   
 
 
                 </div>
@@ -164,9 +164,15 @@
         </div>
         </footer>
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    {!! Html::script('js/jquery.js') !!}    
+    
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    
+    {!! Html::script('js/bootstrap.min.js') !!}    
+    <!-- sdjasdjjkd-->
+    {!! Html::script('js/lightbox.js') !!}    
+
+    
 </body>
 
 </html>

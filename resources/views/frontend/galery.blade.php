@@ -31,14 +31,14 @@
     @else
        @if($med->id==$med->idal && $aux!=$med->id && $med->pic!=null)
            
-            <div class="col-md-4 hoverimg">
+            <div class="col-md-4 hoverclas">
            
-					   <div class="panel panel-primary" style="width:270px;">
-                     	         <div class="panel-heading">                                  
+					   <div class="panel panel-primary shadow" >
+                     	         <div class="panel-heading text-center">                                  
                       	       <?php echo $med->title?>
                       	        </div>                             
                     <a href="Gall/<?php echo $med->uri?>">  		 <img class=" img-center" width="280px" height="150px" src="<?php echo $med->pic?>" alt="">   
-                            	 <div class="panel-footer">
+                            	 <div class="panel-footer piealbum">
           <?php echo $med->description?>
                         	     </div>                         </a>  
      		         </div>
@@ -67,7 +67,7 @@
 @if($pics->path==null)
           <div class="col-md-4">
               <div class="panel panel-primary" style="width:270px;">
-                <div class="panel-heading">                                  
+                <div class="panel-heading text-center">                                  
                     <?php echo $pics->title?>
                 </div> 
                 <img class=" img-center" width="100px"; height="150px" src="../../../store/CAT/   nodisponible.png ?>">
@@ -81,9 +81,10 @@
             <div class="col-md-4">
             
              <div class="" style="width:270px;">
-                  <div class="panel panel-primary">                              
-                         <img class=" img-center" width="280px" height="150px" src="<?php echo $pics->path?>" alt="">  
-                         <div class="panel-footer">
+                  <div class="panel panel-primary hoverclas  ">  
+                  <div class="panel-body shadow">
+                      <a href="<?php echo $pics->path?> " data-lightbox="Galeria" data-title="<?php echo $pics->title?>">    <img class=" img-center" width="280px" height="150px" src="<?php echo $pics->path?>" alt=""> </div> </a>
+                         <div class="panel-body piealbum">
                           <?php echo $pics->title?><br><?php echo $pics->description?>
                           </div>
                   </div>

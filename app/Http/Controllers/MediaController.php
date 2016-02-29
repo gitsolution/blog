@@ -128,7 +128,7 @@ class MediaController extends Controller
 
         $media = \App\Media::find($id);
 		$media->fill($request->all());	
-		
+		$media->description=$request['content'];
 		$media->index_page=$index_page;
         $media->publish=$publish;
         $media->modify_by=Auth::User()->id;

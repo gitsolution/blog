@@ -2,7 +2,7 @@
 @section('content')
 
 	<hr>
-	<hr>
+	
 	{!!Form::open(['route'=>'cotizacion.store','method','POST', 'class'=>'form-group col-xs-4'] )!!}
 	      @if (count($errors) > 0)
 	        <div class="alert alert-danger">
@@ -30,7 +30,7 @@
 	     <div class="form-group col-xs-12">
 	     <div class="col-xs-12">
 	         <label for="inputEmail" class="control-label">Telefono*</label>
-	             <input type="phone" name ="phone" class="form-control" placeholder="telefono">
+	             <input type="phone" name ="phone" class="form-control" placeholder="Telefono">
 	         </div>
 	     </div>
 
@@ -39,7 +39,7 @@
 		    <label class="control-label" for="exampleInputAmount " >Monto aproximando a solicitar</label>
 		    <div class="input-group">
 		      <div class="input-group-addon">$</div>
-		      <input type="text" class="form-control" id="exampleInputAmount" name="montoaproximado" placeholder="Monto">	
+		      <input type="montoaproximado" class="form-control" id="exampleInputAmount" name="montoaproximado" placeholder="Monto">	
 		    </div>
 		    </div>
 		  </div>
@@ -49,7 +49,7 @@
 		    <label class="control-label" for="exampleInputAmount " >Ventas mensuales aproximadas<br></label>
 		    <div class="input-group">
 		      <div class="input-group-addon">$</div>
-		      <input type="text" class="form-control" id="exampleInputAmount" name="ventasmensuales" placeholder="Ventas mensuales aproximada">	
+		      <input type="ventasmensuales" class="form-control" id="exampleInputAmount" name="ventasmensuales" placeholder="Ventas mensuales aproximada">	
 		    </div>
 		    </div>
 		  </div>
@@ -57,7 +57,7 @@
 		  	<div class="form-group col-xs-12">
 		     	<div class="col-xs-12">
 		         <label for="inputName" class="control-label">Oficio o Profesión</label>
-		             <input type="oficioprofesion" class="form-control" name="oficioprofesion" placeholder="Nombre">
+		             <input type="oficioprofesion" class="form-control" name="oficioprofesion" placeholder="Oficio o profesion">
 		         </div>
 	     	</div>
 

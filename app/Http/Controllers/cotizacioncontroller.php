@@ -27,6 +27,6 @@ class cotizacioncontroller extends Controller
             $mail->to('iver.fabi13@gmail.com');
         });
 
-            return "Correo enviado de solicitud";
+           return view('frontend.frmcotizacion');
     }
 }

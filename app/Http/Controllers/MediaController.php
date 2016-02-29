@@ -112,7 +112,6 @@ class MediaController extends Controller
     	}
 
 	public function update($id,Request $request){
-
 		       $index_page='0';
         if($request ['index_page']== 'on')
         {
@@ -128,7 +127,7 @@ class MediaController extends Controller
 
         $media = \App\Media::find($id);
 		$media->fill($request->all());	
-		
+		$media->description=$request['content'];
 		$media->index_page=$index_page;
         $media->publish=$publish;
         $media->modify_by=Auth::User()->id;

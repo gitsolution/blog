@@ -23,7 +23,7 @@ class frontController extends Controller
                  $mail->to('iver.fabi13@gmail.com');
             });
 
-            return "Correo enviado de contacto";
+            return view('frontend.contacto');
     }
     
 

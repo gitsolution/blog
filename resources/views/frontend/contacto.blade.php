@@ -19,13 +19,13 @@
      <div class="form-group"><br>
      <div class="col-xs-12">
          <label for="inputName" class="control-label">Nombres*</label>
-             <input type="name" name ="name" class="form-control" placeholder="Nombre">
+             <input name ="name" class="form-control" placeholder="Nombre">
          </div>
      </div>
      <div class="form-group"><br>
      <div class="col-xs-12"><br>
          <label for="inputEmail" class="control-label">Email</label>
-             <input type="email" name ="email" class="form-control" placeholder="Email">
+             <input name ="email" class="form-control" placeholder="Email">
          </div>
      </div>
      <div class="form-group"><br>
@@ -44,7 +44,6 @@
       <div class="form-group">
          <div class="col-xs-10"><br>
             {!! Recaptcha::render() !!}
-         <div class="bg-danger" id="_recaptcha_rsgesponse_field"></div>
          </div>
      </div>
 

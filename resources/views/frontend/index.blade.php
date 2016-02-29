@@ -92,8 +92,7 @@
     </nav>
     <div class="container">
             @yield('content')
-
-    
+            
         <hr>
            </div>
         <!-- Footer -->

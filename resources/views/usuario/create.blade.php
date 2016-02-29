@@ -41,7 +41,16 @@ else
 
  ?>
 
-
+@if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    
     <div class="col-md-12"><h3 class="head">USUARIO</h3>
                       <p>PÁGINA PARA LOS USUARIOS</p>
                   </div>
@@ -77,7 +86,7 @@ else
 
             		<div class="col-xs-6">
 						{!!Form::label('Confirmar contraseña')!!}
-            			{!!Form::password('password',['class'=>'form-control frmEspacios','placeholder'=>'Confirmar contraseña'])!!}
+            			{!!Form::password('password_confirmation',['class'=>'form-control frmEspacios','placeholder'=>'Confirmar contraseña'])!!}
             		</div>
 
                     <div class="col-xs-3">

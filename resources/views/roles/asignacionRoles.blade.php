@@ -6,45 +6,6 @@
  
     if(isset($user) && isset($idUser)) 
     {
-      $b=0;
-      $c=0;
-      $rolNoActive=array();
-      $roles=DB::table('usr_roles')->select('id', 'title')->get();
-      $ulr=DB::table('usr_login_roles')->where('id_login',$idUser)->select('id_role')->get();
-      $t=DB::table('usr_login_roles')->where('id_login',$idUser)->count();
-      
-      foreach ($roles as $rol) 
-      {
-            foreach ($ulr as $userRL) 
-            {
-                if($userRL->id_role==$rol->id)
-                {  
-                    //echo "Active: ".$rolActive[$c]."<br>";
-                    $b=1;
-                }
-            }
-
-            if($b==0)
-            {
-                $rolNoActive[$c]=$rol->id;
-                //echo "No: ".$rolNoActive[$c]."<br>";
-                \App\usr_login_role::create([
-                        'id_login'=>$idUser,
-                        'id_role'=>$rol->id,
-                        'active'=> '0',
-                        'register_by'=>Auth::User()->id,
-                        'modify_by'=>Auth::User()->id,
-                    ]);
-            }
-            $b=0;
-            $c++;
-        }
-      
-
-        $idRoles= App\usr_role::where('active',1)->lists('title','id');
-        $roles=DB::table('usr_roles')->select('id', 'title')->get();
-        $usrProfile=DB::table('usr_profiles')->where('id',$user->id)->select('name', 'lastname')->first();    
-        $userExist = DB::table('usr_login_roles')->where('id_login',$idUser)->select('id_login','id_role','active')->first();
 
         if($userExist==null or  $userExist->id_login<=0)
         {

@@ -34,6 +34,7 @@ class AuthController extends Controller
      *
      * @var string
      */
+
     protected $redirectTo = '/admin';
 
     /**
@@ -52,10 +53,11 @@ class AuthController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
@@ -139,8 +141,7 @@ class AuthController extends Controller
                 
             });
 
-            return redirect("auth/register")->with("message", "Hemos enviado un enlace de confirmación a su 
-                cuenta de correo electrónico");
+            return redirect("auth/register")->with("message", "Hemos enviado un enlace de confirmación a su cuenta de correo electrónico");
         }
     }
 
@@ -164,7 +165,7 @@ class AuthController extends Controller
 
         else
         {
-            return redirect('/inicio');
+            return redirect('/Inicio');
         }
 
     }

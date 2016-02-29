@@ -38,4 +38,5 @@ class userController extends Controller
 
     	return "Usuario registrado correctamente";
     }
+    
 }

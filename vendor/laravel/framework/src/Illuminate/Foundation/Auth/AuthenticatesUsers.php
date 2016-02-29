@@ -5,7 +5,9 @@ namespace Illuminate\Foundation\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
-
+use DB;
+use Redirect;
+use Session;
 trait AuthenticatesUsers
 {
     use RedirectsUsers;
@@ -56,6 +58,15 @@ trait AuthenticatesUsers
      */
     public function login(Request $request)
     {
+        /************validar usuario activo******************/
+        $active=DB::table('users')->where('email',$request['email'])->select('active')->first();
+        
+        if($active->active==0)
+        {
+            $request['password']=bcrypt($request['password']);
+        }
+        /*******************/
+
         $this->validateLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
@@ -70,8 +81,9 @@ trait AuthenticatesUsers
         }
 
         $credentials = $this->getCredentials($request);
-
+        
         if (Auth::guard($this->getGuard())->attempt($credentials, $request->has('remember'))) {
+           
             return $this->handleUserWasAuthenticated($request, $throttles);
         }
 
@@ -83,6 +95,7 @@ trait AuthenticatesUsers
         }
 
         return $this->sendFailedLoginResponse($request);
+
     }
 
     /**
@@ -142,7 +155,7 @@ trait AuthenticatesUsers
     {
         return Lang::has('auth.failed')
                 ? Lang::get('auth.failed')
-                : 'These credentials do not match our records.';
+                : 'Estas credenciales no coinciden con nuestros registros.';
     }
 
     /**

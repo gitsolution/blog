@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 
 class cmsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
 	{	
 		$cms = cms_access::All();

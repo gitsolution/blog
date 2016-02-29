@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 
 class configController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $modulos=DB::table('cms_accesses')->where('active',1)->get();

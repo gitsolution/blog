@@ -10,7 +10,11 @@ use DB;
 
 class MenuController extends Controller
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
 	public function index(){
 		$flag='1';	
 		$menus =  DB::table('men_menus')->where('active','=', $flag)->orderBy('order_by','DESC')->paginate(20);

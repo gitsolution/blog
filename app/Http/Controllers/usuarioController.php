@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\userRequest;
 use Redirect;
 use Session;
 use DB;
@@ -15,6 +16,11 @@ use Auth;
 
 class usuarioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
 	{	
         $flag="1";
@@ -49,8 +55,8 @@ class usuarioController extends Controller
     }
     
     /***guardar usuario***/
-    public function store(Request $request)
-    {       
+    public function store(userRequest $request)
+    {      
         $activado='0';
         if($request ['ChekActivacion']== "on")
         {
@@ -75,7 +81,9 @@ class usuarioController extends Controller
             $perfil->save();
        
 
-    	return Redirect::to("/admin/userNew");
+    	return Redirect::to("/admin/userNew")
+        ->with("message", "Hemos enviado un enlace de confirmación a su 
+                cuenta de correo electrónico");
     }
 
     public function register(Request $request)
@@ -119,4 +127,5 @@ class usuarioController extends Controller
         return view('usuario.index');
     }
 
+    
 }

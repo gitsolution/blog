@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class module_permission extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
 	public function index($id)
 	{
 		return "";

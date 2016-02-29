@@ -4,7 +4,7 @@
 
 <hr>
 <hr>
-{!!Form::open(['route'=>'inicio.store','method','POST'])!!}
+{!!Form::open(['route'=>'Inicio.store','method','POST'])!!}
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">

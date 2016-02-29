@@ -25,42 +25,52 @@
 |
 */
 
-
-
 Route::get('/','LogController@logout');
+/*Redireccion a la pagina de error 404*/
 
 
 /////  INDEX PAGE ADMIN
 //Route::get('/admin', 'HomeController@index');
-/// INDEX PAGE FRONTEND
-
-Route::resource('index','frontController@index');
-Route::resource('index','frontController@storecotizacion');
-Route::get('historia','frontController@historia');
-Route::get('mision','frontController@mision');
-Route::get('vision','frontController@vision');
-Route::get('valores','frontController@valores');
-Route::get('servicios','frontController@servicios');
 
 Route::group(['middleware' => 'web'], function () {
 
 /******************paginas con captcha ***************************/
-Route::resource('inicio','frontController');
-Route::get('contacto','frontController@contacto');
+
+/// PAGINAS ESTATICAS 
+Route::resource('Inicio','frontController@index');
+Route::get('Inicio','frontController@index');
+Route::get('Empresa','frontController@page');
+Route::get('Servicios','frontController@page');
+Route::get('Servicios-Financieros','frontController@page');
+Route::get('Cobertura','frontController@page');
+Route::get('Atencion-a-usuarios','frontController@page');
+Route::get('Informacion','frontController@page');
+Route::get('Politica-de-Privacidad','frontController@page');
+Route::get('Blog','frontController@BlogList');
+Route::get('Login','frontController@page');
+
+
+/// INDEX PAGE FRONTEND
+Route::get('Sec/{option}','frontController@section');
+Route::get('Cat/{optio}','frontController@category');
+Route::get('Doc/{option}','frontController@document');
+Route::get('ListCat/{option}','frontController@listCategory');
+Route::get('ListDoc/{option}','frontController@listDocument');
+Route::get('Galleries','frontController@listGalleries');
+Route::get('Gall/{option}','frontController@galleries');
+Route::get('Blog','frontController@blog');
+Route::get('Blog/{option}','frontController@bloglist');
+
+//Route::get('contactoEnviar','frontController@enviar');
+Route::get('frmcotizacion','frontController@cotizacion');
+ 
+Route::get('Contacto','frontController@Contacto');
 Route::resource('cotizacion','cotizacioncontroller');
 
 //Route::get('contactoEnviar','frontController@enviar');
 Route::get('frmcotizacion','frontController@cotizacion');
-
-Route::get('/getStreets?suburb={id}', function($id) {
-   return cms_category::whereSuburb($id)->get();
-});
-
-
-
-    Route::auth();
-
-
+ 
+ Route::auth();
 
 /*************RUTAS DE TYPES******************************/
 Route::get('admin/typesnew','typeController@typenew');//abre el formulario para nuevo typo
@@ -69,7 +79,6 @@ Route::get('admin/typesedit/{id}','typeController@edit');
 Route::put('admin/types/update','typeController@update');
 ///// ELIMINAR
 Route::get('admin/typedel/{id}','typeController@delete');
-
 
 /*************RUTAS DE CATEGORIAS******************************/
 Route::get('admin/categorynew','categoryController@categorynew');
@@ -85,7 +94,6 @@ Route::get('admin/categoryPriva/{id}/{priv}','categoryController@privado');
 Route::get('admin/categoryPublic/{id}/{pub}','categoryController@publicate');
 //ORDENAR
 Route::get('admin/categoryorder/{id}/{orderBy}/{no}','categoryController@order');
-
 
 /*************RUTAS DE SECTIONS ****************************/
 Route::get('admin/sectionsnew','sectiosController@section'); //formulario sectionsform.blade.php
@@ -177,7 +185,7 @@ Route::resource('mail','mailController');
 
 Route::get('password/email','Auth\PasswordController@getEmail');
 Route::get('password/email','Auth\PasswordController@postEmail');
-/*****************Resetear contraseñ*******************/
+/*****************Resetear contraseÃƒÂ±*******************/
 Route::get('password/reset/{token}','Auth\PasswordController@getReset');
 Route::post('password/reset','Auth\PasswordController@postReset');
 
@@ -187,7 +195,6 @@ Route::get('auth/register/email/{email}/confirm_token/{confirm_token}', 'Auth\Au
 
 
 /************************roles de usuario*************************/
-//Route::get('/admin', 'HomeController@index');/*pagina principal despues de logearse*/
 Route::resource('admin/rol','rolesController');
 Route::get('admin/roles', 'rolesController@index');
 
@@ -243,10 +250,6 @@ Route::get('admin/documentPublic/{id}/{pub}','DocumentController@publicate');
 //ORDENAR
 Route::get('admin/documentorder/{id}/{orderBy}/{no}','DocumentController@order');
 
-
-
-
-
 ///// Catalogos de menus
 Route::get('admin/menus','MenuController@index');
 Route::resource('admin/menus','MenuController');
@@ -268,32 +271,6 @@ Route::get('admin/menupub/{id}/{pub}','MenuController@publicate');
 /////  INDEX PAGE
 Route::get('admin/menuind/{id}/{ind}','MenuController@index_page');
 
-
-/////  Catalogo de Elementos del Menu
-/*Route::get('admin/itemmenu/{id_menu}','ItemMenuController@index');
-Route::resource('admin/itemmenu','ItemMenuController');
-///// FORMS
-
-Route::get('admin/itemmenunew/{id_menu}/','ItemMenuController@itemnew');
-/////  Paso 1. Seleccionar la opción de menú
-Route::get('admin/optionmenu/{id_menu}/{parent_id}','ItemMenuController@optionmenu');
-/////  Paso 2. Seleccionar Tipo de Menu 
-Route::get('admin/optionmenu/{id_menu}/{parent_id}/{typemenu}','ItemMenuController@typemenu');
-/////  Paso 1. 
-
-/////  Paso 1. 
-
-
-
-Route::get('admin/itemmenunew/{id_menu}/{level}/{menutype}','ItemMenuController@itemnew3');
-Route::get('admin/itemmenunew/{id_menu}/{level}/{menutype}/{id_menutype}','ItemMenuController@itemnew4');
-
-Route::get('admin/itemsubmenu/{id_menu}','ItemMenuController@submenu');
-//Route::get('admin/itemnew','ItemController@itemnew');
-Route::post('admin/itemmenu/store','ItemMenuController@store');
-///// EDICION
-Route::get('admin/itemmenuedit/{id}','ItemMenuController@edit');
-Route::put('admin/itemmenu/update','ItemMenuController@update');
 ////// ELIMINAR
 Route::get('admin/itemmenudel/{id}','ItemMenuController@delete');
 Route::get('admin/delitemmenupic/{id}','ItemMenuController@deletePicture');
@@ -303,23 +280,16 @@ Route::get('admin/itemmenuorder/{id}/{orderBy}/{no}','ItemMenuController@order')
 Route::get('admin/itemmenupub/{id}/{pub}','ItemMenuController@publicate');
 /////  INDEX PAGE
 Route::get('admin/itemmenuind/{id}/{ind}','ItemMenuController@index_page');
-*/
 
-//Route::get('getSelect','DocumentController@');
 Route::get('admin/getSelect/{id_section}','DocumentController@getCategories');
 
-//Route::get('getSelect','DocumentController@');
 Route::get('admin/getSelect/{id_section}','DocumentController@getCategories');
 
 Route::get('admin/document/{no}/getSelect/{id_section}','DocumentController@getEditCategories');
 
-Route::get('admin/{menu}/{no}/getSelect/{id_section}','ItemMenuController@getEditCategories');
-
-
-
+Route::get('admin/getSelectDoc/{id_category}','ItemMenuController@getEditDocuments');
 
 ////////////////// RUTAS PARA LOS MENUS
-//Route::get('admin/{menu}','ItemMenuController@addmenu');
 Route::get('admin/itemmenu/{id_menu}/{level}','ItemMenuController@index');
 
 Route::get('admin/{menu}/{id_menu}/{id_parent}','ItemMenuController@typemenu');
@@ -328,13 +298,6 @@ Route::get('admin/{menu}/{id_menu}/{id_parent}','ItemMenuController@optionmenu')
 
 Route::resource('admin/itemmenuadd','ItemMenuController@store');
 
- 
-// Route::get('admin/optionmenu/{id_menu}/{parent_id}/{menu}','ItemMenuController@typemenu');
-
-
-
-
 });
-
 
 

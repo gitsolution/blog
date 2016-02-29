@@ -50,7 +50,7 @@
 				<td> {{$men->id}}</td>
 				<td> {{$men->title}}</td>
 				<td>
-				{!!link_to('admin/itemmenu/'.$men->id.'/0', '',array('class'=>'glyphicon glyphicon-upload')) !!}
+				{!!link_to('admin/itemmenu/'.$men->id.'/0', '',array('class'=>'glyphicon glyphicon-menu-hamburger')) !!}
 				</td>         								
 				<td> {!! link_to('admin/menuorder/'.$men->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
 				<td> {!! link_to('admin/menuorder/'.$men->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>

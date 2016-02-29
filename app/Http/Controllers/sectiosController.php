@@ -89,7 +89,7 @@ class sectiosController extends Controller
           'private'=>$ChekPrivad,
           'publish_date'=>$request['publish_date'],//$request['descripcion'],
           'publish'=>$ChekPubli,
-          'uri'=>'cadena',//$request['descripcion'],
+          'uri'=>$uri,//$request['descripcion'],
           'order_by'=>$orderBy,//$request['descripcion'],
           'active'=>'1',//$request[''],
           'register_by'=>Auth::User()->id,

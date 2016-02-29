@@ -12,6 +12,11 @@ use App\Http\Controllers\Controller;
 
 class rolesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }  
+
     public function index()
 	{	
 		$roles = usr_role::All();

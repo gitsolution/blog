@@ -12,7 +12,7 @@ $botonTitulo='GUARDAR';
                   </div>
                 <div class="col-md-3">
                   {!!Form::label('seccion','Sección:')!!}
-                  <select name="id_section" id="id_section"  class="form-control select2">
+                  <select name="id_section_menu" id="id_section_menu"  class="form-control select2">
                   @foreach($Sections as $sec)
                   <option value="<?php echo $sec->id; ?>"><?php echo $sec->title; ?></option>
                   @endforeach
@@ -30,11 +30,8 @@ $botonTitulo='GUARDAR';
             
               <div class="col-md-3">
                   {!!Form::label('Categoria','Categoría:')!!}
-
-
-                  <select name="id_category" id="id_category" class="form-control select2">
+                  <select name="id_category_menu" id="id_category_menu" class="form-control select2">
                   @foreach($Categories as $cat)
-
                   <option value="<?php echo $cat->id; ?>"><?php echo $cat->title; ?></option>
                   @endforeach
                 </select>
@@ -48,19 +45,14 @@ $botonTitulo='GUARDAR';
 
           <div class="row">
 
-              <div class="form-group">
-            
+              <div class="form-group">            
               <div class="col-md-3">
                   {!!Form::label('Documentos','Documentos:')!!}
-
-
-                  <select name="id_document" id="id_document" class="form-control select2">
+                  <select name="id_document_menu" id="id_document_menu" class="form-control select2">
                   @foreach($Documents as $doc)
-
                   <option value="<?php echo $doc->id; ?>"><?php echo $doc->title; ?></option>
                   @endforeach
                 </select>
-
                 <br>
                 </div>
                 </div>
@@ -75,9 +67,7 @@ $botonTitulo='GUARDAR';
       </div>
     </div>
  <div class="row">
-
-       <div class="form-group" >    
-        
+       <div class="form-group" >            
           <div class="col-md-12">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <center>

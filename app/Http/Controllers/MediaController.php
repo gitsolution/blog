@@ -14,7 +14,11 @@ use DB;
 
 class MediaController extends Controller
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
 	public function index(){
 		$flag='1';	
 		$medias =  DB::table('med_albums')->where('active','=', $flag)->orderBy('order_by','DESC')->paginate(20);
@@ -65,7 +69,7 @@ class MediaController extends Controller
 			'title'=>$request['title'],
 			'description'=>$request['content'],
 			'order_by'=>$orderBy,
-			'uri'=>$publish,
+			'uri'=>$uri,
 			'publish'=>$request['publish'],
 			'publish_date'=>$request['publish_date'],
 			'path'=>$path,

@@ -17,7 +17,7 @@ class LogController extends Controller
     public function logout()
     {
         Auth::logout();
-        return Redirect::to("admin");
+        return Redirect::to("Inicio");
     }
 }
 

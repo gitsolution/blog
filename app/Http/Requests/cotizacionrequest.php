@@ -45,8 +45,7 @@ class cotizacionrequest extends Request
             'phone.numeric'=>'El número de teléfono debe estar conformado por solo números',
             'phone.min'=>'El número de telefono debe tener al menos 6 numeros',
             'phone.max'=>'El número de telefono no debe tener más de 13 numeros',
-
-            //montoaproximado.between'=>'Monto no válido',
+            
 
             'oficioprofesion.required'=>'Por favor complete su profesión',
             'oficioprofesion.alpha'=>'La profesión solo debe contener letras',
@@ -57,8 +56,8 @@ class cotizacionrequest extends Request
             'destinocredito.min'=>'El destino del crédito debe tener al menos 2 caracteres',
             'destinocredito.max'=>'El  destino del crédito solo puede tener máximo 70 caracteres',
 
-            //'g-recaptcha-response.required'=>'El campo captcha es requerido',
-            //'g-recaptcha-response.recaptcha'=>'Captcha incorrecto',
+            'g-recaptcha-response.required'=>'El campo captcha es requerido',
+            'g-recaptcha-response.recaptcha'=>'Captcha incorrecto',
 
         ];
      }

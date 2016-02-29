@@ -3,63 +3,71 @@
 <!-- Image Background Page Header -->
     <!-- Note: The background image is set within the business-casual.css file. -->
     <header class="business-header">
+ <hr>
+
         <div class="container">           
         <img src="img/microfinanzas.png" class="img-responsive" class="img">           
         </div>
     </header>
-
+ <hr>
     <!-- Page Content -->
     <div class="container">
-     @if($titulo!=null)
         <hr>
-
         <div class="row">
             <div class="col-sm-8" style="word-wrap: break-word; text-align: justify;">
+                     @if(isset($Sections))
+                              @foreach($Sections as $Sec) 
+
+
                 <h2>   <?php
                    
-                    echo $titulo->title;
+                    echo $Sec->title;
                      ?></h2>
                 <p>
                     <?php 
-                    echo $titulo->resumen ;?>
+                    echo $Sec->resumen; ?>
                 </p>
-                <p>
-                    <a class="btn btn-default btn-lg" href="#">Ver mas&raquo;</a>
-                </p>
+
+                    @endforeach
             </div>
-            <div class="col-sm-4" style="word-wrap: break-word; text-align: justify;">
-                <h2><?php                   
-                    echo $contacto->title;
-                     ?></h2>
-                <address style="word-wrap: break-word; text-align: justify;">
-                    <?php 
-                    echo $contacto->resumen ;?>
+            <div class="col-sm-4" style="word-wrap: break-word; text-align: justify;">                
+              <h3> Datos de Contacto</h3>
+              <b>Mail: </b>contacto@valorproductivo.com.mx
+				<br>              
+              <b>Teléfono de atención al cliente: </b>01 962 625 3100.
+              <br>
+              <address style="word-wrap: break-word; text-align: justify;">
+                <b>Dirección:</b> 6a Avenida Sur No.28-B, Col. Centro, Tapachula de Córdova y Ordóñez, Chiapas.
                 </address>
             </div>
         </div>
-        <!-- /.row -->
-<br>
-        
+    
+	<br>
+    <br>
+    <br>
+   
  <div class="form-group">
-         @for($i=0; $i< count($titul);$i++) 
-             @if($i==3)
-                <?php echo "&nbsp<br><br>" ?>
-              @endif
+         @if(isset($Categories))
+         @foreach($Categories as $Cat) 
             <div class="col-md-4" style="text-align: justify;">
-            <img class=" img-center" src="<?php echo $picture[$i]?>" alt="">
-                          
-                <h2> <?php echo $titul[$i];  ?></h2>
-                
-                    <?php echo $description[$i];  ?>
-          </div>
-          @endfor
-         
-          
-        </div>
+              @if($Cat->main_picture!="")
+    	        <img class="img-center" src='<?php echo $Cat->main_picture; ?>' alt="">
+              @endif  
+              <h2> <?php echo $Cat->title;  ?></h2>
+            	<p>    
+                  <?php echo $Cat->resumen;  ?>
+              </p>
+              <p>    
+                  <?php echo $Cat->content;  ?>
+              </p>
+              
+   			</div>
+          @endforeach
+        @endif           
+  </div>
         @else
             <br><br><br><br>
           <h2>No existe contenido en esta sección</h2>
         @endif
         </div>
-
 @stop

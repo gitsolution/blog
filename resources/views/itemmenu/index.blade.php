@@ -1,10 +1,9 @@
 @extends('layouts.app')
 @section('content')
  <?php $id_menu = $menu->id; 
- if($menu->id_parent=='')
- 	{ $id_parent=0;}
- else
- 	{$id_parent=$menu->id_parent;}
+ 
+
+
   ?>
  <div class="container-fluid">
 <div class="row">
@@ -61,10 +60,10 @@
 				<td> {{$imenu->id}}</td>
 				<td> {{$imenu->title}}</td>
 				<td> 												
-				{!! link_to('admin/itemmenu/'.$imenu->id_menu.'/'.$imenu->id, '',array('class'=>'glyphicon glyphicon-upload')) !!} 
+				{!! link_to('admin/itemmenu/'.$imenu->id_menu.'/'.$imenu->id, '',array('class'=>'glyphicon glyphicon-menu-hamburger')) !!} 
 				</td>
 				<td> 												
-				{!! link_to('admin/optionmenu/'.$imenu->id_menu.'/'.$imenu->id, '',array('class'=>'glyphicon glyphicon-menu-hamburger')) !!} 
+				{!! link_to('admin/optionmenu/'.$imenu->id_menu.'/'.$imenu->id, '',array('class'=>'glyphicon glyphicon-upload')) !!} 
 				</td>
 				<td> {!! link_to('admin/itemmenuorder/'.$imenu->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
 				<td> {!! link_to('admin/itemmenuorder/'.$imenu->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>

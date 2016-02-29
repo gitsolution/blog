@@ -39,12 +39,12 @@ class contactoRequest extends Request
             'name.min'=>'El nombre debe tener al menos 2 caracteres',
             'name.max'=>'El nombre no debe tener mas de 70 caracteres',
             'name.regex'=>'El nombre solo debe contener letras',
-            
+
             'email'=>'Ingrese de manera correcta su correo',
 
             'phone.required'=>'Por favor ingrese su numero telefonico',
             'phone.digits_between'=>'El número de teléfono debe tener al menos 2 o hasta 15 numero',
-            
+
             'asunt.required'=>'Por favor agrege un asunto',
             'g-recaptcha-response.required'=>'El campo captcha es requerido',
             'g-recaptcha-response.recaptcha'=>'Captcha incorrecto',

@@ -45,6 +45,7 @@ Route::get('Atencion-a-usuarios','frontController@page');
 Route::get('Informacion','frontController@page');
 Route::get('Politica-de-Privacidad','frontController@page');
 Route::get('Blog','frontController@BlogList');
+Route::get('Blog/{post}','frontController@Blog');
 Route::get('Login','frontController@page');
 
 
@@ -56,8 +57,6 @@ Route::get('ListCat/{option}','frontController@listCategory');
 Route::get('ListDoc/{option}','frontController@listDocument');
 Route::get('Galleries','frontController@listGalleries');
 Route::get('Gall/{option}','frontController@galleries');
-Route::get('Blog','frontController@blog');
-Route::get('Blog/{option}','frontController@bloglist');
 
 //Route::get('contactoEnviar','frontController@enviar');
 Route::get('frmcotizacion','frontController@cotizacion');

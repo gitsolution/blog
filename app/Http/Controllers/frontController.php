@@ -98,20 +98,47 @@ public function index()
         $flag=1;
         $Sections = null;
         $Categories = null;
-        $uri='Inicio';
+        $Documents = null;
+        $uri='Blog';
+        
+        $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
+        $Sections = \App\cms_section::find($id_section);
+        $Categories =  DB::table('cms_categories')->where('active','=', $flag)->where('id_section','=', $id_section)->get();             
+
+            $Documents = DB::table('cms_documents')
+            ->join('cms_categories', 'cms_documents.id_category', '=', 'cms_categories.id')                        
+            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')
+            ->select('cms_documents.*', 'cms_sections.id as id_section', 'cms_sections.title as section','cms_categories.title as category')
+            ->where('cms_documents.active','=', $flag)            
+           // ->where('cms_categories.id_section','=', $id_section)                        
+            ->orderBy('cms_documents.order_by','DESC')->paginate(20);
+ 
+            return view('frontend.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections]);
+    }
+
+
+
+    public function Blog($post)
+    {
+        $flag=1;
+        $Sections = null;
+        $Categories = null;
+        $uri='Blog';
         
         $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
         $Sections = \App\cms_section::find($id_section);
 
-            $Categories = DB::table('cms_categories')
-            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
-            ->select('cms_categories.*', 'cms_sections.title as section')
-            ->where('cms_categories.active','=', $flag)            
-            ->where('cms_categories.id_section','=', $id_section)                        
-            ->orderBy('order_by','DESC')->paginate(20);
+        $Categories =  DB::table('cms_categories')->where('active','=', $flag)->where('id_section','=', $id_section)->get();             
 
-        return view('frontend.home',['Categories'=>$Categories, 'Sections'=>$Sections]);
-    }
+            $Documents = DB::table('cms_documents')
+            ->join('cms_categories', 'cms_documents.id_category', '=', 'cms_categories.id')                        
+            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')
+            ->select('cms_documents.*', 'cms_sections.id as id_section', 'cms_sections.title as section','cms_categories.title as category')
+            ->where('cms_documents.active','=', $flag)
+            ->where('cms_documents.uri','=', $post)
+            ->orderBy('order_by','DESC')->get();
+            return view('frontend.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections,'post'=>$post]);
+}
 
 
 public function page(Request $request)
@@ -177,7 +204,7 @@ public function document($option){
         $Documents = null;
         $uri=$option;
         
-            $Categories = DB::table('cms_documents')
+            $Documents = DB::table('cms_documents')
             ->where('cms_documents.active','=', $flag)            
             ->where('cms_documents.uri','=', $uri)                        
             ->orderBy('order_by','DESC')->paginate(20);
@@ -213,25 +240,28 @@ public function listDocument($option){
         $Sections = null;
         $Categories = null;
         $uri=$option;
-            $Categories = DB::table('cms_categories')
-            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
-            ->select('cms_categories.*', 'cms_sections.title as section')
-            ->where('cms_categories.active','=', $flag)            
-            ->where('cms_categories.id_section','=', $id_section)                        
+
+
+            $Documents = DB::table('cms_documents')
+            ->join('cms_sections', 'cms_documents.id_category', '=', 'cms_categories.id')            
+            ->select('cms_documents.*', 'cms_categories.title as section')
+            ->where('cms_documents.active','=', $flag)            
+            ->where('cms_documents.id_category','=', $id_category)                        
             ->orderBy('order_by','DESC')->paginate(20);
 
         return;
 
 }
-
 public function listGalleries(){
 $flag='1';  
-        $items =  DB::table('med_pictures')
+$band='1';  
+$publish='1';  
+        /*$items =  DB::table('med_pictures')
             ->join('med_albums', 'med_pictures.id_album', '=', 'med_albums.id')            
             ->select('med_pictures.*', 'med_albums.title as album', 'med_albums.description as descripcion')        
             ->where('med_albums.active','=', $flag)
             ->where('med_pictures.active','=', $flag)        
-            ->orderBy('med_pictures.order_by','DESC')->paginate(20);
+            ->orderBy('med_pictures.order_by','DESC')->paginate(20);*/
 
 
 
@@ -239,24 +269,31 @@ $flag='1';
             ->join('med_pictures', 'med_albums.id', '=', 'med_pictures.id_album')            
             ->select('med_albums.*', 'med_pictures.path as pic', 'med_pictures.id_album as idal')        
             ->where('med_albums.active','=', $flag)
-            ->where('med_pictures.active','=', $flag)        
+            ->where('med_pictures.active','=', $flag)   
+            ->where('med_pictures.publish','=',$publish)        
             ->orderBy('med_albums.order_by','DESC')->paginate(20);
-            return view('frontend.galery',['items'=>$items, 'media'=>$media]);
+            return view('frontend.galery',[/*'items'=>$items,*/ 'media'=>$media ,'band'=>$band] );
 
 }
 
 public function galleries($option){
-        $uri = $option;        
+        $uri = $option;    
         $flag='1';  
+        $publish='1';  
+        $band='0';  
+
         $items =  DB::table('med_pictures')
             ->join('med_albums', 'med_pictures.id_album', '=', 'med_albums.id')            
             ->select('med_pictures.*', 'med_albums.title as album')        
             ->where('med_albums.active','=', $flag)
             ->where('med_pictures.active','=', $flag) 
-            ->where('med_albums.uri','=',$uri)       
+            ->where('med_albums.uri','=',$uri)  
+            ->where('med_pictures.publish','=',$publish)      
             ->orderBy('med_pictures.order_by','DESC')->paginate(20);
-            //return view('pics/index',['items'=>$items]);
+
+   return view('frontend.galery',['items'=>$items, 'band'=>$band] );
 }
+ 
  
 
 

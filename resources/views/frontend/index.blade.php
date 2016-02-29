@@ -37,7 +37,7 @@
             <div class="navbar-header">
              <div class="row">
              <div class="derecha col-md-7" style="width: 235px; height: 50px;">
-                     <a href="Inicio"><img src="img/logo.png" class="img-responsive logo"></a>
+                     <a href="Inicio"><img src="../img/logo.png" class="img-responsive logo"></a>
                     </div>
 
               <div class="col-md-5">
@@ -55,43 +55,45 @@
             
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                <li>
-                    <a class="nav-link" href="Inicio">Inicio</a>
-                </li>
-                 
-                    <li class="dropdown">
-                     <a class="nav-link" href="Empresa">Empresa</a>                        
+                    <li>
+                      {!!link_to('Inicio', 'Inicio',array('class'=>'nav-link')) !!}
+                    </li>
+
+                    <li>
+                      {!!link_to('Empresa', 'Empresa',array('class'=>'nav-link')) !!}
                     </li>
 
                      <li>
-                        <a class="nav-link" href="Servicios-Financieros">Servicios</a>
+                     {!!link_to('Servicios-Financieros', 'Servicios',array('class'=>'nav-link')) !!}  
                     </li>
                      <li>
-                        <a class="nav-link" href="Cobertura">Atención a usuarios</a>
+                     {!!link_to('Cobertura', 'Atención a usuarios',array('class'=>'nav-link')) !!}
                     </li>
                      <li>
-                        <a class="nav-link" href="Informacion">Información</a>
+                         {!!link_to('Informacion', 'Informacion',array('class'=>'nav-link')) !!}
                     </li>
                     <li>
-                        <a class="nav-link" href="Contacto">Contacto</a>
+                      {!!link_to('Contacto', 'Contacto',array('class'=>'nav-link')) !!}
                     </li> 
                     <li>
-                        <a class="nav-link" href="Galleries">Galeria</a>
+                      {!!link_to('Galleries', 'Galeria',array('class'=>'nav-link')) !!}
                     </li> 
                     <li>
-                        <a class="nav-link" href="Blog">Blog</a>
-                    </li> 
+                    {!!link_to('Blog', 'Blog',array('class'=>'nav-link')) !!}
+                    </li>
+
+
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container">
-	<hr>    
-      @yield('content')
-</div>
 <div id="wrap">
 
     <div id="main" class="clearfix">
+    <div class="container">
+    <hr>    
+      @yield('content')
+    </div>
 
     </div>
 
@@ -100,58 +102,64 @@
             <div class="container">
                 <div class="row">
                <div class="col-md-12">
-                <ul class="footer_menu">
+            <ul class="footer_menu">
                 <li>
-                    <a class="" href="Inicio">Inicio</a>
+                      {!!link_to('Inicio', 'Inicio',array('class'=>'')) !!}
                 </li>
                 <li>
-                    <a class="" href="Blog">Blog</a>
-                </li>                                  
-                     <li>
-                        <a class="" href="Atencion-a-usuarios">Atención a usuarios</a>
-                    </li>
-                     <li>
-                        <a class="" href="Informacion">Información</a>
-                    </li>
-                    <li>
-                        <a class="" href="Politica-de-Privacidad">Póliticas</a>
-                    </li> 
-                    <li>
-                        <a class="" href="Login">Login</a>
-                    </li> 
-                    <li>
-                        <a class="" href="#" target="_blank">Correo</a>
-                    </li> 
-
-
-                </ul>
+                      {!!link_to('Blog', 'Blog',array('class'=>'')) !!}
+                </li>
+            
+                 <li>
+                      {!!link_to('Atencion-a-usuarios', 'Atención a usuarios',array('class'=>'')) !!}
+                </li>
+                <li>
+                      {!!link_to('Informacion', 'Información',array('class'=>'')) !!}
+                </li>
+                <li>
+                      {!!link_to('Politica-de-Privacidad', 'Póliticas',array('class'=>'')) !!}
+                </li> 
+                <li>
+                      {!!link_to('Login', 'Login',array('class'=>'')) !!}
+                </li> 
+                <li>
+                      {!!link_to('Correo', 'Correo',array('class'=>'')) !!}
+                </li> 
+            </ul>
                 </div>
                 </div>
             <div class="row">
                 <div class="col-md-4 " >
-                <h3>Datos de Contacto</h3>
+             <div class="footcontac">
 <b>Mail:</b> contacto@valorproductivo.com.mx
 <br> 
 <b>Teléfono de atención al cliente:</b> 01 962 625 3100.     
 <br>
                 <address> <strong>
-                   Dirección: 6a Avenida Sur No.28-B, Col. Centro, Tapachula de Córdova y Ordóñez, Chiapas.
+                   Dirección: 6a Avenida Sur No.28-B, Col. Centro, 
+                   <br>Tapachula de Córdova y Ordóñez, Chiapas.
                    </strong>
                 </address> 
                 </div>
+                </div>
                 <div class="col-md-2 text-center ">
                  
-                  <a href="http://www.cnbv.gob.mx/Paginas/default.aspx" target="_blank"> <img src="img/cnbv.png " class="img-responsive text-center " style="width: 200px;"></a>
+                  <a href="http://www.cnbv.gob.mx/Paginas/default.aspx" target="_blank"> <img src="img/cnbv.png " class="../img-responsive text-center " style="width: 200px;"></a>
 
                     </div>
                     <div class="col-md-2">
-                   <a href="http://www.condusef.gob.mx/"  target="_blank"> <img src="img/condusef.png" class="text-center" style="width: 110px;"></a> 
+                   <a href="http://www.condusef.gob.mx/"  target="_blank"> <img src="../img/condusef.png" class="text-center" style="width: 110px;"></a> 
                    </div>
                    <div class="col-md-2">           
-                  <a href="http://www.buro.gob.mx/"  target="_blank">  <img src="img/buroent.png" class="img-responsive" style="width: 80px;"></a>
+                  <a href="http://www.buro.gob.mx/"  target="_blank">  <img src="../img/buroent.png" class="img-responsive" style="width: 80px;"></a>
+                  </div>
+                    <div class="col-md-2">           
+                  <a href="https://www.facebook.com/Valor-Productivo-SOFOM-541325692555731/?ref=ts&fref=ts"  target="_blank">  <img src="../img/facebook.png" class="img-responsive" style="width: 40px;"></a>
                   </div>
 
+
                 </div>
+
             </div>
         </div>
         </footer>

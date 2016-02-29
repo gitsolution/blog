@@ -49,14 +49,14 @@ class ItemController extends Controller
 		$publish= 0;
 		$index_page=0;
 		$extension="";
-		if($request['publish']='on')
+		if($request['publish']=='on')
 		{
 			$publish=1;
 		}
 
 
 
-		if($request['index_page']='on')
+		if($request['index_page']=='on')
 		{
 			$index_page=1;
 		}
@@ -85,8 +85,7 @@ class ItemController extends Controller
 			'title'=>$request['title'],
 			'description'=>$request['description'],
 			'uri'=>$path,
-			'uri'=>$publish,
-			'publish'=>$request['publish'],
+			'publish'=>$publish,
 			'publish_date'=>$request['publish_date'],
 			'path'=>$path,
 			'mime_type'=>$extension,
@@ -129,6 +128,12 @@ class ItemController extends Controller
     	}
 
 	public function update($id,Request $request){
+         $publish= 0;
+		if($request['publish']=='on')
+		{
+			$publish=1;
+		}
+
          $isUpImg=false;
   		 $item = \App\Item::find($id);		 
          $media = \App\Media::find($item->id_album);
@@ -155,7 +160,7 @@ class ItemController extends Controller
             if($isUpImg){
 	            $item->path=$path;               
             }    
-
+        $item->publish=$publish;
  		$item->save();
 		Session::flash('message','Usuario Actualizado Correctamente');		
 		return redirect('/admin/item/'.$item->id_album);

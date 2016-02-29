@@ -43,7 +43,16 @@ margin-left: 20%;
 img{
     width: 100%;
 }
-
+.hoverimg
+{
+text-decoration: none;
+}
+a{
+    text-decoration: none;
+}
+.panel-primary:hover { 
+    background-color: yellow;
+}
 
 /*check box*/
 .material-switch > input[type="checkbox"] {
@@ -169,4 +178,8 @@ img{
 }
 .poscondu{
     margin-left: 90px;
+}
+.footcontac{
+
+    font-size: 12px !important;
 }

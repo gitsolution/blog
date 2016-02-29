@@ -1,6 +1,3 @@
-<br>
-<br>
-
 	{!!Form::open(['route'=>'cotizacion.store','method','POST', 'class'=>'form-group '] )!!}
 
 	      @if (count($errors) > 0)

@@ -13,8 +13,10 @@
         <div class="col-lg-6 col-lg-offset-3">
           <div class="btn-group btn-group-justified">
             <a href="Inicio" class="btn btn-info">Regresar</a> 
-          </div><br>
+
+          </div>
         </div>
-      </div><!-- /.col-lg-8 col-offset-2 -->
+      </div>
+
     </div>
   @stop

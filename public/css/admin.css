@@ -43,6 +43,13 @@ margin-left: 20%;
 img{
     width: 100%;
 }
+.hoverimg
+{
+text-decoration: none;
+}
+a{
+    text-decoration: none;
+}
 
 
 /*check box*/
@@ -170,3 +177,28 @@ img{
 .poscondu{
     margin-left: 90px;
 }
+.footcontac{
+
+    font-size: 12px !important;
+}
+
+.hoverclas:hover
+{     -webkit-transform: scale(1.1); 
+   
+   position: relative; 
+   z-index: 5; 
+}
+
+.shadow
+{
+    
+-webkit-box-shadow: 0 3px 6px rgba(0,0,0,.5); 
+}
+
+.piealbum{
+    background-color: rgb(171,183,183);
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+

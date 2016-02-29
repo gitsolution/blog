@@ -11,20 +11,21 @@ body {
 }
 
 
-/*
-html, body, #wrap {height: 50%;}
+
+/* */
+html, body, #wrap {height: 100%;}
 
 
 body > #wrap {height: auto; min-height: 100%;}
 
-#main {padding-bottom: 50px;}  
+#main {padding-bottom: 150px;}  
 
 #footer {position: relative !important;
-    margin-top: -50px !important; 
+    margin-top: -150px !important; 
     height: 150px !important;
     clear:both !important;} 
 
-*/
+/* */
 /* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
 
 .footer_menu { clear:both;   text-align:center; }

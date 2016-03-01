@@ -9,10 +9,10 @@ use App\Http\Controllers\Controller;
 
 class userController extends Controller
 {
-	public function index()
-	{
-		//
-	}
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function create()
     {

@@ -10,11 +10,8 @@
         <p class="lead text-muted"><h3>Lo sentimos pero la página que busca  no existe o no se puede encontrar</h3></p>
         <div class="clearfix"></div>
         <br>
-        <div class="col-lg-6 col-lg-offset-3">
-          <div class="btn-group btn-group-justified">
-            <a href="Inicio" class="btn btn-info">Regresar</a> 
-
-          </div>
+        <div class="col-lg-6 col-lg-offset-3">        
+            {!!link_to('Inicio', 'Regresar',array('class'=>'btn btn-success')) !!}
         </div>
       </div>
 

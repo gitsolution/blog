@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Microfinanciera, microcreditos, creditos en chiapas, grupo solidario">
     <meta name="author" content="">
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
     <title>Valor Productivo SA de CV SOFOM ENR</title>
 
     <!-- Bootstrap Core CSS -->

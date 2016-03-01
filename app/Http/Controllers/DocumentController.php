@@ -21,11 +21,6 @@ class DocumentController extends Controller
         $this->middleware('auth');
     }
     
-	 public function __construct()
-   		 {
-        	 $this->middleware('auth');
-   		 }  
-    
   	 public function index()
    		{
     	   	$flag='1';  

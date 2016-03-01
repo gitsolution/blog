@@ -7,6 +7,11 @@ use App\Http\Requests;
 use App\Http\Requests\contactoRequest;
 use App\Http\Controllers\Controller;
 use Mail;
+use App\cms_section;
+use App\cms_category;
+use App\cms_document;
+use App\Media;
+use App\Item;
 
 class frontController extends Controller
 {
@@ -15,8 +20,7 @@ class frontController extends Controller
     {
         $this->middleware('auth');
     }
-  */
-    
+  */    
   
     public function store(contactoRequest $request)
     {
@@ -35,25 +39,6 @@ class frontController extends Controller
     }
     
 
-    public function storecotizacion(Request $request)
-    {
-        $data['name']=$request['name'];
-        $data['name']=$request['email'];
-        $data['phone']=$request['phone'];
-        $data['montoaproximado']=$request['montoaproximado'];
-        $data['exampleInputAmount']=$request['exampleInputAmount'];
-        $data['oficioprofesion']=$request['oficioprofesion'];
-        $data['destinocredito']=$request['destinocredito'];
-        $data['asunt']=$request['asunt'];
-
-        Mail::send('mails.frmcotizacion', ['data' => $data], function($mail)
-        use($data){
-            $mail->subject('Cotización');
-            $mail->to('iver.fabi13@gmail.com');
-        });
-
-        return "Correo enviado";
-    }
 
     public function Contacto()
     {
@@ -90,7 +75,9 @@ public function index()
             ->where('cms_categories.publish','=', $publish)                                    
             ->orderBy('order_by','DESC')->paginate(20);
 
-        return view('frontend.home',['Categories'=>$Categories, 'Sections'=>$Sections]);
+            $this->aumentarHits($uri);
+
+            return view('frontend.home',['Categories'=>$Categories, 'Sections'=>$Sections]);
     }
 
     public function BlogList()
@@ -112,7 +99,9 @@ public function index()
             ->where('cms_documents.active','=', $flag)            
            // ->where('cms_categories.id_section','=', $id_section)                        
             ->orderBy('cms_documents.order_by','DESC')->paginate(20);
- 
+            
+            $this->aumentarHits($uri);
+
             return view('frontend.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections]);
     }
 
@@ -137,25 +126,29 @@ public function index()
             ->where('cms_documents.active','=', $flag)
             ->where('cms_documents.uri','=', $post)
             ->orderBy('order_by','DESC')->get();
+
+            $this->aumentarHits($uri);
+
             return view('frontend.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections,'post'=>$post]);
 }
 
 
 public function page(Request $request)
     {
+           $uri  = $request->path();
+           if( $uri=='admin'){
+    	       return view('home');
+            }
+      		else{
+            $flag=1;
+            $Sections = null;
+            $Categories = null;               
+            $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
+            $Sections = \App\cms_section::find($id_section);
 
-       $uri  = $request->path();
-       if( $uri=='admin'){
-	       return view('home');
-        }
-  		else{
-        $flag=1;
-        $Sections = null;
-        $Categories = null;               
-        $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
-        $Sections = \App\cms_section::find($id_section);
-      return view('frontend.page',['Categories'=>$Categories, 'Sections'=>$Sections]);
-       }
+            $this->aumentarHits($uri);
+          return view('frontend.page',['Categories'=>$Categories, 'Sections'=>$Sections]);
+           }
   	 
        
        }
@@ -179,7 +172,8 @@ $flag=1;
             ->where('cms_categories.id_section','=', $id_section)                        
             ->orderBy('order_by','DESC')->paginate(20);
 
-        return;
+            $this->aumentarHits($uri);
+        return; 
       //  return view('frontend.home',['Categories'=>$Categories, 'Sections'=>$Sections]);
 
 }
@@ -194,6 +188,7 @@ public function category($option){
             ->where('cms_categories.uri','=', $uri)                        
             ->orderBy('order_by','DESC')->paginate(20);
 
+        $this->aumentarHits($uri);            
         return;
 
 
@@ -209,11 +204,8 @@ public function document($option){
             ->where('cms_documents.uri','=', $uri)                        
             ->orderBy('order_by','DESC')->paginate(20);
 
+            $this->aumentarHits($uri);
         return;
-
-
-
-
 }
 
 public function listCategory($option){
@@ -231,6 +223,7 @@ public function listCategory($option){
             ->where('cms_categories.id_section','=', $id_section)                        
             ->orderBy('order_by','DESC')->paginate(20);
 
+            $this->aumentarHits($uri);
         return;
 
 }
@@ -248,6 +241,8 @@ public function listDocument($option){
             ->where('cms_documents.active','=', $flag)            
             ->where('cms_documents.id_category','=', $id_category)                        
             ->orderBy('order_by','DESC')->paginate(20);
+
+            $this->aumentarHits($uri);
 
         return;
 
@@ -291,10 +286,43 @@ public function galleries($option){
             ->where('med_pictures.publish','=',$publish)      
             ->orderBy('med_pictures.order_by','DESC')->paginate(20);
 
+            $this->aumentarHits($uri);
+
    return view('frontend.galery',['items'=>$items, 'band'=>$band] );
 }
- 
- 
 
+    public function aumentarHits($uri)
+    {
+               
+        /*********** Hits section ************/
+            $modulo = new cms_section;
+            $modulo->whereuri($uri)->whereactive(1)
+            ->increment('hits');
+        /****************************/
 
+        /*********** Hits para categoria ******/
+            $categories = new cms_category;
+            $categories ->whereuri($uri)->whereactive(1)
+            ->increment('hits');
+        /****************************/
+
+        /*********** Hits para documents ******/
+            $document = new cms_document;
+            $document ->whereuri($uri)->whereactive(1)
+            ->increment('hits');
+        /****************************/
+
+        /*********** Hits para med_albums ******/
+            $media = new Media;
+            $media ->whereuri($uri)->whereactive(1)
+            ->increment('hits');
+        /****************************/
+        
+        /*********** Hits para med_pictures ******/
+            $media = new Item;
+            $media ->whereuri($uri)->whereactive(1)
+            ->increment('hits');
+        /****************************/
+    }
+ 
 }

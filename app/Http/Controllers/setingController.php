@@ -16,11 +16,8 @@ class setingController extends Controller
     }  
     
   public function index()
-   {
-       
-
-       
-    $flag='1';  
+   {       
+    $flag='1';
  
     $Sections = DB::table('cms_senttingspages')
             ->select('cms_senttingspages.*')

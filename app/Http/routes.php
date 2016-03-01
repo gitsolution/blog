@@ -120,7 +120,6 @@ Route::get('admin/setingdel/{id}','setingController@delete');
 
 
 
-
 /*************RUTAS DE ALBUMS Y PICTURES ***************/
 ///// Catalogos 
 Route::get('admin/media','MediaController@index');

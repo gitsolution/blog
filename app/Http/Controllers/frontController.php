@@ -134,7 +134,7 @@ public function index()
 
 
 public function page(Request $request)
-    {
+    {   
            $uri  = $request->path();
            if( $uri=='admin'){
     	       return view('home');
@@ -147,7 +147,7 @@ public function page(Request $request)
             $Sections = \App\cms_section::find($id_section);
 
             $this->aumentarHits($uri);
-          return view('frontend.page',['Categories'=>$Categories, 'Sections'=>$Sections]);
+            return view('frontend.page',['Categories'=>$Categories, 'Sections'=>$Sections]);
            }
   	 
        

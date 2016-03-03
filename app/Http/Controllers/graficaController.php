@@ -2,32 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 use DB;
 
-class HomeController extends Controller
+class graficaController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    //
+    public function index()
     {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        $document="";
-        $hit="";
-        $documents = DB::table('cms_documents')     
+    	$document="";
+    	$hit="";
+    	$documents = DB::table('cms_documents')     
             ->select('cms_documents.title', 'cms_documents.hits')    
             ->where('cms_documents.active', '=', 1)->get();
 
@@ -63,16 +51,16 @@ class HomeController extends Controller
             $hitspicture=$this->construirHits($pictures);
             
 
-        return view('home',compact('document','hitsdocument','section','hitssection','categori','hitscategories','album','hitsalbum','picture','hitspicture'));
+    	return view('graficas/line',compact('document','hitsdocument','section','hitssection','categori','hitscategories','album','hitsalbum','picture','hitspicture'));
     }
 
     public function construirTitulo($titulos)
     {
-        $t="";
+    	$t="";
 
-         foreach ($titulos as $titulo) 
+    	 foreach ($titulos as $titulo) 
          {
-            $t.='"'.$titulo->title.'",';    
+            $t.='"'.$titulo->title.'",';	
          }
 
              $t=substr($t, 0, -1);
@@ -82,11 +70,11 @@ class HomeController extends Controller
 
     public function construirHits($hits)
     {
-        $h="";
+    	$h="";
 
-        foreach ($hits as $hit) 
+    	foreach ($hits as $hit) 
         {
-            $h.='"'.$hit->hits.'",';    
+           	$h.='"'.$hit->hits.'",';	
         }
 
         $h=substr($h, 0, -1);

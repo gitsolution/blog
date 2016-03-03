@@ -29,9 +29,6 @@ Route::get('/','LogController@logout');
 /*Redireccion a la pagina de error 404*/
 
 
-/////  INDEX PAGE ADMIN
-//Route::get('/admin', 'HomeController@index');
-
 Route::group(['middleware' => 'web'], function () {
 
 /******************paginas con captcha ***************************/
@@ -109,9 +106,17 @@ Route::get('admin/sectionsPriva/{id}/{priv}','sectiosController@privado');
 Route::get('admin/sectionsPublic/{id}/{pub}','sectiosController@publicate');
 /****************************************************/
 
+/*************RUTAS DE Comentarios ****************************/
+
+Route::get('admin/comments','commentController@index');
+///// ELIMINAR
+Route::get('admin/commentdel/{id}','commentController@delete');
+Route::get('admin/commentPublic/{id}/{pub}','commentController@publicate');    
+/****************************************************/
+
 /*************RUTAS DE SETINGS ****************************/
-Route::get('admin/setingnew','setingController@seting'); //formulario sectionsform.blade.php
-Route::resource('admin/seting','setingController');      //index. catalogo
+Route::resource('admin/seting','setingController');      
+Route::get('admin/setingnew','setingController@seting'); 
 Route::get('admin/setingedit/{id}','setingController@edit');
 Route::put('admin/seting/update','setingController@update');
 ///// ELIMINAR
@@ -295,6 +300,15 @@ Route::get('admin/{menu}/{id_menu}/{id_parent}','ItemMenuController@typemenu');
 Route::get('admin/{menu}/{id_menu}/{id_parent}','ItemMenuController@optionmenu');
 
 Route::resource('admin/itemmenuadd','ItemMenuController@store');
+
+Route::resource('coment/coment','commentController');
+
+
+/********************** Ruta para las graficas**************************/
+Route::resource('admin/graph','graficaController');
+Route::get('admin/graph','graficaController@index');
+
+/***********************************************************************/
 
 });
 

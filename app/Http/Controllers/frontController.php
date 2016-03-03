@@ -64,7 +64,6 @@ public function index()
         
         $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
       
-      //  $Sections = \App\cms_section::find($id_section);
           $Sections =  DB::table('cms_sections')->where('active','=', $flag)->where('publish','=', $publish)->where('id','=', $id_section)->get();             
       
             $Categories = DB::table('cms_categories')
@@ -129,7 +128,14 @@ public function index()
 
             $this->aumentarHits($uri);
 
-            return view('frontend.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections,'post'=>$post]);
+           $coments= DB::table('cms_comments')
+                ->join('cms_documents','cms_documents.id','=','cms_comments.id_document')
+                ->select('cms_comments.*','cms_documents.id as iddoc')
+                ->where('cms_comments.publish','=','1')
+                ->where('cms_comments.active','=','1')
+                ->orderby('created_at','DESC')->get();
+            
+            return view('frontend.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections,'post'=>$post, 'coments'=>$coments]);
 }
 
 
@@ -156,7 +162,6 @@ public function page(Request $request)
 
 
 public function section($option){
-
 $flag=1;
         $Sections = null;
         $Categories = null;
@@ -248,9 +253,9 @@ public function listDocument($option){
 
 }
 public function listGalleries(){
-$flag='1';  
-$band='1';  
-$publish='1';  
+        $flag='1';  
+        $band='1';  
+        $publish='1';  
         /*$items =  DB::table('med_pictures')
             ->join('med_albums', 'med_pictures.id_album', '=', 'med_albums.id')            
             ->select('med_pictures.*', 'med_albums.title as album', 'med_albums.description as descripcion')        
@@ -264,9 +269,12 @@ $publish='1';
             ->join('med_pictures', 'med_albums.id', '=', 'med_pictures.id_album')            
             ->select('med_albums.*', 'med_pictures.path as pic', 'med_pictures.id_album as idal')        
             ->where('med_albums.active','=', $flag)
+            ->where('med_albums.publish','=', $publish)
             ->where('med_pictures.active','=', $flag)   
             ->where('med_pictures.publish','=',$publish)        
             ->orderBy('med_albums.order_by','DESC')->paginate(20);
+
+          
             return view('frontend.galery',[/*'items'=>$items,*/ 'media'=>$media ,'band'=>$band] );
 
 }
@@ -281,6 +289,7 @@ public function galleries($option){
             ->join('med_albums', 'med_pictures.id_album', '=', 'med_albums.id')            
             ->select('med_pictures.*', 'med_albums.title as album')        
             ->where('med_albums.active','=', $flag)
+            ->where('med_albums.publish','=', $publish)
             ->where('med_pictures.active','=', $flag) 
             ->where('med_albums.uri','=',$uri)  
             ->where('med_pictures.publish','=',$publish)      
@@ -290,6 +299,13 @@ public function galleries($option){
 
    return view('frontend.galery',['items'=>$items, 'band'=>$band] );
 }
+
+    public function Setings()
+    {
+        $Setps= DB::table('cms_senttingspages')->get(); 
+        return view('frontend.index',['Setps'=>$Setps]);
+    }
+
 
     public function aumentarHits($uri)
     {

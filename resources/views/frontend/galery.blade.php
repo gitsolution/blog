@@ -7,8 +7,10 @@
 <?php $cont=0;  $aux=0;?>
 
 
-@if($band==1)
- 
+@if($band==1) 
+  <div class="row text-center">
+            {{$media->render()}}
+  </div>
  @foreach($media as $med)
  
  				@if($cont==3)
@@ -60,6 +62,9 @@
 @endif
 
 @if($band==0)
+ <div class="row text-center">
+            {{$items->render()}}
+  </div>
 @foreach($items as $pics)
   @if($cont==3)
             <?php echo "&nbsp<br>" ?>
@@ -83,7 +88,9 @@
              <div class="" style="width:270px;">
                   <div class="panel panel-primary hoverclas  ">  
                   <div class="panel-body shadow">
-                      <a href="<?php echo $pics->path?> " data-lightbox="Galeria" data-title="<?php echo $pics->title?>">    <img class=" img-center" width="280px" height="150px" src="<?php echo $pics->path?>" alt=""> </div> </a>
+                      <a href="<?php echo $pics->path?> " data-lightbox="Galeria" data-title="<?php echo $pics->title?>"> 
+                         <img class=" img-center" width="280px" height="150px" src="<?php echo $pics->path?>" alt=""></a> </div>
+                       
                          <div class="panel-body piealbum">
                           <?php echo $pics->title?><br><?php echo $pics->description?>
                           </div>

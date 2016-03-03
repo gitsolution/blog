@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-
+   
     <link rel="stylesheet" type="text/css" href="../css/admin.css">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
     
@@ -33,7 +33,7 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-
+    <script src="../graficas/Chart.js"></script>
     {!!Html::style('css/admin.css')!!}
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
     {!!Html::style('../bower_components/bootstrap/dist/css/bootstrap.min.css')!!}

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Schema\Blueprint;
-use App\men_type;
+use App\TypeMenu;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateMenTypesTable extends Migration
@@ -26,7 +26,28 @@ class CreateMenTypesTable extends Migration
             $table->timestamps();
         });
     
+      TypeMenu::create([
+            'title'=>'main_menu',
+            'description'=>'Posición del Menú Principal',
+            'uri'=>' ',
+            'order_by'=>'1',
+            'publish'=>'1',
+            'active'=>'1',
+            'register_by'=>'1',
+            'modify_by'=>'1' ,           
+        ]);
 
+
+         TypeMenu::create([
+            'title'=>'footer_menu',
+            'description'=>'Posición del menú en el Footer',
+            'uri'=>' ',
+            'order_by'=>'2',
+            'publish'=>'1',
+            'active'=>'1',
+            'register_by'=>'1',
+            'modify_by'=>'1',            
+        ]);
     }
 
     /**

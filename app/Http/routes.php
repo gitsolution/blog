@@ -32,7 +32,15 @@ Route::get('/','LogController@logout');
 Route::group(['middleware' => 'web'], function () {
 
 /******************paginas con captcha ***************************/
+/*************RUTAS DE Comentarios ****************************/
 
+Route::get('admin/comments','commentController@index');
+///// ELIMINAR
+Route::get('admin/commentdel/{id}','commentController@delete');
+Route::get('admin/commentPublic/{id}/{pub}','commentController@publicate'); 
+Route::get('admin/commentresp/{id}/{uri}','commentController@respuesta');
+
+/****************************************************/
 /// PAGINAS ESTATICAS 
 Route::resource('Inicio','frontController@index');
 Route::get('Inicio','frontController@index');
@@ -106,15 +114,7 @@ Route::get('admin/sectionsPriva/{id}/{priv}','sectiosController@privado');
 Route::get('admin/sectionsPublic/{id}/{pub}','sectiosController@publicate');
 /****************************************************/
 
-/*************RUTAS DE Comentarios ****************************/
 
-Route::get('admin/comments','commentController@index');
-///// ELIMINAR
-Route::get('admin/commentdel/{id}','commentController@delete');
-Route::get('admin/commentPublic/{id}/{pub}','commentController@publicate'); 
-Route::get('admin/commentresp/{id}/{uri}','commentController@respuesta');
-
-/****************************************************/
 
 /*************RUTAS DE SETINGS ****************************/
 Route::resource('admin/seting','setingController');      

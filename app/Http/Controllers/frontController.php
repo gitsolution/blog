@@ -134,8 +134,18 @@ public function index()
                 ->where('cms_comments.publish','=','1')
                 ->where('cms_comments.active','=','1')
                 ->orderby('created_at','DESC')->get();
+        
+                $ContComments = DB::table('cms_comments')
+                     ->select(DB::raw('count(id) as user_count'))
+                     ->where('active', '=', 1)
+                     ->where('publish', '=', 1)
+                     ->first();
+
+
+
+
             
-            return view('frontend.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections,'post'=>$post, 'coments'=>$coments]);
+            return view('frontend.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections,'post'=>$post, 'coments'=>$coments, 'cont'=>$ContComments]);
 }
 
 

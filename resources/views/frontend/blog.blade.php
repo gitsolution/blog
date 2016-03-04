@@ -44,7 +44,8 @@
             {{Session::get('message')}}
           </div>
       @endif 
-     <p class="comentario">Comentarios:</p>  
+
+     <p class="comentario">Comentarios: <?php echo $cont->user_count;  ?></p>  
 
         @foreach($coments as $coment)
           @if($coment->iddoc==$Doc->id)
@@ -70,13 +71,16 @@
                                       </div>
                               </div>
                         </div>
-                        @if($band!=null &&$band==$coment->id  )         
+                        @if($band!=null &&$band==$coment->id  ) 
+                        <br>        
                             @include('frontend.formcomentarios')
+                            <br>
                         @endif
                   @endif
                         @foreach($coments as $coment2)     
                             @if($coment->id==$coment2->id_comment &&$coment->id!=$coment2->id)
                                 <!--    Respuestas de los comentarios -->
+                                <br>
                                  <ul class="comments-list reply-list">
                                       <li>     
                                           <!-- Contenedor del Comentario -->

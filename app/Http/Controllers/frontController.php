@@ -266,14 +266,7 @@ public function listGalleries(){
         $flag='1';  
         $band='1';  
         $publish='1';  
-        /*$items =  DB::table('med_pictures')
-            ->join('med_albums', 'med_pictures.id_album', '=', 'med_albums.id')            
-            ->select('med_pictures.*', 'med_albums.title as album', 'med_albums.description as descripcion')        
-            ->where('med_albums.active','=', $flag)
-            ->where('med_pictures.active','=', $flag)        
-            ->orderBy('med_pictures.order_by','DESC')->paginate(20);*/
-
-
+      
 
         $media =  DB::table('med_albums')
             ->join('med_pictures', 'med_albums.id', '=', 'med_pictures.id_album')            
@@ -350,5 +343,44 @@ public function galleries($option){
             ->increment('hits');
         /****************************/
     }
+ 
+
+  public function getMenus(){
+    
+    $flag='1';  
+    $publish='1';  
+    $itemsMenu = null;
+    $menu = null;
+
+    $mainmenu = 1;
+    $topmenu = 2;
+    $footermenu = 3;
+    $leftmenu = 4;
+    $rigthmenu = 5;
+
+
+    
+    $menuMain = DB::table('men_menu')->where('active','=',$flag)->where('id_men_type','=',$mainmenu)->orderBy('order_by','DESC')->get();
+ 
+    $menuFooter = DB::table('men_menu')->where('active','=',$flag)->where('id_men_type','=',$footermenu)->orderBy('order_by','DESC')->get();
+ 
+    $itemsMain = DB::table('men_items')
+    ->join('men_menu', 'men_items.id_menu', '=', 'men_menu.id')            
+    ->select('men_items.*', 'men_menu.title as menu')        
+    ->where('men_items.active','=', $flag)
+    ->where('men_items.publish','=',$publish)      
+    ->where('men_menu.id_men_type','=',$mainmenu)          
+    ->orderBy('men_items.order_by','DESC')->get();
+ 
+     $itemsFooter = DB::table('men_items')
+    ->join('men_menu', 'men_items.id_menu', '=', 'men_menu.id')            
+    ->select('men_items.*', 'men_menu.title as menu')        
+    ->where('men_items.active','=', $flag)
+    ->where('men_items.publish','=',$publish)      
+    ->where('men_menu.id_men_type','=',$footermenu)          
+    ->orderBy('men_items.order_by','DESC')->get();
+    return view('frontend.mainmenu', ['itemsMain'=>$itemsMain,'itemsFooter'=>$itemsFooter, 'menuMain'=>$menuMain, 'menuFooter' => $menuFooter]);
+    }
+ 
  
 }

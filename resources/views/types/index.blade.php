@@ -8,7 +8,7 @@
 <div class="col-md-10"><h3>Catálogo de Tipos </h3></div> <!--divide la columna en 10 y 2-->
 <div class="col-md-2">
  {!!Form::open()!!}
-    {!! link_to('admin/typesnew', 'Nueva Tipo ',array('class'=>'btn btn-success ')) !!}
+    {!! link_to('admin/typesnew', 'Nuevo Tipo ',array('class'=>'btn btn-success ')) !!}
  {!!Form::close()!!}
 </div>
     </div>

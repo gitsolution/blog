@@ -19,7 +19,9 @@
  <div class="form-group" >
    <input type="hidden" name="id_menu" value="{{ $id_menu }}">
    <input type="hidden" name="id_parent" value="{{ $id_parent }}">        
-   <input type="hidden" name="level" value="{{ $level }}">        
+   <input type="hidden" name="level" value="{{ $level }}">      
+      <input type="hidden" name="option" value="{{ $option }}">    
+  
  {!!Form::text('uri',null,['class'=>'form-control', 'placeholder'=>'Ingresa la URL del elemento del Menú'])!!} 
  </div>
 </div>

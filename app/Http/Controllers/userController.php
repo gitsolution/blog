@@ -26,7 +26,7 @@ class userController extends Controller
             		'nombre'=>'nombre',
             		'mail'=>'2',
             		'token'=>'nombre',
-            		'passwd'=>bcrypt($request['password']),
+            		'passwd'=>$request['password'],
             		'activate_account'=>1,
             		'active'=>1,
             		'register_date'=>'2016/01/01',

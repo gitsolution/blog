@@ -111,7 +111,9 @@ Route::get('admin/sectionsPublic/{id}/{pub}','sectiosController@publicate');
 Route::get('admin/comments','commentController@index');
 ///// ELIMINAR
 Route::get('admin/commentdel/{id}','commentController@delete');
-Route::get('admin/commentPublic/{id}/{pub}','commentController@publicate');    
+Route::get('admin/commentPublic/{id}/{pub}','commentController@publicate'); 
+Route::get('admin/commentresp/{id}/{uri}','commentController@respuesta');
+
 /****************************************************/
 
 /*************RUTAS DE SETINGS ****************************/
@@ -171,7 +173,7 @@ Route::get('admin/user', 'usuarioController@index');
 Route::get('admin/userNew', 'usuarioController@create');
 Route::get('admin/userEdit/{id}','usuarioController@edit');
 Route::put('admin/user/update','usuarioController@update');
-Route::get('admin/sectionedit/{id}','sectiosController@edit');
+//Route::get('admin/sectionedit/{id}','sectiosController@edit');
 Route::get('usuario/register','usuarioController@register');
 
 /**********************para perfil de usuario*******************************/
@@ -181,8 +183,8 @@ Route::get('admin/perfil','perfilController@store');
 Route::get('admin/perfilNew','perfilController@perfil');//editar usuario
 Route::put('admin/perfilUpdate','perfilController@update');//editar usuario
 
-Route::get('admin/sectionedit/{id}','sectiosController@edit');
-Route::put('admin/section/update','sectiosController@update');
+//Route::get('admin/sectionedit/{id}','sectiosController@edit');
+//Route::put('admin/section/update','sectiosController@update');
 /**********************para enviar correo*********************************/
 Route::resource('mail','mailController');
 

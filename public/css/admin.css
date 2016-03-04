@@ -476,3 +476,9 @@ ul {
         width: 320px;
     }
 }
+
+.comentario
+{
+    font-size: 19px;
+    font-weight: bold;
+}

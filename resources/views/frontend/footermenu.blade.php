@@ -8,7 +8,7 @@
  
 
     $footermenu = 2;
-    $menuFooter = DB::table('men_menus')->where('active','=',$flag)->where('id_men_type','=',$footermenu)->orderBy('order_by','DESC')->get();
+    $menuFooter = DB::table('men_menus')->where('active','=',$flag)->where('id_men_type','=',$footermenu)->orderBy('order_by','ASC')->get();
  
      $itemsFooter = DB::table('men_items')
     ->join('men_menus', 'men_items.id_menu', '=', 'men_menus.id')            
@@ -17,7 +17,7 @@
     ->where('men_items.publish','=',$publish)  
     ->where('men_items.level','=',$level)          
     ->where('men_menus.id_men_type','=',$footermenu)          
-    ->orderBy('men_items.order_by','DESC')->get();    
+    ->orderBy('men_items.order_by','ASC')->get();    
  
 foreach ($itemsFooter as $key => $menF) {
 	 echo "<li>";

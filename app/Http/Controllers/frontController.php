@@ -140,10 +140,6 @@ public function index()
                      ->where('active', '=', 1)
                      ->where('publish', '=', 1)
                      ->first();
-
-
-
-
             
             return view('frontend.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections,'post'=>$post, 'coments'=>$coments, 'cont'=>$ContComments]);
 }
@@ -159,10 +155,11 @@ public function page(Request $request)
             $flag=1;
             $Sections = null;
             $Categories = null;               
-            $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
-            $Sections = \App\cms_section::find($id_section);
+                         
+            $Sections = DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->get();
 
             $this->aumentarHits($uri);
+
             return view('frontend.page',['Categories'=>$Categories, 'Sections'=>$Sections]);
            }
   	 
@@ -172,24 +169,18 @@ public function page(Request $request)
 
 
 public function section($option){
-$flag=1;
+        $flag=1;
+        $publish = 1;
         $Sections = null;
         $Categories = null;
         $uri=$option;
         
-        $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
-        $Sections = \App\cms_section::find($id_section);
+        $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));                   
+        $Sections =  DB::table('cms_sections')->where('active','=', $flag)->where('publish','=', $publish)->where('id','=', $id_section)->get();             
 
-            $Categories = DB::table('cms_categories')
-            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
-            ->select('cms_categories.*', 'cms_sections.title as section')
-            ->where('cms_categories.active','=', $flag)            
-            ->where('cms_categories.id_section','=', $id_section)                        
-            ->orderBy('order_by','DESC')->paginate(20);
-
-            $this->aumentarHits($uri);
-        return; 
-      //  return view('frontend.home',['Categories'=>$Categories, 'Sections'=>$Sections]);
+        $this->aumentarHits($uri);
+         
+         return view('frontend.section',['Sections'=>$Sections]);
 
 }
 
@@ -197,40 +188,45 @@ public function category($option){
         $Sections = null;
         $Categories = null;
         $uri=$option;
-        
+                
             $Categories = DB::table('cms_categories')
+            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
+            ->select('cms_categories.*', 'cms_sections.title as section')
             ->where('cms_categories.active','=', $flag)            
             ->where('cms_categories.uri','=', $uri)                        
             ->orderBy('order_by','DESC')->paginate(20);
 
-        $this->aumentarHits($uri);            
-        return;
-
+            $this->aumentarHits($uri);
+            
+            return view('frontend.category',['Categories'=>$Categories]);
 
 }
 
 public function document($option){
 
-        $Documents = null;
-        $uri=$option;
+            $Documents = null;
+            $uri=$option;
         
             $Documents = DB::table('cms_documents')
             ->where('cms_documents.active','=', $flag)            
             ->where('cms_documents.uri','=', $uri)                        
-            ->orderBy('order_by','DESC')->paginate(20);
+            ->orderBy('order_by','DESC')->get();
 
             $this->aumentarHits($uri);
-        return;
+
+            return view('frontend.documents',['Documents'=>$Documents]);
+
+        
 }
 
 public function listCategory($option){
         $Sections = null;
         $Categories = null;
         $uri=$option;
+        $flag = 1;
         
         $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
-        //$Sections = \App\cms_section::find($id_section);
-
+        
             $Categories = DB::table('cms_categories')
             ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
             ->select('cms_categories.*', 'cms_sections.title as section')
@@ -239,7 +235,8 @@ public function listCategory($option){
             ->orderBy('order_by','DESC')->paginate(20);
 
             $this->aumentarHits($uri);
-        return;
+            
+            return view('frontend.category',['Categories'=>$Categories]);
 
 }
 
@@ -248,6 +245,8 @@ public function listDocument($option){
         $Sections = null;
         $Categories = null;
         $uri=$option;
+
+        $id_category =  (DB::table('cms_categories')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
 
 
             $Documents = DB::table('cms_documents')
@@ -259,7 +258,7 @@ public function listDocument($option){
 
             $this->aumentarHits($uri);
 
-        return;
+            return view('frontend.documents',['Documents'=>$Documents]);
 
 }
 public function listGalleries(){
@@ -345,42 +344,6 @@ public function galleries($option){
     }
  
 
-  public function getMenus(){
-    
-    $flag='1';  
-    $publish='1';  
-    $itemsMenu = null;
-    $menu = null;
-
-    $mainmenu = 1;
-    $topmenu = 2;
-    $footermenu = 3;
-    $leftmenu = 4;
-    $rigthmenu = 5;
-
-
-    
-    $menuMain = DB::table('men_menu')->where('active','=',$flag)->where('id_men_type','=',$mainmenu)->orderBy('order_by','DESC')->get();
- 
-    $menuFooter = DB::table('men_menu')->where('active','=',$flag)->where('id_men_type','=',$footermenu)->orderBy('order_by','DESC')->get();
- 
-    $itemsMain = DB::table('men_items')
-    ->join('men_menu', 'men_items.id_menu', '=', 'men_menu.id')            
-    ->select('men_items.*', 'men_menu.title as menu')        
-    ->where('men_items.active','=', $flag)
-    ->where('men_items.publish','=',$publish)      
-    ->where('men_menu.id_men_type','=',$mainmenu)          
-    ->orderBy('men_items.order_by','DESC')->get();
- 
-     $itemsFooter = DB::table('men_items')
-    ->join('men_menu', 'men_items.id_menu', '=', 'men_menu.id')            
-    ->select('men_items.*', 'men_menu.title as menu')        
-    ->where('men_items.active','=', $flag)
-    ->where('men_items.publish','=',$publish)      
-    ->where('men_menu.id_men_type','=',$footermenu)          
-    ->orderBy('men_items.order_by','DESC')->get();
-    return view('frontend.mainmenu', ['itemsMain'=>$itemsMain,'itemsFooter'=>$itemsFooter, 'menuMain'=>$menuMain, 'menuFooter' => $menuFooter]);
-    }
  
  
 }

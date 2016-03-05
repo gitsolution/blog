@@ -60,8 +60,8 @@ Route::get('Login','frontController@page');
 Route::get('Sec/{option}','frontController@section');
 Route::get('Cat/{optio}','frontController@category');
 Route::get('Doc/{option}','frontController@document');
-Route::get('ListCat/{option}','frontController@listCategory');
-Route::get('ListDoc/{option}','frontController@listDocument');
+Route::get('CatList/{option}','frontController@listCategory');
+Route::get('DocList/{option}','frontController@listDocument');
 Route::get('Galleries','frontController@listGalleries');
 Route::get('Gall/{option}','frontController@galleries');
 

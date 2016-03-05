@@ -15,7 +15,7 @@
         <?php 
         	if($Doc->main_picture!="")
            {
-            	echo ("<img src='".$Doc->main_picture."' >");
+            	echo ("<img src='../".$Doc->main_picture."' >");
             };
          ?>
       </p>
@@ -126,6 +126,9 @@
   <div class="col-md-4">
     @include('frontend.frmcotizacion')
   </div>
+<div>
+  {{$Documents->render()}}
+</div>
 </div>
 </div>
 @stop

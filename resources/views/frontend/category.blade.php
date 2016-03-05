@@ -15,16 +15,27 @@
         <hr>
         <div class="row">
             <div class="col-sm-8" style="word-wrap: break-word; text-align: justify;">
-                @if($Sections!=null)
-                  @foreach($Sections as $Sec) 
-                <h2>   <?php echo $Sec->title; ?></h2>
+            @if($Categories!=null)
+              @foreach($Categories as $Cat) 
+                <h2> <?php echo $Cat->title;  ?></h2>                
+                @if($Cat->main_picture!="")
                 <p>
-                    <?php echo $Sec->resumen; ?>
+                  <img class="img-center" src='<?php echo $Cat->main_picture; ?>' alt="">
                 </p>
-                <p>
-                    <?php echo $Sec->content; ?>
+                @endif
+
+                <p>    
+                  <?php echo $Cat->resumen;  ?>
                 </p>
-                @endforeach
+                <p>    
+                  <?php echo $Cat->content;  ?>
+                </p>              
+              @endforeach
+
+              @else
+          <br><br><br><br>
+          <h2>No existe contenido en esta sección</h2>
+          @endif           
             </div>
             <div class="col-sm-4" style="word-wrap: break-word; text-align: justify;">                
               <h3> Datos de Contacto</h3>
@@ -37,34 +48,8 @@
                 </address>
             </div>
         </div>
-    
-	<br>
-    <br>
-    <br>
- 
- <div class="form-group">
-         @if($Categories!=null)
-         @foreach($Categories as $Cat) 
-            <div class="col-md-4" style="text-align: justify;">
-              @if($Cat->main_picture!="")
-    	        <img class="img-center" src='<?php echo $Cat->main_picture; ?>' alt="">
-              @endif  
-              <h2> <?php echo $Cat->title;  ?></h2>
-            	<p>    
-                  <?php echo $Cat->resumen;  ?>
-              </p>
-              <p>    
-                  <?php echo $Cat->content;  ?>
-              </p>
-              
-   			</div>
-          @endforeach
-        @endif           
-  </div>
- 
-        @else
-            <br><br><br><br>
-          <h2>No existe contenido en esta sección</h2>
-        @endif
-        </div>
+<div class="row">
+  {{$Categories->render()}}
+</div>
+ </div>
 @stop

@@ -11,11 +11,13 @@
     <title>Valor Productivo SA de CV SOFOM ENR</title>
 
     <!-- Bootstrap Core CSS -->
+    
     {!!Html::style('css/bootstrap.min.css')!!}
     {!!Html::style('css/admin.css')!!}
     <!-- Custom CSS -->
     {!!Html::style('css/business-frontpage.css')!!}
     {!!Html::style('../css/lightbox.css')!!}
+
 </head>
 <body>
     <!-- Navigation -->

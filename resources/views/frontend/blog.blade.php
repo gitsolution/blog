@@ -111,9 +111,11 @@
             @include('frontend.formcomentarios')
         @endif
                                
-        @endif            
+        @endif  
+
         <br> 
     @endforeach
+
    @else
     <br>
     <br>
@@ -121,13 +123,17 @@
     <br>                          
     <h2>No existe contenido en esta sección</h2>
   @endif
-
+ <div class="row text-center">
+  @if(!isset($post))
+  {{$Documents->render()}}
+  @endif
+</div>
 </div>
   <div class="col-md-4">
     @include('frontend.frmcotizacion')
   </div>
 <div>
-  {{$Documents->render()}}
+ 
 </div>
 </div>
 </div>

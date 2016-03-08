@@ -46,12 +46,12 @@ else
                 @endif
                
                     <div class="form-group" id="frmLogin">
-                           <div class="col-xs-6">
+                           <div class="col-md-6">
                           {!!Form::label('titulo','Titulo')!!}
                           {!!Form::text('title',$title,['class'=>'form-control frmEspacios','placeholder'=>'Nombre'])!!}
                           </div>
 
-                      <div class="col-xs-3">
+                      <div class="col-md-3">
                       <div class="priChec">
                           {!!Form::label('activado','Activado')!!}
                           <div class="material-switch pull-right">
@@ -61,18 +61,16 @@ else
                       </div>
                     </div>
 
-                    <div class="col-xs-12">
+                    <div class="col-md-12">
                       {!!Form::label('descripcion','Descripcion')!!}
                       {!!Form::textarea('description',$description,['class'=>'form-control','placeholder'=>''])!!}
                     </div>       
-
-                    <br>
-                    <div class="col-xs-6">
-                      <div class="col-xs-2">
-                          {!!Form::submit($nameButtom,['class'=>'btn  btn-danger frmEspacios','placeholder'=>'Nombre'])!!}
-                      </div>
-                      </div>    
                     </div>
+                    <div class="col-md-12"><br>                      
+                          {!!Form::submit($nameButtom,['class'=>'btn  btn-primary frmEspacios','placeholder'=>'Nombre'])!!}
+                          {!! link_to('admin/roles', 'Cancelar',array('class'=>'btn btn-danger')) !!}
+                      
+                      </div>    
                   
                 {!!Form::close()!!}
 

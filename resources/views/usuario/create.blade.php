@@ -100,9 +100,10 @@ else
                     </div>
 
       				<div class="col-xs-12">
-                    	<div class="col-xs-2">
-            				{!!Form::submit($nombreBoton,['class'=>'btn  btn-danger frmEspacios','placeholder'=>'Nombre'])!!}
-                        </div>
+                    	
+            				{!!Form::submit($nombreBoton,['class'=>'btn  btn-primary frmEspacios','placeholder'=>'Nombre'])!!}
+                            {!! link_to('usuario', 'Cancelar',array('class'=>'btn btn-danger')) !!}
+                        
             		</div>		
 				</div>
             	{!!Form::close()!!}

@@ -28,6 +28,7 @@ if(isset($menu)) {
 @else
  {!!Form::open(['route'=>'admin.menus.store','method','POST'])!!} 
 @endif
+<br>
  <div class="row">
  <div class="form-group" >
  	  {!!Form::label('Posición:')!!}
@@ -54,15 +55,12 @@ if(isset($menu)) {
                         </div>
 	</div>                        
  
-</div>
-</div>
-<div clas="row">
-<div class="form-group" >
-	<div class="col-md-12">
+</div><br><br>
 	 {!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
-	</div>
+	 {!! link_to('admin/menus', 'Cancelar',array('class'=>'btn btn-danger')) !!}
+{!!Form::close()!!}
 </div>
-</div>
- {!!Form::close()!!}
+
+ 
  </div>
 @stop

@@ -68,9 +68,10 @@ else
 
                     <br>
                     <div class="col-xs-6">
-                      <div class="col-xs-2">
-                          {!!Form::submit($nameButtom,['class'=>'btn  btn-danger frmEspacios','placeholder'=>'Nombre'])!!}
-                      </div>
+                      <br>
+                          {!!Form::submit($nameButtom,['class'=>'btn  btn-primary frmEspacios','placeholder'=>'Nombre'])!!}
+                           {!! link_to('admin/cms', 'Cancelar',array('class'=>'btn btn-danger')) !!}
+                      
                       </div>    
                     </div>
                   

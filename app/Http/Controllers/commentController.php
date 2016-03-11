@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use view;
 use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -12,7 +13,7 @@ class commentController extends Controller
 {	  
         public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth',['only'=>['index','publicate','delete']]);
     }  
     
   public function index()
@@ -30,12 +31,9 @@ class commentController extends Controller
 
       public function store(Request $request){
           $uri=$request->uri;         
-          
-           $id_comment =(DB::table('cms_comments')->max('id_comment'))+1;
-           
     	  \App\cms_comment::create([
           
-          'id_comment'=>$id_comment,
+          'id_comment'=>$request['id_doment'],
           
           'id_document' => $request['id_doc'],
           'mail'=>$request['mail'],
@@ -43,6 +41,7 @@ class commentController extends Controller
            'publish'=>'0',
            'active'=>'1',
          ]);
+         Session::flash('message','Tu comentario sera autorizado por el administrador de la pagina');    
     	  return redirect('Blog/'.$uri);
     }
 
@@ -62,6 +61,18 @@ class commentController extends Controller
           $Coments->save();
           Session::flash('message','Comentario Eliminado Correctamente');    
           return redirect('admin/comments');
+      }
+
+      public function respuesta($id, $uri){
+        $ids=$id;
+        $uris=$uri;
+        $band=1;
+       
+      
+       //['itemMenus'=>$itemMenus,'menu'=>$menu, 'id_parent'=>$id_parent, "level"=>$level]
+       return redirect('Blog/'.$uris)->with('band',$ids);
+
+
       }
 
 }

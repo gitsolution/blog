@@ -33,10 +33,11 @@ class ItemController extends Controller
 		
 	}
 
-	public function itemnew($id_media){
+	public function itemnew($id_media, Request $request){
 		$flag='1';	 
-	    $media=\App\Media::find($id_media);
+		$media=\App\Media::find($id_media);
 		$item= null;
+
         return view('pics/itemform',['item'=>$item,'media'=>$media]);		
 	}
 

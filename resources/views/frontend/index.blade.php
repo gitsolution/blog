@@ -10,11 +10,13 @@
     <title>Valor Productivo SA de CV SOFOM ENR</title>
 
     <!-- Bootstrap Core CSS -->
+    
     {!!Html::style('css/bootstrap.min.css')!!}
     {!!Html::style('css/admin.css')!!}
     <!-- Custom CSS -->
     {!!Html::style('css/business-frontpage.css')!!}
     {!!Html::style('../css/lightbox.css')!!}
+
 </head>
 <body>
     <!-- Navigation -->
@@ -41,34 +43,10 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">                
                 <ul class="nav navbar-nav">
-                    <li>
-                      {!!link_to('Inicio', 'Inicio',array('class'=>'nav-link')) !!}
-                    </li>
+                  @include('frontend.mainmenu')
 
-                    <li>
-                      {!!link_to('Empresa', 'Empresa',array('class'=>'nav-link')) !!}
-                    </li>
-
-                     <li>
-                     {!!link_to('Servicios-Financieros', 'Servicios',array('class'=>'nav-link')) !!}  
-                    </li>
-                     <li>
-                     {!!link_to('Cobertura', 'Atención a usuarios',array('class'=>'nav-link')) !!}
-                    </li>
-                     <li>
-                         {!!link_to('Informacion', 'Informacion',array('class'=>'nav-link')) !!}
-                    </li>
-                    <li>
-                      {!!link_to('Contacto', 'Contacto',array('class'=>'nav-link')) !!}
-                    </li> 
-                    <li>
-                      {!!link_to('Galleries', 'Galeria',array('class'=>'nav-link')) !!}
-                    </li> 
-                    <li>
-                    {!!link_to('Blog', 'Blog',array('class'=>'nav-link')) !!}
-                    </li>
                 </ul>
             </div>
         </div>
@@ -89,28 +67,7 @@
                 <div class="row">
                <div class="col-md-12">
             <ul class="footer_menu">
-                <li>
-                      {!!link_to('Inicio', 'Inicio',array('class'=>'')) !!}
-                </li>
-                <li>
-                      {!!link_to('Blog', 'Blog',array('class'=>'')) !!}
-                </li>
-            
-                 <li>
-                      {!!link_to('Atencion-a-usuarios', 'Atención a usuarios',array('class'=>'')) !!}
-                </li>
-                <li>
-                      {!!link_to('Informacion', 'Información',array('class'=>'')) !!}
-                </li>
-                <li>
-                      {!!link_to('Politica-de-Privacidad', 'Póliticas',array('class'=>'')) !!}
-                </li> 
-                <li>
-                      {!!link_to('Login', 'Login',array('class'=>'')) !!}
-                </li> 
-                <li>
-                      {!!link_to('Correo', 'Correo',array('class'=>'')) !!}
-                </li> 
+              @include('frontend.footermenu')
             </ul>
                 </div>
                 </div>

@@ -145,8 +145,7 @@ else{
           {!!Form::label('titulo','Titulo:')!!}
           {!!Form::text('title',null,['class'=>'form-control','placeholder'=>''])!!}
 
- 
-      </div>
+       </div>
     
           <div class="form-group">
                 {!!Form::label('Resume','Resumen')!!}
@@ -168,10 +167,7 @@ else{
 
           {!!Form::submit( $botonTitulo,['class'=>'btn btn-primary'])!!}
            {!! link_to('admin/sections', 'Cancelar',array('class'=>'btn btn-danger')) !!}
-
         {!!Form::close()!!} 
-       
-  
       </div>
       <br><br>
 </div>

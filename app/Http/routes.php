@@ -32,10 +32,18 @@ Route::get('/','LogController@logout');
 Route::group(['middleware' => 'web'], function () {
 
 /******************paginas con captcha ***************************/
-Route::resource('ima','controladorPrueba');
-Route::resource('ima','controladorPrueba@store');
-/// PAGINAS ESTATICAS
-Route::resource('Inicio','frontController');
+
+/*************RUTAS DE Comentarios ****************************/
+
+Route::get('admin/comments','commentController@index');
+///// ELIMINAR
+Route::get('admin/commentdel/{id}','commentController@delete');
+Route::get('admin/commentPublic/{id}/{pub}','commentController@publicate'); 
+Route::get('admin/commentresp/{id}/{uri}','commentController@respuesta');
+
+/****************************************************/
+/// PAGINAS ESTATICAS 
+
 Route::get('Inicio','frontController@index');
 Route::get('Empresa','frontController@page');
 Route::get('Servicios','frontController@page');
@@ -53,8 +61,8 @@ Route::get('Login','frontController@page');
 Route::get('Sec/{option}','frontController@section');
 Route::get('Cat/{optio}','frontController@category');
 Route::get('Doc/{option}','frontController@document');
-Route::get('ListCat/{option}','frontController@listCategory');
-Route::get('ListDoc/{option}','frontController@listDocument');
+Route::get('CatList/{option}','frontController@listCategory');
+Route::get('DocList/{option}','frontController@listDocument');
 Route::get('Galleries','frontController@listGalleries');
 Route::get('Gall/{option}','frontController@galleries');
 
@@ -107,13 +115,7 @@ Route::get('admin/sectionsPriva/{id}/{priv}','sectiosController@privado');
 Route::get('admin/sectionsPublic/{id}/{pub}','sectiosController@publicate');
 /****************************************************/
 
-/*************RUTAS DE Comentarios ****************************/
 
-Route::get('admin/comments','commentController@index');
-///// ELIMINAR
-Route::get('admin/commentdel/{id}','commentController@delete');
-Route::get('admin/commentPublic/{id}/{pub}','commentController@publicate');    
-/****************************************************/
 
 /*************RUTAS DE SETINGS ****************************/
 Route::resource('admin/seting','setingController');      
@@ -144,7 +146,7 @@ Route::get('admin/mediaorder/{id}/{orderBy}/{no}','MediaController@order');
 Route::get('admin/mediapub/{id}/{pub}','MediaController@publicate');
 /////  INDEX PAGE
 Route::get('admin/mediaind/{id}/{ind}','MediaController@index_page');
-/*************RUTAS DE PICTURES ***************/
+/*************RUTAS DE PICTURES ***************/ 
 /////  
 Route::get('admin/item/{id_media}','ItemController@index');
 Route::resource('admin/item','ItemController');
@@ -172,7 +174,7 @@ Route::get('admin/user', 'usuarioController@index');
 Route::get('admin/userNew', 'usuarioController@create');
 Route::get('admin/userEdit/{id}','usuarioController@edit');
 Route::put('admin/user/update','usuarioController@update');
-Route::get('admin/sectionedit/{id}','sectiosController@edit');
+//Route::get('admin/sectionedit/{id}','sectiosController@edit');
 Route::get('usuario/register','usuarioController@register');
 
 /**********************para perfil de usuario*******************************/
@@ -182,8 +184,8 @@ Route::get('admin/perfil','perfilController@store');
 Route::get('admin/perfilNew','perfilController@perfil');//editar usuario
 Route::put('admin/perfilUpdate','perfilController@update');//editar usuario
 
-Route::get('admin/sectionedit/{id}','sectiosController@edit');
-Route::put('admin/section/update','sectiosController@update');
+//Route::get('admin/sectionedit/{id}','sectiosController@edit');
+//Route::put('admin/section/update','sectiosController@update');
 /**********************para enviar correo*********************************/
 Route::resource('mail','mailController');
 

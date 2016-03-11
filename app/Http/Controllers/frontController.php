@@ -141,8 +141,14 @@ public function index()
                 ->where('cms_comments.publish','=','1')
                 ->where('cms_comments.active','=','1')
                 ->orderby('created_at','DESC')->get();
+        
+                $ContComments = DB::table('cms_comments')
+                     ->select(DB::raw('count(id) as user_count'))
+                     ->where('active', '=', 1)
+                     ->where('publish', '=', 1)
+                     ->first();
             
-            return view('frontend.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections,'post'=>$post, 'coments'=>$coments]);
+            return view('frontend.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections,'post'=>$post, 'coments'=>$coments, 'cont'=>$ContComments]);
 }
 
 
@@ -156,10 +162,11 @@ public function page(Request $request)
             $flag=1;
             $Sections = null;
             $Categories = null;               
-            $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
-            $Sections = \App\cms_section::find($id_section);
+                         
+            $Sections = DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->get();
 
             $this->aumentarHits($uri);
+
             return view('frontend.page',['Categories'=>$Categories, 'Sections'=>$Sections]);
            }
   	 
@@ -169,24 +176,18 @@ public function page(Request $request)
 
 
 public function section($option){
-$flag=1;
+        $flag=1;
+        $publish = 1;
         $Sections = null;
         $Categories = null;
         $uri=$option;
         
-        $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
-        $Sections = \App\cms_section::find($id_section);
+        $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));                   
+        $Sections =  DB::table('cms_sections')->where('active','=', $flag)->where('publish','=', $publish)->where('id','=', $id_section)->get();             
 
-            $Categories = DB::table('cms_categories')
-            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
-            ->select('cms_categories.*', 'cms_sections.title as section')
-            ->where('cms_categories.active','=', $flag)            
-            ->where('cms_categories.id_section','=', $id_section)                        
-            ->orderBy('order_by','DESC')->paginate(20);
-
-            $this->aumentarHits($uri);
-        return; 
-      //  return view('frontend.home',['Categories'=>$Categories, 'Sections'=>$Sections]);
+        $this->aumentarHits($uri);
+         
+         return view('frontend.section',['Sections'=>$Sections]);
 
 }
 
@@ -194,40 +195,45 @@ public function category($option){
         $Sections = null;
         $Categories = null;
         $uri=$option;
-        
+                
             $Categories = DB::table('cms_categories')
+            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
+            ->select('cms_categories.*', 'cms_sections.title as section')
             ->where('cms_categories.active','=', $flag)            
             ->where('cms_categories.uri','=', $uri)                        
             ->orderBy('order_by','DESC')->paginate(20);
 
-        $this->aumentarHits($uri);            
-        return;
-
+            $this->aumentarHits($uri);
+            
+            return view('frontend.category',['Categories'=>$Categories]);
 
 }
 
 public function document($option){
 
-        $Documents = null;
-        $uri=$option;
-       
+
+            $Documents = null;
+            $uri=$option;
             $Documents = DB::table('cms_documents')
             ->where('cms_documents.active','=', $flag)            
             ->where('cms_documents.uri','=', $uri)                        
-            ->orderBy('order_by','DESC')->paginate(20);
+            ->orderBy('order_by','DESC')->get();
 
             $this->aumentarHits($uri);
-        return;
+
+            return view('frontend.documents',['Documents'=>$Documents]);
+
+        
 }
 
 public function listCategory($option){
         $Sections = null;
         $Categories = null;
         $uri=$option;
+        $flag = 1;
         
         $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
-        //$Sections = \App\cms_section::find($id_section);
-
+        
             $Categories = DB::table('cms_categories')
             ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
             ->select('cms_categories.*', 'cms_sections.title as section')
@@ -236,7 +242,8 @@ public function listCategory($option){
             ->orderBy('order_by','DESC')->paginate(20);
 
             $this->aumentarHits($uri);
-        return;
+            
+            return view('frontend.category',['Categories'=>$Categories]);
 
 }
 
@@ -245,6 +252,8 @@ public function listDocument($option){
         $Sections = null;
         $Categories = null;
         $uri=$option;
+
+        $id_category =  (DB::table('cms_categories')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
 
 
             $Documents = DB::table('cms_documents')
@@ -256,21 +265,14 @@ public function listDocument($option){
 
             $this->aumentarHits($uri);
 
-        return;
+            return view('frontend.documents',['Documents'=>$Documents]);
 
 }
 public function listGalleries(){
         $flag='1';  
         $band='1';  
         $publish='1';  
-        /*$items =  DB::table('med_pictures')
-            ->join('med_albums', 'med_pictures.id_album', '=', 'med_albums.id')            
-            ->select('med_pictures.*', 'med_albums.title as album', 'med_albums.description as descripcion')        
-            ->where('med_albums.active','=', $flag)
-            ->where('med_pictures.active','=', $flag)        
-            ->orderBy('med_pictures.order_by','DESC')->paginate(20);*/
-
-
+      
 
         $media =  DB::table('med_albums')
             ->join('med_pictures', 'med_albums.id', '=', 'med_pictures.id_album')            
@@ -347,5 +349,8 @@ public function galleries($option){
             ->increment('hits');
         /****************************/
     }
+ 
+
+ 
  
 }

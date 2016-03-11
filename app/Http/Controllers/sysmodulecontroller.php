@@ -1,17 +1,19 @@
 <?php
+
 namespace App\Http\Controllers;
 use Redirect;
 use Session;
 use DB;
 use App\sys_module;
 use Illuminate\Http\Request;
+use Auth;
+use View;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Auth;
 
-class cmsController extends Controller
+class sysmodulecontroller extends Controller
 {
-    /*public function __construct()
+     public function __construct()
     {
         $this->middleware('auth');
     }
@@ -19,7 +21,7 @@ class cmsController extends Controller
     public function index()
 	{	
 		$cms = sys_module::All();
-		return view('cms.index',compact('cms'));		
+		return view('sysmodules.index',compact('cms'));		
 	}
 
 	public function store(Request $request)
@@ -39,19 +41,31 @@ class cmsController extends Controller
             'modify_by'=>Auth::User()->id,
     	]);
         
-       return Redirect::to("admin/cms");
+        Session::flash('message','Módulo agregado correctamente');    
+        
+       	return Redirect::to("admin/module");
 
     }
 
     public function create()
     {
-    	return view('cms.cmsForm');
+    	return view('sysmodules.cmsForm');
     }
 
     public function edit($id)
     {
         $cms=sys_module::find($id);
-        return view('cms.cmsform',['cms'=>$cms]);
+        return view('sysmodules.cmsform',['cms'=>$cms]);
+    }
+
+    public function editpermision($id)
+    {
+        $module=DB::table('sys_modules')->where('active',1)->select('title')->first();
+        $nModule=DB::table('sys_modules')->where('id',$id)->first();
+        $nameModule=$nModule->title;
+        $json='{"agregar":false,"guardar":false,"modificar":false,"nuevo":false}';
+        $json=(json_decode($json, true));
+        return View::make('sysmodules/modulespermission',compact('id','json','nameModule'));
     }
 
     public function update($id,Request $request){
@@ -65,8 +79,10 @@ class cmsController extends Controller
         $cms->active=$activado;
         $cms->fill($request->all());      
         $cms->save();
-            
-        return Redirect::to("admin/cms");
+           
+        Session::flash('message','Módulo actualizado correctamente');    
+
+        return Redirect::to("admin/module");
     }
 
     public function activar($id,$active)
@@ -81,8 +97,8 @@ class cmsController extends Controller
         { $active = 0; }
 
         $roles = DB::table('sys_modules')->where('id', '=',$id)->update(['active'=>$active]);             
-        Session::flash('message','Rol actualizado');    
-        return redirect('/admin/cms')->with('message','store');
-    }*/
+        Session::flash('message','Módulo actualizado');    
+        return redirect('/admin/module');
+    }
 
 }

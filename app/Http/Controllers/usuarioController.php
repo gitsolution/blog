@@ -34,6 +34,7 @@ class usuarioController extends Controller
              ->groupBy('users.id')        
             ->orderBy('usr_profiles.name','DESC')->paginate(20);
 
+
 		   return view('usuario.index',compact('users'));
 	}
 
@@ -56,7 +57,7 @@ class usuarioController extends Controller
     
     /***guardar usuario***/
     public function store(userRequest $request)
-    {      
+    {     
         $activado='0';
         if($request ['ChekActivacion']== "on")
         {

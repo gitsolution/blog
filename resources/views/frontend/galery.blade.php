@@ -1,4 +1,5 @@
 @extends('frontend.index')
+<script src="../js/script.js"></script>
 @section('content')
  <div class="container">
  <br>
@@ -81,15 +82,17 @@
                 </div>
               </div>
           </div>
-    @else
-                 
-            <div class="col-md-4">
-            
+    @else        {!!Form::open()!!}
+                 <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+   
+            <div class="col-md-4">            
              <div class="" style="width:270px;">
                   <div class="panel panel-primary hoverclas  ">  
                   <div class="panel-body shadow">
-                      <a href="<?php echo $pics->path?> " data-lightbox="Galeria" data-title="<?php echo $pics->title?>"> 
-                         <img class=" img-center" width="280px" height="150px" src="<?php echo $pics->path?>" alt=""></a> </div>
+                      <a href="<?php echo $pics->path?>" data-lightbox="Galeria" data-title="<?php echo $pics->title?>"> <?php $idImagenSrc=$pics->uri; ?>
+                         <img class=" img-center" width="280px" height="150px"  id="idImagen" name="<?php echo $pics->path?>" src="<?php echo $pics->path?>" alt="" onclick="SetImageProperties(this)">
+
+                         </a> </div>
                        
                          <div class="panel-body piealbum">
                           <?php echo $pics->title?><br><?php echo $pics->description?>
@@ -97,7 +100,7 @@
                   </div>
                </div>
                   
-            </div>
+            </div>{!!Form::close()!!}
             
                     <?php $cont++; ?>                    
 @endif
@@ -108,4 +111,32 @@
 
 
  </div>
+
+<script> 
+ <?php $d=$_SERVER['HTTP_HOST'];?>
+function SetImageProperties(control)
+{
+    var dato = $(this).attr('src');
+    var route = <?php echo '"http://'.$d.'/ima'.'"'; ?>;
+    var token = $("#token").val();
+
+    $.ajax({
+      url: route,
+      headers: {'X-CSRF-TOKEN': token},
+      type: 'POST',
+      dataType: 'json',
+      data:{'imagen' : control.name},
+
+      success:function(){
+        $("#msj-success").fadeIn();
+      },
+      error:function(msj){
+        
+      }
+    });
+    
+}
+
+ </script>
+   
 @stop

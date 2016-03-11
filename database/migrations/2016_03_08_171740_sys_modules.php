@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCmsAccessesTable extends Migration
+class SysModules extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,7 @@ class CreateCmsAccessesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cms_accesses', function (Blueprint $table) {
-
+         Schema::create('sys_modules', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title',250);
             $table->text('description');
@@ -32,6 +31,6 @@ class CreateCmsAccessesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('cms_accesses');
+        Schema::drop('sys_modules');
     }
 }

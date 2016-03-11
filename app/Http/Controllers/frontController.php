@@ -37,6 +37,13 @@ class frontController extends Controller
 
             return view('frontend.contacto');
     }
+
+    public function storess(Request $request)
+    {
+        $user = new App\med_pictures;
+        $user->where('uri', '=', '/store/56d8804ca914f/56d882f53f735.png')->update(['publish' => '0']);
+        dd($request);
+    }
     
 
 
@@ -111,7 +118,7 @@ public function index()
         $flag=1;
         $Sections = null;
         $Categories = null;
-        $uri='Blog';
+        $uri=$post;
         
         $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
         $Sections = \App\cms_section::find($id_section);
@@ -203,7 +210,7 @@ public function document($option){
 
         $Documents = null;
         $uri=$option;
-        
+       
             $Documents = DB::table('cms_documents')
             ->where('cms_documents.active','=', $flag)            
             ->where('cms_documents.uri','=', $uri)                        

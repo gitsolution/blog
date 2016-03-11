@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsrLoginRolesTable extends Migration
+class CmsAccesses extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,15 @@ class CreateUsrLoginRolesTable extends Migration
      */
     public function up()
     {
-
-        Schema::create('usr_login_roles', function (Blueprint $table) {
+        Schema::create('cms_accesses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_login')->unsigned();
-            $table->foreign('id_login')->references('id')->on('users');
-            $table->integer('id_role')->unsigned();
-            $table->foreign('id_role')->references('id')->on('usr_roles');
+            $table->integer('id_sysmodule')->unsigned();
+            $table->foreign('id_sysmodule')->references('id')->on('sys_modules');
+            $table->string('title',250);
+            $table->text('description');
             $table->boolean('active');
-            $table->integer('resgister_by');
+            $table->text('rules');
+            $table->integer('register_by');
             $table->integer('modify_by');
             $table->timestamps();
         });
@@ -32,7 +32,7 @@ class CreateUsrLoginRolesTable extends Migration
      * @return void
      */
     public function down()
-    {
-        Schema::drop('usr_login_roles');
+    {     
+        Schema::drop('cms_accesses');
     }
 }

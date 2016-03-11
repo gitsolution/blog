@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\usr_login_role;
 use App\usr_role;
 use App\User;
+use App\usr_profile;
 use Redirect;
 use Session;
 use DB;
@@ -25,54 +26,57 @@ class usr_login_roleController extends Controller
 	{	
 		
 	}
-
+    
      public function store(Request $request)
-    {
-       $b=0;
-       $c=0;
-       $rolActive = array();
-       $rolNoActive=array();
-        
-       $dato = $request['vRoles'];
-       $num=count($dato);        
-       $roles=DB::table('usr_roles')->select('id')->get();
-
-        foreach ($roles as $rol) 
-        {
-            for($i=0;$i<$num;$i++)
-            {
-                if($rol->id==$dato[$i])
-                {  
-                    $rolActive[$c]=$rol->id;
-                    //echo "Active: ".$rolActive[$c]."<br>";
-                    $b=1;
-                    \App\usr_login_role::create([
-                        'id_login'=>$request['idUser'],
-                        'id_role'=>$dato[$i],
-                        'active'=>'1',
-                        'register_by'=>Auth::User()->id,
-                        'modify_by'=>Auth::User()->id,
-                    ]);   
+     {        
+        $n = count($request['role']); 
+        $usrLoginRoles = DB::table('usr_login_roles')->where('id_login',$request['idUsuario'])->orderBy('id_login','Asc')->get();
+        $b=0; $sRol=0;
+        if($n>0){
+            foreach ($usrLoginRoles as $rol) 
+            { for ($i=0; $i <$n ; $i++) 
+                {   $j=$request['role'][$i];    
+                    if($rol->id_role==$j){$b=1;break;}else{$b=0;}                       
                 }
-            }
 
-            if($b==0)
-            {
-                $rolNoActive[$c]=$rol->id;
-                //echo "No: ".$rolNoActive[$c]."<br>";
-                \App\usr_login_role::create([
-                        'id_login'=>$request['idUser'],
-                        'id_role'=>$rol->id,
-                        'active'=> '0',
-                        'register_by'=>Auth::User()->id,
-                        'modify_by'=>Auth::User()->id,
-                    ]);
+                $id=DB::table('usr_login_roles')->whereid_login($request['idUsuario'])->whereid_role($rol->id_role)->first();
+                if($id!=null){$idR=$id->id;}else{$idR=0;}
+                 if($b==1){
+                    DB::update('update usr_login_roles set active = ?, modify_by = ? where id = ?', array(1, Auth::User()->id, $idR));
+                    }                    
+                else{                       
+                    DB::update('update usr_login_roles set active = ?, modify_by = ? where id = ?', array(0, Auth::User()->id, $idR));
+                    }  
             }
-            $b=0;
-            $c++;
+        }
+        else
+        {
+            foreach ($usrLoginRoles as $rol) 
+            {
+                $id=DB::table('usr_login_roles')->whereid_login($request['idUsuario'])->whereid_role($rol->id_role)->first();
+                if($id!=null){$idR=$id->id;}else{$idR=0;}
+                DB::update('update usr_login_roles set active = ?, modify_by = ? where id = ?', array(0, Auth::User()->id, $idR));
+            }
         }
 
-        return view('layouts.app');
+            for ($i=0; $i <$n ; $i++) 
+            {
+                $j=$request['role'][$i];
+                $r=DB::table('usr_login_roles')->where('id_login',$request['idUsuario'])->where('id_role',$j)->first();   
+                if ($r==null){                
+                     usr_login_role::create([
+                            'id_login'=>$request['idUsuario'],
+                            'id_role'=>$j,
+                            'active'=>'1',
+                            'register_by'=>Auth::User()->id,
+                            'modify_by'=>Auth::User()->id,
+                        ]);
+                }
+                
+            }
+        
+        Session::flash('message','Roles Guardados Correctamente');    
+            return redirect('usuario'); 
     }
 
     public function create()
@@ -133,49 +137,20 @@ class usr_login_roleController extends Controller
         return view('layouts.app');
     }
 
+
     public function updateRol($id)
     {
-        $b=0;
-        $c=0;
-        $rolNoActive=array();
+        $nombre=DB::table('usr_profiles')->where('id',$id)->select('name', 'lastName')->first();
+        $nombreCompleto=$nombre->name." ".$nombre->lastName;
+        $roles=DB::table('usr_roles')->where('active',1)->select('id', 'title')->get();
+        $chek=DB::table('usr_login_roles')->where('id_login',$id)->where('active',1)->select('id_role')->get();
 
-        $user = User::find($id);
-        $idUser=$id;
-        $roles=DB::table('usr_roles')->select('id', 'title')->get();
-        $ulr=DB::table('usr_login_roles')->where('id_login',$idUser)->select('id_role')->get();
-        foreach ($roles as $rol) 
-         {
-            foreach ($ulr as $userRL) 
-            {
-                if($userRL->id_role==$rol->id)
-                {  
-                    //echo "Active: ".$rolActive[$c]."<br>";
-                    $b=1;
-                }
-            }
-
-            if($b==0)
-            {
-                $rolNoActive[$c]=$rol->id;
-                //echo "No: ".$rolNoActive[$c]."<br>";
-                \App\usr_login_role::create([
-                        'id_login'=>$idUser,
-                        'id_role'=>$rol->id,
-                        'active'=> '0',
-                        'register_by'=>Auth::User()->id,
-                        'modify_by'=>Auth::User()->id,
-                    ]);
-            }
-            $b=0;
-            $c++;
-        }
-
-        $roles=DB::table('usr_roles')->select('id', 'title')->get();
-        $usrProfile=DB::table('usr_profiles')->where('id',$user->id)->select('name', 'lastname')->first();
-
-        $userExist = DB::table('usr_login_roles')->where('id_login',$idUser)->select('id_login','id_role','active')->first();
-
-        return View::make('roles/asignacionRoles',compact('user','idUser','roles','ulr','usrProfile','userExist'));
-        //return View::make('roles/asignacionRoles',compact('user','idUser','roles','ulr'));
+        return View::make('roles/asignacionRoles',compact('id','nombreCompleto','roles','chek'));
     }
 }
+
+/*$user = User::find($request['idUsuario']);
+        $r = usr_login_role::find($request['idUsuario']);
+        $r->attach(1);*/
+        //$user->()->attach($request['roles']);
+        //$user->roles()->sync(Input::get('role'));

@@ -3,8 +3,6 @@
 
 <?php
 
-$categories= App\usr_role::lists('title','id');
-
 $banderaModulo=0;
 
 
@@ -23,17 +21,14 @@ else
 
 
     <div class="col-md-12"><h3 class="head">Modulos</h3>
-    </div>
-                
+    </div>                
                 <br><br><br>              					   
                
                   {!!Form::open(['route'=>'admin.config.store','method','POST'])!!}  
                     <div class="col-xs-12">
                         {!! Form::label('id', 'Selecciona el rol') !!}
-                        {!! Form::select('id',$categories, null,['class'=>'form-control select2']) !!}
+                        {!! Form::select('id',$roles, null,['class'=>'form-control select2']) !!}
                     
-
-
                     <br><br>
                     @if($banderaModulo==1)
                         @foreach($modulos as $modulo)
@@ -56,7 +51,19 @@ else
                         
     </div>
                    
-                     
+<script>
+    var data = $('form').serializeArray(),
+    obj = {};
+
+    for(var i = 0; i < data.length; i++){
+       obj[data[i].name] = obj[data[i].name] || [];
+       obj[data[i].name].push(data[i].value);
+    }    
+
+    // your JSON string
+    console.log(JSON.stringify(obj));   
+</script>    
                
 
 @stop
+

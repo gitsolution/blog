@@ -1,4 +1,10 @@
 @extends('layouts.app')
+@if(Session::has('message'))
+<div class="alert alert-success alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></button>
+  {{Session::get('message')}}
+</div>
+@endif
 @section('content')
 
 
@@ -28,8 +34,8 @@
             <th class="ColumColor text-left" >
             Correo eléctronico
             </th>
-            <th class="ColumColor text-left" >
-            Rol
+            <!--<th class="ColumColor text-left" >
+            Rol-->
             </th>
             <th class="ColumColor text-left" >
             Creado el
@@ -50,12 +56,13 @@
                 <td>{{$user->email}}</td>
 
                
-                    <td>{{$user->roles}}</td>
+                    <!--<td>{{$user->roles}}</td>-->
 
 				<td>{{$created_at}}</td>
 				<td>
 				{!! link_to('admin/userEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!} 
-                {!! link_to('admin/permissionEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-cog')) !!}        
+                {!! link_to('admin/permissionEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-flag')) !!}    
+                {!! link_to('admin/specialEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-lock')) !!}        
 				</td>
 			</tbody>
 		@endForeach

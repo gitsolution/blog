@@ -32,9 +32,10 @@ Route::get('/','LogController@logout');
 Route::group(['middleware' => 'web'], function () {
 
 /******************paginas con captcha ***************************/
-
-/// PAGINAS ESTATICAS 
-Route::resource('Inicio','frontController@index');
+Route::resource('ima','controladorPrueba');
+Route::resource('ima','controladorPrueba@store');
+/// PAGINAS ESTATICAS
+Route::resource('Inicio','frontController');
 Route::get('Inicio','frontController@index');
 Route::get('Empresa','frontController@page');
 Route::get('Servicios','frontController@page');
@@ -213,19 +214,25 @@ Route::resource('admin/assignment','usr_login_roleController');
 Route::get('admin/rolesDelete/{id}','usr_login_roleController@delete');
 Route::get('admin/rolesUpdate','usr_login_roleController@update');
 Route::get('admin/permissionEdit/{id}', 'usr_login_roleController@updateRol');
-/************************cms access**********************************/
-Route::resource('admin/cms','cmsController');
-Route::get('admin/cms', 'cmsController@index');
-Route::get('admin/cmsNew', 'cmsController@create');
-Route::get('admin/cmsEdit/{id}','cmsController@edit');
-Route::put('admin/cmsUpdate','cmsController@update');
-Route::get('admin/cmsActive/{id}/{acti}','cmsController@activar');
+/************************ modulos **********************************/
+Route::resource('admin/cms','sysmodulecontroller');
+Route::get('admin/module', 'sysmodulecontroller@index');
+Route::get('admin/moduleNew', 'sysmodulecontroller@create');
+Route::get('admin/moduleEdit/{id}','sysmodulecontroller@edit');
+Route::get('admin/modulePermissionEdit/{id}','sysmodulecontroller@editpermision');
+Route::put('admin/moduleUpdate','sysmodulecontroller@update');
+Route::get('admin/moduleActive/{id}/{acti}','sysmodulecontroller@activar');
 
 /******************modulos de configuracion*********************/
 Route::resource('admin/config','configController');
-Route::get('admin/configPermission', 'configController@index');
+Route::get('admin/configPermission','configController@index');
 Route::get('admin/configPermission/{idModulo}/{idRol}', 'configController@create');
 
+/******************permisos especiales*********************/
+/*Route::resource('admin/config','specialpermissioncontroller');
+Route::get('admin/specialDelete/{id}','specialpermissioncontroller@delete');
+Route::get('admin/specialUpdate','specialpermissioncontroller@update');
+Route::get('admin/specialEdit/{id}', 'specialpermissioncontroller@index');*/
 /************************para permisos de usuarios************************************/
 Route::resource('admin/configUpdate', 'roleActionController');
 Route::get('admin/permissionUpdate/{idRole}/{idModulo}/{action}/{active}','roleActionController@actualizar');

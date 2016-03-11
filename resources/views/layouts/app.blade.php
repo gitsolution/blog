@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -175,9 +175,8 @@
                                  <li>
                                     {!!link_to('admin/cms', '&nbsp;&nbsp;&nbsp;Módulos',array('class'=>'fa fa-cubes')) !!}                         
                                 </li>
-
                                 <li>
-                                    {!!link_to('admin/configPermission', '&nbsp;&nbsp;&nbsp;Configuracion',array('class'=>'fa fa fa-cog')) !!}
+                                    {!!link_to('admin/configPermission', '&nbsp;&nbsp;&nbsp;Permiso a roles',array('class'=>'fa fa fa-cog')) !!}
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -230,7 +229,8 @@
     
 
     <!-- Custom Theme JavaScript -->
-    {!! Html::script('../dist/js/sb-admin-2.js') !!}        
+    {!! Html::script('../dist/js/sb-admin-2.js') !!}   
+          
     
 <script>
         function imageUp(input) {

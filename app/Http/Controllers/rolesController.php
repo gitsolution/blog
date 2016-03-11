@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Redirect;
 use Session;
 use DB;
+use Auth;
 use App\usr_role;
 use App\Http\Requests\rolesRequest;
 use App\Http\Controllers\Controller;
@@ -24,7 +25,7 @@ class rolesController extends Controller
 	}
 
 	public function store(rolesRequest $request)
-    {    	   	
+    {    	  
     	$activado='0';
         if($request ['ChekActivacion']== "on")
         {
@@ -35,6 +36,8 @@ class rolesController extends Controller
     		'title'=>$request['title'],
             'description'=>$request['description'],
     		'active'=>$activado,
+            'register_by'=>Auth::User()->id,
+            'modify_by'=>Auth::User()->id,
     	]);
         
         
@@ -62,6 +65,7 @@ class rolesController extends Controller
 
         $usrRol = usr_role::find($id);
         $usrRol->active=$activado;
+        $usrRol->modify_by=Auth::User()->id;
         $usrRol->fill($request->all());      
         $usrRol->save();
 
@@ -77,7 +81,15 @@ class rolesController extends Controller
         }
 
         else
-        { $active = 0; }
+        { $active = 0; 
+            $usrLoginRoles = DB::table('usr_login_roles')->where('id_role',$id)->orderBy('id_role','Asc')->get();
+            foreach ($usrLoginRoles as $rol) 
+            {
+                //$id=DB::table('usr_login_roles')->whereid_role($id)->first();
+                //if($id!=null){$idR=$id->id;}else{$idR=0;}
+                DB::update('update usr_login_roles set active = ?, modify_by = ?  where id_role = ?', array(0, Auth::User()->id,$id));
+            }
+        }
 
         $roles = DB::table('usr_roles')->where('id', '=',$id)->update(['active'=>$active]);             
       Session::flash('message','Rol actualizado');    

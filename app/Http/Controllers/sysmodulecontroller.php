@@ -44,7 +44,6 @@ class sysmodulecontroller extends Controller
         Session::flash('message','Módulo agregado correctamente');    
         
        	return Redirect::to("admin/module");
-
     }
 
     public function create()

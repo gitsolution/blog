@@ -29,7 +29,6 @@ class configController extends Controller
 
     public function store(Request $request)
     {
-
         $json='{';
         if($request['idRole']!=null)
         {  

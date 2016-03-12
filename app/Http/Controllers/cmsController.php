@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
+use View;
 
 class cmsController extends Controller
 {
@@ -18,30 +19,47 @@ class cmsController extends Controller
     }
     
     public function store(Request $request)
-    {               
-        $json='{';
-         
-            $n = count($request['module']); 
-            for ($i=0; $i <$n ; $i++) 
-            {   
-                $json.='"'.$request['module'][$i].'":true,';
-            }
-            $json = substr($json, 0, -1);
-            $json=$json.'}';
+    {           
+        $id=$request['idModule'];
+        cms_access::create([
+                    'id_sysmodule'=>$request['idModule'],
+                    'title'=>$request['name'],
+                    'description'=>$request['description'],
+                    'active'=>'1',
+                    'register_by'=>Auth::User()->id,
+                    'modify_by'=>Auth::User()->id,
+                ]);
 
+            $nModule=DB::table('sys_modules')->where('id',$id)->first();
+            $nameModule=$nModule->title;
+            $permiso=DB::table('cms_accesses')->where('id_sysmodule',$id)->get();            
+        return View::make('sysmodules/modulespermission',compact('id','nameModule','permiso'));  
+    }
 
-            cms_access::create([
-                            'id_sysmodule'=>$request['idModule'],
-                            'title'=>$request['nameModule'],
-                            'description'=>"",
-                            'active'=>'1',
-                            'rules'=>$json,
-                            'register_by'=>Auth::User()->id,
-                            'modify_by'=>Auth::User()->id,
-                        ]);
+    public function index()
+    {
+        return View('admin/cms');
+    }
 
-            $cms = sys_module::All();
-            return view('sysmodules.index',compact('cms'));     
+    public function activar($id,$idaccess,$active)
+    {
+        if($active=='True')
+        { 
+            $active = 1;
         }
+
+        else
+        { 
+            $active = 0; 
+        }
+
+         DB::update('update cms_accesses set active = ?, modify_by = ?  where id = ? ',array($active, Auth::User()->id,$idaccess));
+
+        $nModule=DB::table('sys_modules')->where('id',$id)->first();
+        $nameModule=$nModule->title;
+        $permiso=DB::table('cms_accesses')->where('id_sysmodule',$id)->get();  
+
+       return View::make('sysmodules/modulespermission',compact('id','nameModule','permiso'));  
+    }
 
 }

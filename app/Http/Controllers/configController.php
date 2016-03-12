@@ -21,7 +21,7 @@ class configController extends Controller
     
     public function index()
     {
-        $roles = DB::table('usr_roles')->where('active','1')->lists('title', 'id');
+        $roles = DB::table('usr_roles')->where('active',1)->lists('title', 'id');
         $modulos=DB::table('sys_modules')->where('active',1)->get();
 
         return View::make('configuracion.index',compact('roles','modulos'));
@@ -54,13 +54,61 @@ class configController extends Controller
             $modulos=DB::table('sys_modules')->where('active',1)->get();
 
             return View::make('configuracion.index',compact('roles','modulos'));
-            /*$idRole=$request['idRole'];
-            $idModulo=$request['idModule'];
+        }
+
+        else
+        {
+            $idRole=$request['id'];
+            $idModulo=$request['boton'];
+
             $nRol=DB::table('usr_roles')->where('id',$idRole)->first();
             $nombreRol=$nRol->title;
-            $nModulo=DB::table('sys_modules')->where('id',$idModulo)->first();   
-            $nombreModulo=$nModulo->title;
-            return View::make('configuracion.registerPermission',compact('idRole','idModulo','nombreRol','nombreModulo'));*/
+            $nModulo=DB::table('sys_modules')->where('id',$idModulo)->first();
+            if($nModulo!=null){  
+            $nombreModulo=$nModulo->title;}else{$nombreModulo="";}
+            $json=DB::table('cms_accesses')->whereid_sysmodule($idModulo)->select('title','active')->get();
+            
+            return View::make('configuracion.registerPermission',compact('idRole','idModulo','nombreRol','nombreModulo','json'));
+            }
+    	
+    }
+
+    public function create(Request $request)
+    {
+        
+    	echo "menu index: ".$request['menuIndex'];
+    	return "";
+    }
+}
+
+/*
+    public function store(Request $request)
+    {
+        $json='{';
+        if($request['idRole']!=null)
+        {  
+            $n = count($request['role']); 
+            for ($i=0; $i <$n ; $i++) 
+            {   
+                $json.='"'.$request['role'][$i].'":true,';
+            }
+            $json = substr($json, 0, -1);
+            $json=$json.'}';
+
+
+            usr_module_rol::create([
+                            'id_role'=>$request['idRole'],
+                            'id_sysmodules'=>$request['idModule'],
+                            'active'=>'1',
+                            'access_granted'=>$json,
+                            'register_by'=>Auth::User()->id,
+                            'modify_by'=>Auth::User()->id,
+                        ]);
+
+            $roles = DB::table('usr_roles')->where('active','1')->lists('title', 'id');
+            $modulos=DB::table('sys_modules')->where('active',1)->get();
+
+            return View::make('configuracion.index',compact('roles','modulos'));
         }
 
         else
@@ -86,13 +134,6 @@ class configController extends Controller
 
             return View::make('configuracion.registerPermission',compact('idRole','idModulo','nombreRol','nombreModulo','json'));
             }
-    	
-    }
-
-    public function create(Request $request)
-    {
         
-    	echo "menu index: ".$request['menuIndex'];
-    	return "";
     }
-}
+*/

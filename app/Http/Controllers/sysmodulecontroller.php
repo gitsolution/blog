@@ -29,7 +29,7 @@ class sysmodulecontroller extends Controller
     	$activado='0';
         if($request ['ChekActivacion']== "on")
         {
-        	echo "El check esta activado";
+        	//echo "El check esta activado";
           	$activado='1';
         }
 
@@ -59,12 +59,11 @@ class sysmodulecontroller extends Controller
 
     public function editpermision($id)
     {
-        $module=DB::table('sys_modules')->where('active',1)->select('title')->first();
+        //$module=DB::table('sys_modules')->where('active',1)->select('title')->first();
         $nModule=DB::table('sys_modules')->where('id',$id)->first();
         $nameModule=$nModule->title;
-        $json='{"agregar":false,"guardar":false,"modificar":false,"nuevo":false}';
-        $json=(json_decode($json, true));
-        return View::make('sysmodules/modulespermission',compact('id','json','nameModule'));
+         $permiso=DB::table('cms_accesses')->whereid_sysmodule($id)->get();            
+        return View::make('sysmodules/modulespermission',compact('id','nameModule','permiso'));  
     }
 
     public function update($id,Request $request){

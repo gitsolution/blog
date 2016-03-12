@@ -224,7 +224,9 @@ Route::get('admin/moduleEdit/{id}','sysmodulecontroller@edit');
 Route::get('admin/modulePermissionEdit/{id}','sysmodulecontroller@editpermision');
 Route::put('admin/moduleUpdate','sysmodulecontroller@update');
 Route::get('admin/moduleActive/{id}/{acti}','sysmodulecontroller@activar');
+
 Route::resource('admin/cmsaccess','cmsController');
+Route::get('admin/cmsaccessactive/{id}/{idactive}/{acti}','cmsController@activar');
 /******************modulos de configuracion*********************/
 Route::resource('admin/config','configController');
 Route::get('admin/configPermission','configController@index');

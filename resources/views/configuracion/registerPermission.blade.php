@@ -82,8 +82,6 @@
 
       json+="}";
 
-      alert(json);
-
     }
 
 

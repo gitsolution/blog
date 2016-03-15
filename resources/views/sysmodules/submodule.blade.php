@@ -10,10 +10,10 @@
 
 <div class="container-fluid">
 <br><div class="row">
-<div class="col-md-10"><h3>Catálago de cms</h3></div> <!--divide la columna en 10 y 2-->
+<div class="col-md-10"><h3>Catálago de submodulos</h3></div> <!--divide la columna en 10 y 2-->
 <div class="col-md-2">
  {!!Form::open()!!}
-    {!! link_to('admin/moduleNew', 'Nuevo Módulo ',array('class'=>'btn btn-success ')) !!}
+    {!! link_to('admin/submoduleNew/'.$idMenu, 'Nuevo SubMódulo ',array('class'=>'btn btn-success ')) !!}
  {!!Form::close()!!}
 </div>
 </div>
@@ -30,9 +30,6 @@
             Descripcion
             </th>
             <th  class="ColumColor text-left" >
-            Submenus
-            </th>
-            <th  class="ColumColor text-left" >
              Acciones
             </th>
            
@@ -45,14 +42,10 @@
 				<td>{{$cm->id}}</td>
 				<td>{{$cm->title}}</td>
 				<td>{{$cm->description}}</td>
-        <td>
-        {!!link_to('admin/submodules/'.$cm->id, '',array('class'=>'glyphicon glyphicon-menu-hamburger')) !!}
-        </td>
 				<td>
-  				{!! link_to('admin/moduleEdit/'.$cm->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
-          {!!link_to('admin/moduleActive/'.$cm->id.'/False', '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}
+  				{!! link_to('admin/submoduleEdit/'.$cm->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
+          {!!link_to('admin/submoduleActive/'.$cm->id.'/'.$cm->id_parent, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}
           {!! link_to('admin/modulePermissionEdit/'.$cm->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-lock')) !!}
-
         </td>
 
 			</tbody>

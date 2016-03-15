@@ -8,7 +8,7 @@ class sys_module extends Model
 {
     protected  $table='sys_modules';
 
-    protected $fillable=['title','description','active','rules','register_by','modify_by'];
+    protected $fillable=['id_parent','title','description','active','register_by','modify_by'];
 
     protected $guarded=['id'];  
 }

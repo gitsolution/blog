@@ -19,9 +19,10 @@ class sysmodulecontroller extends Controller
     }
     
     public function index()
-	{	
+	{	$flag=1;
 		$cms = sys_module::All();
-		return view('sysmodules.index',compact('cms'));		
+        $cms =  DB::table('sys_modules')->whereactive($flag)->where('id_parent','=',0)->orderBy('id','DESC')->paginate(20);
+		return view('sysmodules.index',compact('cms'));	
 	}
 
 	public function store(Request $request)
@@ -34,9 +35,10 @@ class sysmodulecontroller extends Controller
         }
 
     	sys_module::create([
+            'id_parent'=>'0',
     		'title'=>$request['title'],
             'description'=>$request['description'],
-    		'active'=>$activado,
+    		'active'=>'1',
             'register_by'=>Auth::User()->id,
             'modify_by'=>Auth::User()->id,
     	]);
@@ -74,7 +76,7 @@ class sysmodulecontroller extends Controller
         }
 
         $cms = sys_module::find($id);
-        $cms->active=$activado;
+        $cms->active='1';
         $cms->fill($request->all());      
         $cms->save();
            
@@ -94,8 +96,9 @@ class sysmodulecontroller extends Controller
         else
         { $active = 0; }
 
-        $roles = DB::table('sys_modules')->where('id', '=',$id)->update(['active'=>$active]);             
-        Session::flash('message','Módulo actualizado');    
+        $modules = DB::table('sys_modules')->where('id', '=',$id)->update(['active'=>'0']);
+        $submodules = DB::table('sys_modules')->where('id_parent', '=',$id)->update(['active'=>'0']);             
+        Session::flash('message','Módulo eliminado');    
         return redirect('/admin/module');
     }
 

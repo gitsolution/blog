@@ -225,6 +225,16 @@ Route::get('admin/modulePermissionEdit/{id}','sysmodulecontroller@editpermision'
 Route::put('admin/moduleUpdate','sysmodulecontroller@update');
 Route::get('admin/moduleActive/{id}/{acti}','sysmodulecontroller@activar');
 
+
+/********************** submodulos **************************************/
+Route::resource('admin/submodule','submenucontroller@store');
+Route::get('admin/submodules/{id_menu}','submenucontroller@index');
+Route::get('admin/submoduleEdit/{id}','submenucontroller@edit');
+Route::put('admin/submoduleUpdate','submenucontroller@update');
+Route::get('admin/submoduleNew/{id_menu}', 'submenucontroller@create');
+Route::get('admin/submoduleActive/{id}/{idModulo}','submenucontroller@activar');
+/***********************************************************************/
+
 Route::resource('admin/cmsaccess','cmsController');
 Route::get('admin/cmsaccessactive/{id}/{idactive}/{acti}','cmsController@activar');
 /******************modulos de configuracion*********************/

@@ -31,26 +31,44 @@ else
     $description=$cms;  
     $nameButtom="Registrar";  
 }
+
+if(isset($idMenu))
+{
+   $message='submenunew';
+}
+
+if(isset($msg))
+{
+  $message='submenuedit';
+}
 ?>
 
     <div class="col-md-12"><h3 class="head">Cms</h3>
                       <p>PÁGINA PARA LOS CMS</p>
                   </div>
                 
-                <br><br><br>                          
-            
+                <br><br><br>      
+
+                @if($message=='submenuedit')
+                  {!!Form::model($cms,['route'=>['admin.cms.update',$cms->id],'method'=>'PUT'])!!} 
+                @endif
+
+                @if($message=='submenunew')
+                  {!!Form::open(['route'=>'admin.submodule.store','method','POST'])!!} 
+                   {!!Form::hidden('idMenu',$idMenu,['class'=>'form-control frmEspacios','placeholder'=>''])!!}
+                @endif                        
+              
                @if($message=='Edit')
                 {!!Form::model($cms,['route'=>['admin.cms.update',$cms->id],'method'=>'PUT'])!!} 
                 @else
                   {!!Form::open(['route'=>'admin.cms.store','method','POST'])!!}  
-                @endif
-               
+                @endif               
                     <div class="form-group" id="frmLogin">
                            <div class="col-xs-6">
                           {!!Form::label('titulo','Titulo')!!}
                           {!!Form::text('title',$title,['class'=>'form-control frmEspacios','placeholder'=>'Nombre'])!!}
                           </div>
-
+                        <!--
                       <div class="col-xs-3">
                       <div class="priChec">
                           {!!Form::label('activado','Activado')!!}
@@ -59,7 +77,7 @@ else
                               <label for="someSwitchOptionSuccess" class="label-success"></label>
                           </div>           
                       </div>
-                    </div>
+                    </div>-->
 
                     <div class="col-xs-12">
                       {!!Form::label('descripcion','Descripcion')!!}

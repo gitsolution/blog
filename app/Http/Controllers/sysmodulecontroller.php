@@ -61,7 +61,6 @@ class sysmodulecontroller extends Controller
 
     public function editpermision($id)
     {
-        //$module=DB::table('sys_modules')->where('active',1)->select('title')->first();
         $nModule=DB::table('sys_modules')->where('id',$id)->first();
         $nameModule=$nModule->title;
          $permiso=DB::table('cms_accesses')->whereid_sysmodule($id)->get();            

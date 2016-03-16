@@ -1,15 +1,20 @@
 @extends('layouts.app')
 @section('content')
-
-    <div class="col-md-12"><h3 class="head"><?php echo "Permisos para el modulo: ".$nameModule;?></h3><br>
-    </div>                 
-                       <!---CheckBox-->
+    
+    <div class="panel-heading">
+        <br>
+        <h2 class="panel-title">
+         <i class="fa fa-cube fa-lg"><?php echo "Permisos para el Módulo: ".$nameModule?></i><br><br>
+        </h2> 
+    </div>          
+           <!---CheckBox-->
                 {!!Form::open(['route'=>'admin.cmsaccess.store','method','POST', 'id'=>'frmpermission'])!!}                
                 {!! Form::hidden('idModule', $id) !!}
                 {!! Form::hidden('nameModule', $nameModule) !!}
                                         
 
                   <div class="form-group" id="frmLogin">
+                  <div class="row">
                         <div class="col-md-12">
                           {!!Form::label('nombre','Permiso:')!!}
                           {!!Form::text('name','',['class'=>'form-control frmEspacios','placeholder'=>'Nombre'])!!}
@@ -21,23 +26,23 @@
                         </div>      
 
                          <div class="col-md-6">
-                            <div class="col-md-2"><br><br>
-                                {!!Form::submit('Guardar',['class'=>'btn  btn-danger frmEspacios','placeholder'=>'Nombre'])!!}
+                            <div class="col-md-2"><br>
+                                {!!Form::submit('Guardar',['class'=>'btn  btn-primary frmEspacios','placeholder'=>'Nombre'])!!}
                              </div>
                         </div> 
                   </div>
+                  </div>
 
-                      @if(isset($permiso) && $permiso!=null)
-                        <div class="">
-                            <table class="table table-hover">
-                              <thead class="center-text" >
-                                <th class="ColumColor text-left" >
-                                  Permiso
+                      @if(isset($permiso) && $permiso!=null)                         
+                            <table class="table table-bordered table-hover">
+                              <thead class="center-text" style="color: #1e91cf;" >
+                                <th class="text-left" >
+                                  Permisos
                                 </th> 
-                                <th  class="ColumColor text-left" >
+                                <th  class="text-left" >
                                   Descripción del permiso
                                 </th>
-                                <th  class="ColumColor text-left" >
+                                <th  class="text-left" >
                                   Activar
                                 </th>           
                               </thead>
@@ -63,7 +68,7 @@
                             </tbody>
                           @endForeach
 
-                         </table></div>
+                         </table>
                       @endif
                 
 {!!Form::close()!!}

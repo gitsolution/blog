@@ -243,10 +243,10 @@ Route::get('admin/configPermission','configController@index');
 Route::get('admin/configPermission/{idModulo}/{idRol}', 'configController@create');
 
 /******************permisos especiales*********************/
-/*Route::resource('admin/config','specialpermissioncontroller');
-Route::get('admin/specialDelete/{id}','specialpermissioncontroller@delete');
-Route::get('admin/specialUpdate','specialpermissioncontroller@update');
-Route::get('admin/specialEdit/{id}', 'specialpermissioncontroller@index');*/
+Route::resource('admin/specialpermission','specialpermissioncontroller');
+Route::get('admin/specialEdit/{id}', 'specialpermissioncontroller@index');
+Route::get('admin/specialSelect/{idu}/{idr}/{idm}','specialpermissioncontroller@edit');
+
 /************************para permisos de usuarios************************************/
 Route::resource('admin/configUpdate', 'roleActionController');
 Route::get('admin/permissionUpdate/{idRole}/{idModulo}/{action}/{active}','roleActionController@actualizar');

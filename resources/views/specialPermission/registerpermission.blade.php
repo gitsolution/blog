@@ -21,9 +21,10 @@
             </h2> 
   </div>          
                 <!---CheckBox-->
-                {!!Form::open(['route'=>'admin.config.store','method','POST'])!!}                
-               
-                <input type="hidden" name="jsn" id="jsn"><br>
+                {!!Form::open(['route'=>'admin.specialpermission.store','method','POST'])!!}     
+                <input type="hidden" name="jsn" id="jsn"><br>    
+                <input type="hidden" name="idU" id="jsn">
+                <input type="hidden" name="idm" id="jsn"><br>
  
                 <!--<input type="checkbox" name="all" id="all" value="all" onclick="checkAll()"/>-->
                 <div class="row">
@@ -39,7 +40,6 @@
                 <div class="permissionGroup">
                   <div class="col-md-12">
 
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
 
 
                   <div class="col-md-12">
@@ -83,7 +83,7 @@
                 </div>
                  {!!Form::close()!!}
 
- <?php $d=$_SERVER['HTTP_HOST'];?>
+
 <script>  
    function checkAll()
    {
@@ -119,7 +119,7 @@
 
       var json="{";
       
-      for(i=6;i<boxes.length-1;i++)
+      for(i=3;i<boxes.length-1;i++)
       {
         var value = boxes[i].value;
         var active=boxes[i].checked;

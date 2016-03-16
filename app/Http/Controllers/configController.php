@@ -12,6 +12,7 @@ use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Route;
+
 class configController extends Controller
 {
     public function __construct()

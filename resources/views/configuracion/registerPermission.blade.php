@@ -8,7 +8,7 @@
   {
     $path="";
   }
-  echo $path;
+
 ?>
 
 @extends('layouts.app')
@@ -54,7 +54,6 @@
                               $array=explode('.', $item);
                               $nombre=array_pop($array);
                             ?>
-                             <label></label>
                               <?php 
                                 if($valor=="1"){$ch="checked";}
                                 else{$ch="unchecked";} 

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use DB;
 use View;
@@ -17,18 +16,23 @@ class specialpermissioncontroller extends Controller
         if($request['idr']!=null && $request['idm']!=null&& $request['b']==0)
         { 
             $json=$request['jsn'];
-            $v=DB::table('user_module_rol')->whereid_role($request['idRole'])->whereid_sysmodules($request['idModule'])->first();
+            $mr=DB::table('user_module_rol')->whereid_role($request['idr'])->whereid_sysmodules($request['idm'])->first();
+            $idmr=$mr->id;
+
+            $v=DB::table('special_permissions')->whereid_user($request['idu'])->whereid_usermolrol($idmr)->first();
             if($v!=null)
             {
-                $query=DB::table('user_module_rol')->whereid_role($request['idRole'])->whereid_sysmodules($request['idModule'])->update(array('access_granted' => $json));
+                $query=DB::table('special_permissions')->whereid($v->id)->update(array('access' => $json));
             }
 
             else
             { 
                 $json=$request['jsn'];
+                $mr=DB::table('user_module_rol')->whereid_role($request['idr'])->whereid_sysmodules($request['idm'])->first();
+                $idmr=$mr->id;
                 specialpermission::create([
                                 'id_user'=>$request['idu'],
-                                'id_usermolrol'=>$request['idm'],
+                                'id_usermolrol'=>$idmr,
                                 'access'=>$json,
                                 'active'=>'1',
                                 'register_by'=>Auth::User()->id,
@@ -45,7 +49,7 @@ class specialpermissioncontroller extends Controller
         }
 
         else
-        { 
+        {
             $json=$request['jsn'];
             $query=DB::table('special_permissions')->whereid_user($request['idu'])->whereid_usermolrol($request['idm'])->update(array('access' => $json));
 
@@ -61,21 +65,6 @@ class specialpermissioncontroller extends Controller
             $modules=DB::table('sys_modules')->where('active',1)->get();
           
         return View::make('specialPermission/index',compact('nombreCompleto','id','rolesmodules','roles','modules'));
-            /*$nModul=DB::table('sys_modules')->where('id',$idModulo)->first();
-            $nModuls=str_replace(" ","-",trim($nModul->title));
-            $path="admin.".$nModuls;
-           
-            $idRole=$request['id'];
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-
-            $nRol=DB::table('usr_roles')->where('id',$idRole)->first();
-            $nombreRol=$nRol->title;
-            $nModulo=DB::table('sys_modules')->where('id',$idModulo)->first();
-            if($nModulo!=null){  
-            $nombreModulo=$nModulo->title;}else{$nombreModulo="";}
-            $json=DB::table('cms_accesses')->whereid_sysmodule($idModulo)->select('title','active')->get();
-
-            return View::make('configuracion.registerPermission',compact('idRole','idModulo','nombreRol','nombreModulo','json','path'));*/
             }
 	}
 
@@ -94,7 +83,11 @@ class specialpermissioncontroller extends Controller
 
     public function edit($idu,$idr,$idm)
     {
-        $jsonp=DB::table('special_permissions')->whereid_user($idu)->whereid_usermolrol($idm)->first();
+        $v=DB::table('user_module_rol')->whereid_role($idr)->whereid_sysmodules($idm)->first();
+        if($v!=null){ $idmr=$v->id;}else{ $idmr=0;}
+
+        $jsonp=DB::table('special_permissions')->whereid_user($idu)->whereid_usermolrol($idmr)->first();
+        
         if($jsonp!=null)
         {
             $json=$jsonp->access;
@@ -103,8 +96,9 @@ class specialpermissioncontroller extends Controller
 
         else
         {
-         $json = DB::table('user_module_rol')->whereid($idm)->first();
-         $json=json_decode($json->access_granted,true);
+         $json = DB::table('user_module_rol')->whereid_role($idr)->whereid_sysmodules($idm)->first();
+         if($json->access_granted!=null){$json=json_decode($json->access_granted,true);}
+         else{$json="";}
         }
 
         $nRol=DB::table('usr_roles')->where('id',$idr)->first();
@@ -114,6 +108,7 @@ class specialpermissioncontroller extends Controller
         $nombreModulo=$nModulo->title;}else{$nombreModulo="";}
         $b=DB::table('special_permissions')->whereid_user($idu)->whereid_usermolrol($idm)->first();
         if($b!=null){$b=1;}else{$b=0;}
+
         return View::make('specialPermission/registerpermission',compact('json','nombreRol','nombreModulo','idr','idm','idu','b'));
     }
 }

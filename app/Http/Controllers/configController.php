@@ -12,6 +12,7 @@ use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Route;
+use Session;
 
 class configController extends Controller
 {
@@ -59,6 +60,8 @@ class configController extends Controller
             $modulos=DB::table('sys_modules')->whereid_parent(0)->whereactive(1)->get();
             $submodulos=DB::table('sys_modules')->whereactive(1)->where('id_parent','>',0)->get();
 
+            Session::flash('message','Permisos agregado correctamente'); 
+
             return View::make('configuracion.index',compact('roles','modulos','submodulos'));
         }
 
@@ -92,7 +95,7 @@ class configController extends Controller
                $json=DB::table('cms_accesses')->whereid_sysmodule($idModulo)->whereactive(1)->select('title','active')->get();
                $b=0;
             }
-           
+            
             return View::make('configuracion.registerPermission',compact('idRole','idModulo','nombreRol','nombreModulo','json','path','b'));
             }
 

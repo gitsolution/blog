@@ -68,21 +68,46 @@ class configController extends Controller
 
             $nModul=DB::table('sys_modules')->where('id',$idModulo)->first();
             $nModuls=str_replace(" ","-",trim($nModul->title));
+            $path="";
             $path="admin.".$nModuls;
            
+           
+           if($request['id']!=null)
+           {
             $idRole=$request['id'];
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
 
             $nRol=DB::table('usr_roles')->where('id',$idRole)->first();
             $nombreRol=$nRol->title;
             $nModulo=DB::table('sys_modules')->where('id',$idModulo)->first();
-            if($nModulo!=null){  
-            $nombreModulo=$nModulo->title;}else{$nombreModulo="";}
-            $json=DB::table('cms_accesses')->whereid_sysmodule($idModulo)->select('title','active')->get();
-            
-            return View::make('configuracion.registerPermission',compact('idRole','idModulo','nombreRol','nombreModulo','json','path'));
+            if($nModulo!=null)
+            {$nombreModulo=$nModulo->title;}else{$nombreModulo="";}
+
+            $json=DB::table('user_module_rol')->whereid_role($idRole)->whereid_sysmodules($idModulo)->first();
+            if($json!=null)
+            {$json=json_decode($json->access_granted,true);}else{$json="";}
+            $b=1;
+           
+            if($json=="")
+            {
+               $json=DB::table('cms_accesses')->whereid_sysmodule($idModulo)->select('title','active')->get();
+               $b=0;
             }
-    	
+           
+            return View::make('configuracion.registerPermission',compact('idRole','idModulo','nombreRol','nombreModulo','json','path','b'));
+            }
+
+            else
+            {
+                $idRole=0;
+                $idModulo=0;
+                $nombreRol="";
+                $nombreModulo="";
+                $json="";
+                $path="";
+                $b=0;
+                return View::make('configuracion.registerPermission',compact('idRole','idModulo','nombreRol','nombreModulo','json','path','b'));
+            }
+    	}
     }
 
     public function create(Request $request)

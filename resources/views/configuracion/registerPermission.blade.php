@@ -1,14 +1,14 @@
 <?php
   if(isset($path))
   {
-    $path=$path;
+    
   }
 
   else
   {
     $path="";
   }
-  
+  echo $path;
 ?>
 
 @extends('layouts.app')
@@ -48,6 +48,29 @@
 
                   <div class="checkboxes">
                     @if($json!=null)
+                        @if($b==1)
+                         @foreach ($json as $item=>$valor)
+                            <?php
+                              $array=explode('.', $item);
+                              $nombre=array_pop($array);
+                            ?>
+                             <label></label>
+                              <?php 
+                                if($valor=="1"){$ch="checked";}
+                                else{$ch="unchecked";} 
+                              ?>
+                               <div class="checkbox">  
+                                <label>                     
+                                      <input type="checkbox" name="role[]" value="<?php echo $item; ?>" onclick="check()" <?php echo $ch; ?>/><?php echo $nombre; ?>
+                                </label> 
+                              </div> 
+                          @endforeach
+
+                       
+
+                        @else
+
+
                           @foreach ($json as $item)
                               <div class="checkbox">  
                                 <label>                     
@@ -56,6 +79,7 @@
                               </div> 
                              
                           @endforeach
+                           @endif
                       @else
                         <label>No hay permisos para este Módulo</label>
                     @endif
@@ -108,8 +132,9 @@
 
       var boxes=document.getElementsByTagName('input');
       
+      var path="";
       var path="<?php  echo $path;?>";
-
+      var json="";
       var json="{";
       
       for(i=6;i<boxes.length-1;i++)

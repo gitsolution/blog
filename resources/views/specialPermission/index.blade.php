@@ -47,7 +47,7 @@
 				@endforeach
                
 				<td>
-				{!! link_to('admin/specialSelect/'.$id.'/'.$rm->id.'/'.$rm->id_sysmodules, 'Seleccionar',array('class'=>'btn btn-default')) !!}  
+				{!! link_to('admin/specialSelect/'.$id.'/'.$rm->id_role.'/'.$rm->id_sysmodules, 'Seleccionar',array('class'=>'btn btn-default')) !!}  
 				</td>
 			</tbody>
 		@endForeach

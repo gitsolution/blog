@@ -19,6 +19,7 @@ class SpecialPermissions extends Migration
             $table->integer('id_usermolrol')->unsigned();
             $table->foreign('id_usermolrol')->references('id')->on('user_module_rol');
             $table->text('access');
+            $table->boolean('active');
             $table->integer('register_by');
             $table->integer('modify_by');
             $table->timestamps();

@@ -16,15 +16,14 @@
   <div class="panel-heading">
         <br>
         <h2 class="panel-title">
-        <i class="fa fa-pencil fa-lg"><?php echo "Rol: "?></i>&nbsp;&nbsp;&nbsp;&nbsp;
-        <i class="fa fa-cube fa-lg"> <?php echo "Modulo: "?></i>
+        <i class="fa fa-pencil fa-lg"><?php echo "Rol: ".$nombreRol;?></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-cube fa-lg"> <?php echo "Modulo: ".$nombreModulo;?></i>
             </h2> 
   </div>          
                 <!---CheckBox-->
                 {!!Form::open(['route'=>'admin.specialpermission.store','method','POST'])!!}     
-                <input type="hidden" name="jsn" id="jsn"><br>    
-                <input type="hidden" name="idU" id="jsn">
-                <input type="hidden" name="idm" id="jsn"><br>
+                <input type="hidden" name="jsn" id="jsn">{!! Form::hidden('idr', $idr) !!}
+                {!! Form::hidden('idu', $idu) !!}{!! Form::hidden('idm', $idm) !!}{!! Form::hidden('b', $b) !!}
  
                 <!--<input type="checkbox" name="all" id="all" value="all" onclick="checkAll()"/>-->
                 <div class="row">
@@ -52,7 +51,6 @@
                               $array=explode('.', $item);
                               $nombre=array_pop($array);
                             ?>
-                             <label></label>
                               <?php 
                                 if($valor=="1"){$ch="checked";}
                                 else{$ch="unchecked";} 
@@ -119,7 +117,7 @@
 
       var json="{";
       
-      for(i=3;i<boxes.length-1;i++)
+      for(i=7;i<boxes.length-1;i++)
       {
         var value = boxes[i].value;
         var active=boxes[i].checked;

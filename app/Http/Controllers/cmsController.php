@@ -32,7 +32,9 @@ class cmsController extends Controller
 
             $nModule=DB::table('sys_modules')->where('id',$id)->first();
             $nameModule=$nModule->title;
-            $permiso=DB::table('cms_accesses')->where('id_sysmodule',$id)->get();            
+            $permiso=DB::table('cms_accesses')->where('id_sysmodule',$id)->whereactive(1)->get();  
+
+             Session::flash('message','Permiso agregado correctamente');            
         return View::make('sysmodules/modulespermission',compact('id','nameModule','permiso'));  
     }
 

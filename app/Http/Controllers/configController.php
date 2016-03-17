@@ -89,7 +89,7 @@ class configController extends Controller
            
             if($json=="")
             {
-               $json=DB::table('cms_accesses')->whereid_sysmodule($idModulo)->select('title','active')->get();
+               $json=DB::table('cms_accesses')->whereid_sysmodule($idModulo)->whereactive(1)->select('title','active')->get();
                $b=0;
             }
            

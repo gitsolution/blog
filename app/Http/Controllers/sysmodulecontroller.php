@@ -63,7 +63,8 @@ class sysmodulecontroller extends Controller
     {
         $nModule=DB::table('sys_modules')->where('id',$id)->first();
         $nameModule=$nModule->title;
-         $permiso=DB::table('cms_accesses')->whereid_sysmodule($id)->get();            
+        $permiso=DB::table('cms_accesses')->whereid_sysmodule($id)->get();
+
         return View::make('sysmodules/modulespermission',compact('id','nameModule','permiso'));  
     }
 

@@ -1,4 +1,10 @@
 @extends('layouts.app')
+@if(Session::has('message'))
+<div class="alert alert-success alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></button>
+  {{Session::get('message')}}
+</div>
+@endif
 @section('content')
     
     <div class="panel-heading">
@@ -43,10 +49,11 @@
                                   Descripción del permiso
                                 </th>
                                 <th  class="text-left" >
-                                  Activar
+                                  Eliminar
                                 </th>           
                               </thead>
                           @foreach($permiso as $p)
+                          @if($p->active==1)
                             <tbody>
                               <td>{{$p->title}}</td>
                               <td>{{$p->description}}</td>
@@ -55,17 +62,13 @@
                                     if($p->active=='1'){
                                   ?>                  
                                       {!!link_to('admin/cmsaccessactive/'.$p->id_sysmodule.'/'.$p->id.'/False', '',array('class'=>'fa fa-check')) !!}
-                                   <?php 
-                                        } 
-                                       
-                                       else{ 
-                                    ?>                    
-                                      {!!link_to('admin/cmsaccessactive/'.$p->id_sysmodule.'/'.$p->id.'/True', '',array('class'=>'fa fa-times')) !!}
+                                  
                                     
                                     <?php } 
                                     ?>
                               </td>                                    
                             </tbody>
+                            @endif
                           @endForeach
 
                          </table>

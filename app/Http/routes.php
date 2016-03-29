@@ -93,7 +93,7 @@ Route::resource('cotizacion','cotizacioncontroller');
 //Route::get('contactoEnviar','cresolidoController@enviar');
 Route::get('frmcotizacion','cresolidoController@cotizacion');
  
- Route::auth();
+Route::auth();
 
 /*************RUTAS DE TYPES******************************/
 Route::get('admin/typesnew','typeController@typenew');//abre el formulario para nuevo typo

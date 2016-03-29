@@ -22,18 +22,24 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">0</div>
+                                    <div class="huge"><?php echo $totalComentarios;?></div>
                                     <div>¡Nuevos comentarios!</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+
+                        <a href="#">                        
                             <div class="panel-footer">
-                                <span class="pull-left">Ver detalles</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
+	                            <span class="pull-left">
+	                            {!!link_to('admin/comments', 'Ver detalles',array('class'=>'')) !!}
+	                            </span>
+                            	<span class="pull-right">
+                            	{!!link_to('admin/comments', '',array('class'=>'fa fa-arrow-circle-right')) !!}
+                            	</span> 
                             </div>
-                        </a>
+                         </a>
+
+                        
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -44,18 +50,22 @@
                                     <i class="fa fa-user fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">0</div>
-                                    <div>Usuarios</div>
+                                    <div class="huge"><?php echo $totalUsuario;?></div>
+                                    <div>Usuarios Nuevos</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+
+                        <a href="#">                        
                             <div class="panel-footer">
-                                <span class="pull-left">Ver detalles</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
+	                            <span class="pull-left">
+	                            	{!!link_to('/usuario', 'Ver detalles',array('class'=>'')) !!}  
+	                            </span>
+                            	<span class="pull-right">
+                            		{!!link_to('/usuario', '',array('class'=>'fa fa-arrow-circle-right')) !!} 
+                            	</span> 
                             </div>
-                        </a>
+                         </a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -63,21 +73,25 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                    <i class="fa fa-picture-o fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">0</div>
-                                    <div>New Orders!</div>
+                                    <div class="huge"><?php echo $totalAlbums;?></div>
+                                    <div>Total de albums</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+
+                        <a href="#">                        
                             <div class="panel-footer">
-                                <span class="pull-left">Ver detalles</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
+	                            <span class="pull-left">
+	                            	 {!!link_to('admin/media', 'Ver detalles',array('class'=>'')) !!}
+	                            </span>
+                            	<span class="pull-right">
+                            	 {!!link_to('admin/media', '',array('class'=>'fa fa-arrow-circle-right')) !!}
+                            	</span> 
                             </div>
-                        </a>
+                         </a>
                     </div>
                 </div>
             </div>

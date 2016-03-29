@@ -62,8 +62,14 @@ class HomeController extends Controller
             $picture=$this->construirTitulo($pictures);
             $hitspicture=$this->construirHits($pictures);
             
+            $totalUsuario= DB::table('usr_profiles')   
+            ->wherepicture('')->wheregender('')->count();
 
-        return view('home',compact('document','hitsdocument','section','hitssection','categori','hitscategories','album','hitsalbum','picture','hitspicture'));
+            $totalComentarios=DB::table('cms_comments')   
+            ->wherepublish('0')->whereactive('1')->count();
+            
+            $totalAlbums= DB::table('med_albums')->count();
+        return view('home',compact('document','hitsdocument','section','hitssection','categori','hitscategories','album','hitsalbum','picture','hitspicture','totalComentarios','totalUsuario','totalAlbums'));
     }
 
     public function construirTitulo($titulos)

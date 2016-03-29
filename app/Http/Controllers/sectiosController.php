@@ -224,7 +224,6 @@ class sectiosController extends Controller
       }else {     
       $noAux=$noAux+1;      
     }
-        var_dump($noAux);
     $Section =  Null; 
     $Section = DB::table('cms_sections')->where('active','=', $flag)->where('order_by', '=',$no)->update(['order_by'=>$noAux]);   
   }

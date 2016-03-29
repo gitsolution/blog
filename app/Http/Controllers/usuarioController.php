@@ -81,10 +81,11 @@ class usuarioController extends Controller
             $perfil->lastname=$request->lastName;
             $perfil->save();
        
-
-    	return Redirect::to("/admin/userNew")
+           Session::flash('message','Usuario Registrado Correctamente');     
+           return Redirect::to("usuario");
+        /*return Redirect::to("/admin/userNew")
         ->with("message", "Hemos enviado un enlace de confirmación a su 
-                cuenta de correo electrónico");
+                cuenta de correo electrónico");*/
     }
 
     public function register(Request $request)
@@ -117,7 +118,8 @@ class usuarioController extends Controller
         $userProfile->name=$request['name'];  
         $userProfile->lastname=$request['lastName'];      
         $userProfile->save();
-            
+        
+        Session::flash('message','Usuario Actualizado Correctamente');    
         return Redirect::to("usuario");
     }
 

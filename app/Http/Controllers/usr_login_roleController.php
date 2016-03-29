@@ -133,7 +133,8 @@ class usr_login_roleController extends Controller
      public function delete($id)
     {
         $query=usr_role::destroy($id);
-
+        Session::flash('message','Role Eliminado Correctamente');  
+        return Redirect::to("admin/roles"); 
         return view('layouts.app');
     }
 

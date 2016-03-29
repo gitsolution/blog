@@ -40,7 +40,7 @@ class rolesController extends Controller
             'modify_by'=>Auth::User()->id,
     	]);
         
-        
+       Session::flash('message','Rol Registrado Correctamente'); 
        return Redirect::to("admin/roles");
     }
 
@@ -69,6 +69,7 @@ class rolesController extends Controller
         $usrRol->fill($request->all());      
         $usrRol->save();
 
+        Session::flash('message','Rol actualizado Correctamente'); 
         return Redirect::to("admin/roles");
     }
 
@@ -92,7 +93,7 @@ class rolesController extends Controller
         }
 
         $roles = DB::table('usr_roles')->where('id', '=',$id)->update(['active'=>$active]);             
-      Session::flash('message','Rol actualizado');    
+        Session::flash('message','Rol actualizado');    
         return redirect('/admin/roles')->with('message','store');
     }
 

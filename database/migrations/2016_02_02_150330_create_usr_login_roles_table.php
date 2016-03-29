@@ -12,8 +12,9 @@ class CreateUsrLoginRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('usr_login_roles', function (Blueprint $table) {
 
+        Schema::create('usr_login_roles', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('id_login')->unsigned();
             $table->foreign('id_login')->references('id')->on('users');
             $table->integer('id_role')->unsigned();

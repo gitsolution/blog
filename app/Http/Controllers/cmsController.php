@@ -3,10 +3,13 @@ namespace App\Http\Controllers;
 use Redirect;
 use Session;
 use DB;
+use App\sys_module;
 use App\cms_access;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
+use View;
 
 class cmsController extends Controller
 {
@@ -15,73 +18,50 @@ class cmsController extends Controller
         $this->middleware('auth');
     }
     
+    public function store(Request $request)
+    {           
+        $id=$request['idModule'];
+        cms_access::create([
+                    'id_sysmodule'=>$request['idModule'],
+                    'title'=>$request['name'],
+                    'description'=>$request['description'],
+                    'active'=>'1',
+                    'register_by'=>Auth::User()->id,
+                    'modify_by'=>Auth::User()->id,
+                ]);
+
+            $nModule=DB::table('sys_modules')->where('id',$id)->first();
+            $nameModule=$nModule->title;
+            $permiso=DB::table('cms_accesses')->where('id_sysmodule',$id)->whereactive(1)->get();  
+
+             Session::flash('message','Permiso agregado correctamente');            
+        return View::make('sysmodules/modulespermission',compact('id','nameModule','permiso'));  
+    }
+
     public function index()
-	{	
-		$cms = cms_access::All();
-		return view('cms.index',compact('cms'));		
-	}
-
-	public function store(Request $request)
-    {    	    	
-    	$activado='0';
-        if($request ['ChekActivacion']== "on")
-        {
-        	echo "El check esta activado";
-          	$activado='1';
-        }
-
-    	cms_access::create([
-    		'title'=>$request['title'],
-            'description'=>$request['description'],
-    		'active'=>$activado,
-    	]);
-        
-       return Redirect::to("admin/cms");
-
-    }
-
-    public function create()
     {
-    	return view('cms.cmsForm');
+        return View('admin/cms');
     }
 
-    public function edit($id)
+    public function activar($id,$idaccess,$active)
     {
-        $cms=cms_access::find($id);
-        return view('cms.cmsform',['cms'=>$cms]);
-    }
-
-    public function update($id,Request $request){
-        $activado='0';
-        if($request ['ChekActivacion']== "on")
-        {
-            echo "El check esta activado";
-            $activado='1';
-        }
-
-        $cms = cms_access::find($id);
-        $cms->active=$activado;
-        $cms->fill($request->all());      
-        $cms->save();
-            
-        return Redirect::to("admin/cms");
-    }
-
-    public function activar($id,$active)
-    {
-        $priv=1;    
         if($active=='True')
         { 
             $active = 1;
         }
 
         else
-        { $active = 0; }
+        { 
+            $active = 0; 
+        }
 
-        $roles = DB::table('cms_accesses')->where('id', '=',$id)->update(['active'=>$active]);             
-        Session::flash('message','Rol actualizado');    
-        return redirect('/admin/cms')->with('message','store');
+         DB::update('update cms_accesses set active = ?, modify_by = ?  where id = ? ',array($active, Auth::User()->id,$idaccess));
+
+        $nModule=DB::table('sys_modules')->where('id',$id)->first();
+        $nameModule=$nModule->title;
+        $permiso=DB::table('cms_accesses')->where('id_sysmodule',$id)->get();  
+
+       return View::make('sysmodules/modulespermission',compact('id','nameModule','permiso'));  
     }
-
 
 }

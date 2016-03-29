@@ -3,8 +3,6 @@
 
 <?php
 
-$categories= App\usr_role::lists('title','id');
-
 $banderaModulo=0;
 
 
@@ -23,29 +21,37 @@ else
 
 
     <div class="col-md-12"><h3 class="head">Modulos</h3>
-    </div>
-                
+    </div>                
                 <br><br><br>              					   
                
-                  {!!Form::open(['route'=>'admin.config.store','method','POST'])!!}  
-                    <div class="col-xs-12">
+                  {!!Form::open(['route'=>'admin.config.store','method','POST'])!!}                   
+                    <div class="col-md-12">
                         {!! Form::label('id', 'Selecciona el rol') !!}
-                        {!! Form::select('id',$categories, null,['class'=>'form-control select2']) !!}
-                    
-
+                        {!! Form::select('id',$roles, null,['class'=>'form-control select2']) !!}
 
                     <br><br>
-                    @if($banderaModulo==1)
+                    @if($banderaModulo==1 && $modulos!=null)
                         @foreach($modulos as $modulo)
-                        <div class="row" >
-                            <div class="col-md-4">
-                                <div>  
-                                 <button type="submit" class="btn btn-default btn-lg btn-block" name="boton" value="<?php echo $modulo->id ?>"><?php echo $modulo->title ?></button>
-                                </div>
-                            </div>
-                        </div><br>  
-                                
-                        @endForeach 
+                        <div class="btn-group">
+                          <button type="submit" class="btn btn-default" name="boton"  value="<?php echo $modulo->id ?>">
+                            <?php echo $modulo->title ?>
+                          </button>
+
+                          <button type = "button" class = "btn btn-primary dropdown-toggle" data-toggle = "dropdown">
+                              <span class = "caret"></span>                             
+                          </button>
+
+                            <ul class = "dropdown-menu" role = "menu">
+                               
+                           @foreach($submodulos as $m)
+                               @if($modulo->id==$m->id_parent)  <li>
+                                    <button type="submit" class="btn btn-default" style="width: 100%; border:none;" name="boton" value="<?php echo $m->id ?>"><?php echo $m->title ?></button>  </li>  
+                                @endif
+                            @endForeach
+                           
+                             </ul>  
+                        </div>
+                            @endForeach                        
                     @else
                         <div class="col-md-12"><h3 class="head">No hay módulos disponibles</h3>
                         </div>
@@ -54,9 +60,7 @@ else
 </div>
                  {!!Form::close()!!}
                         
-    </div>
-                   
-                     
-               
+    </div>               
 
 @stop
+

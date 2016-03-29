@@ -80,6 +80,7 @@
 						<div class="form-group" >
 							<div class="col-md-12">
 							 {!!Form::submit($buttom,['class'=>'btn btn-primary'])!!}
+							 {!! link_to('usuario', 'Cancelar',array('class'=>'btn btn-danger')) !!}
 							</div>
 						</div>
 					</div>

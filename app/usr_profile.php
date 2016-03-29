@@ -11,4 +11,6 @@ class usr_profile extends Model
     protected $fillable=['id','name','lastname','picture','gender','born_date'];
 
     protected $guarded=['id'];
+
+    
 }

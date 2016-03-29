@@ -96,3 +96,8 @@ footer {
     background-color: white !important;
 }
 
+.breadcrumb {
+     background-color: white !important;   
+     color: #0F5BFF !important;
+     font-style: bold !important;
+}

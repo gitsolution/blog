@@ -7,15 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Microfinanciera, microcreditos, creditos en chiapas, grupo solidario">
     <meta name="author" content="">
-    <script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
     <title>Valor Productivo SA de CV SOFOM ENR</title>
 
     <!-- Bootstrap Core CSS -->
+    
     {!!Html::style('css/bootstrap.min.css')!!}
     {!!Html::style('css/admin.css')!!}
     <!-- Custom CSS -->
     {!!Html::style('css/business-frontpage.css')!!}
     {!!Html::style('../css/lightbox.css')!!}
+
 </head>
 <body>
     <!-- Navigation -->
@@ -112,7 +113,6 @@
     {!! Html::script('js/bootstrap.min.js') !!}    
     <!-- sdjasdjjkd-->
     {!! Html::script('js/lightbox.js') !!}    
-
-    
+  
 </body>
 </html>

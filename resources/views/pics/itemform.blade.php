@@ -135,7 +135,8 @@ if(isset($item)) {
    {!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
   </div>
   <div class="col-md-3">
-   {!! link_to('', 'Cancelar',array('class'=>'btn btn-danger')) !!}
+
+  {!! link_to('admin/media', 'Cancelar',array('class'=>'btn btn-danger')) !!}
   </div>
 </div>        
 

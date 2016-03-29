@@ -12,16 +12,12 @@ use App\cms_category;
 use App\cms_document;
 use App\Media;
 use App\Item;
+use App\Directory;
+use App\ItemFiles;
 
 class frontController extends Controller
 {
-  /*
-   public function __construct()
-    {
-        $this->middleware('auth');
-    }
-  */    
-  
+
     public function store(contactoRequest $request)
     {
             $data['name']=$request['name'];
@@ -35,23 +31,25 @@ class frontController extends Controller
                  $mail->to('analista_de_credito@hotmail.com')->bcc('romanalbores@gmail.com');
             });
 
-            return view('frontend.contacto');
+            return view('firmesoluciones.contacto');
     }
     
 
 
-    public function Contacto()
+    public function Contacto(Request $request)
     {
-        return view('frontend.contacto');
+        $uris = $this->getBreadcrumb($request);
+        return view('firmesoluciones.contacto',['uris'=>$uris]);
     }
 
-    public function cotizacion()
+    public function cotizacion(Request $request)
     {
-        return view('frontend.frmcotizacion');
+        $uris = $this->getBreadcrumb($request);
+        return view('firmesoluciones.frmcotizacion',['uris'=>$uris]);
     }
 
 
-public function index()
+public function index(Request $request)
     {
         $flag=1;
         $private=1;
@@ -63,9 +61,18 @@ public function index()
         
         
         $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
-      
+        $services = 'Servicios';
           $Sections =  DB::table('cms_sections')->where('active','=', $flag)->where('publish','=', $publish)->where('id','=', $id_section)->get();             
       
+           $Services = DB::table('cms_categories')
+            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
+            ->select('cms_categories.*', 'cms_sections.title as section')
+            ->where('cms_categories.active','=', $flag)                    
+            //->where('cms_categories.uri','=', $services)                        
+            ->where('cms_categories.publish','=', $publish)                                    
+            ->orderBy('order_by','DESC')->paginate(3);
+
+            
             $Categories = DB::table('cms_categories')
             ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
             ->select('cms_categories.*', 'cms_sections.title as section')
@@ -75,11 +82,12 @@ public function index()
             ->orderBy('order_by','DESC')->paginate(20);
 
             $this->aumentarHits($uri);
-
-            return view('frontend.home',['Categories'=>$Categories, 'Sections'=>$Sections]);
+            $uris = $this->getBreadcrumb($request);
+            
+            return view('firmesoluciones.home',['Categories'=>$Categories, 'Services'=>$Services,'Sections'=>$Sections,'uris'=>$uris]);
     }
 
-    public function BlogList()
+    public function BlogList(Request $request)
     {
         $flag=1;
         $Sections = null;
@@ -100,13 +108,13 @@ public function index()
             ->orderBy('cms_documents.order_by','DESC')->paginate(20);
             
             $this->aumentarHits($uri);
-
-            return view('frontend.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections]);
+            $uris = $this->getBreadcrumb($request);
+            return view('firmesoluciones.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections, 'uris'=>$uris]);
     }
 
 
 
-    public function Blog($post)
+    public function Blog($post, Request $request)
     {
         $flag=1;
         $Sections = null;
@@ -127,7 +135,7 @@ public function index()
             ->orderBy('order_by','DESC')->get();
 
             $this->aumentarHits($uri);
-
+            
            $coments= DB::table('cms_comments')
                 ->join('cms_documents','cms_documents.id','=','cms_comments.id_document')
                 ->select('cms_comments.*','cms_documents.id as iddoc')
@@ -140,8 +148,10 @@ public function index()
                      ->where('active', '=', 1)
                      ->where('publish', '=', 1)
                      ->first();
-            
-            return view('frontend.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections,'post'=>$post, 'coments'=>$coments, 'cont'=>$ContComments]);
+            $uris = $this->getBreadcrumb($request);
+           
+
+            return view('firmesoluciones.blog',['Documents'=>$Documents, 'Categories'=>$Categories, 'Sections'=>$Sections,'post'=>$post, 'coments'=>$coments, 'cont'=>$ContComments,'uris'=>$uris]);
 }
 
 
@@ -153,22 +163,19 @@ public function page(Request $request)
             }
       		else{
             $flag=1;
-            $Sections = null;
-            $Categories = null;               
+            $Sections = null;     
                          
             $Sections = DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->get();
 
             $this->aumentarHits($uri);
-
-            return view('frontend.page',['Categories'=>$Categories, 'Sections'=>$Sections]);
-           }
-  	 
-       
+            $uris = $this->getBreadcrumb($request);
+            return view('firmesoluciones.page',['Sections'=>$Sections, 'uris'=>$uris]);
+           }  	        
        }
 
 
 
-public function section($option){
+public function section($option, Request $request){
         $flag=1;
         $publish = 1;
         $Sections = null;
@@ -179,12 +186,13 @@ public function section($option){
         $Sections =  DB::table('cms_sections')->where('active','=', $flag)->where('publish','=', $publish)->where('id','=', $id_section)->get();             
 
         $this->aumentarHits($uri);
+        $uris = $this->getBreadcrumb($request);
          
-         return view('frontend.section',['Sections'=>$Sections]);
+        return view('firmesoluciones.section',['Sections'=>$Sections, 'uris'=>$uris]);
 
 }
 
-public function category($option){
+public function category($option, Request $request){
         $Sections = null;
         $Categories = null;
         $uri=$option;
@@ -197,12 +205,12 @@ public function category($option){
             ->orderBy('order_by','DESC')->paginate(20);
 
             $this->aumentarHits($uri);
-            
-            return view('frontend.category',['Categories'=>$Categories]);
-
+            $uris = $this->getBreadcrumb($request);
+          
+            return view('firmesoluciones.category',['Categories'=>$Categories, 'uris'=>$uris]);
 }
 
-public function document($option){
+public function document($option, Request $request){
 
             $Documents = null;
             $uri=$option;
@@ -213,13 +221,12 @@ public function document($option){
             ->orderBy('order_by','DESC')->get();
 
             $this->aumentarHits($uri);
-
-            return view('frontend.documents',['Documents'=>$Documents]);
-
-        
+            $uris = $this->getBreadcrumb($request);
+            
+            return view('firmesoluciones.documents',['Documents'=>$Documents, 'uris'=>$uris]);        
 }
 
-public function listCategory($option){
+public function listCategory($option, Request $request){
         $Sections = null;
         $Categories = null;
         $uri=$option;
@@ -235,12 +242,11 @@ public function listCategory($option){
             ->orderBy('order_by','DESC')->paginate(20);
 
             $this->aumentarHits($uri);
-            
-            return view('frontend.category',['Categories'=>$Categories]);
-
+            $uris = $this->getBreadcrumb($request);
+            return view('firmesoluciones.category',['Categories'=>$Categories, 'uris'=>$uris]);
 }
 
-public function listDocument($option){
+public function listDocument($option, Request $request){
 
         $Sections = null;
         $Categories = null;
@@ -257,11 +263,11 @@ public function listDocument($option){
             ->orderBy('order_by','DESC')->paginate(20);
 
             $this->aumentarHits($uri);
-
-            return view('frontend.documents',['Documents'=>$Documents]);
+            $uris = $this->getBreadcrumb($request);
+            return view('firmesoluciones.documents',['Documents'=>$Documents, 'uris'=>$uris]);
 
 }
-public function listGalleries(){
+public function listGalleries(Request $request){
         $flag='1';  
         $band='1';  
         $publish='1';  
@@ -275,13 +281,12 @@ public function listGalleries(){
             ->where('med_pictures.active','=', $flag)   
             ->where('med_pictures.publish','=',$publish)        
             ->orderBy('med_albums.order_by','DESC')->paginate(20);
-
-          
-            return view('frontend.galery',[/*'items'=>$items,*/ 'media'=>$media ,'band'=>$band] );
-
+            $uris = $this->getBreadcrumb($request);
+           
+            return view('firmesoluciones.galery',['media'=>$media ,'band'=>$band, 'uris'=>$uris] );
 }
 
-public function galleries($option){
+public function galleries($option, Request $request){
         $uri = $option;    
         $flag='1';  
         $publish='1';  
@@ -296,16 +301,15 @@ public function galleries($option){
             ->where('med_albums.uri','=',$uri)  
             ->where('med_pictures.publish','=',$publish)      
             ->orderBy('med_pictures.order_by','DESC')->paginate(20);
-
+            $uris = $this->getBreadcrumb($request);
             $this->aumentarHits($uri);
-
-   return view('frontend.galery',['items'=>$items, 'band'=>$band] );
+   return view('firmesoluciones.galery',['items'=>$items, 'band'=>$band, 'uris'=>$uris] );
 }
 
-    public function Setings()
+    public function Setings(Request $request)
     {
         $Setps= DB::table('cms_senttingspages')->get(); 
-        return view('frontend.index',['Setps'=>$Setps]);
+        return view('firmesoluciones.index',['Setps'=>$Setps]);
     }
 
 
@@ -342,8 +346,26 @@ public function galleries($option){
             ->increment('hits');
         /****************************/
     }
- 
 
- 
- 
+    public function getBreadcrumb(Request $request){        
+        $uris = explode("/",$request->path());
+        $ahref= "";
+        
+
+        /*for($i=0;$i<count($uris);$i++){
+        $ahref=$ahref+$uris[$i];
+                if((count($uris)-1)==$i)
+                {
+                    $uris[$i]="{!!link_to(".$ahref.",".$ahref.",array('class'=>'nav-link')) !!}";
+                    break;
+                }
+                else{
+                $ahref=$ahref+"/";
+                }               
+            $uris[$i]="link_to(".$ahref.",".$ahref.",array('class'=>'nav-link'))";
+        }*/
+        return $uris; 
+    } 
+
+
 }

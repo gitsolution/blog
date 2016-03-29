@@ -1,10 +1,11 @@
 <?php
 
 namespace App;
-
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+    class User extends Authenticatable
+//class User extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,7 +14,7 @@ class User extends Authenticatable
      */
     protected  $table='users';
 
-    protected $fillable=['email','password','active','remember_token ','register_by','modify_by'];
+   protected $fillable=['email','password','active','remember_token ','register_by','modify_by'];
 
     protected $guarded=['id'];
 
@@ -24,4 +25,10 @@ class User extends Authenticatable
     		$this->attributes['password']=\Hash::make($valor);
     	}
     }
+
+    public function roles(){
+        return $this->belongsToMany('\App\usr_role','usr_login_roles')
+            ->withPivot('active');
+    }
+
 }

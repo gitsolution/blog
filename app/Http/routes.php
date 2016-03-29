@@ -32,6 +32,7 @@ Route::get('/','LogController@logout');
 Route::group(['middleware' => 'web'], function () {
 
 /******************paginas con captcha ***************************/
+
 /*************RUTAS DE Comentarios ****************************/
 
 Route::get('admin/comments','commentController@index');
@@ -42,7 +43,24 @@ Route::get('admin/commentresp/{id}/{uri}','commentController@respuesta');
 
 /****************************************************/
 /// PAGINAS ESTATICAS 
-Route::resource('Inicio','frontController@index');
+Route::resource('Inicio','cresolidoController@index');
+Route::get('Inicio','cresolidoController@index');
+Route::get('Empresa','cresolidoController@page');
+Route::get('Servicios','cresolidoController@page');
+Route::get('Sucursales','cresolidoController@page');
+Route::get('Servicios-Financieros','cresolidoController@page');
+Route::get('Cobertura','cresolidoController@page');
+Route::get('Atencion-a-Usuarios','cresolidoController@page');
+Route::get('Informacion','cresolidoController@page');
+Route::get('Aviso-de-privacidad','cresolidoController@page');
+Route::get('Preguntas-frecuentes','cresolidoController@page');
+Route::get('Blog','cresolidoController@BlogList');
+Route::get('Blog/{post}','cresolidoController@Blog');
+Route::get('Login','cresolidoController@page');
+
+
+/// PAGINAS ESTATICAS 
+/*
 Route::get('Inicio','frontController@index');
 Route::get('Empresa','frontController@page');
 Route::get('Servicios','frontController@page');
@@ -54,25 +72,25 @@ Route::get('Politica-de-Privacidad','frontController@page');
 Route::get('Blog','frontController@BlogList');
 Route::get('Blog/{post}','frontController@Blog');
 Route::get('Login','frontController@page');
+*/
 
+/// INDEX PAGE cresolidoEND
+Route::get('Sec/{option}','cresolidoController@section');
+Route::get('Cat/{optio}','cresolidoController@category');
+Route::get('Doc/{option}','cresolidoController@document');
+Route::get('CatList/{option}','cresolidoController@listCategory');
+Route::get('DocList/{option}','cresolidoController@listDocument');
+Route::get('Galleries','cresolidoController@listGalleries');
+Route::get('Galleries/{option}','cresolidoController@galleries');
 
-/// INDEX PAGE FRONTEND
-Route::get('Sec/{option}','frontController@section');
-Route::get('Cat/{optio}','frontController@category');
-Route::get('Doc/{option}','frontController@document');
-Route::get('CatList/{option}','frontController@listCategory');
-Route::get('DocList/{option}','frontController@listDocument');
-Route::get('Galleries','frontController@listGalleries');
-Route::get('Gall/{option}','frontController@galleries');
-
-//Route::get('contactoEnviar','frontController@enviar');
-Route::get('frmcotizacion','frontController@cotizacion');
+//Route::get('contactoEnviar','cresolidoController@enviar');
+Route::get('frmcotizacion','cresolidoController@cotizacion');
  
-Route::get('Contacto','frontController@Contacto');
+Route::get('Contacto','cresolidoController@Contacto');
 Route::resource('cotizacion','cotizacioncontroller');
 
-//Route::get('contactoEnviar','frontController@enviar');
-Route::get('frmcotizacion','frontController@cotizacion');
+//Route::get('contactoEnviar','cresolidoController@enviar');
+Route::get('frmcotizacion','cresolidoController@cotizacion');
  
  Route::auth();
 
@@ -145,7 +163,7 @@ Route::get('admin/mediaorder/{id}/{orderBy}/{no}','MediaController@order');
 Route::get('admin/mediapub/{id}/{pub}','MediaController@publicate');
 /////  INDEX PAGE
 Route::get('admin/mediaind/{id}/{ind}','MediaController@index_page');
-/*************RUTAS DE PICTURES ***************/
+/*************RUTAS DE PICTURES ***************/ 
 /////  
 Route::get('admin/item/{id_media}','ItemController@index');
 Route::resource('admin/item','ItemController');
@@ -215,18 +233,36 @@ Route::resource('admin/assignment','usr_login_roleController');
 Route::get('admin/rolesDelete/{id}','usr_login_roleController@delete');
 Route::get('admin/rolesUpdate','usr_login_roleController@update');
 Route::get('admin/permissionEdit/{id}', 'usr_login_roleController@updateRol');
-/************************cms access**********************************/
-Route::resource('admin/cms','cmsController');
-Route::get('admin/cms', 'cmsController@index');
-Route::get('admin/cmsNew', 'cmsController@create');
-Route::get('admin/cmsEdit/{id}','cmsController@edit');
-Route::put('admin/cmsUpdate','cmsController@update');
-Route::get('admin/cmsActive/{id}/{acti}','cmsController@activar');
+/************************ modulos **********************************/
+Route::resource('admin/cms','sysmodulecontroller');
+Route::get('admin/module', 'sysmodulecontroller@index');
+Route::get('admin/moduleNew', 'sysmodulecontroller@create');
+Route::get('admin/moduleEdit/{id}','sysmodulecontroller@edit');
+Route::get('admin/modulePermissionEdit/{id}','sysmodulecontroller@editpermision');
+Route::put('admin/moduleUpdate','sysmodulecontroller@update');
+Route::get('admin/moduleActive/{id}/{acti}','sysmodulecontroller@activar');
 
+
+/********************** submodulos **************************************/
+Route::resource('admin/submodule','submenucontroller@store');
+Route::get('admin/submodules/{id_menu}','submenucontroller@index');
+Route::get('admin/submoduleEdit/{id}','submenucontroller@edit');
+Route::put('admin/submoduleUpdate','submenucontroller@update');
+Route::get('admin/submoduleNew/{id_menu}', 'submenucontroller@create');
+Route::get('admin/submoduleActive/{id}/{idModulo}','submenucontroller@activar');
+/***********************************************************************/
+
+Route::resource('admin/cmsaccess','cmsController');
+Route::get('admin/cmsaccessactive/{id}/{idactive}/{acti}','cmsController@activar');
 /******************modulos de configuracion*********************/
 Route::resource('admin/config','configController');
-Route::get('admin/configPermission', 'configController@index');
+Route::get('admin/configPermission','configController@index');
 Route::get('admin/configPermission/{idModulo}/{idRol}', 'configController@create');
+
+/******************permisos especiales*********************/
+Route::resource('admin/specialpermission','specialpermissioncontroller');
+Route::get('admin/specialEdit/{id}', 'specialpermissioncontroller@index');
+Route::get('admin/specialSelect/{idu}/{idr}/{idm}','specialpermissioncontroller@edit');
 
 /************************para permisos de usuarios************************************/
 Route::resource('admin/configUpdate', 'roleActionController');
@@ -311,6 +347,26 @@ Route::resource('admin/graph','graficaController');
 Route::get('admin/graph','graficaController@index');
 
 /***********************************************************************/
+/*************RUTAS DE ARCHIVOS ***************/
+/////  
+Route::get('admin/itemFiles/{id_directory}','ItemFilesController@index');
+Route::resource('admin/itemFiles','ItemFilesController');
+///// FORMS
+Route::get('admin/itemFilesnew/{id_directory}','ItemFilesController@itemnew');
+
+Route::post('admin/itemFiles/store','ItemFilesController@store');
+///// EDICION
+Route::get('admin/itemFilesedit/{id}','ItemFilesController@edit');
+Route::put('admin/itemFiles/update','ItemFilesController@update');
+////// ELIMINAR
+Route::get('admin/itemFilesdel/{id}','ItemFilesController@delete');
+Route::get('admin/delItemFiles/{id}','ItemFilesController@deleteFile');
+////// ORDENAR 
+Route::get('admin/itemFilesorder/{id}/{orderBy}/{no}','ItemFilesController@order');
+////// PUBLICAR
+Route::get('admin/itemFilespub/{id}/{pub}','ItemFilesController@publicate');
+/////  INDEX PAGE
+Route::get('admin/itemFilesind/{id}/{ind}','ItemFilesController@index_page');
 
 });
 

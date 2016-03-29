@@ -352,12 +352,23 @@ public function galleries($option, Request $request){
             $media ->whereuri($uri)->whereactive(1)
             ->increment('hits');
         /****************************/
+
+         /*********** Hits para med_pictures ******/
+            $directory = new Directory;
+            $directory ->whereuri($uri)->whereactive(1)
+            ->increment('hits');
+        /****************************/
+
+         /*********** Hits para med_pictures ******/
+            $file = new ItemFiles;
+            $file ->whereuri($uri)->whereactive(1)
+            ->increment('hits');
+        /****************************/
     }
 
     public function getBreadcrumb(Request $request){        
         $uris = explode("/",$request->path());
         $ahref= "";
-        
 
         /*for($i=0;$i<count($uris);$i++){
         $ahref=$ahref+$uris[$i];

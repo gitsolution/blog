@@ -47,6 +47,14 @@ class HomeController extends Controller
             ->select('med_pictures.title', 'med_pictures.hits')    
             ->where('med_pictures.active', '=', 1)->get();
 
+        $directories = DB::table('sys_directories')     
+            ->select('sys_directories.title', 'sys_directories.hits')    
+            ->where('sys_directories.active', '=', 1)->get();
+
+        $files = DB::table('sys_files')     
+            ->select('sys_files.title', 'sys_files.hits')    
+            ->where('sys_files.active', '=', 1)->get();
+
             $document=$this->construirTitulo($documents);
             $hitsdocument=$this->construirHits($documents);
 
@@ -61,7 +69,13 @@ class HomeController extends Controller
 
             $picture=$this->construirTitulo($pictures);
             $hitspicture=$this->construirHits($pictures);
-            
+
+            $directory=$this->construirTitulo($directories);
+            $hitsdirectory=$this->construirHits($directories);
+
+            $file=$this->construirTitulo($files);
+            $hitsFile=$this->construirHits($files);
+
             $totalUsuario= DB::table('usr_profiles')   
             ->wherepicture('')->wheregender('')->count();
 
@@ -69,7 +83,8 @@ class HomeController extends Controller
             ->wherepublish('0')->whereactive('1')->count();
             
             $totalAlbums= DB::table('med_albums')->count();
-        return view('home',compact('document','hitsdocument','section','hitssection','categori','hitscategories','album','hitsalbum','picture','hitspicture','totalComentarios','totalUsuario','totalAlbums'));
+            
+            return view('home',compact('document','hitsdocument','section','hitssection','categori','hitscategories','album','hitsalbum','picture','hitspicture','totalComentarios','totalUsuario','totalAlbums','directory','hitsdirectory','file','hitsFile'));
     }
 
     public function construirTitulo($titulos)

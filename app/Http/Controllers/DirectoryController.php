@@ -79,7 +79,9 @@ class DirectoryController extends Controller
 			'register_by'=>Auth::User()->id,
           	'modify_by'=>Auth::User()->id,
 			]);
-		return redirect('/admin/directory')->with('message','store');
+
+			Session::flash('message','Directorio Registrado Correctamente');
+			return redirect('/admin/directory');
 	}
 
 
@@ -139,15 +141,16 @@ class DirectoryController extends Controller
 
 		$directories->save();
 		Session::flash('message','Directorio Actualizado Correctamente');		
-		return redirect('/admin/directory',['directories'=>$directories]);
+		return redirect('/admin/directory');
 	}
 
 	public function delete($id){
         $directories = \App\Directory::find($id);
 		$directories->active=0;
 		$directories->save();
-		Session::flash('message','Directorio Eliminado Correctamente');		
-		return redirect('/admin/directory',['directories'=>$directories]);
+
+		Session::flash('message','Directorio Eliminado Correctamente');	
+		return redirect('/admin/directory');	
 	}
 
 

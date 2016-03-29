@@ -136,14 +136,33 @@
 			</div>
 		</div>
 
-		<div class="col-md-12"> 
-			<div class="panel panel-default" >
+		<div class="col-md-6"> 
+			<div class="panel panel-default">
 			<div class="panel-heading">
-				<i class="fa fa-bar-chart-o fa-fw"></i>Visitas en imagenes
+				<i class="fa fa-bar-chart-o fa-fw"></i>Visitas en Imagenes
 			</div>
 				<canvas id="canvas5" height="100px"></canvas>
 			</div>
 		</div>
+
+		<div class="col-md-6"> 
+			<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-bar-chart-o fa-fw"></i>Visitas en Directorios
+			</div>
+				<canvas id="canvas6"></canvas>
+			</div>
+		</div>
+
+		<div class="col-md-6"> 
+			<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-bar-chart-o fa-fw"></i>Visitas en Archivos
+			</div>
+				<canvas id="canvas7"></canvas>
+			</div>
+		</div>
+
 </div>
 
 
@@ -318,6 +337,74 @@
 			]
 
 		}
+
+		var lineChartData6 = {
+			labels : [
+			<?php echo $directory;
+			?>],
+			datasets : [
+				{
+					label: "Hits",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [
+
+					]
+				},
+				{
+					label: "Hits",
+					fillColor : "rgba(44,59,80,0.9)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(151,187,205,1)",
+					data : [
+					<?php
+						echo $hitsdirectory;
+					?>]
+				}
+			]
+
+		}
+
+		var lineChartData7 = {
+			labels : [
+			<?php echo $file;
+			?>],
+			datasets : [
+				{
+					label: "Hits",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [
+
+					]
+				},
+				{
+					label: "Hits",
+					fillColor : "rgba(44,59,80,0.9)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(151,187,205,1)",
+					data : [
+					<?php
+						echo $hitsFile;
+					?>]
+				}
+			]
+
+		}
 		
 		window.onload = function()
 		{
@@ -325,6 +412,8 @@
 			var ctx2 = document.getElementById("canvas2").getContext("2d");
 			var ctx3 = document.getElementById("canvas3").getContext("2d");
 			var ctx4 = document.getElementById("canvas4").getContext("2d");
+			var ctx5 = document.getElementById("canvas5").getContext("2d");
+			var ctx5 = document.getElementById("canvas5").getContext("2d");
 			var ctx5 = document.getElementById("canvas5").getContext("2d");
 
 			window.myLine = new Chart(ctx).Line(lineChartData, {
@@ -344,6 +433,13 @@
 			});
 
 			window.myLine = new Chart(ctx5).Line(lineChartData5, {
+				responsive: true
+			});
+
+			window.myLine = new Chart(ctx6).Line(lineChartData6, {
+				responsive: true
+			});	
+			window.myLine = new Chart(ctx7).Line(lineChartData7, {
 				responsive: true
 			});
 

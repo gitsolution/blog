@@ -43,6 +43,7 @@ Route::get('admin/commentresp/{id}/{uri}','commentController@respuesta');
 
 /****************************************************/
 /// PAGINAS ESTATICAS 
+
 Route::resource('Inicio','cresolidoController@index');
 Route::get('Inicio','cresolidoController@index');
 Route::get('Empresa','cresolidoController@page');

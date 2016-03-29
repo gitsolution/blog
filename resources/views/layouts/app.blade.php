@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
 
@@ -151,12 +151,14 @@
                                     <!-- /.nav-third-level -->
                                 </li>                           
                                 <li>
-                                    <a href="#" class="fa fa-camera"> Media <span class="fa arrow"></span></a>
+                                    <a href="#" class="fa fa-camera"> Archivos <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
                                             {!!link_to('admin/media', '&nbsp;&nbsp;&nbsp;Albums',array('class'=>'fa fa-picture-o ')) !!}
+                                        </li>                                    
+                                        <li>
+                                            {!!link_to('admin/directory', '&nbsp;&nbsp;&nbsp;Directorio',array('class'=>'fa fa-folder-open ')) !!}
                                         </li>
-                                    
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>                            
@@ -175,8 +177,9 @@
                                  <li>
                                     {!!link_to('admin/cms', '&nbsp;&nbsp;&nbsp;Módulos',array('class'=>'fa fa-cubes')) !!}                         
                                 </li>
+
                                 <li>
-                                    {!!link_to('admin/configPermission', '&nbsp;&nbsp;&nbsp;Permiso a roles',array('class'=>'fa fa fa-cog')) !!}
+                                    {!!link_to('admin/configPermission', '&nbsp;&nbsp;&nbsp;Configuracion',array('class'=>'fa fa fa-cog')) !!}
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -229,8 +232,7 @@
     
 
     <!-- Custom Theme JavaScript -->
-    {!! Html::script('../dist/js/sb-admin-2.js') !!}   
-          
+    {!! Html::script('../dist/js/sb-admin-2.js') !!}        
     
 <script>
         function imageUp(input) {

@@ -43,6 +43,7 @@ Route::get('admin/commentresp/{id}/{uri}','commentController@respuesta');
 
 /****************************************************/
 /// PAGINAS ESTATICAS 
+
 Route::resource('Inicio','cresolidoController@index');
 Route::get('Inicio','cresolidoController@index');
 Route::get('Empresa','cresolidoController@page');
@@ -92,7 +93,7 @@ Route::resource('cotizacion','cotizacioncontroller');
 //Route::get('contactoEnviar','cresolidoController@enviar');
 Route::get('frmcotizacion','cresolidoController@cotizacion');
  
- Route::auth();
+Route::auth();
 
 /*************RUTAS DE TYPES******************************/
 Route::get('admin/typesnew','typeController@typenew');//abre el formulario para nuevo typo
@@ -346,25 +347,6 @@ Route::resource('coment/coment','commentController');
 Route::resource('admin/graph','graficaController');
 Route::get('admin/graph','graficaController@index');
 
-
-/*************RUTAS DE DIRECTORIOS Y ARCHIVOS ***************/
-///// Catalogos 
-Route::get('admin/directory','DirectoryController@index');
-Route::resource('admin/directory','DirectoryController');
-///// FORMS
-Route::get('admin/directorynew','DirectoryController@directorynew');
-Route::post('admin/directory/store','DirectoryController@store');
-///// EDICION
-Route::get('admin/directoryedit/{id}','DirectoryController@edit');
-Route::put('admin/directory/update','DirectoryController@update');
-////// ELIMINAR
-Route::get('admin/directorydel/{id}','DirectoryController@delete');
-////// ORDENAR 
-Route::get('admin/directoryorder/{id}/{orderBy}/{no}','DirectoryController@order');
-////// PUBLICAR
-Route::get('admin/directorypub/{id}/{pub}','DirectoryController@publicate');
-/////  INDEX PAGE
-Route::get('admin/directoryind/{id}/{ind}','DirectoryController@index_page');
 /***********************************************************************/
 /*************RUTAS DE ARCHIVOS ***************/
 /////  

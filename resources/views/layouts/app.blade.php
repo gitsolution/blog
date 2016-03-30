@@ -120,7 +120,7 @@
 
 
                         <li>
-                            {!!link_to('/admin', '&nbsp;Inicio',array('class'=>'fa fa-home')) !!}z                            
+                            {!!link_to('/admin', '&nbsp;Inicio',array('class'=>'fa fa-home')) !!}                          
                         </li>
 
 

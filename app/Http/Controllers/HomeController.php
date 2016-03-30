@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use DB;
+use App\usr_login_role;
+use Gate;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -25,6 +28,13 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $usr_login_roles = usr_login_role::findOrFail(1);
+        if(Gate::denies('verificar-rol'))
+        {   
+           Auth::logout();
+           return redirect('/Inicio');
+        }
+
         $document="";
         $hit="";
         $documents = DB::table('cms_documents')     

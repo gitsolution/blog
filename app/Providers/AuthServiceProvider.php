@@ -73,31 +73,37 @@ class AuthServiceProvider extends ServiceProvider
         /****************Reglas para menu**********************/
         $gate->define('menu',function($User)
         {            
-            $b=False;
+            $b=True;
             return $b;
         });
 
         $gate->define('menu-nuevo',function($User)
         {            
-            $b=True;
+            $b=False;
+            return $b;
+        });
+
+         $gate->define('menu-editar',function($User)
+        {            
+            $b=False;
             return $b;
         });
 
         $gate->define('menu-eliminar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('menu-elementos',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('menu-ordenar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 

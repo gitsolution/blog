@@ -7,6 +7,8 @@
 	<div class="col-md-2">
  	 
  	</div>
+
+ 	@can('menu-nuevo')
 	<div class="col-md-2">
  	{!!Form::open()!!}
    
@@ -14,6 +16,7 @@
    
     {!!Form::close()!!}
 	</div>
+	@endcan
 </div>
 <div class="row text-center">
 	{{$menus->render()}}
@@ -27,12 +30,16 @@
 			<th class="ColumColor">
 		    Menu
 			</th>
-			<th class="ColumColor">
-			Elementos
-			</th>			 
-			<th class="center-text ColumColor" colspan="2">
-			Ordén
-			</th>
+			@can('menu-elementos')
+				<th class="ColumColor">
+				Elementos
+				</th>			 
+			@endcan
+			@can('menu-ordenar')
+				<th class="center-text ColumColor" colspan="2">
+				Ordén
+				</th>
+			@endcan
 			<th class="ColumColor" colspan="2" >
 			Acciones
 			</th>
@@ -49,13 +56,21 @@
 				<tr>
 				<td> {{$men->id}}</td>
 				<td> {{$men->title}}</td>
+			@can('menu-elementos')
 				<td>
 				{!!link_to('admin/itemmenu/'.$men->id.'/0', '',array('class'=>'glyphicon glyphicon-menu-hamburger')) !!}
-				</td>         								
-				<td> {!! link_to('admin/menuorder/'.$men->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
+				</td> 
+			@endcan
+			@can('menu-ordenar')
+				<td> {!! link_to('admin/menuorder/'.$men->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>			
 				<td> {!! link_to('admin/menuorder/'.$men->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
-				<td>{!! link_to('admin/menuedit/'.$men->id, ' ',array('class'=>'img-responsive btn btn-primary glyphicon glyphicon-pencil')) !!}</td>         
-				<td>{!! link_to('admin/menudel/'.$men->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td>    
+			@endcan
+			@can('menu-editar')
+				<td>{!! link_to('admin/menuedit/'.$men->id, ' ',array('class'=>'img-responsive btn btn-primary glyphicon glyphicon-pencil')) !!}
+			@endcan
+			@can('menu-eliminar')
+				{!! link_to('admin/menudel/'.$men->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td> 
+			@endcan   
 		    </td>
 			</tr>
 		@endforeach

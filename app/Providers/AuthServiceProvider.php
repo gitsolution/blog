@@ -111,14 +111,14 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('publicaciones',function($User)
         {            
-            $b=False;
+            $b=True;
             return $b;
         });
 
         /****************Reglas para tipos**********************/
         $gate->define('tipos',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -204,7 +204,7 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('categorias-eliminar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -229,7 +229,7 @@ class AuthServiceProvider extends ServiceProvider
         /****************Reglas para documentos**********************/
         $gate->define('documentos',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -291,14 +291,14 @@ class AuthServiceProvider extends ServiceProvider
         /****************Reglas para archivos**********************/
         $gate->define('archivos',function($User)
         {            
-            $b=False;
+            $b=True;
             return $b;
         });
 
         /****************Reglas para albums**********************/
         $gate->define('albums',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -351,9 +351,9 @@ class AuthServiceProvider extends ServiceProvider
         });
 
          /****************Reglas para directorio**********************/
-         $gate->define('directorio',function($User)
+        $gate->define('directorio',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -395,6 +395,12 @@ class AuthServiceProvider extends ServiceProvider
 
         /****************Reglas para usuario**********************/
         $gate->define('usuarios',function($User)
+        {            
+            $b=True;
+            return $b;
+        });
+
+        $gate->define('usuario',function($User)
         {            
             $b=False;
             return $b;

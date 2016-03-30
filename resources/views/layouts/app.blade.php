@@ -140,21 +140,35 @@
                                 <li>
                                     <a href="#"><i class="fa fa-newspaper-o"></i> Publicaciones <span class="fa arrow "></span></a>
                                     <ul class="nav nav-second-level">
+                                    @can('tipos')
                                          <li>
                                               {!!link_to('admin/types', '&nbsp;&nbsp;&nbsp; Tipos',array('class'=>'fa fa-file-o')) !!}
                                         </li>
+                                    @endcan
+
+                                    @can('secciones')
                                         <li>
                                               {!!link_to('admin/sections', ' Secciones',array('class'=>'glyphicon glyphicon-book')) !!}
                                         </li>
+                                    @endcan
+
+                                    @can('categorias')
                                         <li>
                                              {!!link_to('admin/category', ' Categorias',array('class'=>'glyphicon glyphicon-object-align-horizontal')) !!}
                                         </li>
+                                    @endcan
+
+                                    @can('documentos')
                                         <li>
                                              {!!link_to('admin/document', '&nbsp;&nbsp;&nbsp; Documentos',array('class'=>'fa fa-book')) !!}
                                         </li>
+                                    @endcan
+
+                                    @can('documentos')
                                         <li>
                                             {!!link_to('admin/comments', '&nbsp;&nbsp;&nbsp; Comentarios',array('class'=>'fa fa-comment-o')) !!}
                                         </li>
+                                    @endcan
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>  
@@ -164,12 +178,17 @@
                                 <li>
                                     <a href="#" class="fa fa-camera"> Archivos <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
+                                    @can('albums')
                                         <li>
                                             {!!link_to('admin/media', '&nbsp;&nbsp;&nbsp;Albums',array('class'=>'fa fa-picture-o ')) !!}
-                                        </li>                                    
+                                        </li> 
+                                    @endcan
+
+                                    @can('directorio')                                   
                                         <li>
                                             {!!link_to('admin/directory', '&nbsp;&nbsp;&nbsp;Directorio',array('class'=>'fa fa-folder-open ')) !!}
                                         </li>
+                                    @endcan
                                     </ul>
                                 </li>   
                             @endcan   
@@ -178,27 +197,35 @@
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i>Usuarios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                            @can('usuario')
                                 <li>
                                     {!!link_to('/usuario', '&nbsp;&nbsp;&nbsp;Usuarios',array('class'=>'fa fa-user ')) !!}                                   
                                 </li>
-                                
+                            @endcan  
+
+                            @can('roles')
                                 <li>
                                     {!!link_to('admin/roles', '&nbsp;&nbsp;&nbsp;Roles',array('class'=>'fa fa-flag-o ')) !!}                                     
                                 </li>
+                            @endcan
 
+                            @can('modulos')
                                  <li>
                                     {!!link_to('admin/cms', '&nbsp;&nbsp;&nbsp;Módulos',array('class'=>'fa fa-cubes')) !!}                         
                                 </li>
+                            @endcan
 
+                            @can('configuracion-permisos')
                                 <li>
                                     {!!link_to('admin/configPermission', '&nbsp;&nbsp;&nbsp;Configuracion',array('class'=>'fa fa fa-cog')) !!}
                                 </li>
+                            @endcan
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         @endcan
 
-                        @can('configuracion-permisos')  
+                        @can('configuracion')  
                             <li>
                                 <a href="#"><i class="fa fa-cogs fa-lg"></i> Cofiguración<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">

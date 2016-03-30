@@ -128,7 +128,6 @@
                                     </ul>
                                 </li>
                             
-                            
                                 <li>
                                     <a href="#"><i class="fa fa-newspaper-o"></i> Publicaciones <span class="fa arrow "></span></a>
                                     <ul class="nav nav-second-level">

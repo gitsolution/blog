@@ -123,8 +123,8 @@
                             {!!link_to('/admin', '&nbsp;Inicio',array('class'=>'fa fa-home')) !!}                          
                         </li>
 
-
-                                   <li>
+                            @can('menu')
+                                <li>
                                     <a href="#"><i class="fa fa-magic"></i> Menús <span class="fa arrow "></span></a>
                                    
                                     <!-- /.nav-third-level --><ul class="nav nav-second-level">
@@ -134,7 +134,9 @@
                                         </li>
                                     </ul>
                                 </li>
+                            @endcan
                             
+                            @can('publicaciones')
                                 <li>
                                     <a href="#"><i class="fa fa-newspaper-o"></i> Publicaciones <span class="fa arrow "></span></a>
                                     <ul class="nav nav-second-level">
@@ -155,7 +157,10 @@
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
-                                </li>                           
+                                </li>  
+                            @endcan     
+
+                            @can('archivos')
                                 <li>
                                     <a href="#" class="fa fa-camera"> Archivos <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
@@ -166,9 +171,10 @@
                                             {!!link_to('admin/directory', '&nbsp;&nbsp;&nbsp;Directorio',array('class'=>'fa fa-folder-open ')) !!}
                                         </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>                            
-                            <!-- /.nav-second-level -->                        
+                                </li>   
+                            @endcan   
+
+                        @can('usuarios')                                   
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i>Usuarios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -189,16 +195,19 @@
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                            </li>
-
-                        <li>
-                            <a href="#"><i class="fa fa-cogs fa-lg"></i> Cofiguración<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    {!!link_to('admin/seting', '&nbsp;&nbsp;&nbsp;Confi Metas',array('class'=>'fa fa fa-cog')) !!}
-                                </li>
-                            </ul>
                         </li>
+                        @endcan
+
+                        @can('configuracion-permisos')  
+                            <li>
+                                <a href="#"><i class="fa fa-cogs fa-lg"></i> Cofiguración<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        {!!link_to('admin/seting', '&nbsp;&nbsp;&nbsp;Confi Metas',array('class'=>'fa fa fa-cog')) !!}
+                                    </li>
+                                </ul>
+                            </li>
+                        @endcan
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>

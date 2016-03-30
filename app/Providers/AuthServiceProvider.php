@@ -105,7 +105,7 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('publicaciones',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -283,9 +283,9 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         /****************Reglas para archivos**********************/
-        $gate->define('archivos-archivos',function($User)
+        $gate->define('archivos',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -390,7 +390,7 @@ class AuthServiceProvider extends ServiceProvider
         /****************Reglas para usuario**********************/
         $gate->define('usuarios',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -421,7 +421,7 @@ class AuthServiceProvider extends ServiceProvider
         /****************Reglas para roles**********************/
         $gate->define('roles',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -446,7 +446,7 @@ class AuthServiceProvider extends ServiceProvider
         /****************Reglas para modulos**********************/
         $gate->define('modulos',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -483,7 +483,7 @@ class AuthServiceProvider extends ServiceProvider
         /****************Reglas para configuracion permisos**********************/
         $gate->define('configuracion-permisos',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 

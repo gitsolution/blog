@@ -117,6 +117,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
+
+
+                        <li>
+                            {!!link_to('/admin', '&nbsp;Inicio',array('class'=>'fa fa-home')) !!}z                            
+                        </li>
+
+
                                    <li>
                                     <a href="#"><i class="fa fa-magic"></i> Menús <span class="fa arrow "></span></a>
                                    

@@ -45,11 +45,35 @@ class AuthServiceProvider extends ServiceProvider
          /*return ($User->email=="admin@admin") || ($User->id == $usr_login_roles->id_login && $usr_login_roles->active == '1');*/
         });
 
+        /****************Reglas para admin**********************/
+        $gate->define('nuevos-comentarios',function($User)
+        {            
+            $b=False;
+            return $b;
+        });
+
+        $gate->define('nuevos-usuario',function($User)
+        {            
+            $b=False;
+            return $b;
+        });
+
+        $gate->define('total-albums',function($User)
+        {            
+            $b=False;
+            return $b;
+        });
+
+        $gate->define('graficas',function($User)
+        {            
+            $b=False;
+            return $b;
+        });
 
         /****************Reglas para menu**********************/
         $gate->define('menu',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 

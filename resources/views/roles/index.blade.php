@@ -12,11 +12,13 @@
 <br>
 <div class=" form-group row">
 <div class="col-md-10"><h3>Catálago de roles</h3></div> <!--divide la columna en 10 y 2-->
+@can('roles-nuevo')
 <div class="col-md-2">
  {!!Form::open()!!}
     {!! link_to('admin/rolesNew', 'Nuevo roles ',array('class'=>'btn btn-success ')) !!}
  {!!Form::close()!!}
 </div>
+@endcan
   </div>
 <div class="table-responsive">
 <table class="table table-hover">
@@ -30,9 +32,11 @@
             <th  class="ColumColor text-left" >
             Descripcion
             </th>
-            <th  class="ColumColor text-left" >
-             Activo
-            </th>
+            @can('roles-activo')
+              <th  class="ColumColor text-left" >
+               Activo
+              </th>
+            @endcan
             <th  class="ColumColor text-left" >
              Creado el
             </th>
@@ -49,7 +53,9 @@
 				<td>{{$rol->id}}</td>
 				<td>{{$rol->title}}</td>
 				<td>{{$rol->description}}</td>
-				<td> 
+				  
+        @can('roles-activo')
+            <td> 
               <?php 
                 if($rol->active=='1'){
               ?>                  
@@ -63,11 +69,18 @@
                 
                 <?php } 
                 ?>
-					    </td>
+					   
+            </td>
+        @endcan
 				<td>{{$rol->created_at}}</td>
 				<td>
-				{!! link_to('admin/rolesEdit/'.$rol->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
-        {!! link_to('admin/rolesDelete/'.$rol->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-trash')) !!} 
+        @can('roles-editar')
+				  {!! link_to('admin/rolesEdit/'.$rol->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
+        @endcan
+
+        @can('roles-eliminar')
+          {!! link_to('admin/rolesDelete/'.$rol->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-trash')) !!}
+        @endcan 
 				</td>
 
 			</tbody>

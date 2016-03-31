@@ -439,25 +439,31 @@ class AuthServiceProvider extends ServiceProvider
         /****************Reglas para roles**********************/
         $gate->define('roles',function($User)
         {            
+            $b=True;
+            return $b;
+        });
+
+         $gate->define('roles-nuevo',function($User)
+        {            
             $b=False;
             return $b;
         });
 
         $gate->define('roles-editar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('roles-eliminar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('roles-activo',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 

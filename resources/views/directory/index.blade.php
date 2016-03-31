@@ -14,6 +14,7 @@
 	<div class="col-md-2">
  	 
  	</div>
+ @can('directorio-nuevo')
 	<div class="col-md-2">
  	{!!Form::open()!!}
    
@@ -21,6 +22,7 @@
    
     {!!Form::close()!!}
 	</div>
+@endcan
 </div>
 <div class="row text-center">
 	{{$directories->render()}}
@@ -37,21 +39,31 @@
 			<th class="ColumColor">
 			Fecha Publicación
 			</th>
-			<th class="ColumColor">
-			Archivos
-			</th>
+			@can('directorio-archivo')
+				<th class="ColumColor">
+				Archivos
+				</th>
+			@endcan
 			<th class="ColumColor">
 			Visualizaciones
 			</th>
-			<th colspan="2" class="center-text ColumColor">
-			Ordén
-			</th>
-			<th class="ColumColor text-center">
-			Publicado
-			</th>
-			<th class="ColumColor text-center">
-			Inicio
-			</th>	
+			@can('directorio-orden')
+				<th colspan="2" class="center-text ColumColor">
+				Ordén
+				</th>	
+			@endcan
+
+			@can('directorio-publicado')
+				<th class="ColumColor text-center">
+				Publicado
+				</th>
+			@endcan
+
+			@can('directorio-inicio')
+				<th class="ColumColor text-center">
+				Inicio
+				</th>	
+			@endcan
 			<th colspan="2" class="ColumColor text-center">
 			Acciones
 			</th>
@@ -66,16 +78,23 @@
 				<tr>
 				<td> {{$dir->id}}</td>
 				<td> {{$dir->title}}</td>
-				<td> {{ $publish_date }}</td>		
-				<td>
-				&nbsp;&nbsp;&nbsp;&nbsp;{!!link_to('admin/itemFiles/'.$dir->id, '',array('class'=>'fa fa-upload fa-lg')) !!}
-				</td>         				
+				<td> {{ $publish_date }}</td>
+
+				@can('directorio-archivo')		
+					<td>
+					&nbsp;&nbsp;&nbsp;&nbsp;{!!link_to('admin/itemFiles/'.$dir->id, '',array('class'=>'fa fa-upload fa-lg')) !!}
+					</td> 
+				@endcan        				
 				
 				<td> {{ $dir->hits }}</td>	
 
+				@can('directorio-orden')
 				<td> {!! link_to('admin/directoryorder/'.$dir->id.'/Down/'.$down.'/', '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
 
 				<td> {!! link_to('admin/directoryorder/'.$dir->id.'/Up/'.$up.'/', '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
+				@endcan
+
+				@can('directorio-publicado')
 				<td class="text-center">
 				<?php if($dir->publish=='1'){?>
 				{!!  link_to('admin/directorypub/'.$dir->id.'/False/', '',array('class'=>'glyphicon glyphicon-ok')) !!}
@@ -84,6 +103,9 @@
 
 				<?php } ?>
 				</td>
+				@endcan()
+
+				@can('directorio-inicio')
 				<td class="text-center"> 
 				<?php if($dir->index_page=='1'){?>
 					{!! link_to('admin/directoryind/'.$dir->id.'/False/', '',array('class'=>'fa fa-check-square-o fa-lg')) !!}
@@ -91,8 +113,16 @@
 					{!! link_to('admin/directoryind/'.$dir->id.'/True/', '',array('class'=>'fa fa-square-o fa-lg')) !!}
 				<?php } ?>
 				</td>
-				<td class="text-center">{!! link_to('admin/directoryedit/'.$dir->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
-				{!! link_to('admin/directorydel/'.$dir->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td>    
+				@endcan
+				<td class="text-center">
+				@can('directorio-editar')
+					{!! link_to('admin/directoryedit/'.$dir->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
+				@endcan
+
+				@can('directorio-eliminar')
+					{!! link_to('admin/directorydel/'.$dir->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}
+				@endcan
+				</td>    
 		    
 			</tr>
 		@endforeach

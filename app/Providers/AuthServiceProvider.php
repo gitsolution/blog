@@ -353,43 +353,49 @@ class AuthServiceProvider extends ServiceProvider
          /****************Reglas para directorio**********************/
         $gate->define('directorio',function($User)
         {            
+            $b=True;
+            return $b;
+        });
+
+        $gate->define('directorio-nuevo',function($User)
+        {            
             $b=False;
             return $b;
         });
 
-         $gate->define('directorio-nuevo',function($User)
+        $gate->define('directorio-editar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('directorio-eliminar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('directorio-inicio',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('directorio-publicado',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('directorio-orden',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('directorio-archivo',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 

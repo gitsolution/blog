@@ -118,25 +118,25 @@ class AuthServiceProvider extends ServiceProvider
         /****************Reglas para tipos**********************/
         $gate->define('tipos',function($User)
         {            
-            $b=False;
+            $b=True;
             return $b;
         });
 
         $gate->define('tipos-nuevo',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('tipos-editar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('tipos-eliminar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -149,37 +149,37 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('secciones-nuevo',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('secciones-editar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('secciones-eliminar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('secciones-ordenar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('secciones-acceso',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('secciones-publicado',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -192,13 +192,13 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('categorias-nuevo',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('categorias-editar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -216,75 +216,75 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('categorias-acceso',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('categorias-publicado',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         /****************Reglas para documentos**********************/
         $gate->define('documentos',function($User)
         {            
-            $b=False;
+            $b=True;
             return $b;
         });
 
         $gate->define('documentos-nuevo',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('documentos-editar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('documentos-eliminar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('documentos-ordenar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('documentos-acceso',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('documentos-publicado',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         /****************Reglas para comentarios**********************/
         $gate->define('comentarios',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('comentarios-eliminar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('comentarios-publicado',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -298,43 +298,43 @@ class AuthServiceProvider extends ServiceProvider
         /****************Reglas para albums**********************/
         $gate->define('albums',function($User)
         {            
-            $b=False;
+            $b=True;
             return $b;
         });
 
         $gate->define('albums-nuevo',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('albums-editar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('albums-eliminar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('albums-inicio',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('albums-publicado',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('albums-ordenar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -346,7 +346,7 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('albums-imagenes',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
@@ -402,13 +402,13 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('usuario',function($User)
         {            
-            $b=False;
+            $b=True;
             return $b;
         });
 
         $gate->define('usuarios-nuevo',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 

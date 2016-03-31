@@ -6,11 +6,13 @@
 <div class="row">
 <br>
 <div class="col-md-10"><h3>Catálogo de Tipos </h3></div> <!--divide la columna en 10 y 2-->
+@can('tipos-nuevo')
 <div class="col-md-2">
  {!!Form::open()!!}
     {!! link_to('admin/typesnew', 'Nuevo Tipo ',array('class'=>'btn btn-success ')) !!}
  {!!Form::close()!!}
 </div>
+@endcan
     </div>
 
         <div class="row text-center">
@@ -46,11 +48,15 @@
           <td> {{$med->description}}</td> 
           <td> {{$creat}}</td>
           <td class="text-center"> 
+
+          @can('tipos-editar')
           {!! link_to('admin/typesedit/'.$med->id,' ',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
           <!--{!!link_to_route('admin.types.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}-->
+          @endcan
           
-          
+          @can('tipos-eliminar')
           {!!link_to('admin/typedel/'.$med->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-trash')) !!}
+          @endcan
           </td>
               <!-- {!!Form::close()!!}-->
           </tr>

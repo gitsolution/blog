@@ -27,15 +27,19 @@
             <th  class="ColumColor text-center" >
             Comentario
             </th>
-            <th class="ColumColor text-center" >
-            Publicado
-            </th>
+            @can('comentarios-publicado')
+              <th class="ColumColor text-center" >
+              Publicado
+              </th>
+            @endcan
             <th class="ColumColor text-center" >
             Fecha Publicación
             </th>
-            <th class="ColumColor text-center"  >
-            Eliminar
-            </th>
+            @can('comentarios-eliminar')
+              <th class="ColumColor text-center"  >
+              Eliminar
+              </th>
+            @endcan
           </thead>
 
 
@@ -49,6 +53,7 @@
           <td> {{$med->titleDoc}}</td>
           <td> {{$med->content}}</td>
           
+          @can('comentarios-publicado')
           <td class="text-center">
               <?php if($med->publish=='1'){?>
                 
@@ -59,10 +64,13 @@
                 {!! link_to('admin/commentPublic/'.$med->id.'/True', '',array('class'=>'glyphicon glyphicon-ban-circle')) !!}
               <?php } ?>
           </td>
+          @endcan
           <td class="text-center"> {{$publish_date}}</td> 
-          <td>
-           {!!link_to('admin/commentdel/'.$med->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}
-           </td>
+          @can('comentarios-eliminar')
+            <td>
+              {!!link_to('admin/commentdel/'.$med->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}
+            </td>
+          @endcan
           </tr>
 
 @endforeach

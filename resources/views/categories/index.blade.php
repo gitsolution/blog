@@ -9,12 +9,14 @@
 <div class="container-fluid">
 <div class="row">
 <br>
-<div class="col-md-10"><h3>Catálogo de Categorías </h3></div> <!--divide la columna en 10 y 2-->
+<div class="col-md-10"><h3>Catálogo de Categorías </h3></div>
+@can('categorias-nuevo')
 <div class="col-md-2">
  {!!Form::open()!!}
     {!! link_to('admin/categorynew', 'Nueva Categoria ',array('class'=>'btn btn-success ')) !!}
  {!!Form::close()!!}
 </div>
+@endcan
     </div>
         <div class="row text-center">
             {{$Catego->render()}}
@@ -31,19 +33,27 @@
             <th  class="ColumColor text-center" >
             Titulo
             </th>
-            <th class="ColumColor text-center" >
-            Acceso
-            </th>
-            <th class="ColumColor text-center" >
-            Publicado
-            </th>
+            @can('categorias-acceso')
+              <th class="ColumColor text-center" >
+              Acceso
+              </th>
+            @endcan
+            @can('categorias-publicado')
+              <th class="ColumColor text-center" >
+              Publicado
+              </th>
+            @endcan
             <th class="ColumColor text-center" >
             Fecha Publicación
             </th>
             <th class="ColumColor text-center">
             Vistas
             </th>
-            <th class="ColumColor text-center" colspan="2">Orden</th>
+            @can('documentos-ordenar')
+            <th class="ColumColor text-center" colspan="2">
+            Orden
+            </th>
+            @endcan
             
             <th class="ColumColor text-center" >
             Acciones
@@ -62,6 +72,8 @@
           <td> {{$med->id}}</td>
           <td> {{$med->section}}</td>
           <td> {{$med->title}}</td>
+
+          @can('categorias-acceso')
           <td class="text-center"> 
             <?php if($med->private=='1'){?>
                 
@@ -71,7 +83,9 @@
              {!!link_to('admin/categoryPriva/'.$med->id.'/True', '',array('class'=>'fa fa-unlock fa-lg')) !!}
                   <?php } ?>
           </td>
+          @endcan
 
+          @can('categorias-publicado')
           <td class="text-center">
              <?php if($med->publish=='1'){?>
                 {!! link_to('admin/categoryPublic/'.$med->id.'/False', '',array('class'=>'glyphicon glyphicon-ok')) !!}
@@ -81,16 +95,23 @@
                 {!! link_to('admin/categoryPublic/'.$med->id.'/True', '',array('class'=>'glyphicon glyphicon-ban-circle')) !!}
               <?php } ?>
           </td>
+          @endcan
           <td class="text-center"> {{$publish_date}}</td>
           <td>{{$med->hits}}</td>
-          <td> {!!link_to('admin/categoryorder/'.$med->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}
-          </td>
-          <td> {!!link_to('admin/categoryorder/'.$med->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down'))!!}
-          </td>
+          
+          @can('documentos-ordenar')
+            <td> {!!link_to('admin/categoryorder/'.$med->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}
+            </td>
+            <td> {!!link_to('admin/categoryorder/'.$med->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down'))!!}
+            </td>
+          @endcan
           <td> 
+          @can('categorias-editar')
             {!!link_to_route('admin.category.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}
-         
+          @endcan
+          @can('categorias-eliminar')
            {!!link_to('admin/categorydel/'.$med->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-trash')) !!}
+          @endcan
           </td>
                
           </tr>

@@ -470,37 +470,37 @@ class AuthServiceProvider extends ServiceProvider
         /****************Reglas para modulos**********************/
         $gate->define('modulos',function($User)
         {            
-            $b=False;
+            $b=True;
             return $b;
         });
 
         $gate->define('modulos-nuevo',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('modulos-editar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('modulos-eliminar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('modulos-especiales',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('modulos-submenus',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 

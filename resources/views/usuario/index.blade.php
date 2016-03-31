@@ -12,11 +12,13 @@
 
 <br>
 <div class="col-md-10"><h3>Catálago de usuarios</h3></div> <!--divide la columna en 10 y 2-->
+@can('usuarios-nuevo')
 <div class="col-md-2">
  {!!Form::open()!!}
     {!! link_to('admin/userNew', 'Nuevo usuario ',array('class'=>'btn btn-success ')) !!}
  {!!Form::close()!!}
 </div>
+@endcan
 
 </div>
 <div class="table-responsive">
@@ -60,9 +62,15 @@
 
 				<td>{{$created_at}}</td>
 				<td>
-				{!! link_to('admin/userEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!} 
-                {!! link_to('admin/permissionEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-flag')) !!}    
-                {!! link_to('admin/specialEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-lock')) !!}        
+                @can('usuarios-editar')
+				    {!! link_to('admin/userEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!} 
+                @endcan
+                @can('usuarios-roles')
+                    {!! link_to('admin/permissionEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-flag')) !!}
+                @endcan
+                @can('usuarios-especial-permisos')
+                    {!! link_to('admin/specialEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-lock')) !!}   
+                @endcan     
 				</td>
 			</tbody>
 		@endForeach

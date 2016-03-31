@@ -420,19 +420,19 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('usuarios-editar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('usuarios-roles',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('usuarios-especial-permisos',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 

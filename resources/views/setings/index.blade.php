@@ -11,11 +11,13 @@
 <div class="row">
 <br>
 <div class="col-md-10"><h3>Catálogo Configuraciones</h3></div> <!--divide la columna en 10 y 2-->
-<div class="col-md-2">
- {!!Form::open()!!}
-    {!! link_to('admin/setingnew', 'Nueva Configuracion ',array('class'=>'btn btn-success ')) !!}
- {!!Form::close()!!}
-</div>
+@can('configuracion-nuevo')
+  <div class="col-md-2">
+   {!!Form::open()!!}
+      {!! link_to('admin/setingnew', 'Nueva Configuracion ',array('class'=>'btn btn-success ')) !!}
+   {!!Form::close()!!}
+  </div>
+@endcan
     </div>
         <div class="row text-center">
             {{$Sections->render()}}
@@ -47,10 +49,14 @@
           <td> {{$med->value}}</td>
       
      
-          <td class="text-center"> {!!link_to_route('admin.seting.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}
-           
-           {!!link_to('admin/setingdel/'.$med->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}
+          <td class="text-center"> 
+          @can('configuracion-editar')
+            {!!link_to_route('admin.seting.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}
+          @endcan
 
+          @can('configuracion-eliminar')
+            {!!link_to('admin/setingdel/'.$med->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}
+          @endcan
            </td>
               
 

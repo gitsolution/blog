@@ -507,12 +507,6 @@ class AuthServiceProvider extends ServiceProvider
         /****************Reglas para configuracion permisos**********************/
         $gate->define('configuracion-permisos',function($User)
         {            
-            $b=False;
-            return $b;
-        });
-
-        $gate->define('configuracion-permisos-nuevo',function($User)
-        {            
             $b=True;
             return $b;
         });
@@ -526,19 +520,19 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('configuracion-nuevo',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('configuracion-editar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
 
         $gate->define('configuracion-eliminar',function($User)
         {            
-            $b=True;
+            $b=False;
             return $b;
         });
     }

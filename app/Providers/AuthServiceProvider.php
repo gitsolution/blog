@@ -80,8 +80,38 @@ class AuthServiceProvider extends ServiceProvider
 
         /****************Reglas para menu**********************/
         $gate->define('menu',function($User)
-        {            
-            $b=True;
+        { 
+            $permisoC="";
+          $roles=DB::table('usr_login_roles')
+            ->select('id_role')
+            ->whereid_login($User->id)
+            ->whereactive(1)->get();
+            foreach ($roles as $r) {
+                         $join=DB::table('user_module_rol')
+                        ->select('access_granted')
+                        ->whereid_role($r->id_role)
+                        ->whereactive(1)->get();
+                        if($join!=null){
+                            foreach ($join as $j) {
+                                $permisoC .=$j->access_granted;
+                            }
+                        }
+                    }
+
+            $permisoEspeciales=DB::table('special_permissions')
+            ->select('access')
+            ->whereid_user(3)
+            ->whereactive(1)->get();
+            
+            $p=str_replace ('"', " ", $permisoC);
+            $p=str_replace (' ', "", $p);
+            
+            $ca='admin.Menus.menu:true';
+            $resultado = strpos($p, $ca);
+           
+
+            if($resultado==null){$b=False;}
+            else{$b=True;}if($User->email=="admin@admin"){$b=true;}      
             return $b;
         });
 
@@ -106,7 +136,7 @@ class AuthServiceProvider extends ServiceProvider
 
             $permisoEspeciales=DB::table('special_permissions')
             ->select('access')
-            ->whereid_user(3)
+            ->whereid_user($User->id)
             ->whereactive(1)->get();
             
             $p=str_replace ('"', " ", $permisoC);
@@ -190,15 +220,43 @@ class AuthServiceProvider extends ServiceProvider
            
 
             if($resultado==null){$b=False;}
-            else{$b=True;}if($User->email=="admin@admin"){$b=true;}            
-            return $b;
-            $b=True;
+            else{$b=True;}if($User->email=="admin@admin"){$b=true;}  
             return $b;
         });
 
         $gate->define('menu-elementos',function($User)
         {            
-            $b=True;
+            $permisoC="";
+          $roles=DB::table('usr_login_roles')
+            ->select('id_role')
+            ->whereid_login($User->id)
+            ->whereactive(1)->get();
+            foreach ($roles as $r) {
+                         $join=DB::table('user_module_rol')
+                        ->select('access_granted')
+                        ->whereid_role($r->id_role)
+                        ->whereactive(1)->get();
+                        if($join!=null){
+                            foreach ($join as $j) {
+                                $permisoC .=$j->access_granted;
+                            }
+                        }
+                    }
+
+            $permisoEspeciales=DB::table('special_permissions')
+            ->select('access')
+            ->whereid_user(3)
+            ->whereactive(1)->get();
+            
+            $p=str_replace ('"', " ", $permisoC);
+            $p=str_replace (' ', "", $p);
+            
+            $ca='admin.menu.Eliminar:Acceder elementos';
+            $resultado = strpos($p, $ca);
+           
+
+            if($resultado==null){$b=False;}
+            else{$b=True;}if($User->email=="admin@admin"){$b=true;}   
             return $b;
         });
 

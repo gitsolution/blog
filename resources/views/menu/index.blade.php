@@ -65,12 +65,15 @@
 				<td> {!! link_to('admin/menuorder/'.$men->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>			
 				<td> {!! link_to('admin/menuorder/'.$men->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
 			@endcan
-			@can('menu-editar')
-				<td>{!! link_to('admin/menuedit/'.$men->id, ' ',array('class'=>'img-responsive btn btn-primary glyphicon glyphicon-pencil')) !!}
-			@endcan
-			@can('menu-eliminar')
-				{!! link_to('admin/menudel/'.$men->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td> 
-			@endcan   
+				<td>
+				@can('menu-editar')
+					{!! link_to('admin/menuedit/'.$men->id, ' ',array('class'=>'img-responsive btn btn-primary glyphicon glyphicon-pencil')) !!}
+				@endcan
+				@can('menu-eliminar')
+					{!! link_to('admin/menudel/'.$men->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}
+				@endcan
+				</td> 
+			   
 		    </td>
 			</tr>
 		@endforeach

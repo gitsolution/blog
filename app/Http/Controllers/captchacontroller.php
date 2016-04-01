@@ -11,7 +11,7 @@ class captchacontroller extends Controller
 {
     //
     header("content-type: image/png");
-    $imagen = imagecreate(45,23) or die ("Ha ocurrido un error al generar captcha");
+    $imagen = imagecreate(100,80) or die ("Ha ocurrido un error al generar captcha");
     $color_fondo=imagecolorallocate($imagen,0,0,0);
     $color_texto=imagecolorallocate($imagen,255,255,255);
 

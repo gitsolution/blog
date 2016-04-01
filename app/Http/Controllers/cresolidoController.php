@@ -61,14 +61,14 @@ public function index(Request $request)
         
         
         $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
-        $services = 'Servicios';
+        $titulo = 'Historia';
           $Sections =  DB::table('cms_sections')->where('active','=', $flag)->where('publish','=', $publish)->where('id','=', $id_section)->get();             
       
            $Services = DB::table('cms_categories')
             ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
             ->select('cms_categories.*', 'cms_sections.title as section')
-            ->where('cms_categories.active','=', $flag)                    
-            //->where('cms_categories.uri','=', $services)                        
+            ->where('cms_categories.title','=',$titulo)
+            ->where('cms_categories.active','=', $flag)                                       
             ->where('cms_categories.publish','=', $publish)                                    
             ->orderBy('order_by','DESC')->paginate(3);
 
@@ -157,20 +157,45 @@ public function index(Request $request)
 
 public function page(Request $request)
     {   
-           $uri  = $request->path();
+        $uri  = $request->path();
            if( $uri=='admin'){
-    	       return view('home');
+               return view('home');
             }
-      		else{
+            else{
             $flag=1;
-            $Sections = null;     
-                         
-            $Sections = DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->get();
+            $publish=1;
+            $Sections = null;
+
+                
+            $Sections = DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->get();        
+            $Sectionscat = DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->first();
+            if($Sectionscat==null){
+                 $idsection=0;
+                 $mapauri='0';
+            }
+            else{
+            $idsection=$Sectionscat->id;
+            $mapauri=$Sectionscat->uri;
+            }
+            
+            
+            
+            
+            $Categories = DB::table('cms_categories')
+            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
+            ->select('cms_categories.*', 'cms_sections.title as section')
+            ->where('cms_categories.active','=', $flag)            
+            ->where('cms_categories.publish','=', $publish) 
+            ->where('cms_categories.id_section','=', $idsection)                        
+            ->orderBy('order_by','DESC')->get();
+            
+                
 
             $this->aumentarHits($uri);
             $uris = $this->getBreadcrumb($request);
-            return view('cresolido.page',['Sections'=>$Sections, 'uris'=>$uris]);
-           }  	        
+
+            return view('cresolido.page',['Sections'=>$Sections, 'uris'=>$uris, 'Categories'=>$Categories, 'mapa'=>$mapauri]);
+           }            
        }
 
 

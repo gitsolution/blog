@@ -41,8 +41,32 @@ Route::get('admin/commentdel/{id}','commentController@delete');
 Route::get('admin/commentPublic/{id}/{pub}','commentController@publicate'); 
 Route::get('admin/commentresp/{id}/{uri}','commentController@respuesta');
 
+
+
+
+/****************************************************/
+/// PAGINAS ESTATICAS MOLDEANDO MENTES 
+/*
+Route::resource('Inicio','moldeandoController@index');
+Route::get('Inicio','moldeandoController@index');
+Route::get('Empresa','moldeandoController@page');
+Route::get('Servicios','moldeandoController@page');
+Route::get('Sucursales','moldeandoController@page');
+Route::get('Servicios-Financieros','moldeandoController@page');
+Route::get('Cobertura','moldeandoController@page');
+Route::get('Atencion-a-Usuarios','moldeandoController@page');
+Route::get('Informacion','moldeandoController@page');
+Route::get('Aviso-de-privacidad','moldeandoController@page');
+Route::get('Preguntas-frecuentes','moldeandoController@page');
+Route::get('Blog','moldeandoController@BlogList');
+Route::get('Blog/{post}','moldeandoController@Blog');
+Route::get('Login','moldeandoController@page');
+
+
+
 /****************************************************/
 /// PAGINAS ESTATICAS 
+
 Route::resource('Inicio','cresolidoController@index');
 Route::get('Inicio','cresolidoController@index');
 Route::get('Empresa','cresolidoController@page');

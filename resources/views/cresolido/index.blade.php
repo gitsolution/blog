@@ -2,10 +2,15 @@
 <html>
 	<head>
 		<title>CRESOLIDO SA DE CV SOFOM ENR</title>
+            <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	   <!-- Bootstrap Core CSS -->
     {!!Html::style('css/bootstrap.min.css')!!}    
 	{!!Html::style('css/slider.css')!!}
-	{!!Html::style('css/cresolido/style.css')!!}
+    {!!Html::style('css-cresolido/estilos.css')!!}
+  
+	
     <!-- Custom CSS -->
     <script type="text/javascript">
     $(window).load(function() {
@@ -15,25 +20,24 @@
 
 	</head>
 	<body>
+    <header>
+     <img src="../img-cresolido/logo-cresolido.png"  class="img-responsive logocre">
+    </header>
  <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse" role="navigation" id="menu">
         <div class="container-fluid">
             <div class="container">                
                 <!-- Brand and toggle get grouped for better mobile display -->          
                 <div class="navbar-header">
-                 <div class="row">
-                 <div class="col-md-7" style="width: 235px; height: 50px;">
-                         <a href="Inicio"><img src="../images/logo.png" class="img-responsive logo"></a>
-                  </div>
-                  <div class="col-md-5">
+                <img src="../img-cresolido/logo.png"  class="img-responsive logocolapce">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    </div>
-                    </div>                
+                                   
                 </div>            
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">                  
@@ -43,10 +47,6 @@
             </div>
         </div>         
     </nav>
-    <br>
-    <br>
-    <br>
-    <br>    
         	@yield('maincontent') 	
     <div class="container-fluid footer-box">
 			
@@ -59,14 +59,14 @@
             </footer>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <img  src="../images/cnbv.png" class="img-responsive img-footer text-center"/>
+                <div class="col-md-4 colapce">
+                <a href="http://www.cnbv.gob.mx/Paginas/default.aspx" target="_blank"> <img  src="../images/cnbv.png" class="img-footer text-center"/></a>
                 </div>
-                <div class="col-md-4">
-                    <img src="../images/buro.png" class="img-responsive img-footer text-center" />
+                <div class="col-md-4 colapce">
+                <a href="http://www.buro.gob.mx/"  target="_blank"> <img src="../images/buro.png" class="img-footer text-center" /></a>
                 </div>
-                <div class="col-md-4">
-                    <img src="../images/condusef.png" class="img-responsive text-center" />
+                <div class="col-md-4 colapce">
+                <a href="http://www.condusef.gob.mx/"  target="_blank"> <img src="../images/condusef.png" class="img-footer text-center" /> </a>
                 </div>
             </div>
             <div class="clear"></div>
@@ -104,15 +104,18 @@
  		</div> 
  
     <!-- jQuery -->
-    {!! Html::script('js/jquery.js') !!}        
+    {!! Html::script('js/jquery.js') !!}  
+
     <!-- Bootstrap Core JavaScript -->    
     {!! Html::script('js/bootstrap.min.js') !!}    
     <!-- sdjasdjjkd-->
     {!! Html::script('js/jquery.nivo.slider.js') !!} 
-    	  <!-- jQuery -->
-    {!! Html::script('js/jquery.min.js') !!}        
-    
-
 	</body>
+     <script>
+    $('.carousel').carousel({
+        interval: 3000 //changes the speed
+    })
+    </script>
+  
 </html>
 

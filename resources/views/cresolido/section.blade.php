@@ -10,9 +10,7 @@
     </div>    
  <hr>
 
-        <div class="container">           
-        <img src="../img/microfinanzas.png" class="img-responsive" class="img">           
-        </div>
+       
     </header>
  <hr>
     <!-- Page Content -->
@@ -53,7 +51,7 @@
         </div>   
 
         <div class="row">
-          {{$Sections->render()}}
+          
         </div>
 
 

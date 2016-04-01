@@ -145,7 +145,7 @@ class SysModules extends Migration
 
         sys_module::create([
             'id_parent'=>'12',
-            'title'=>'Usuario',
+            'title'=>'Roles',
             'description'=>'Roles',
             'active'=>'1',
             'register_by'=>'1',
@@ -155,7 +155,7 @@ class SysModules extends Migration
 
         sys_module::create([
             'id_parent'=>'12',
-            'title'=>'Usuario',
+            'title'=>'Módulos',
             'description'=>'Módulos',
             'active'=>'1',
             'register_by'=>'1',

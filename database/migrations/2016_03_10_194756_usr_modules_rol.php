@@ -25,6 +25,9 @@ class UsrModulesRol extends Migration
             $table->timestamps();
         });
 
+       
+
+
     }
 
     /**

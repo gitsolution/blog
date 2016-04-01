@@ -28,7 +28,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $usr_login_roles = usr_login_role::findOrFail(1);
         if(Gate::denies('verificar-rol'))
         {   
            Auth::logout();
@@ -63,18 +62,10 @@ class HomeController extends Controller
             
             $p=str_replace ('"', " ", $permisoC);
             $p=str_replace (' ', "", $p);
-            echo $p;
+            //echo $p;
             $ca='true';
             $resultado = strpos($p, $ca);
 
-            if($resultado>1)
-            {
-                echo "true";
-            }
-            
-            else
-                {return "False";}
-            
             /*foreach ($permisoEspeciales as $pe) 
             {
                 $permisoC2 =$pe->access;
@@ -88,7 +79,6 @@ class HomeController extends Controller
             
             if($roles!=null){$b=True;}else{$b=False;}*/
 
-       
         $document="";
         $hit="";
         $documents = DB::table('cms_documents')     

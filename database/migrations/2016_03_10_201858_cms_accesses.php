@@ -23,6 +23,8 @@ class CmsAccesses extends Migration
             $table->integer('modify_by');
             $table->timestamps();
         });
+
+        
     }
 
     /**

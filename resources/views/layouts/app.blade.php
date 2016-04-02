@@ -123,7 +123,7 @@
                             {!!link_to('/admin', '&nbsp;Inicio',array('class'=>'fa fa-home')) !!}                          
                         </li>
 
-                            @can('menu')
+                            @can('menus.Modulodemenu')
                                 <li>
                                     <a href="#"><i class="fa fa-magic"></i> Menús <span class="fa arrow "></span></a>
                                    
@@ -136,35 +136,35 @@
                                 </li>
                             @endcan
                             
-                            @can('publicaciones')
+                            @can('Publicaciones.ModulodePublicaciones')
                                 <li>
                                     <a href="#"><i class="fa fa-newspaper-o"></i> Publicaciones <span class="fa arrow "></span></a>
                                     <ul class="nav nav-second-level">
-                                    @can('tipos')
+                                    @can('Tipos.Submodulodetipos')
                                          <li>
                                               {!!link_to('admin/types', '&nbsp;&nbsp;&nbsp; Tipos',array('class'=>'fa fa-file-o')) !!}
                                         </li>
                                     @endcan
 
-                                    @can('secciones')
+                                    @can('Secciones.SubmodulodeSecciones')
                                         <li>
                                               {!!link_to('admin/sections', ' Secciones',array('class'=>'glyphicon glyphicon-book')) !!}
                                         </li>
                                     @endcan
 
-                                    @can('categorias')
+                                    @can('Categorias.SubmodulodeCategorias')
                                         <li>
                                              {!!link_to('admin/category', ' Categorias',array('class'=>'glyphicon glyphicon-object-align-horizontal')) !!}
                                         </li>
                                     @endcan
 
-                                    @can('documentos')
+                                    @can('Documentos.SubmodulodeDocumentos')
                                         <li>
                                              {!!link_to('admin/document', '&nbsp;&nbsp;&nbsp; Documentos',array('class'=>'fa fa-book')) !!}
                                         </li>
                                     @endcan
 
-                                    @can('documentos')
+                                    @can('Comentarios.SubmodulodeComentarios')
                                         <li>
                                             {!!link_to('admin/comments', '&nbsp;&nbsp;&nbsp; Comentarios',array('class'=>'fa fa-comment-o')) !!}
                                         </li>
@@ -178,13 +178,13 @@
                                 <li>
                                     <a href="#" class="fa fa-camera"> Archivos <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
-                                    @can('albums')
+                                    @can('Albums.SubmodulodeAlbums')
                                         <li>
                                             {!!link_to('admin/media', '&nbsp;&nbsp;&nbsp;Albums',array('class'=>'fa fa-picture-o ')) !!}
                                         </li> 
                                     @endcan
 
-                                    @can('directorio')                                   
+                                    @can('Directorio.SubmodulodeDirectorio')                                   
                                         <li>
                                             {!!link_to('admin/directory', '&nbsp;&nbsp;&nbsp;Directorio',array('class'=>'fa fa-folder-open ')) !!}
                                         </li>
@@ -193,29 +193,29 @@
                                 </li>   
                             @endcan   
 
-                        @can('usuarios')                                   
+                        @can('Usuarios.ModulodeUsuarios')                                   
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i>Usuarios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                            @can('usuario')
+                            @can('Usuarios.SubmodulodeUsuarios')
                                 <li>
                                     {!!link_to('/usuario', '&nbsp;&nbsp;&nbsp;Usuarios',array('class'=>'fa fa-user ')) !!}                                   
                                 </li>
                             @endcan  
 
-                            @can('roles')
+                            @can('Roles.SubmodulodeRoles')
                                 <li>
                                     {!!link_to('admin/roles', '&nbsp;&nbsp;&nbsp;Roles',array('class'=>'fa fa-flag-o ')) !!}                                     
                                 </li>
                             @endcan
 
-                            @can('modulos')
+                            @can('Módulos.Asignarpermisos')
                                  <li>
                                     {!!link_to('admin/cms', '&nbsp;&nbsp;&nbsp;Módulos',array('class'=>'fa fa-cubes')) !!}                         
                                 </li>
                             @endcan
 
-                            @can('configuracion-permisos')
+                            @can('Configuración.Asignarpermisosamodulos')
                                 <li>
                                     {!!link_to('admin/configPermission', '&nbsp;&nbsp;&nbsp;Configuracion',array('class'=>'fa fa fa-cog')) !!}
                                 </li>
@@ -225,7 +225,7 @@
                         </li>
                         @endcan
 
-                        @can('configuracion')  
+                        @can('Configuraciónes.Modulodeconfiguraciondemetas')  
                             <li>
                                 <a href="#"><i class="fa fa-cogs fa-lg"></i> Cofiguración<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">

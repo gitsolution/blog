@@ -8,7 +8,7 @@
 	<div class="col-md-2">
  	 
  	</div>
- @can('albums-nuevo')
+ @can('Albums.Creargaleria')
 	<div class="col-md-2">
  	{!!Form::open()!!}
    
@@ -33,7 +33,7 @@
 			<th class="ColumColor">
 			Fecha Publicación
 			</th>
-			@can('albums-imagenes')
+			@can('Albums.Subirimagenes')
 				<th class="ColumColor">
 				Imágenes
 				</th>
@@ -41,17 +41,17 @@
 			<th class="ColumColor">
 			Visualizaciones
 			</th>
-			@can('albums-ordenar')
+			@can('Albums.ordenar')
 				<th colspan="2" class="center-text ColumColor">
 				Ordén
 				</th>
 			@endcan
-			@can('albums-publicado')
+			@can('Albums.Publicar')
 				<th class="ColumColor text-center">
 				Publicado
 				</th>
 			@endcan
-			@can('albums-inicio')
+			@can('Albums.Colocaralinicio')
 				<th class="ColumColor text-center">
 				Inicio
 				</th>	
@@ -72,7 +72,7 @@
 				<td> {{$med->title}}</td>
 				<td> {{ $publish_date }}</td>		
 				
-				@can('albums-imagenes')
+				@can('Albums.Subirimagenes')
 					<td>
 					&nbsp;&nbsp;&nbsp;&nbsp;{!!link_to('admin/item/'.$med->id, '',array('class'=>'fa fa-upload fa-lg')) !!}
 					</td> 
@@ -80,13 +80,13 @@
 				
 				<td> {{ $med->hits }}</td>	
 
-				@can('albums-ordenar')
+				@can('Albums.ordenar')
 					<td> {!! link_to('admin/mediaorder/'.$med->id.'/Down/'.$down.'/', '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>
 
 					<td> {!! link_to('admin/mediaorder/'.$med->id.'/Up/'.$up.'/', '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
 				@endcan
 
-				@can('albums-publicado')
+				@can('Albums.Publicar')
 				<td class="text-center">
 				<?php if($med->publish=='1'){?>
 				{!!  link_to('admin/mediapub/'.$med->id.'/False/', '',array('class'=>'glyphicon glyphicon-ok')) !!}
@@ -97,7 +97,7 @@
 				</td>
 				@endcan
 
-				@can('albums-inicio')
+				@can('Albums.Colocaralinicio')
 				<td class="text-center"> 
 				<?php if($med->index_page=='1'){?>
 					{!! link_to('admin/mediaind/'.$med->id.'/False/', '',array('class'=>'fa fa-check-square-o fa-lg')) !!}
@@ -109,11 +109,11 @@
 
 				<td class="text-center">
 
-				@can('albums-editar')
+				@can('Albums.Editar')
 					{!! link_to('admin/mediaedit/'.$med->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
 				@endcan
 
-				@can('albums-eliminar')
+				@can('Albums.Eliminar')
 					{!! link_to('admin/mediadel/'.$med->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}
 				@endcan
 				</td>    

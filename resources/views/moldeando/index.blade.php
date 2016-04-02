@@ -9,10 +9,13 @@
     {!!Html::style('css/bootstrap.min.css')!!}    
 	{!!Html::style('css/slider.css')!!}
     {!!Html::style('css-moldeando/estilos.css')!!}
+    {!!Html::style('../css/lightbox.css')!!}
 	</head>
 	<body>
-    <div class="container">
+    <div class="container-fluid">
     <div class="banhed"></div>
+    </div>
+    <div class="container">
      <img src="../img-moldeando/logo-moldeando.png"  class="img-responsive logocre">
     </div>
  <!-- Navigation -->
@@ -41,7 +44,7 @@
 
         	@yield('maincontent') 	
     
-<div class="container footer-box">
+<div class="container-fluid footer-box">
     <div class="container">
 	    <div class="row">
             <footer>
@@ -65,13 +68,13 @@
                         <h4>CONTACTANOS</h4>
                         <ul class="list-inline">
                             <li>
-                                <a href="#" class="btn-social"><i class=""><img src="img-moldeando/facebook.png" class="img-responsive"></i></a>
+                                <a href="#" class="btn-social"><i class=""><img src="../img-moldeando/facebook.png" class="img-responsive"></i></a>
                             </li>
                             <li>
-                                 <a href="#" class="btn-social"><i class=""><img src="img-moldeando/instagram.png" class="img-responsive"></i></a>
+                                 <a href="#" class="btn-social"><i class=""><img src="../img-moldeando/instagram.png" class="img-responsive"></i></a>
                             </li>
                             <li>
-                                <a href="#" class="btn-social"><i class=""><img src="img-moldeando/twitter.png" class="img-responsive"></i></a>
+                                <a href="#" class="btn-social"><i class=""><img src="../img-moldeando/twitter.png" class="img-responsive"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -84,7 +87,8 @@
     {!! Html::script('js/jquery.js') !!}  
 
     <!-- Bootstrap Core JavaScript -->    
-    {!! Html::script('js/bootstrap.min.js') !!}    
+    {!! Html::script('js/bootstrap.min.js') !!} 
+    {!! Html::script('js/lightbox.js') !!}   
    </body>
      <script>
     $('.carousel').carousel({

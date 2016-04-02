@@ -320,6 +320,7 @@ public function listGalleries(Request $request){
             ->where('med_pictures.publish','=',$publish)        
             ->orderBy('med_albums.order_by','DESC')->paginate(20);
             $uris = $this->getBreadcrumb($request);
+
            
             return view('moldeando.galery',['media'=>$media ,'band'=>$band, 'uris'=>$uris] );
 }
@@ -329,7 +330,7 @@ public function galleries($option, Request $request){
         $flag='1';  
         $publish='1';  
         $band='0';  
-
+        
         $items =  DB::table('med_pictures')
             ->join('med_albums', 'med_pictures.id_album', '=', 'med_albums.id')            
             ->select('med_pictures.*', 'med_albums.title as album')        

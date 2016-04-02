@@ -6,10 +6,23 @@ body {
   height: 15px;
   width: 100%; }
 
+.panel {
+  margin-bottom: 3px; }
+
 .bansect {
   background-color: #118d43;
   height: 3px;
   width: 100%; }
+
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0; }
+
+.navbar-nav {
+  margin-top: 0px; }
+
+.navbar-nav li {
+  padding-left: 10px; }
 
 .container {
   padding-left: 0;
@@ -28,8 +41,8 @@ body {
   color: black; }
 
 .imgpage {
-  width: 250px;
-  height: 300px;
+  width: 100%;
+  height: auto;
   margin-left: 10px;
   margin-bottom: 20px; }
 

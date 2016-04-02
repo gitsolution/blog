@@ -12,7 +12,8 @@ use DB;
 use Session;
 use Redirect;
 use Auth;
-
+use Gate;
+use App;
 class sectiosController extends Controller
 {
   public function __construct()
@@ -22,14 +23,22 @@ class sectiosController extends Controller
     
   public function index()
    {
-    $flag='1';  
- 
-    $Sections = DB::table('cms_sections')
-            ->join('cms_types', 'cms_types.id', '=', 'cms_sections.id_type')            
-            ->select('cms_sections.*', 'cms_types.title as type')
-            ->where('cms_sections.active','=', $flag)            
-            ->orderBy('order_by','DESC')->paginate(20);
-            return view('sections/index',compact('Sections'));
+        if(Gate::denies('Secciones.SubmodulodeSecciones'))
+        {   
+           abort(401);
+        }
+
+        else
+        {
+          $flag='1';  
+       
+          $Sections = DB::table('cms_sections')
+                  ->join('cms_types', 'cms_types.id', '=', 'cms_sections.id_type')            
+                  ->select('cms_sections.*', 'cms_types.title as type')
+                  ->where('cms_sections.active','=', $flag)            
+                  ->orderBy('order_by','DESC')->paginate(20);
+                  return view('sections/index',compact('Sections'));
+          }
 
    }
 

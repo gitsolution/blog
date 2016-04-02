@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'contactovalorproductivo@gmail.com', 'name' => 'valorproductivo.com.mx'],
+    'from' => ['address' => 'moldeandomentes.ac@gmail.com', 'name' => 'moldeandomentes.com.mx'],
 
     /*
     |--------------------------------------------------------------------------

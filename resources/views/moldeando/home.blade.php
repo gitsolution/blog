@@ -1,65 +1,135 @@
 @extends('moldeando.index')
 @section('maincontent')
-<div>
+<?php $cont=0; $rand2=0; $cont2=0;?>
 
-   <div id="inicio" id="myCarousel" class="carousel slide">
+  <!-- Header Carousel -->
+    <header id="myCarousel" class=" container carousel slide">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
-        <!-- Wrapper for Slides -->
+        <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
-                <img src="img-cresolido/img1.png" class="img-responsive">
-                <div class="carousel-caption">
-                  
-                </div>
+                 <img src="img-moldeando/img1.png" class="img-responsive">
             </div>
             <div class="item">
-               <img src="img-cresolido/img1.png" class="img-responsive">
-                <div class="carousel-caption">
-                   
-                </div>
+                 <img src="img-moldeando/img1.png" class="img-responsive">
             </div>
             <div class="item">
-               <img src="img-cresolido/img1.png" class="img-responsive">
-               <div class="carousel-caption">
-                   
-                </div>
+                 <img src="img-moldeando/img1.png" class="img-responsive">
             </div>
         </div>
-    </div>  
-</div>
-<div class="baner1">
-  <h2>Nuestra Historia</h2>
-</div>
-<div class="historia container-fluid ">
-<div class="container-fluid">
-  <div class="row">
-         @if($Services!=null)
-         @foreach($Services as $Ser) 
-            <div class="col-md-6">    
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span></a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span></a>
+    </header>
+<div class="historia container ">
+<div class="container">
+  <div class="container">
+    <div class="">
+         @if($Categories!=null)
+         @foreach($Categories as $Ser)   
+            <div class="col-md-3 contenedor <?php echo "colorcon".$cont;?>" > 
+              <h3 class="text-center"><?php echo $Ser->title; ?>  </h3>
+              <?php echo $Ser->resumen;  ?>
               @if($Ser->main_picture!="")
-            <img class="img-center" src='<?php echo $Ser->main_picture; ?>' alt="">
-              @endif  
-            <?php echo $Ser->resumen;  ?>
-            </div>
-            <div class="col-md-6">
-              <?php echo $Ser->content;  ?>
+                  <img class="img-center" src='<?php echo $Ser->main_picture; ?>'>
+              @endif 
+              <?php $cont++; ?>   
             </div>
           @endforeach
         @endif
         <div class="clear"> </div>  
+    </div>
   </div>
 </div>
 </div>
-<div id="wrap">
-<div class="content-bottom">
-      <div class="map">
-      <iframe width="100%" height="400" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3820.662324682381!2d-93.12475138457738!3d16.74369218846735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd85ed3ba7b1f%3A0x68cae440f6bdb040!2s13A.+Sur+Pte+640%2C+San+Francisco%2C+29000+Tuxtla+Guti%C3%A9rrez%2C+Chis.!5e0!3m2!1ses-419!2smx!4v1458274272743"  frameborder="0" style="border:0" allowfullscreen></iframe>       
-       </div>
+ <div class="separador"> </div>  
+
+<div class="container  ">
+<div class="container">
+  <div class="container">
+  <div class="col-md-1"></div>
+    <div class="col-md-3 ">
+      <div class="categos">
+          <div class="bannt text-center"><p>Noticias</p></div>
+            @if($noticias!=null)
+              <div id="notic" class="carousel slide">
+                <div class="carousel-inner ">
+                 @foreach($noticias as $not)  
+                    <div <?php if($cont2==0){ echo 'class="item active"';}else{echo 'class="item"';}?>>
+                        @if($not->main_picture!="")
+                          <img class="img-center" style="height:230px; width:100%; " src='<?php echo $not->main_picture; ?>'>
+                        @endif
+                        <div style="height: 230px">
+                            <h5 class="padin"><?php echo $not->title; ?>  </h5>
+                             <div class="marg"> <?php echo $not->resumen;  ?></div>
+                        </div>
+                    </div>
+                    <?php $cont2++; ?>     
+                  @endforeach
+                </div>  
+              </div>
+            @endif
+      </div>
     </div>
+    <div class="col-md-3">
+      <div class="categos">
+        <div class="banev text-center"><p>Eventos</p></div>
+          @if($eventos!=null)
+            <div id="event" class="carousel3 slide">
+              <div class="carousel-inner ">
+              <?php $cont3=0?>
+               @foreach($eventos as $events)  
+                  <div <?php if($cont3==0){ echo 'class="item active"';}else{echo 'class="item"';}?>>
+                   <div style="height: 230px">
+                        <h5 class="padin"><?php echo $events->title; ?>  </h5>
+                         <div class="marg"> <?php echo $events->resumen;  ?></div>
+                    </div>
+                    @if($events->main_picture!="")
+                      <img class="img-center" style="height:230px; width:100%; " src='<?php echo $events->main_picture; ?>'>
+                    @endif
+                  </div>
+                  <?php $cont3++; ?>   
+                @endforeach
+              </div>  
+            </div>
+          @endif
+      </div>    
+    </div>
+    <div class="col-md-3">
+      <div class="categos">
+          <div class="banpro text-center"><p>Proyectos</p></div>
+            @if($proyectos!=null)
+                <div id="pro" class="carousel2 slide">
+                  <div class="carousel-inner ">
+                  <?php $cont3=0?>
+                   @foreach($proyectos as $pro)  
+                      <div <?php if($cont3==0){ echo 'class="item active"';}else{echo 'class="item"';}?>>
+                          @if($pro->main_picture!="")
+                            <img class="img-center" style="height:230px; width:100%; " src='<?php echo $pro->main_picture; ?>'>
+                          @endif 
+                        <div style="height: 230px">
+                            <h5 class="padin"><?php echo $pro->title; ?></h5>
+                            <div class="marg"><?php echo $pro->resumen;  ?></div>
+                        </div>
+                      </div>
+                      <?php $cont3++; ?>   
+                    @endforeach
+                  </div>  
+                </div>
+            @endif
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+<br>
+<br>
+
 @stop

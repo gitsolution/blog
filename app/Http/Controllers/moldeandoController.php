@@ -60,31 +60,44 @@ public function index(Request $request)
         $uri='Inicio';
         
         
-        $id_section =  (DB::table('cms_sections')->where('active','=', $flag)->where('uri','=', $uri)->max('id'));             
-        $titulo = 'Historia';
-          $Sections =  DB::table('cms_sections')->where('active','=', $flag)->where('publish','=', $publish)->where('id','=', $id_section)->get();             
-      
-           $Services = DB::table('cms_categories')
-            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
-            ->select('cms_categories.*', 'cms_sections.title as section')
-            ->where('cms_categories.title','=',$titulo)
-            ->where('cms_categories.active','=', $flag)                                       
-            ->where('cms_categories.publish','=', $publish)                                    
-            ->orderBy('order_by','DESC')->paginate(3);
 
             
             $Categories = DB::table('cms_categories')
             ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
             ->select('cms_categories.*', 'cms_sections.title as section')
-            ->where('cms_categories.active','=', $flag)                    
-           // ->where('cms_categories.id_section','=', $id_section)                        
+            ->where('cms_categories.active','=', $flag)
+            ->where('cms_sections.uri','=', 'Inicio')                     
             ->where('cms_categories.publish','=', $publish)                                    
-            ->orderBy('order_by','DESC')->paginate(20);
+            ->orderBy('order_by','DESC')->paginate(4);
+            
+            $CategoriesNoti = DB::table('cms_categories')
+            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
+            ->select('cms_categories.*', 'cms_sections.title as section')
+            ->where('cms_categories.active','=', $flag)  
+            ->where('cms_sections.uri','=', 'Noticias')                
+            ->where('cms_categories.publish','=', $publish)                                    
+            ->orderBy('order_by','DESC')->get();
 
+            $CategoriesEvent = DB::table('cms_categories')
+            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
+            ->select('cms_categories.*', 'cms_sections.title as section')
+            ->where('cms_categories.active','=', $flag)  
+            ->where('cms_sections.uri','=', 'Eventos')                
+            ->where('cms_categories.publish','=', $publish)                                    
+            ->orderBy('order_by','DESC')->get();
+
+            $CategoriesPro = DB::table('cms_categories')
+            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
+            ->select('cms_categories.*', 'cms_sections.title as section')
+            ->where('cms_categories.active','=', $flag)  
+            ->where('cms_sections.uri','=', 'Proyectos')                
+            ->where('cms_categories.publish','=', $publish)                                    
+            ->orderBy('order_by','DESC')->get();
+            
             $this->aumentarHits($uri);
             $uris = $this->getBreadcrumb($request);
             
-            return view('moldeando.home',['Categories'=>$Categories, 'Services'=>$Services,'Sections'=>$Sections,'uris'=>$uris]);
+            return view('moldeando.home',['Categories'=>$Categories,'uris'=>$uris, 'eventos'=>$CategoriesEvent, 'noticias'=>$CategoriesNoti,'proyectos'=>$CategoriesPro]);
     }
 
     public function BlogList(Request $request)

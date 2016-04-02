@@ -1,14 +1,30 @@
 
+$negro: rgb(60,59,60)
 $orange: rgb(211,127,21)
-
 body
-	color: white
+	color: black
+
+.banhed
+	background-color: $orange
+	height: 15px
+	width: 100%
+.bansect
+	background-color: rgb(17,141,67)
+	height: 3px
+	width: 100%
+.container
+	padding-left: 0
+	padding-right: 0
+	.navbar-header
+		margin-right: 2px
+
+//cresolido css anterior reutulizar
 
 .page
 	p
 		color: black
 	h2
-		color: $orange
+		color: $negro
 	ul 
 		color: black 
 	
@@ -17,8 +33,8 @@ body
 		color: black
 
 .imgpage
-	width: 100px
-	height: auto
+	width: 250px
+	height: 300px
 	margin-left: 10px
 	margin-bottom: 20px
 
@@ -28,18 +44,19 @@ body
 			colo: black
 
 #menu
-	background-color: $orange
+	background-color: $negro
 	border-radius: 0
-	border-color: $orange
+	border-color: $negro
 
 
 .footer-box
-	background-color: $orange
+	background-color: $negro
 	padding: 20px
 	p
 		color: white  
 	h4
 		color: white
+		margin-top: 0
 	b
 		color: white
 .correo
@@ -50,7 +67,7 @@ body
 	left: 10px 
 
 .baner1
-	background-color: $orange
+	background-color: $negro
 	padding: 15px
 	box-shadow: 1px 1px 1px #888888
 	z-index: 10
@@ -60,19 +77,12 @@ body
 		margin-bottom: 0 !important
 		margin-top: 0 !important
 		text-shadow: 2px 2px 3px black
-
-.historia
-	background-image: url("../img-cresolido/banner4.png")
-	padding: 40px 0px 10px 0px
-	table
-		p
-			colo: $orange
-
+	
 label
 	color: black
 
 h3
-	color: $orange
+	color: $negro
 
 .sectiones
 	margin-bottom: 30px
@@ -82,7 +92,14 @@ h3
 	margin-top: 0
 	margin-bottom: 0
 	border: 0
-	border-top: 2px solid $orange
+	border-top: 2px solid $negro
+.contenedor
+	width: 25%
+	height: 250px
+	h3
+		color: white
+	p
+		color: white
 .green
 	background: green
 
@@ -118,7 +135,7 @@ h3
 	display: none
 
 .datos
-	background-color: $orange
+	background-color: $negro
 	border-radius: 14px
 	box-shadow: 5px 5px 5px rgba(0,0,0,0.5)
 	padding: 20px 47px
@@ -133,8 +150,85 @@ h3
 	margin-top: 5px
 .wrapworl
 	word-wrap: break-word 
+	hr
+		border: 1px solid silver
+
+.btn-social 
+	display: inline-block
+	width: 50px
+	height: 50px
+	border-radius: 100%
+	text-align: center
+	font-size: 20px
+	line-height: 45px
 
 
+
+
+.colorcon0
+	background-color: rgb(16,33,93)
+
+.colorcon1
+	background-color: rgb(207,111,53)
+.colorcon2
+	background-color: rgb(17,141,67)
+.colorcon3
+	background-color: rgb(19,109,170)
+.colorcon4
+	background-color: rgb(22,33,93)
+.colorcon5
+	background-color: rgb(147,101,184)
+.colorcon6
+	background-color: rgb(250,197,28)
+.colorcon7
+	background-color: rgb(225,73,56)
+.colorcon8
+	background-color: rgb(26,188,156)
+
+.footer-box
+	.col-md-2
+		width: 19%
+
+.separador
+	height: 20px
+
+.contcat
+	width: 25%
+.bannt
+	width: 100%
+	background-color: rgb(207,111,53)
+	p
+		color: white
+		font-size: 22px
+		margin: 0 0 0.5px
+.banev
+	width: 100%
+	background-color: rgb(17,141,67)
+	p
+		color: white
+		font-size: 22px
+		margin: 0 0 0.5px
+.banpro
+	width: 100%
+	background-color:  rgb(16,33,93)
+	p
+		color: white
+		font-size: 22px
+		margin: 0 0 0.5px
+.categos
+	height: 515px
+	background-color: rgb(237,238,239)
+
+.padin
+	padding-left: 10px
+.marg
+	padding-left: 8px
+.navbar-nav :hover
+	background-color: white
+.posimg
+	height: 430px
+	width: 100%
+	
 
 @media (max-width: 768px) 
 	.datos
@@ -152,6 +246,20 @@ h3
 	.colapce
 		margin: 0
 		text-align: center
+	.banhed
+		display: none
+	.carousel-indicators
+		bottom: -10px
+	.contenedor
+		width: 100%
+	h3
+		margin-top: 0
+	.categos
+		margin-left: 0px
+	.posimg
+		height: 100px
+
+
 
 @media (min-width: 768px) 
 	.logocolapce

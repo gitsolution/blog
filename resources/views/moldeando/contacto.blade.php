@@ -1,12 +1,7 @@
 @extends('moldeando.index')
 @section('maincontent')
+<div class="container">      
 <div class="container">
-    <div class="breadcrumb">
-      @foreach($uris as $uri)
-        {!! $uri !!}
-      @endforeach                
-    </div>        
-<hr>
 <div class="col-md-6">
 {!!Form::open(['route'=>'Inicio.store','method','POST'])!!}
 
@@ -46,7 +41,7 @@
      </div>
      
       <div class="form-group">
-         <div class="col-xs-10"><br>
+         <div class="col-xs-8"><br>
             {!! Recaptcha::render() !!}
          </div>
      </div>
@@ -61,8 +56,9 @@
 </div>
 <div class="col-md-6">
 <br>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d826.2863845470714!2d-92.26740050669942!3d14.906520081823249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x858e0f2193bdb483%3A0x45cacceb26e3d55e!2sSexta+Avenida+Sur+28%2C+Centro%2C+30830+Tapachula+de+C%C3%B3rdova+y+Ordo%C3%B1ez%2C+Chis.!5e0!3m2!1ses-419!2smx!4v1456773955538" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>    
-
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3820.4408721807094!2d-93.1252524856064!3d16.754727425153334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd8f15f7ecc6f%3A0x8b9ebdf575f99d3!2sAv+Central+Pte%2C+Tuxtla+Guti%C3%A9rrez%2C+Chis.!5e0!3m2!1ses-419!2smx!4v1459626968420" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 </div>
+</div>
+<br>
 <div>
 @stop

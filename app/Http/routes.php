@@ -46,12 +46,15 @@ Route::get('admin/commentresp/{id}/{uri}','commentController@respuesta');
 
 /****************************************************/
 /// PAGINAS ESTATICAS MOLDEANDO MENTES 
-/*
 Route::resource('Inicio','moldeandoController@index');
 Route::get('Inicio','moldeandoController@index');
-Route::get('Empresa','moldeandoController@page');
-Route::get('Servicios','moldeandoController@page');
-Route::get('Sucursales','moldeandoController@page');
+Route::get('Proyectos','moldeandoController@page');
+Route::get('Eventos','moldeandoController@page');
+Route::get('Noticias','moldeandoController@page');
+Route::get('Contacto','moldeandoController@Contacto');
+Route::get('Galleries','moldeandoController@listGalleries');
+Route::get('Galleries/{option}','moldeandoController@galleries');
+
 Route::get('Servicios-Financieros','moldeandoController@page');
 Route::get('Cobertura','moldeandoController@page');
 Route::get('Atencion-a-Usuarios','moldeandoController@page');
@@ -66,6 +69,7 @@ Route::get('Login','moldeandoController@page');
 
 /****************************************************/
 /// PAGINAS ESTATICAS 
+/*
 
 Route::resource('Inicio','cresolidoController@index');
 Route::get('Inicio','cresolidoController@index');
@@ -82,7 +86,7 @@ Route::get('Blog','cresolidoController@BlogList');
 Route::get('Blog/{post}','cresolidoController@Blog');
 Route::get('Login','cresolidoController@page');
 
-
+*/
 /// PAGINAS ESTATICAS 
 /*
 Route::get('Inicio','frontController@index');
@@ -104,13 +108,13 @@ Route::get('Cat/{optio}','cresolidoController@category');
 Route::get('Doc/{option}','cresolidoController@document');
 Route::get('CatList/{option}','cresolidoController@listCategory');
 Route::get('DocList/{option}','cresolidoController@listDocument');
-Route::get('Galleries','cresolidoController@listGalleries');
-Route::get('Galleries/{option}','cresolidoController@galleries');
+//Route::get('Galleries','cresolidoController@listGalleries');
+//Route::get('Galleries/{option}','cresolidoController@galleries');
 
 //Route::get('contactoEnviar','cresolidoController@enviar');
 Route::get('frmcotizacion','cresolidoController@cotizacion');
  
-Route::get('Contacto','cresolidoController@Contacto');
+//Route::get('Contacto','cresolidoController@Contacto');
 Route::resource('cotizacion','cotizacioncontroller');
 
 //Route::get('contactoEnviar','cresolidoController@enviar');

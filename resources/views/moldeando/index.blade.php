@@ -11,25 +11,23 @@
     {!!Html::style('css-moldeando/estilos.css')!!}
 	</head>
 	<body>
-    <header>
+    <div class="container">
     <div class="banhed"></div>
      <img src="../img-moldeando/logo-moldeando.png"  class="img-responsive logocre">
-    </header>
+    </div>
  <!-- Navigation -->
-    <nav class="navbar navbar-inverse" role="navigation" id="menu">
-        <div class="container-fluid">
+    <nav class="container navbar navbar-inverse" role="navigation" id="menu">
+        <div class="container">
             <div class="container">                
                 <!-- Brand and toggle get grouped for better mobile display -->          
                 <div class="navbar-header">
                 <img src=""  class="img-responsive logocolapce">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button>
-                                   
+                    </button>                                   
                 </div>            
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">                  
@@ -39,73 +37,64 @@
             </div>
         </div>         
     </nav>
+    <div class="container"><div class="bansect"></div></div>
+
         	@yield('maincontent') 	
-    <div class="container-fluid footer-box">
-			
-			<div class="container">
-	 		<div class="row">
+    
+<div class="container footer-box">
+    <div class="container">
+	    <div class="row">
             <footer>
-            <ul class="footer_menu">
-	 			 @include('cresolido.footermenu')	 		
-            </ul>
+                <ul class="footer_menu">
+    	 			 @include('cresolido.footermenu')	 		
+                </ul>
             </footer>
-            </div>
-            <div class="row">
-                <div class="col-md-4 colapce">
-                <a href="http://www.cnbv.gob.mx/Paginas/default.aspx" target="_blank"> <img  src="../images/cnbv.png" class="img-footer text-center"/></a>
-                </div>
-                <div class="col-md-4 colapce">
-                <a href="http://www.buro.gob.mx/"  target="_blank"> <img src="../images/buro.png" class="img-footer text-center" /></a>
-                </div>
-                <div class="col-md-4 colapce">
-                <a href="http://www.condusef.gob.mx/"  target="_blank"> <img src="../images/condusef.png" class="img-footer text-center" /> </a>
-                </div>
-            </div>
-            <div class="clear"></div>
-            <div class="row">
-                <div class="col-md-6 text-left" >
-               
-               <h4> Unidad Especializada de Atención a Usuarios (UNE):</h4>
-                <p>
-                    <b>Dirección:</b> 13ª Sur Poniente, Número 640, Barrio San Francisco, C.P. 29066, Tuxtla Gutiérrez Chiapas.
-                <br>
-                    <b>Teléfonos:</b>
-                    <br>
-                    <b>Local:</b> 961 663 81 10<br> 
-                    <b>Lada sin costo:</b> 01 800 837 80 47
-                    <br>
-                       <b>Correo electrónico:</b>cresolidopld@hotmail.com
-                    <br>
-                    <b>Horario de atención:</b>
-                    8:30 - 16:00 hrs. de Lunes a Viernes
-                    </p>                   
-                </div>            
-            <div class="col-md-6 text-left">
-             <p>
-                    <h4>Comision Nacional para la Proteccion y Defensa de los Usuarios de los Servicios Financieros (CONDUSEF)</h4>
-                    <b>Telefono de Atencion a Usuarios:</b> (55) 5340 0999 y 01 (800) 999 8080
-                    <br>
-                    <b>Correo Electronico:</b> opinion@condusef.gob.mx
-                    <br>
-                    <b>Página de Internet:</b> http://www.condusef.gob.mx
-                    </p>
-                </div>
-            </div>
-	 		</div> 
-	 			
- 		</div> 
+        </div>
+        <div class="clear"></div>
+        <div class="row">
+            <div class="col-md-3">
+            <p><span class="glyphicon glyphicon-earphone"></span> Tel. +1 998 71 150 30 20</p>                          
+            </div>  
+            <div class="col-md-3">
+            <p><span class="glyphicon glyphicon-map-marker"></span> Av. Central Poniente<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tuxtla Gutieérrez Chiapas.</p>                          
+            </div>     
+            <div class="col-md-3">
+            <p><span class="glyphicon glyphicon-envelope"></span>info@stylemixthemes.com</p>                          
+            </div>  
+                <div class="footer-col col-md-2 text-center">
+                        <h4>CONTACTANOS</h4>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social"><i class=""><img src="img-moldeando/facebook.png" class="img-responsive"></i></a>
+                            </li>
+                            <li>
+                                 <a href="#" class="btn-social"><i class=""><img src="img-moldeando/instagram.png" class="img-responsive"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social"><i class=""><img src="img-moldeando/twitter.png" class="img-responsive"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                        
+        </div>
+	</div> 
+</div> 
  
     <!-- jQuery -->
     {!! Html::script('js/jquery.js') !!}  
 
     <!-- Bootstrap Core JavaScript -->    
     {!! Html::script('js/bootstrap.min.js') !!}    
-    <!-- sdjasdjjkd-->
-    {!! Html::script('js/jquery.nivo.slider.js') !!} 
-	</body>
+   </body>
      <script>
     $('.carousel').carousel({
         interval: 3000 //changes the speed
+    })
+      $('.carousel2').carousel({
+        interval: 5500 //changes the speed
+    })
+       $('.carousel3').carousel({
+        interval: 4400 //changes the speed
     })
     </script>
   

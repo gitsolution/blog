@@ -1,10 +1,26 @@
 body {
-  color: white; }
+  color: black; }
+
+.banhed {
+  background-color: #d37f15;
+  height: 15px;
+  width: 100%; }
+
+.bansect {
+  background-color: #118d43;
+  height: 3px;
+  width: 100%; }
+
+.container {
+  padding-left: 0;
+  padding-right: 0; }
+  .container .navbar-header {
+    margin-right: 2px; }
 
 .page p {
   color: black; }
 .page h2 {
-  color: #d37f15; }
+  color: #3c3b3c; }
 .page ul {
   color: black; }
 
@@ -12,8 +28,8 @@ body {
   color: black; }
 
 .imgpage {
-  width: 100px;
-  height: auto;
+  width: 250px;
+  height: 300px;
   margin-left: 10px;
   margin-bottom: 20px; }
 
@@ -21,17 +37,18 @@ body {
   colo: black; }
 
 #menu {
-  background-color: #d37f15;
+  background-color: #3c3b3c;
   border-radius: 0;
-  border-color: #d37f15; }
+  border-color: #3c3b3c; }
 
 .footer-box {
-  background-color: #d37f15;
+  background-color: #3c3b3c;
   padding: 20px; }
   .footer-box p {
     color: white; }
   .footer-box h4 {
-    color: white; }
+    color: white;
+    margin-top: 0; }
   .footer-box b {
     color: white; }
 
@@ -43,7 +60,7 @@ body {
   left: 10px; }
 
 .baner1 {
-  background-color: #d37f15;
+  background-color: #3c3b3c;
   padding: 15px;
   box-shadow: 1px 1px 1px #888888;
   z-index: 10; }
@@ -54,17 +71,11 @@ body {
     margin-top: 0 !important;
     text-shadow: 2px 2px 3px black; }
 
-.historia {
-  background-image: url("../img-cresolido/banner4.png");
-  padding: 40px 0px 10px 0px; }
-  .historia table p {
-    colo: #d37f15; }
-
 label {
   color: black; }
 
 h3 {
-  color: #d37f15; }
+  color: #3c3b3c; }
 
 .sectiones {
   margin-bottom: 30px;
@@ -74,7 +85,15 @@ h3 {
   margin-top: 0;
   margin-bottom: 0;
   border: 0;
-  border-top: 2px solid #d37f15; }
+  border-top: 2px solid #3c3b3c; }
+
+.contenedor {
+  width: 25%;
+  height: 250px; }
+  .contenedor h3 {
+    color: white; }
+  .contenedor p {
+    color: white; }
 
 .green {
   background: green; }
@@ -112,7 +131,7 @@ h3 {
   display: none; }
 
 .datos {
-  background-color: #d37f15;
+  background-color: #3c3b3c;
   border-radius: 14px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   padding: 20px 47px;
@@ -128,6 +147,94 @@ h3 {
 
 .wrapworl {
   word-wrap: break-word; }
+  .wrapworl hr {
+    border: 1px solid silver; }
+
+.btn-social {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  text-align: center;
+  font-size: 20px;
+  line-height: 45px; }
+
+.colorcon0 {
+  background-color: #10215d; }
+
+.colorcon1 {
+  background-color: #cf6f35; }
+
+.colorcon2 {
+  background-color: #118d43; }
+
+.colorcon3 {
+  background-color: #136daa; }
+
+.colorcon4 {
+  background-color: #16215d; }
+
+.colorcon5 {
+  background-color: #9365b8; }
+
+.colorcon6 {
+  background-color: #fac51c; }
+
+.colorcon7 {
+  background-color: #e14938; }
+
+.colorcon8 {
+  background-color: #1abc9c; }
+
+.footer-box .col-md-2 {
+  width: 19%; }
+
+.separador {
+  height: 20px; }
+
+.contcat {
+  width: 25%; }
+
+.bannt {
+  width: 100%;
+  background-color: #cf6f35; }
+  .bannt p {
+    color: white;
+    font-size: 22px;
+    margin: 0 0 0.5px; }
+
+.banev {
+  width: 100%;
+  background-color: #118d43; }
+  .banev p {
+    color: white;
+    font-size: 22px;
+    margin: 0 0 0.5px; }
+
+.banpro {
+  width: 100%;
+  background-color: #10215d; }
+  .banpro p {
+    color: white;
+    font-size: 22px;
+    margin: 0 0 0.5px; }
+
+.categos {
+  height: 515px;
+  background-color: #edeeef; }
+
+.padin {
+  padding-left: 10px; }
+
+.marg {
+  padding-left: 8px; }
+
+.navbar-nav :hover {
+  background-color: white; }
+
+.posimg {
+  height: 430px;
+  width: 100%; }
 
 @media (max-width: 768px) {
   .datos {
@@ -146,10 +253,27 @@ h3 {
 
   .colapce {
     margin: 0;
-    text-align: center; } }
+    text-align: center; }
+
+  .banhed {
+    display: none; }
+
+  .carousel-indicators {
+    bottom: -10px; }
+
+  .contenedor {
+    width: 100%; }
+
+  h3 {
+    margin-top: 0; }
+
+  .categos {
+    margin-left: 0px; }
+
+  .posimg {
+    height: 100px; } }
 @media (min-width: 768px) {
   .logocolapce {
     display: none; } }
-.noexiste {
-  color: black;}
+
 /*# sourceMappingURL=estilos.css.map */

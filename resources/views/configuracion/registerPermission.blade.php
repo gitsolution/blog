@@ -68,8 +68,6 @@
                        
 
                         @else
-
-
                           @foreach ($json as $item)
                               <div class="checkbox">  
                                 <label>                     

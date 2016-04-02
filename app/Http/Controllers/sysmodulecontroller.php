@@ -63,9 +63,11 @@ class sysmodulecontroller extends Controller
     {
         $nModule=DB::table('sys_modules')->where('id',$id)->first();
         $nameModule=$nModule->title;
-        $permiso=DB::table('cms_accesses')->whereid_sysmodule($id)->get();
-
-        return View::make('sysmodules/modulespermission',compact('id','nameModule','permiso'));  
+        /*$permiso=DB::table('cms_accesses')->whereid_sysmodule($id)->first();
+        return View::make('sysmodules/modulespermission',compact('id','nameModule','permiso'));*/
+        $permiso=DB::table('cms_accesses')->select('title')->whereid_sysmodule($id)->first(); 
+        $json=json_decode($permiso->title,True);
+        return View::make('sysmodules/modulespermission',compact('id','nameModule','permiso','json'));
     }
 
     public function update($id,Request $request){

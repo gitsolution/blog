@@ -92,8 +92,10 @@ class configController extends Controller
            
             if($json=="")
             {
-               $json=DB::table('cms_accesses')->whereid_sysmodule($idModulo)->whereactive(1)->select('title','active')->get();
-               $b=0;
+               //$json=DB::table('cms_accesses')->whereid_sysmodule($idModulo)->whereactive(1)->select('title','active')->get();
+               $b=1;
+            $json=DB::table('cms_accesses')->select('title')->whereid_sysmodule($idModulo)->whereactive(1)->first();
+                $json=json_decode($json->title,true);
             }
             
             return View::make('configuracion.registerPermission',compact('idRole','idModulo','nombreRol','nombreModulo','json','path','b'));
@@ -108,6 +110,7 @@ class configController extends Controller
                 $json="";
                 $path="";
                 $b=0;
+
                 return View::make('configuracion.registerPermission',compact('idRole','idModulo','nombreRol','nombreModulo','json','path','b'));
             }
     	}

@@ -10,7 +10,7 @@
 <div class="row">
 <br>
 <div class="col-md-10"><h3>Catálogo de Categorías </h3></div>
-@can('categorias-nuevo')
+@can('Categorias.Crear')
 <div class="col-md-2">
  {!!Form::open()!!}
     {!! link_to('admin/categorynew', 'Nueva Categoria ',array('class'=>'btn btn-success ')) !!}
@@ -33,12 +33,12 @@
             <th  class="ColumColor text-center" >
             Titulo
             </th>
-            @can('categorias-acceso')
+            @can('Categorias.acceso')
               <th class="ColumColor text-center" >
               Acceso
               </th>
             @endcan
-            @can('categorias-publicado')
+            @can('Categorias.Publicar')
               <th class="ColumColor text-center" >
               Publicado
               </th>
@@ -49,7 +49,7 @@
             <th class="ColumColor text-center">
             Vistas
             </th>
-            @can('documentos-ordenar')
+            @can('Categorias.ordenar')
             <th class="ColumColor text-center" colspan="2">
             Orden
             </th>
@@ -73,7 +73,7 @@
           <td> {{$med->section}}</td>
           <td> {{$med->title}}</td>
 
-          @can('categorias-acceso')
+          @can('Categorias.acceso')
           <td class="text-center"> 
             <?php if($med->private=='1'){?>
                 
@@ -85,7 +85,7 @@
           </td>
           @endcan
 
-          @can('categorias-publicado')
+          @can('Categorias.Publicar')
           <td class="text-center">
              <?php if($med->publish=='1'){?>
                 {!! link_to('admin/categoryPublic/'.$med->id.'/False', '',array('class'=>'glyphicon glyphicon-ok')) !!}
@@ -99,17 +99,17 @@
           <td class="text-center"> {{$publish_date}}</td>
           <td>{{$med->hits}}</td>
           
-          @can('documentos-ordenar')
+          @can('Categorias.ordenar')
             <td> {!!link_to('admin/categoryorder/'.$med->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}
             </td>
             <td> {!!link_to('admin/categoryorder/'.$med->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down'))!!}
             </td>
           @endcan
           <td> 
-          @can('categorias-editar')
+          @can('Categorias.Editar')
             {!!link_to_route('admin.category.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}
           @endcan
-          @can('categorias-eliminar')
+          @can('Categorias.Eliminar')
            {!!link_to('admin/categorydel/'.$med->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-trash')) !!}
           @endcan
           </td>

@@ -11,7 +11,7 @@
 <div class="row">
 <br>
 <div class="col-md-10"><h3>Catálogo de secciones </h3></div> <!--divide la columna en 10 y 2-->
-@can('secciones-nuevo')
+@can('Secciones.Crear')
 <div class="col-md-2">
  {!!Form::open()!!}
     {!! link_to('admin/sectionsnew', 'Nueva Sección ',array('class'=>'btn btn-success ')) !!}
@@ -34,13 +34,13 @@
             <th  class="ColumColor text-center" >
             Sección
             </th>
-            @can('secciones-acceso')
+            @can('Secciones.acceso')
               <th class="ColumColor text-center" >
               Acceso
               </th>
             @endcan
 
-            @can('secciones-publicado')
+            @can('Secciones.publicar')
               <th class="ColumColor text-center" >
               Publicado
               </th>
@@ -48,7 +48,7 @@
             <th class="ColumColor text-center" >
             Fecha Publicación
             </th>
-            @can('secciones-ordenar')
+            @can('Secciones.ordenar')
             <th class="ColumColor text-center" colspan="2"> 
             orden
             </th>
@@ -73,7 +73,7 @@
           <td> {{$med->id}}</td>
           <td> {{$med->type}}</td>
           <td> {{$med->title}}</td>
-          @can('secciones-acceso')
+          @can('Secciones.acceso')
               <td class="text-center"> 
                  <?php if($med->private=='1'){?>
                     
@@ -85,7 +85,7 @@
               </td>
           @endcan
 
-          @can('secciones-publicado')
+          @can('Secciones.publicar')
               <td class="text-center">
                   <?php if($med->publish=='1'){?>
                     
@@ -99,7 +99,7 @@
           @endcan
           <td class="text-center"> {{$publish_date}}</td>
           
-          @can('secciones-ordenar')
+          @can('Secciones.ordenar')
             <td> {!!link_to('admin/sectionorder/'.$med->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>         
 
 
@@ -108,11 +108,11 @@
           <td class="text-center"> {{$med->hits}}</td> 
 
           <td> 
-          @can('secciones-editar')
+          @can('Secciones.editar')
             {!!link_to_route('admin.sections.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}
           @endcan
            
-          @can('secciones-eliminar')
+          @can('Secciones.eliminar')
             {!!link_to('admin/sectiondel/'.$med->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}
           @endcan
 

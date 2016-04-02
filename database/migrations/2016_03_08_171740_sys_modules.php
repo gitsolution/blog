@@ -3,6 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\sys_module;
+
 class SysModules extends Migration
 {
     /**
@@ -23,7 +24,7 @@ class SysModules extends Migration
             $table->timestamps();
         });
 
-          sys_module::create([
+        sys_module::create([
             'id_parent'=>'0',
             'title'=>'Menús',
             'description'=>'Modulo para creacion de menus',

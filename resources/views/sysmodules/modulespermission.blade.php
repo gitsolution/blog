@@ -19,10 +19,10 @@
                 {!! Form::hidden('nameModule', $nameModule) !!}
                                         
 
-                  <div class="form-group" id="frmLogin">
+                  <!-- <div class="form-group" id="frmLogin">
                   <div class="row">
                         <div class="col-md-12">
-                          {!!Form::label('nombre','Permiso:')!!}
+                         {!!Form::label('nombre','Permiso:')!!}
                           {!!Form::text('name','',['class'=>'form-control frmEspacios','placeholder'=>'Nombre'])!!}
                         </div>
 
@@ -37,42 +37,26 @@
                              </div>
                         </div> 
                   </div>
-                  </div>
+                  </div>-->
 
-                      @if(isset($permiso) && $permiso!=null)                         
-                            <table class="table table-bordered table-hover">
+                  <table class="table table-bordered table-hover">
                               <thead class="center-text" style="color: #1e91cf;" >
                                 <th class="text-left" >
                                   Permisos
                                 </th> 
-                                <th  class="text-left" >
-                                  Descripción del permiso
-                                </th>
-                                <th  class="text-left" >
-                                  Eliminar
-                                </th>           
-                              </thead>
-                          @foreach($permiso as $p)
-                          @if($p->active==1)
-                            <tbody>
-                              <td>{{$p->title}}</td>
-                              <td>{{$p->description}}</td>
-                              <td> 
-                                  <?php 
-                                    if($p->active=='1'){
-                                  ?>                  
-                                      {!!link_to('admin/cmsaccessactive/'.$p->id_sysmodule.'/'.$p->id.'/False', '',array('class'=>'fa fa-check')) !!}
-                                  
-                                    
-                                    <?php } 
-                                    ?>
-                              </td>                                    
-                            </tbody>
-                            @endif
-                          @endForeach
+                   @foreach ($json as $item=>$valor)
 
-                         </table>
-                      @endif
+                            <?php
+                              $array=explode('.', $item);
+                              $nombre=array_pop($array);
+                            ?>
+                             <tbody>
+                              <td><?php echo $nombre; ?></td>
+                              </tbody>
+                              
+                          @endforeach
+                      </table>
+                    
                 
 {!!Form::close()!!}
 @stop

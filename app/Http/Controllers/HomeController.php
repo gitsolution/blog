@@ -28,12 +28,56 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $usr_login_roles = usr_login_role::findOrFail(1);
         if(Gate::denies('verificar-rol'))
         {   
            Auth::logout();
            return redirect('/Inicio');
         }
+
+        $permiso='admin.menu.Guardar'; 
+            $roles=DB::table('usr_login_roles')
+            ->select('id_role')
+            ->whereid_login(3)
+            ->whereactive(1)->get();
+        
+
+        $permisoC="";
+            foreach ($roles as $r) {
+                         $join=DB::table('user_module_rol')
+                        ->select('access_granted')
+                        ->whereid_role($r->id_role)
+                        ->whereactive(1)->get();
+                        if($join!=null)
+                        {
+                            foreach ($join as $j) {
+                                $permisoC .=$j->access_granted;
+                            }
+                        }
+                    }
+
+            $permisoEspeciales=DB::table('special_permissions')
+            ->select('access')
+            ->whereid_user(3)
+            ->whereactive(1)->get();
+            
+            $p=str_replace ('"', " ", $permisoC);
+            $p=str_replace (' ', "", $p);
+            //echo $p;
+            $ca='true';
+            $resultado = strpos($p, $ca);
+
+            /*foreach ($permisoEspeciales as $pe) 
+            {
+                $permisoC2 =$pe->access;
+            }     
+                 
+             $json = json_decode($permisoC2, true);
+                        foreach ($json as $item=>$value) {
+                            echo $item;
+                        }
+        
+            
+            if($roles!=null){$b=True;}else{$b=False;}*/
 
         $document="";
         $hit="";

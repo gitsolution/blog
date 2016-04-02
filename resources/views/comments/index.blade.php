@@ -27,7 +27,7 @@
             <th  class="ColumColor text-center" >
             Comentario
             </th>
-            @can('comentarios-publicado')
+            @can('Comentarios.Publicar')
               <th class="ColumColor text-center" >
               Publicado
               </th>
@@ -35,7 +35,7 @@
             <th class="ColumColor text-center" >
             Fecha Publicación
             </th>
-            @can('comentarios-eliminar')
+            @can('Comentarios.Eliminar')
               <th class="ColumColor text-center"  >
               Eliminar
               </th>
@@ -53,7 +53,7 @@
           <td> {{$med->titleDoc}}</td>
           <td> {{$med->content}}</td>
           
-          @can('comentarios-publicado')
+          @can('Comentarios.Publicar')
           <td class="text-center">
               <?php if($med->publish=='1'){?>
                 
@@ -66,7 +66,7 @@
           </td>
           @endcan
           <td class="text-center"> {{$publish_date}}</td> 
-          @can('comentarios-eliminar')
+          @can('Comentarios.Eliminar')
             <td>
               {!!link_to('admin/commentdel/'.$med->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}
             </td>

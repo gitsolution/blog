@@ -8,7 +8,7 @@
  	 
  	</div>
 
- 	@can('menu-nuevo')
+ 	@can('menu.Crear')
 	<div class="col-md-2">
  	{!!Form::open()!!}
    
@@ -30,12 +30,12 @@
 			<th class="ColumColor">
 		    Menu
 			</th>
-			@can('menu-elementos')
+			@can('menu.elementos')
 				<th class="ColumColor">
 				Elementos
 				</th>			 
 			@endcan
-			@can('menu-ordenar')
+			@can('menu.ordenar')
 				<th class="center-text ColumColor" colspan="2">
 				Ordén
 				</th>
@@ -56,21 +56,24 @@
 				<tr>
 				<td> {{$men->id}}</td>
 				<td> {{$men->title}}</td>
-			@can('menu-elementos')
+			@can('menu.elementos')
 				<td>
 				{!!link_to('admin/itemmenu/'.$men->id.'/0', '',array('class'=>'glyphicon glyphicon-menu-hamburger')) !!}
 				</td> 
 			@endcan
-			@can('menu-ordenar')
+			@can('menu.ordenar')
 				<td> {!! link_to('admin/menuorder/'.$men->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down')) !!}</td>			
 				<td> {!! link_to('admin/menuorder/'.$men->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}</td>
 			@endcan
-			@can('menu-editar')
-				<td>{!! link_to('admin/menuedit/'.$men->id, ' ',array('class'=>'img-responsive btn btn-primary glyphicon glyphicon-pencil')) !!}
-			@endcan
-			@can('menu-eliminar')
-				{!! link_to('admin/menudel/'.$men->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}</td> 
-			@endcan   
+				<td>
+				@can('menu.editar')
+					{!! link_to('admin/menuedit/'.$men->id, ' ',array('class'=>'img-responsive btn btn-primary glyphicon glyphicon-pencil')) !!}
+				@endcan
+				@can('menu.eliminar')
+					{!! link_to('admin/menudel/'.$men->id, '',array('class'=>'img-responsive btn btn-danger glyphicon glyphicon-trash')) !!}
+				@endcan
+				</td> 
+			   
 		    </td>
 			</tr>
 		@endforeach

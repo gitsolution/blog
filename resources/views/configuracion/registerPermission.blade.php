@@ -60,7 +60,7 @@
                               ?>
                                <div class="checkbox">  
                                 <label>                     
-                                      <input type="checkbox" name="role[]" value="<?php echo $item; ?>" onclick="check()" <?php echo $ch; ?>/><?php echo $nombre; ?>
+                                      <input type="checkbox" name="role[]" value="<?php echo $nombre; ?>" onclick="check()" <?php echo $ch; ?>/><?php echo $nombre; ?>
                                 </label> 
                               </div> 
                           @endforeach
@@ -68,8 +68,6 @@
                        
 
                         @else
-
-
                           @foreach ($json as $item)
                               <div class="checkbox">  
                                 <label>                     
@@ -135,12 +133,13 @@
       var path="<?php  echo $path;?>";
       var json="";
       var json="{";
-      
+
       for(i=6;i<boxes.length-1;i++)
       {
         var value = boxes[i].value;
         var active=boxes[i].checked;
-        json = json +'"'+path+"."+value +'"'+ ":" + active + ",";
+        
+        json = json +'"'+path+"."+value+'"'+ ":" + active + ",";
       }
 
       json=json.slice(0,-1);

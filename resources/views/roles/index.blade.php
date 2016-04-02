@@ -12,7 +12,7 @@
 <br>
 <div class=" form-group row">
 <div class="col-md-10"><h3>Catálago de roles</h3></div> <!--divide la columna en 10 y 2-->
-@can('roles-nuevo')
+@can('Roles.Crear')
 <div class="col-md-2">
  {!!Form::open()!!}
     {!! link_to('admin/rolesNew', 'Nuevo roles ',array('class'=>'btn btn-success ')) !!}
@@ -74,11 +74,11 @@
         @endcan
 				<td>{{$rol->created_at}}</td>
 				<td>
-        @can('roles-editar')
+        @can('Roles.Editar')
 				  {!! link_to('admin/rolesEdit/'.$rol->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!}
         @endcan
 
-        @can('roles-eliminar')
+        @can('Roles.Eliminar')
           {!! link_to('admin/rolesDelete/'.$rol->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-trash')) !!}
         @endcan 
 				</td>

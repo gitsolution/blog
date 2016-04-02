@@ -10,7 +10,7 @@
 <div class="row">
 <br>
 <div class="col-md-10"><h3>Catálogo de Documentos </h3></div> <!--divide la columna en 10 y 2-->
-@can('documentos-nuevo')
+@can('Documentos.Crear')
 <div class="col-md-2">
  {!!Form::open()!!}
     {!! link_to('admin/documentnew', 'Nuevo Documento ',array('class'=>'btn btn-success ')) !!}
@@ -33,12 +33,12 @@
             <th  class="ColumColor " >
             Titulo
             </th>
-            @can('documentos-acceso')
+            @can('Documentos.acceso')
               <th class="ColumColor text-center" >
               Acceso
               </th>
             @endcan
-            @can('documentos-publicado')
+            @can('Documentos.Publicar')
               <th class="ColumColor text-center" >
               Publicado
               </th>
@@ -49,7 +49,7 @@
             <th class="ColumColor ">
             Vistas
             </th>
-            @can('documentos-ordenar')
+            @can('Documentos.ordenar')
               <th class="ColumColor" colspan="2"s>
               Orden
               </th>
@@ -72,7 +72,7 @@
           <td> {{$med->category}}</td>
           <td> {{$med->title}}</td>
 
-          @can('documentos-acceso')
+          @can('Documentos.acceso')
           <td class="text-center"> 
             <?php if($med->private=='1'){?>
                 
@@ -84,7 +84,7 @@
           </td>
           @endcan
 
-          @can('documentos-publicado')
+          @can('Documentos.Publicar')
           <td class="text-center">
              <?php if($med->publish=='1'){?>
                 {!! link_to('admin/documentPublic/'.$med->id.'/False', '',array('class'=>'glyphicon glyphicon-ok')) !!}
@@ -99,17 +99,17 @@
           <td class="text-center"> {{$publish_date}}</td>
           <td>{{$med->hits}}</td>
 
-          @can('documentos-ordenar')
+          @can('Documentos.ordenar')
             <td> {!!link_to('admin/documentorder/'.$med->id.'/Up/'.$up, '',array('class'=>'glyphicon glyphicon-chevron-up')) !!}
             </td>
             <td> {!!link_to('admin/documentorder/'.$med->id.'/Down/'.$down, '',array('class'=>'glyphicon glyphicon-chevron-down'))!!}
             </td>
           @endcan
           <td class="text-center"> 
-          @can('documentos-editar')
+          @can('Documentos.Editar')
             {!!link_to_route('admin.document.edit', $title = '', $parameters = $med->id, $attributes = ['class'=>'btn btn-primary glyphicon glyphicon-pencil'])!!}
          @endcan
-         @can('documentos-eliminar')
+         @can('Documentos.Eliminar')
            {!!link_to('admin/documentdel/'.$med->id, '',array('class'=>'btn btn-danger glyphicon glyphicon-trash')) !!}
          @endcan
           </td>

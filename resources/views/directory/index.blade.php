@@ -14,7 +14,7 @@
 	<div class="col-md-2">
  	 
  	</div>
- @can('directorio-nuevo')
+ @can('directorio.Nuevo')
 	<div class="col-md-2">
  	{!!Form::open()!!}
    

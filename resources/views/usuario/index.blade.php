@@ -12,7 +12,7 @@
 
 <br>
 <div class="col-md-10"><h3>Catálago de usuarios</h3></div> <!--divide la columna en 10 y 2-->
-@can('usuarios-nuevo')
+@can('Usuarios.Crear')
 <div class="col-md-2">
  {!!Form::open()!!}
     {!! link_to('admin/userNew', 'Nuevo usuario ',array('class'=>'btn btn-success ')) !!}
@@ -62,13 +62,13 @@
 
 				<td>{{$created_at}}</td>
 				<td>
-                @can('usuarios-editar')
+                @can('Usuarios.Editar')
 				    {!! link_to('admin/userEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-pencil')) !!} 
                 @endcan
-                @can('usuarios-roles')
+                @can('Usuarios.Asignarroles')
                     {!! link_to('admin/permissionEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-flag')) !!}
                 @endcan
-                @can('usuarios-especial-permisos')
+                @can('Usuarios.Asignarpermisosespeciales')
                     {!! link_to('admin/specialEdit/'.$user->id, '',array('class'=>'btn btn-primary glyphicon glyphicon-lock')) !!}   
                 @endcan     
 				</td>

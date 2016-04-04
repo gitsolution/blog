@@ -8,6 +8,8 @@ use view;
 use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Gate;
+use Auth;
 
 class commentController extends Controller
 {	  
@@ -18,6 +20,12 @@ class commentController extends Controller
     
   public function index()
    {
+    if(Gate::denies('Comentarios.SubmodulodeComentarios'))
+    {
+      Auth::logout();
+      return redirect('/Inicio');
+    }
+
     $flag='1';  
  
     $Coments = DB::table('cms_comments')
@@ -46,7 +54,12 @@ class commentController extends Controller
     }
 
   public function publicate($id,$pub){
-
+    if(Gate::denies('Comentarios.SubmodulodeComentarios'))
+      {Auth::logout();return redirect('/Inicio');
+      }
+    if(Gate::denies('Comentarios.Publicar'))
+    { Auth::logout();return redirect('/Inicio');
+    }
     $flag=1;
     if($pub=='True'){ $pub = 1;}else{ $pub = 0; }
     $Coments = DB::table('cms_comments')->where('active','=', $flag)->where('id', '=',$id)->update(['publish'=>$pub]);             
@@ -56,6 +69,17 @@ class commentController extends Controller
 
   public function delete($id)
       {
+        if(Gate::denies('Comentarios.SubmodulodeComentarios'))
+        {
+          Auth::logout();
+          return redirect('/Inicio');
+        }
+        if(Gate::denies('Comentarios.Eliminar'))
+        {
+          Auth::logout();
+          return redirect('/Inicio');
+        }
+
           $Coments = \App\cms_comment::find($id);
           $Coments->active=0;
           $Coments->save();
@@ -68,11 +92,8 @@ class commentController extends Controller
         $uris=$uri;
         $band=1;
        
-      
        //['itemMenus'=>$itemMenus,'menu'=>$menu, 'id_parent'=>$id_parent, "level"=>$level]
        return redirect('Blog/'.$uris)->with('band',$ids);
-
-
       }
 
 }

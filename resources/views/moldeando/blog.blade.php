@@ -48,6 +48,7 @@
 
         @foreach($coments as $coment)
           @if($coment->iddoc==$Doc->id)
+            <div class="row">
               <div class="comments-container">
                 <ul id="comments-list" class="comments-list">
                   @if($coment->id_comment==0)
@@ -101,6 +102,7 @@
                     </li>
                 </ul>
               </div>
+            </div>
                     <!--termina maquetacion -->
                       
           @endif

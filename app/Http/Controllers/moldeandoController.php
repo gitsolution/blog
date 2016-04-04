@@ -232,8 +232,10 @@ public function section($option, Request $request){
 
 public function category($option, Request $request){
         $Sections = null;
+        $flag=1;
         $Categories = null;
         $uri=$option;
+
                 
             $Categories = DB::table('cms_categories')
             ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
@@ -242,10 +244,16 @@ public function category($option, Request $request){
             ->where('cms_categories.uri','=', $uri)                        
             ->orderBy('order_by','DESC')->paginate(20);
 
+             $Popular = DB::table('cms_categories')
+            ->join('cms_sections', 'cms_categories.id_section', '=', 'cms_sections.id')            
+            ->select('cms_categories.*', 'cms_sections.title as section')
+            ->where('cms_categories.active','=', $flag)            
+            ->orderBy('hits','DESC')->paginate(5);
+
             $this->aumentarHits($uri);
             $uris = $this->getBreadcrumb($request);
-          
-            return view('moldeando.category',['Categories'=>$Categories, 'uris'=>$uris]);
+            
+            return view('moldeando.category',['Categories'=>$Categories, 'Popular'=>$Popular]);
 }
 
 public function document($option, Request $request){

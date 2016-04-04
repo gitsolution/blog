@@ -51,19 +51,18 @@ Route::get('Inicio','moldeandoController@index');
 Route::get('Proyectos','moldeandoController@page');
 Route::get('Eventos','moldeandoController@page');
 Route::get('Noticias','moldeandoController@page');
+Route::get('Nosotros','moldeandoController@page');
 Route::get('Contacto','moldeandoController@Contacto');
 Route::get('Galleries','moldeandoController@listGalleries');
 Route::get('Galleries/{option}','moldeandoController@galleries');
-
-Route::get('Servicios-Financieros','moldeandoController@page');
-Route::get('Cobertura','moldeandoController@page');
-Route::get('Atencion-a-Usuarios','moldeandoController@page');
-Route::get('Informacion','moldeandoController@page');
-Route::get('Aviso-de-privacidad','moldeandoController@page');
-Route::get('Preguntas-frecuentes','moldeandoController@page');
 Route::get('Blog','moldeandoController@BlogList');
 Route::get('Blog/{post}','moldeandoController@Blog');
 Route::get('Login','moldeandoController@page');
+
+Route::get('Cat/{optio}','moldeandoController@category');
+Route::get('Doc/{option}','moldeandoController@document');
+Route::get('CatList/{option}','moldeandoController@listCategory');
+Route::get('DocList/{option}','moldeandoController@listDocument');
 
 
 
@@ -103,11 +102,11 @@ Route::get('Login','frontController@page');
 */
 
 /// INDEX PAGE cresolidoEND
-Route::get('Sec/{option}','cresolidoController@section');
-Route::get('Cat/{optio}','cresolidoController@category');
-Route::get('Doc/{option}','cresolidoController@document');
-Route::get('CatList/{option}','cresolidoController@listCategory');
-Route::get('DocList/{option}','cresolidoController@listDocument');
+//Route::get('Sec/{option}','cresolidoController@section');
+//Route::get('Cat/{optio}','cresolidoController@category');
+//Route::get('Doc/{option}','cresolidoController@document');
+//Route::get('CatList/{option}','cresolidoController@listCategory');
+//Route::get('DocList/{option}','cresolidoController@listDocument');
 //Route::get('Galleries','cresolidoController@listGalleries');
 //Route::get('Galleries/{option}','cresolidoController@galleries');
 

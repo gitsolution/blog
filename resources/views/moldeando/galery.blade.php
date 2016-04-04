@@ -24,7 +24,7 @@
                   </div>
         @else
         @if($med->id==$med->idal && $aux!=$med->id && $med->pic!=null)
-                <div class="col-md-3 hoverclas">
+                <div class="col-md-3 ">
         				  <?php echo $med->title?>
                   <div class="panel panel-primary shadow" >
                     <a href="Galleries/<?php echo $med->uri?>">  		
@@ -53,8 +53,7 @@
       @foreach($items as $pics)
         @if($cont==4)
           <?php echo "&nbsp;<br>" ?>
-        @endif
-       
+        @endif       
         <div class="col-md-3">
           <div class="" style="width:240px;">
             <div class="panel panel-primary shadow">

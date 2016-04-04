@@ -37,9 +37,11 @@
             <div class="col-md-3 contenedor <?php echo "colorcon".$cont;?>" > 
               <h3 class="text-center"><?php echo $Ser->title; ?>  </h3>
               <?php echo $Ser->resumen;  ?>
-              @if($Ser->main_picture!="")
-                  <img class="img-center" src='<?php echo $Ser->main_picture; ?>'>
-              @endif 
+               @if($Ser->content!="")
+                                <p class="text-left">
+                                <a href="Cat/<?php echo $Ser->uri; ?>">Ver más</a>
+                                </p>
+                              @endif
               <?php $cont++; ?>   
             </div>
           @endforeach
@@ -69,6 +71,11 @@
                         <div style="height: 230px">
                             <h5 class="padin"><?php echo $not->title; ?>  </h5>
                              <div class="marg"> <?php echo $not->resumen;  ?></div>
+                              @if($not->content!="")
+                                <p class="text-left">
+                                <a href="Cat/<?php echo $not->uri; ?>">Ver más</a>
+                                </p>
+                              @endif
                         </div>
                     </div>
                     <?php $cont2++; ?>     
@@ -90,6 +97,11 @@
                    <div style="height: 230px">
                         <h5 class="padin"><?php echo $events->title; ?>  </h5>
                          <div class="marg"> <?php echo $events->resumen;  ?></div>
+                          @if($events->content!="")
+                                <p class="text-left">
+                                <a href="Cat/<?php echo $events->uri; ?>">Ver más</a>
+                                </p>
+                          @endif
                     </div>
                     @if($events->main_picture!="")
                       <img class="img-center" style="height:230px; width:100%; " src='<?php echo $events->main_picture; ?>'>
@@ -117,6 +129,11 @@
                         <div style="height: 230px">
                             <h5 class="padin"><?php echo $pro->title; ?></h5>
                             <div class="marg"><?php echo $pro->resumen;  ?></div>
+                            @if($pro->content!="")
+                                <p class="text-left">
+                                <a href="Cat/<?php echo $pro->uri; ?>">Ver más</a>
+                                </p>
+                            @endif
                         </div>
                       </div>
                       <?php $cont3++; ?>   

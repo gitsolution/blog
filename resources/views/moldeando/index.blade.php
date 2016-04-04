@@ -24,7 +24,7 @@
             <div class="container">                
                 <!-- Brand and toggle get grouped for better mobile display -->          
                 <div class="navbar-header">
-                <img src=""  class="img-responsive logocolapce">
+                <img src="../img-moldeando/logo-mol-colapse.png"  class="img-responsive logocolapce">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -88,8 +88,9 @@
 
     <!-- Bootstrap Core JavaScript -->    
     {!! Html::script('js/bootstrap.min.js') !!} 
-    {!! Html::script('js/lightbox.js') !!}   
+   
    </body>
+    {!! Html::script('../js/lightbox.js') !!}   
      <script>
     $('.carousel').carousel({
         interval: 3000 //changes the speed

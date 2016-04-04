@@ -21,8 +21,8 @@ body {
 .navbar-nav {
   margin-top: 0px; }
 
-.navbar-nav li {
-  padding-left: 10px; }
+.navbar-nav li a {
+  padding-left: 25px; }
 
 .container {
   padding-left: 0;
@@ -153,7 +153,7 @@ h3 {
 
 .logocolapce {
   position: absolute;
-  width: 50px;
+  width: 56px;
   height: auto;
   margin-left: 45px;
   margin-top: 5px; }
@@ -249,6 +249,33 @@ h3 {
   height: 430px;
   width: 100%; }
 
+.imgpop {
+  width: 100%;
+  height: 50px; }
+
+.popular p {
+  color: black; }
+.popular h5 {
+  color: black;
+  font-style: bold; }
+  .popular h5:hover {
+    color: orange; }
+.popular a {
+  text-decoration: none; }
+.popular hr {
+  margin-top: 1px; }
+.popular h4 {
+  margin-top: 80px; }
+
+.conpopu {
+  height: 80px; }
+  .conpopu .col-md-3 {
+    padding-left: 3px;
+    padding-right: 3px; }
+  .conpopu .col-md-9 {
+    padding-left: 3px;
+    padding-right: 3px; }
+
 @media (max-width: 768px) {
   .datos {
     padding: 1px 3px;
@@ -284,7 +311,10 @@ h3 {
     margin-left: 0px; }
 
   .posimg {
-    height: 100px; } }
+    height: 100px; }
+
+  .imgpop {
+    width: 25%; } }
 @media (min-width: 768px) {
   .logocolapce {
     display: none; } }

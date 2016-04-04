@@ -30,7 +30,7 @@
                   <div class="col-md-3   <?php echo $Sec->uri; ?>">
                     <div class="imgpage">
                       @if($Ser->main_picture!="")
-                         <img class="img-center  img-responsive" src='<?php echo $Ser->main_picture; ?>' alt="">
+                         <img class="img-center  img-responsive" style="height: 230px;" src='<?php echo $Ser->main_picture; ?>' alt="">
                       @endif  
                     </div>
                   </div>

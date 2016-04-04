@@ -5,13 +5,7 @@
    ?>
     <!-- Page Content -->
     <div class="container">
-    <div class="breadcrumb">
-      @foreach($uris as $uri)
-        {!! $uri !!}
-      @endforeach                
-    </div>        
-   <hr>
-        <div class="row">
+     <div class="row">
         <div class="col-md-8" style="text-align: justify;">     
   @if(isset($Documents))
     @foreach($Documents as $Doc)
@@ -113,7 +107,7 @@
         @endforeach
       
         @if($band==null)         
-            @include('firmesoluciones.formcomentarios')
+            
         @endif
                                
         @endif            
@@ -129,7 +123,6 @@
 
 </div>
   <div class="col-md-4">
-    @include('frontend.frmcotizacion')
   </div>
 <div>
   {{$Documents->render()}}
